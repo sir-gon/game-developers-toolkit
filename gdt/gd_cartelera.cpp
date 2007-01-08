@@ -1,0 +1,66 @@
+/*
+* GDT (GAME DEVELOPERS TOOLKIT)
+* Copyright (C) 2006 GDT STAFF
+* 
+* This library is free software; you can redistribute it and/or
+* modify it under the terms of the GNU Lesser General Public
+* License as published by the Free Software Foundation; either
+* version 2.1 of the License, or (at your option) any later version.
+*
+* This library is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+* Lesser General Public License for more details.
+*
+* You should have received a copy of the GNU Lesser General Public
+* License along with this library; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+*/
+
+#include "gd_cartelera.h" // class's header file
+
+// class constructor
+GD_Cartelera::GD_Cartelera()
+{
+	// insert your code here
+}
+
+// class destructor
+GD_Cartelera::~GD_Cartelera()
+{
+	// insert your code here
+}
+
+
+void GD_Cartelera::Crear(float tamx, float tamy, char* filename)
+{
+    
+    RegistrarDevice(GD_Sistema::device);
+    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+
+
+    
+     nodb = mismgr->addBillboardSceneNode(0, core::dimension2d<f32>(tamx, tamy));
+	 
+	 nodon = nodb;
+	 
+	 nodon->setMaterialFlag(video::EMF_LIGHTING, false);
+	 nodon->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
+	 
+	 Texturizar(filename);	 
+}
+
+void GD_Cartelera::CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+{
+
+    ITriangleSelector* selector = scen.RetornarDatos();
+
+    ISceneManager* mismgr=midevice->getSceneManager();
+
+	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator(
+		selector, nodon, core::vector3df(radiox,radioy,radioz),
+		core::vector3df(transx,transy,transz),
+		core::vector3df(grax,gray,graz));
+	nodon->addAnimator(anim);
+	//anim->drop();
+}

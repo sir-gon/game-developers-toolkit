@@ -1,0 +1,52 @@
+================================================================
+BDog3DM1
+================================================================
+
+Title			: BDOG3DM1
+Date         		: 2 Nov, 2003
+Filename     		: bdog3dm1.pk3
+Author       		: Black Dog
+Email Address		: geoffgole@hotmail.com
+
+Description		: After all that mucking around with DETH back in the days of Doom 2 (*wipes fond tear from his eye*) and after a steep learning curve and a little more mucking round in radiant, here is my first actual released map. Wow, people can finally ignore, condemn and abuse something I created, just like I always dreamed! This is a small, fast-paced FFA map with fairly simple three level room/corridor/ledge construction. There are always multiple travelling options to get to any particular point in the map, and with a jump pad and two-way teleport included the map shrinks considerably. The roof/wall styling and fine brushwork is a bit more visually intensive than id's standard maps, but nothing that should get in the way of bunnyhopping psychopaths intent on knocking another fiftieth of a second off their journey from one side of the map to the other. Speaking of that, the level has not been designed with CPMA in mind (I don't have ProMode) and it may be a bit too small. Suit yourself.
+	I'd describe the gameplay as fun. It's a *great* nade spamming level, if you are on your way to somewhere else just whip out the GL and heave some over the edge of whatever ledge you're on as you go. As with grenade-seeding the teleport areas, this is most effective in a busy FFA, where everybody at some time gets to do the "Christ-its-another-five-nades" cha-cha while desperately seeking higher ground. Will they make it? :)
+
+
+Additional Credits to   : id software. The guys at Q3World for mapping help and feedback. ik for making them there lov-er-ly 	clean textures (don't they look nice?). Yogi for modifying ik's stuff and providing light shaders (which I then proceeded to blatantly rip off). ydnar for making the terrifingly complete and ridiculously well maintained q3map2, useful for turning my dodgy lighting into something worth not vomiting at. And anybody who spent (wasted) their valuable time eyeballing my little creation, let along reading this, deserves a round of applause and possibly some counselling.
+================================================================
+
+- Play Information -
+
+Players			: 2 to 5. 
+Bots			: Yes. Chuck in four or so for some 'nade dodging fun. :)
+Weapons			: Rocket Launcher, Lightning Gun (which I prefer to call the Sichuan Special. Time for some stir fry!), Grenade Launcher (for yer spamming pleasure), Plasma Gun. Two yellow armours and a few health bubbles and shards.
+
+-----------
+
+Unzip the the bdog3dm1_beta.zip into your quake3\baseq3 directory.
+Start quake3 and either select it from your map list or press tilde and enter into the console:
+"/sv_pure 0" then "/map bdog3dm1_beta". Then add some bots of your choice, and go decorate the walls with them.
+
+- Construction -
+
+Base                    : None
+Editor(s) used          : Q3Radiant spiced with Q3ASE (for shaders), q3map2 for the final compile.
+Known Bugs              : Let me know if you find any. 
+Build Time              : A week and a bit. Most of that was learning about shaders, compile options, AAS optimisation. That and beating my head against the wall trying to figure out why any one of ten different things just went wrong with my map *again*.
+Textures used		: ikBase textures by ik
+			: Modified ikBase texture (just the one) and some light shaders by Yogi. I took em straight from the pk3 of his excellent map yog3dm4. Hope he doesn't mind.
+			: A few than_industrial lights and associated shaders.
+			: I modified some id shaders such as the sky, teleports and electric zap (on the jump pad) so they would light suitably, look nice, or not look bad. After some trial and error, they seem to actually work.
+
+Compile machine         : P3 667 Mhz with 192MB RAM. Thank Christ it's a small map or... 
+q3map compile Time      : ...this would have been about a week. It was half an hour or so.
+Brushes     		: 1609
+
+
+- Copyright / Permissions -
+You may not include or distribute this map in/with any sort of commercial product without 
+permission from the author.  You may not mass distribute this level via any
+non-electronic means, including but not limited to compact disks, and floppy disks
+without permission from the author.
+
+You do not have permission to run this map in vertex lighting, you lightmap-hating performance-craving perverts.
