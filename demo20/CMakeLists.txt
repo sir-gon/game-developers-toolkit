@@ -1,11 +1,12 @@
 #add definitions, compiler switches, etc.
-ADD_DEFINITIONS(-Wall -O2)
+#ADD_DEFINITIONS(-Wall -O2)
+ADD_DEFINITIONS(-O2)
 
 # Make sure the compiler can find include files from our Hello library.
-include_directories (${GDT_SOURCE_DIR}/src)
+include_directories (${GDT_SOURCE_DIR}/gdt)
 
 # Make sure the linker can find the Hello library once it is built.
-LINK_DIRECTORIES (${HELLO_BINARY_DIR}/src)
+LINK_DIRECTORIES (${HELLO_BINARY_DIR}/gdt)
 
 # Add executable called "helloDemo" that is built from the source files
 # "demo.cxx" and "demo_b.cxx".  The extensions are automatically found.
