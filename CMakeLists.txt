@@ -1,9 +1,10 @@
 PROJECT(GDT CXX)
+#include_directories (gdt)
 add_subdirectory (gdt)
 add_subdirectory (demo20)
-include_directories (../include/gdt)
 
 ## EXTRAIDO DE http://www.mip.informatik.uni-kiel.de/~jw/cmake/CMakeModules/TargetDistclean.cmake
+## EDITADO POR SIR_GON http://devgon.worpress.com
 # add custom target distclean
 # cleans and removes cmake generated files etc.
 # Jan Woetzel 04/2003
@@ -14,7 +15,7 @@ include_directories (../include/gdt)
 IF (UNIX)
   ADD_CUSTOM_TARGET(distclean)
   ADD_DEPENDENCIES (distclean clean)
-  
+
   SET(DISTCLEAN_FILES
     cmake.depends
     cmake.check_depends
@@ -34,16 +35,17 @@ IF (UNIX)
     CMakeCCompiler.cmake
     CMakeCXXCompiler.cmake
     CMakeSystem.cmake
-    #html latex Doxyfile 
+    html latex
+    #Doxyfile
     )
 
   SET(DISTCLEAN_DIRS
     CMakeTmp
-    CMakeFiles
     )
 
 SET(DISTCLEAN_RECURSIVE_FILES
-  CMakeFiles
+  CMakeCache.txt
+
   progress.make
   Makefile
   cmake_install.cmake
@@ -60,17 +62,15 @@ SET(DISTCLEAN_RECURSIVE_FILES
    COMMENT
     )
 
-  
   FOREACH(RMTARGET ${DISTCLEAN_RECURSIVE_FILES})
     ADD_CUSTOM_COMMAND(
       TARGET distclean
       PRE_BUILD
       COMMAND find
-      ARGS . -name ${RMTARGET} -exec rm {} '\;'
+      ARGS . -wholename ${RMTARGET} -exec rm -R "{}" "\;"
+      #ARGS . -wholename ${RMTARGET} -exec echo "{}" "\;"
       COMMENT
       )
   ENDFOREACH(RMTARGET ${DISTCLEAN_RECURSIVE_FILES})
-  
-  
-ENDIF(UNIX)
 
+ENDIF(UNIX)
