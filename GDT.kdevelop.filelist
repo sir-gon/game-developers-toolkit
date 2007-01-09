@@ -1,4 +1,0 @@
-# KDevelop Custom Project File List
-CMakeLists.txt
-src/libgdt.cpp
-src/libgdttest.cpp
