@@ -1,5 +1,16 @@
 PROJECT(GDT CXX)
 #include_directories (gdt)
+
+SET(EXECUTABLE_OUTPUT_PATH ${GDT_SOURCE_DIR})
+
+IF (UNIX)
+	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/bin/linux-x86)
+ENDIF (UNIX)
+
+IF (WIN32)
+	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/bin/win32)
+ENDIF (WIN32)
+
 add_subdirectory (gdt)
 add_subdirectory (demo20)
 
