@@ -330,29 +330,25 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
     
           if(coli && intersec_coli_d->getPosition().X != 6456.365f && intersec_coli_d->getPosition().Y != 6456.365f && intersec_coli_d->getPosition().Z != 6456.365f){
                   return true;
-          }           
+          }
       }
-
-
 
      // punto F
       DummyNodo->setPosition(nodon->getPosition());
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0,0,-32448763);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_f->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_f->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_f->getPosition().X != 6456.365f && intersec_coli_f->getPosition().Y != 6456.365f && intersec_coli_f->getPosition().Z != 6456.365f){
                   return true;
           } 
       }
-      else
-              return false;
-     
-     
+
+      return false;
 }
 
 vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fin, GD_Escenario scen )
@@ -482,22 +478,22 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
 vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fin, ITriangleSelector* trian )
 {
 
-    	core::line3d<f32> line;
-    	
-		line.start = ini;
-		line.end = fin; //line.start +  (poso2 - line.start).normalize() * 1000.0f;
+	core::line3d<f32> line;
+	
+	line.start = ini;
+	line.end = fin; //line.start +  (poso2 - line.start).normalize() * 1000.0f;
+	
+	core::vector3df intersection;
+	core::triangle3df tri;
 
-		core::vector3df intersection;
-		core::triangle3df tri;
-
-		if (GD_Sistema::device->getSceneManager()->getSceneCollisionManager()->getCollisionPoint(
+	if (GD_Sistema::device->getSceneManager()->getSceneCollisionManager()->getCollisionPoint(
 			line, trian, intersection, tri))
-		{
-			return intersection;
+	{
+		return intersection;
         }
         else
             return vector3df(6456.365f,6456.365f,6456.365f);
-      
+
 }	
 
 bool GD_Colisiones3d::ColisionConRayo( vector3df ini, vector3df fin, ITriangleSelector* trian )
@@ -515,7 +511,7 @@ bool GD_Colisiones3d::ColisionConRayo( vector3df ini, vector3df fin, ITriangleSe
 			line, trian, intersection, tri))
 		{
 			return true;
-        }
+        	}
         else
             return false;
       
