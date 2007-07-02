@@ -42,7 +42,7 @@ class GD_SistemaSonido
         char SGDsoundIniciado;
 
 
-        //funcion para iniciar el GD_Sonido con el dispositivo más compatible que encuentre
+        //funcion para iniciar el GD_Sonido con el dispositivo m&aacute;s compatible que encuentre
         void Inicializar();
         //igual pero indicandole que dispositivo tiene que usar
         void Inicializar(char *);

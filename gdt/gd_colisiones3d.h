@@ -34,7 +34,7 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
       //void ActivarColisiones(IMesh* static_mesh);
       void CrearColision(ITriangleSelector* Mundo);
       void CrearColision(ITriangleSelector* Mundo,core::vector3df Radio,core::vector3df Gravedad,core::vector3df Traslacion);
-      void CrearColision(ITriangleSelector* Mundo, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
+      void CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
       void ActualizarDatosColision();
 
       void CrearColision(GD_Escenario scen);

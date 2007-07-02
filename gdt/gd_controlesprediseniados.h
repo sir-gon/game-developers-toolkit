@@ -8,11 +8,14 @@
 #include "gd_malla.h"
 
 
+//! \manonly Estructura de Teclado \endmanonly
 struct stTeclado
 {
    int iUp,iDown,iRight,iLeft,iControl,iShift;
    double dUp,dDown,dRight,dLeft,dControl,dShift;
 };
+
+//! \manonly Estructura de Mouse \endmanonly
 struct stMouse
 {
    f32 MoveX,MoveY,MLeft,MRight,MCenter;
@@ -30,7 +33,7 @@ class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistem
    //protected:
       stTeclado Teclado;
       stMouse Mouse;
-// TODO (Astucia#1#): Crear comandos de teclado prediseñados
+// TODO (Astucia#1#): Crear comandos de teclado predise&ntilde;ados
 
 // TODO (Astucia#1#): Crear funciones con valores de retorno
 

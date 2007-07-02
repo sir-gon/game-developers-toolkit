@@ -57,19 +57,14 @@ void GD_Colisiones3d::CrearColision(ITriangleSelector* Mundo,core::vector3df Rad
 
 }
 
-void GD_Colisiones3d::CrearColision(ITriangleSelector* Mundo, float RadioX,
-                                                              float RadioY,
-                                                              float RadioZ,
-                                                              float GravedadX,
-                                                              float GravedadY,
-                                                              float GravedadZ, 
-                                                              float TraslacionX, 
-                                                              float TraslacionY, 
-                                                              float TraslacionZ)
+void GD_Colisiones3d::CrearColision(ITriangleSelector* selector,
+                          float RadioX, float RadioY, float RadioZ,
+                          float GravedadX, float GravedadY, float GravedadZ,
+                          float TraslacionX, float TraslacionY, float TraslacionZ)
 {
 
 
-   colision = mesh_smgr->createCollisionResponseAnimator(Mundo, nodon , core::vector3df(RadioX,RadioY,RadioZ),
+   colision = mesh_smgr->createCollisionResponseAnimator(selector, nodon , core::vector3df(RadioX,RadioY,RadioZ),
                                                                       core::vector3df(GravedadX,GravedadY,GravedadZ),
                                                                       core::vector3df(TraslacionX,TraslacionY,TraslacionZ));
 

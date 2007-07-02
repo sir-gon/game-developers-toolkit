@@ -58,7 +58,7 @@ SGDsoundIniciado=0;
 
 //    pDevice = alcOpenDevice((ALCubyte*)"DirectSound3D");
 #ifdef WIN32
-    pDevice = alcOpenDevice((ALCubyte*)tipo);
+//    pDevice = alcOpenDevice((ALCubyte*)tipo);
 #else
     pDevice = alcOpenDevice((ALCchar*)tipo);
 #endif

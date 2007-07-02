@@ -11,12 +11,11 @@ using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+
+//! Base de cualquier elemento de la GUI
 /*
  * Funciones comunes entre los objetos GUI
  */
-
-
-// No description
 class GD_gui
 {
 	public:
@@ -40,7 +39,7 @@ class GD_gui
 
 		void Posicionar(int x, int y);
 		void Posicionar(position2d<s32> pos);
-		//Añadido--------------------------------
+		//A&ntilde;adido--------------------------------
 		void Mover(int x, int y);
 		//---------------------------------------
 

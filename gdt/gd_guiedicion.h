@@ -7,7 +7,7 @@
 
 #include "gd_sistema.h"
 /*
- * GUI Cuadro de Edición (EditBox)
+ * GUI Cuadro de Edici&oacute;n (EditBox)
  */
 class GD_GuiEdicion : public GD_gui
 {

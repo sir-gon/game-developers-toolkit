@@ -98,7 +98,7 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y,int ancho,int alto)
    guitexto->setText(text);   //Inserta el texto al texto estatico
 
    posicionXY= core::position2d< s32 >(x,y); //asigna la posicion en pantalla
-   dimencionXY= core::dimension2d< s32 >(ancho,alto);  //Calcula el tamaño del texto a mostrar
+   dimencionXY= core::dimension2d< s32 >(ancho,alto);  //Calcula el tama&ntilde;o del texto a mostrar
    caja= core::rect< s32 >(posicionXY,dimencionXY);   //Engloba los datos en una estructura
    guitexto->setRelativePosition(caja);   //Coloca el texto segun las coordenadas y
                                           //Configura el modo en que se muestra el texto en pantalla
@@ -114,7 +114,7 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y)
    guitexto->setText(text);   //Inserta el texto al texto estatico
 
    posicionXY= core::position2d< s32 >(x,y); //asigna la posicion en pantalla
-   dimencionXY=core::dimension2d<s32>(iAlto,iAncho);  //Calcula el tamaño del texto a mostrar
+   dimencionXY=core::dimension2d<s32>(iAlto,iAncho);  //Calcula el tama&ntilde;o del texto a mostrar
    caja= core::rect< s32 >(posicionXY,dimencionXY);   //Engloba los datos en una estructura
    guitexto->setRelativePosition(caja);   //Coloca el texto segun las coordenadas y
                                           //Configura el modo en que se muestra el texto en pantalla
@@ -130,7 +130,7 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int al
    guitexto->setText(text);   //Inserta el texto al texto estatico
 
 
-   dimencionXY= core::dimension2d< s32 >(ancho,alto);  //Calcula el tamaño del texto a mostrar
+   dimencionXY= core::dimension2d< s32 >(ancho,alto);  //Calcula el tama&ntilde;o del texto a mostrar
    posicionXY= core::position2d< s32 >((int)x-(dimencionXY.Width/2),(int)y-(dimencionXY.Height/2)); //asigna la posicion en pantalla
    caja= core::rect< s32 >(posicionXY,dimencionXY);   //Engloba los datos en una estructura
    guitexto->setRelativePosition(caja);   //Coloca el texto segun las coordenadas y
@@ -148,7 +148,7 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y)
    guitexto->setText(text);   //Inserta el texto al texto estatico
 
 
-   dimencionXY=core::dimension2d<s32>(iAlto,iAncho);  //Calcula el tamaño del texto a mostrar
+   dimencionXY=core::dimension2d<s32>(iAlto,iAncho);  //Calcula el tama&ntilde;o del texto a mostrar
    posicionXY= core::position2d< s32 >((int)x-(dimencionXY.Width/2),(int)y-(dimencionXY.Height/2)); //asigna la posicion en pantalla
    caja= core::rect< s32 >(posicionXY,dimencionXY);   //Engloba los datos en una estructura
    guitexto->setRelativePosition(caja);   //Coloca el texto segun las coordenadas y

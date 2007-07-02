@@ -27,7 +27,7 @@ class GD_GuiTexto : public GD_gui
           void Crear(int x1, int y1, int x2, int y2, wchar_t * texto,bool borde, bool wordWrap,	IGUIElement *padre=0);
           void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement *padre=0);
           void Color(int r, int g, int b,int a);
-         //Añadido por Astucia 13-04-2006
+         //A&ntilde;adido por Astucia 13-04-2006
           void AsignarFuente(const char fontname[1024]); //Carga un nuevo bmp de fuentes
           void AsignarFuente(wchar_t * fontname); /// NUEVO
           wchar_t* FuenteEnUso();   //Regresa el nombre del archivo de fuentes usado.

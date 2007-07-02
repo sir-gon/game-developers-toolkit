@@ -24,7 +24,7 @@ void GD_GuiVentana::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool 
     
      ventana=guienv->addWindow(rect<s32>(x1,y1,x2,y2),modal, texto, padre, GD_Sistema::ContadorElementosGui++);
      
-     // Provisional. Desactivamos y ocultamos el Botón de Cerrar.
+     // Provisional. Desactivamos y ocultamos el Bot&oacute;n de Cerrar.
      // Porque si la ventana adopta hijos de un error al cerrarse
      ventana->getCloseButton()->setEnabled(false); 
      ventana->getCloseButton()->setVisible(false); 

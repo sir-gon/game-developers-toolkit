@@ -1,12 +1,23 @@
-/*///////////////////////////////////////////////////////////////////
-
-GD_Camara 
-
-Este archivo hace parte de GDT Game Developers Toolkit.
-Para informacion de distribucion o uso dirigase a el archivo gdt.h
-o en la web http://www.gdtoolkit.8m.net
-
-*////////////////////////////////////////////////////////////////////
+/***************************************************************************
+ *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
+ *   Copyright (C) 2006 GDT STAFF                                          *
+ *   http://gdt.sourceforge.net                                            *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU Library General Public License as       *
+ *   published by the Free Software Foundation; either version 2 of the    *
+ *   License, or (at your option) any later version.                       *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU Lesser General Public      *
+ *   License along with this library; if not, write to the Free Software   *
+ *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
+ *   Boston, MA 02110-1301 USA                                             *
+ ***************************************************************************/
 
 #include "gd_camara.h" // class's header file
 
@@ -23,18 +34,22 @@ GD_Camara::~GD_Camara()
 	// insert your code here
 }
 
-/*///////////////////////////////////////////////////////////////////
+/*!
 
-Crea una c�ara, los par�etros son el tipo que puede ser:
+\param tipo puede ser:
 
-    * Tipo_Normal
-      Crea una c�ara est�dar.
-    * Tipo_FPS
-      Crea la c�ara y la controla mediante el mouse y teclado.
-    * Tipo_Modelador
-      Crea la c�ara y se maneja mediante el mouse haciendo clic y moviendo el mouse.
+    - Tipo_Normal
+      Crea una c�mara estandar.
+    - Tipo_FPS
+      Crea la c�mara y la controla mediante el mouse y teclado.
+    - Tipo_Modelador
+      Crea la c�mara y se maneja mediante el mouse haciendo clic y moviendo el mouse.
 
-*////////////////////////////////////////////////////////////////////
+Ejemplo:
+\code
+Camara.Crear( Tipo_FPS );
+\endcode
+*/
 
 void GD_Camara::Crear(int tipo)
 {
@@ -67,20 +82,17 @@ void GD_Camara::Orientar(float x, float y, float z)
 /*///////////////////////////////////////////////////////////////////
 Establece la posicion hacia donde la camara debe mirar
 *////////////////////////////////////////////////////////////////////
-void GD_Camara::Orientar(vector3df poso)
+void GD_Camara::Orientar(vector3df destino)
 {
-     nodc->setTarget(poso);
+     nodc->setTarget(destino);
 }
-/*///////////////////////////////////////////////////////////////////
-Retorna la distancia mas lejana hasta donde renderizara
-*////////////////////////////////////////////////////////////////////
+
+/*! */
 double GD_Camara::Profundidad()
 {
    return distancia;
 }
-/*///////////////////////////////////////////////////////////////////
-Establece la distancia mas lejana hasta donde renderizara
-*////////////////////////////////////////////////////////////////////
+/*! */
 void GD_Camara::Profundidad(float rango)
 {
    distancia=(double)rango;
@@ -153,7 +165,7 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double
  Orientar(nodoncio.Posicion());
 }
 
-//Compatibilidad hacia atrás
+//Compatibilidad hacia atr&aacute;s
 void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo, double dureza)
 {
 //printf("tipo = %d\n", tipo);
@@ -172,7 +184,7 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double
  Orientar(nodoncio.Posicion());
  
 }
-//Fin compatibilidad hacia atrás
+//Fin compatibilidad hacia atr&aacute;s
 
 
 void GD_Camara::CrearColision( GD_Escenario scen, float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)

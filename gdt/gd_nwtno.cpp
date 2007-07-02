@@ -25,7 +25,7 @@ NewtonCollision* GD_Newtoneano::CreaEscudo(int Escudo)
 
 //Obteniendo la matriz (formas) del objeto
 	matrix=nodoMalla->getRelativeTransformation();
-   //Obteniendo el tamaño del objeto.
+   //Obteniendo el tama&ntilde;o del objeto.
    boundingBox=nodoMalla->getTransformedBoundingBox();
 	matrix.transformBox(boundingBox);
    //Centro de la figura
@@ -167,7 +167,7 @@ void GD_Newtoneano::CrearEscenarioNewtoneano(NewtonWorld* MundoNwtn,ISceneNode* 
                                        //espacio en memoria anteriormente se puede omitir este
                                        //comando, lo dejo para comprobacion de datos.)
 	//TS=gdNodo->getTriangleSelector();
-	//Crea un array que contendrá todos los triangulos de la figura
+	//Crea un array que contendr&aacute; todos los triangulos de la figura
 	triangle3df Triangulos[vercnt];
    //Carga de triangulos el array anterior.
    tmpMatrix=gdNodo->getRelativeTransformation();
@@ -193,7 +193,7 @@ void GD_Newtoneano::CrearEscenarioNewtoneano(NewtonWorld* MundoNwtn,ISceneNode* 
       //if ( mag > -0.00001 )
       ///////////////////////////////////////////////////////////////////////////////////////
 
-      //Añade los triangulos al arbol de colisiones
+      //A&ntilde;ade los triangulos al arbol de colisiones
       NewtonTreeCollisionAddFace ( pColisionNwtn, 3,(dFloat*) &Triangulos[Tri].pointA, sizeof(Triangulos[Tri].pointA), Tri );
       //muestra en pantalla los triangulos de la figura (control del programador)
       //printf("PuntoA= %0.2f, %0.2f, %0.2f\n",(float)Triangulos[Tri].pointA.X,(float)Triangulos[Tri].pointA.Y,(float)Triangulos[Tri].pointA.Z);
