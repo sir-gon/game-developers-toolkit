@@ -3,7 +3,12 @@ PROJECT(GDT CXX)
 ADD_DEFINITIONS(-Os)
 
 SET(GDT_FROM_ROOT "YES")
+
 MESSAGE("CONFIGURANDO PARA COMPILAR DESDE LA RAIZ")
+MESSAGE("Directorio actual: " ${CMAKE_CURRENT_SOURCE_DIR})
+
+## RUTINAS DE COMPROBACION DE DEPENDENCIAS
+INCLUDE (DEPENDENCIAS.cmake)
 
 IF (UNIX)
 	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/lib/linux-x86)
@@ -13,22 +18,58 @@ IF (WIN32)
 	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/lib/win32)
 ENDIF (WIN32)
 
-#INCLUDE (${CMAKE_ROOT}/Modules/FindOpenAL.cmake)
-INCLUDE (VIDEO.cmake)
-INCLUDE (SONIDO.cmake)
-INCLUDE (SCRIPTING.cmake)
-INCLUDE (FISICA.cmake)
-
 ## DIRECTORIO DE FUENTES DE LA BIBLIOTECA GDT
 IF(EXISTS gdt)
+	MESSAGE("+------------------------------------------+")
+	MESSAGE("|AVISO: se va a construir la biblioteca GDT|")
+	MESSAGE("+------------------------------------------+")
 	ADD_SUBDIRECTORY (gdt)
+ELSE(EXISTS gdt)
+	MESSAGE("AVISO: NO se va a construir la biblioteca GDT")
 ENDIF(EXISTS gdt)
 
 ## DIRECTORIO FUENTES DE DEMOS
 IF(EXISTS demos)
+	MESSAGE("+------------------------------------+")
+	MESSAGE("|AVISO: se pueden construir los demos|")
+	MESSAGE("+------------------------------------+")
 	ADD_SUBDIRECTORY (demos)
+ELSE(EXISTS demos)
+	MESSAGE("+--------------------------------------+")
+	MESSAGE("|AVISO: NO se puede construir los demos|")
+	MESSAGE("+--------------------------------------+")
 ENDIF(EXISTS demos)
 
+## AGREGAR OBJETIVO doc (documentacion)
+
+#cd '/home/gon/dev/libgdt' && doxygen Doxyfile && cd '../gdtdoc/html' && doxytag -s search.idx 
+IF (UNIX)
+  ADD_CUSTOM_TARGET(doc)
+  
+  ADD_CUSTOM_COMMAND(
+    TARGET doc
+    PRE_BUILD
+    COMMAND	doxygen
+    ARGS	Doxyfile
+    )
+
+  ADD_CUSTOM_COMMAND(
+    TARGET doc
+    PRE_BUILD
+    COMMAND	cd
+    ARGS	'../gdtdoc/html'
+    )
+
+  ADD_CUSTOM_COMMAND(
+    TARGET doc
+    PRE_BUILD
+    COMMAND	doxytag
+    ARGS	-s search.idx
+    )
+
+ENDIF(UNIX)
+
+## AGREGAR OBJETIVO "distclean"
 ## EXTRAIDO DE http://www.mip.informatik.uni-kiel.de/~jw/cmake/CMakeModules/TargetDistclean.cmake
 ## EDITADO POR SIR_GON http://devgon.worpress.com
 # add custom target distclean
