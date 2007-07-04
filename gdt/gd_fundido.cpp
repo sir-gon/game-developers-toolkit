@@ -80,5 +80,5 @@ void GD_Fundido::FundirHaciaFuera(int tiempo)
 
 bool GD_Fundido::Terminado(void)
 {
-     fundido->isReady();
+     return fundido->isReady();
 }

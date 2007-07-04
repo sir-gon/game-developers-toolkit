@@ -111,6 +111,4 @@ int main()
 //#include "gd_sistemafisicas.h"
 #include "gd_cuerpo.h"
 
-IrrlichtDevice *GD_Sistema::device=NULL;
-int GD_Sistema::ContadorElementosGui;
 

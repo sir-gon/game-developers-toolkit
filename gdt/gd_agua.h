@@ -24,6 +24,8 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
+IrrlichtDevice *GD_Sistema::device=NULL;
+
 //! Efectos de Agua
 class GD_Agua : public GD_Nodo
 {

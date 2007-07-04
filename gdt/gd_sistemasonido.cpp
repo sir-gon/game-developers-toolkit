@@ -33,10 +33,6 @@ GD_SistemaSonido::~GD_SistemaSonido()
 	// insert your code here
 }
 
-
-
-
-
 void GD_SistemaSonido::Inicializar()
 {
      SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
@@ -51,38 +47,43 @@ void GD_SistemaSonido::Inicializar()
      
      SGDsoundIniciado=0;
 
-   alutInit(NULL, 0);
+    alutInit(NULL, 0);
 	alGetError();
 	SGDsoundIniciado=1;
+
 }
 
 void GD_SistemaSonido::Inicializar(char *tipo)
 {
      
-     SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
-     SListenerVel[0] = SListenerVel[1] = SListenerVel[2] = 0.0;
+    SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
+    SListenerVel[0] = SListenerVel[1] = SListenerVel[2] = 0.0;
+    
+    SListenerOri[0] = 0.0;
+    SListenerOri[1] = 0.0;
+    SListenerOri[2] = -1.0;
+    SListenerOri[3] = 0.0; 
+    SListenerOri[4] = 1.0;
+    SListenerOri[5] = 0.0;
      
-     SListenerOri[0] = 0.0;
-     SListenerOri[1] = 0.0;
-     SListenerOri[2] = -1.0;
-     SListenerOri[3] = 0.0; 
-     SListenerOri[4] = 1.0;
-     SListenerOri[5] = 0.0;
-     
-SGDsoundIniciado=0;     
+    SGDsoundIniciado=0;     
 
     ALCdevice* pDevice;
     ALCcontext* pContext;
     ALCubyte* defaultDevice;
 
 //    pDevice = alcOpenDevice((ALCubyte*)"DirectSound3D");
-#ifdef WIN32
-//    pDevice = alcOpenDevice((ALCubyte*)tipo);
+#ifdef __MINGW32__
+    pDevice = alcOpenDevice((ALCubyte*)tipo);
 #else
-    pDevice = alcOpenDevice((ALCchar*)tipo);
+    pDevice = alcOpenDevice((ALCchar*)*tipo);
 #endif
-    pContext = alcCreateContext(pDevice, NULL);
-    alcMakeContextCurrent(pContext);
+
+    if (pDevice) {
+      pContext = alcCreateContext(pDevice, NULL);
+      alcMakeContextCurrent(pContext);
+    }
+    
 
     if(alcGetError(pDevice) != ALC_NO_ERROR)
         SGDsoundIniciado=0;

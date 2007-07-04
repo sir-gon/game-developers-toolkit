@@ -747,9 +747,9 @@ IMesh* GD_Malla::DibujarCono(int gridX, int gridY,f32 ridus)
 
 IMesh* GD_Malla::DibujarEsfera()
 {
-
-
-    //  return msh;
+    // return msh
+    // La siguiente linea fue agregada SOLO para probar con VC++ 2005
+    return static_mesh;
 }
 
 void GD_Malla::RegistrarVelAni(int va)

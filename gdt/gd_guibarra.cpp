@@ -66,7 +66,7 @@ void GD_GuiBarra::MaximoValor(int maximo)
 
 int GD_GuiBarra::Posicion(void)
 {
-     barra->getPos();
+     return barra->getPos();
 }
 
 void GD_GuiBarra::Posicionar(int posicion)

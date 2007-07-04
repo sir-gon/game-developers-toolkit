@@ -25,6 +25,9 @@
 #include "gd_gui.h" // inheriting class's header file
 
 #include "gd_sistema.h"
+
+int GD_Sistema::ContadorElementosGui;
+
 /*
  * GUI Barras (SCroll Bar)
  */

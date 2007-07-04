@@ -37,8 +37,8 @@ using namespace io;
 using namespace gui;
 
 //#include "gd_camara.h"
-#include "gd_guibarra.h"
-#include "gd_guiboton.h"
+//#include "gd_guibarra.h"
+//#include "gd_guiboton.h"
 
 //Drivers
 #define OPENGL EDT_OPENGL

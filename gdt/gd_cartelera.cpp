@@ -19,6 +19,17 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+\class GD_Cartelera
+Las Carteleras son imágenes 2D que no importando desde donde las apunte la 
+cámara (en el espacio 3D), siempre se ven de la misma forma.
+
+Si la cámara rota, la imágen se seguirá viendo de frente.
+
+Son útiles para agregar elementos en el escenario como árboles o resplandores.
+
+\image html cartelera.png
+*/
 #include "gd_cartelera.h" // class's header file
 
 // class constructor
@@ -33,7 +44,17 @@ GD_Cartelera::~GD_Cartelera()
 	// insert your code here
 }
 
+/*!
+\param tamx,tamy son el tamaño de la imágen.
+\param filename la ruta al archivo imágen para la textura.
 
+\image html cartelera.png
+
+Ejemplo:
+\code
+Resplandor.Crear( 10, 10, "lampara.bmp" );
+\endcode
+*/
 void GD_Cartelera::Crear(float tamx, float tamy, char* filename)
 {
     

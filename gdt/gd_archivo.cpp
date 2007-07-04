@@ -107,7 +107,7 @@ void GD_Archivo::Escribir(const char *strCadena, int bytes)
 }
 
 /*!
-Copia en el buffer indicado el n�mero de bytes que se quieren leer del archivo.
+Copia en el buffer indicado el número de bytes que se quieren leer del archivo.
 
 Ejemplo:
 \code
@@ -124,7 +124,7 @@ void GD_Archivo::Leer( char * buffer, int bytes)
 }
 
 /*!
-\return el n�mero de bytes totales del archivo se est�&aacute; leyendo, devuelve el número de bytes totales del archivo.
+\return el número de bytes totales del archivo se est&aacute; leyendo, devuelve el número de bytes totales del archivo.
 
 \code
 char Texto[4];
@@ -137,7 +137,9 @@ int GD_Archivo::Bytes(void)
      if(!bEscribir)
      {
          readFile->getSize();
+		 return true;
      }
+	 return false;
 }
 
 bool GD_Archivo::CambiarPosicion(int posicion, bool bRelativo)

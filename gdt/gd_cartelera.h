@@ -24,7 +24,8 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 #include "gd_escenario.h"
-// No description
+
+//! Maneja imagenes que siempre se ven frontalmente en la cámara
 class GD_Cartelera : public GD_Nodo
 {
 	public:
@@ -35,8 +36,9 @@ class GD_Cartelera : public GD_Nodo
 		
 		IBillboardSceneNode* nodb;
 		
-		  void Crear(float tamx, float tamy, char* filename);
-		  void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+        //! Carga una imágen como una Cartelera.
+		void Crear(float tamx, float tamy, char* filename);
+		void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
 
 #endif // GD_CARTELERA_H

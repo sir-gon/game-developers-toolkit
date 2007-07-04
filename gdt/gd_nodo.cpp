@@ -535,6 +535,7 @@ vector3df GD_Nodo::Orientar(GD_Nodo gdnodito)
 
 
      Rotar(GradosX,GradosY,GradosZ);
+	 return vectorRestado;
 }
 
 /*!
@@ -594,6 +595,7 @@ vector3df GD_Nodo::Orientar(vector3df destino)
 //     printf("X: %f, Y: %f, Z: %f\n",GradosX,GradosY,GradosZ);
 
      Rotar(GradosX,GradosY,GradosZ);
+	 return vectorRestado;
 }
 
 /*!
