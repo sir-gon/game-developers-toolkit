@@ -1,6 +1,6 @@
 [Project]
-FileName=libgdt.dev
-Name=GDT v1.3.3
+FileName=libgdt-static.dev
+Name=GDT v1.3.4 BETA2
 UnitCount=74
 Type=2
 Ver=1
@@ -8,13 +8,13 @@ ObjFiles=
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
-Compiler=-D_GDT_SCRIPTING__@@_
-CppCompiler=-D_GDT_SCRIPTING__@@_
-Linker=-lgdt_irr_@@_-lalut_@@_-logg_@@_-luuid_@@_-lopenal_@@_-lvorbis_@@_-lvorbisenc_@@_-lvorbisfile_@@_-lwinmm_@@_-llua5.1.a_@@_
+Compiler=-D_GDT_SONIDO__@@_-D_GDT_SCRIPTING__@@_
+CppCompiler=-D_GDT_SONIDO__@@_-D_GDT_SCRIPTING__@@_
+Linker=-lgdt_irr_@@_-lalut_@@_-logg_@@_-lopenal_@@_-lvorbis_@@_-lvorbisenc_@@_-lvorbisfile_@@_-llua5.1.a_@@__@@_
 IsCpp=1
 Icon=
-ExeOutput=lib\win32-mingw
-ObjectOutput=
+ExeOutput=lib/win32-mingw
+ObjectOutput=lib/win32-mingw/obj
 OverrideOutput=1
 OverrideOutputName=libgdt.a
 HostApplication=
@@ -26,8 +26,8 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000
-Includes=
-Libs=
+Includes=include/AL;include/ogg;include/vorbis;include/Irrlicht;include/lua5.1
+Libs=lib/win32
 
 [VersionInfo]
 Major=0
