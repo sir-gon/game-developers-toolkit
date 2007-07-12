@@ -1,5 +1,5 @@
 PROJECT(GDT CXX)
-#include_directories (gdt)
+
 ADD_DEFINITIONS(-Os)
 
 SET(GDT_FROM_ROOT "YES")
@@ -7,23 +7,33 @@ SET(GDT_FROM_ROOT "YES")
 MESSAGE("CONFIGURANDO PARA COMPILAR DESDE LA RAIZ")
 MESSAGE("Directorio actual: " ${CMAKE_CURRENT_SOURCE_DIR})
 
-## RUTINAS DE COMPROBACION DE DEPENDENCIAS
-INCLUDE (DEPENDENCIAS.cmake)
+SET(OBJETOS ${CMAKE_CURRENT_SOURCE_DIR}/OBJS)
+SET(CMAKE_BINARY_DIR ${OBJETOS})
+SET(CMAKE_FILES_DIRECTORY ${OBJETOS})
+SET(PROJECT_BINARY_DIR ${OBJETOS})
 
 IF (UNIX)
 	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/lib/linux-x86)
+	SET(OBJETOS ${CMAKE_CURRENT_SOURCE_DIR}/OBJS/linux-x86)
+	SET(CMAKE_BINARY_DIR ${OBJETOS})
 ENDIF (UNIX)
 
 IF (WIN32)
 	SET(LIBRARY_OUTPUT_PATH ${GDT_SOURCE_DIR}/lib/win32)
 ENDIF (WIN32)
 
+MESSAGE("GDT_ROOT: Directorio de salida de bibliotecas: " ${LIBRARY_OUTPUT_PATH})
+MESSAGE("GDT_ROOT: Directorio de salida de objetos: " ${CMAKE_BINARY_DIR})
+
+## RUTINAS DE COMPROBACION DE DEPENDENCIAS
+INCLUDE (DEPENDENCIAS.cmake)
+
 ## DIRECTORIO DE FUENTES DE LA BIBLIOTECA GDT
 IF(EXISTS gdt)
 	MESSAGE("+------------------------------------------+")
 	MESSAGE("|AVISO: se va a construir la biblioteca GDT|")
 	MESSAGE("+------------------------------------------+")
-	ADD_SUBDIRECTORY (gdt)
+	ADD_SUBDIRECTORY (gdt ${OBJETOS})
 ELSE(EXISTS gdt)
 	MESSAGE("AVISO: NO se va a construir la biblioteca GDT")
 ENDIF(EXISTS gdt)
@@ -33,7 +43,7 @@ IF(EXISTS demos)
 	MESSAGE("+------------------------------------+")
 	MESSAGE("|AVISO: se pueden construir los demos|")
 	MESSAGE("+------------------------------------+")
-	ADD_SUBDIRECTORY (demos)
+	ADD_SUBDIRECTORY (demos ${OBJETOS})
 ELSE(EXISTS demos)
 	MESSAGE("+--------------------------------------+")
 	MESSAGE("|AVISO: NO se puede construir los demos|")
@@ -91,23 +101,27 @@ IF (UNIX)
     CMakeOutput.log
     core core.*
     gmon.out bb.out
-    *~ 
+    *~
     *%
     SunWS_cache
     ii_files
     *.so
     *.o
     *.a
+    *.ncb
     CopyOfCMakeCache.txt
     CMakeCCompiler.cmake
     CMakeCXXCompiler.cmake
     CMakeSystem.cmake
     html latex
+    GDT.kdev*
     #Doxyfile
     )
 
   SET(DISTCLEAN_DIRS
     CMakeTmp
+    #CMakeFiles
+    OBJS
     )
 
 SET(DISTCLEAN_RECURSIVE_FILES
