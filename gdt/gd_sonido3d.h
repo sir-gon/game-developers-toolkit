@@ -19,6 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+
 #ifndef GD_SONIDO3D_H
 #define GD_SONIDO3D_H
 
@@ -31,6 +33,15 @@
 #include <ogg.h>
 #include <vorbisfile.h>
 #include <vector>
+
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
 #define BUFFER_SIZE   32768     // 32 KB buffers
 
@@ -45,8 +56,8 @@ Lo m&aacute;s importante, es que soporta formato Wav (onda plana), y OGG (compri
 class GD_Sonido3D
 {
     public:
-        GD_Sonido3D();
-        ~GD_Sonido3D();
+        _GDT_EXPORT_ GD_Sonido3D();
+        _GDT_EXPORT_ ~GD_Sonido3D();
     private:
         ALuint SBuffer;
         ALuint SSource;
@@ -66,40 +77,42 @@ class GD_Sonido3D
 
     public:
         //! Carga un sonido wav
-        char Cargar(char *);
+        _GDT_EXPORT_ char Cargar(char *);
         //! Carga un sonido Ogg Vorbis
-        char CargarOGG(char *archivo);
+        _GDT_EXPORT_ char CargarOGG(char *archivo);
         //! Libera el buffer de audio
-        void Descargar();
+        _GDT_EXPORT_ void Descargar();
         //! Inicia la reproducci&oacute;n del sonido
-        void Reproducir();
+        _GDT_EXPORT_ void Reproducir();
         //! Pausa la reproducci&oacute;n del sonido
-        void Pausa();
+        _GDT_EXPORT_ void Pausa();
         //! Detiene la reproducci&oacute;n del sonido
-        void Detener();
+        _GDT_EXPORT_ void Detener();
         //! Rebobina el sonido
-        void Rebobinar();
+        _GDT_EXPORT_ void Rebobinar();
         //! Alias de Reproducir
-        void Play();
+        _GDT_EXPORT_ void Play();
         //! Alias de Pausa
-        void Pause();
+        _GDT_EXPORT_ void Pause();
         //! Alias de Detener
-        void Stop();
+        _GDT_EXPORT_ void Stop();
         //! Alias de Rebobinar
-        void Rewind();
+        _GDT_EXPORT_ void Rewind();
         //! Establece que el sonido se debe volver tocar desde el principio luego de que se acaba.
-        void Bucle(char);
-        void RelativoOyente(char);
-        void VolumenMaximo(float);
-        void VolumenMinimo(float);
-        void ReferenciaDistancia(float);
-        void FactorRolloff(float);
-        void DistanciaMaxima(float);
-        void Tono(float);
-        int Estado();
-        void Posicionar(float, float, float);
-        void Velocidad(float, float, float);
+        _GDT_EXPORT_ void Bucle(char);
+        _GDT_EXPORT_ void RelativoOyente(char);
+        _GDT_EXPORT_ void VolumenMaximo(float);
+        _GDT_EXPORT_ void VolumenMinimo(float);
+        _GDT_EXPORT_ void ReferenciaDistancia(float);
+        _GDT_EXPORT_ void FactorRolloff(float);
+        _GDT_EXPORT_ void DistanciaMaxima(float);
+        _GDT_EXPORT_ void Tono(float);
+        _GDT_EXPORT_ int Estado();
+        _GDT_EXPORT_ void Posicionar(float, float, float);
+        _GDT_EXPORT_ void Velocidad(float, float, float);
 };
 
 
 #endif // GD_SONIDO3D_H
+
+#endif // _GDT_SONIDO_

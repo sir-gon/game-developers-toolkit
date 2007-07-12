@@ -1,5 +1,36 @@
-// Este archivo funciona solo en win32
-#ifdef WIN32
+/***************************************************************************
+ *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
+ *   Copyright (C) 2006 GDT STAFF                                          *
+ *   http://gdt.sourceforge.net                                            *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU Library General Public License as       *
+ *   published by the Free Software Foundation; either version 2 of the    *
+ *   License, or (at your option) any later version.                       *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU Lesser General Public      *
+ *   License along with this library; if not, write to the Free Software   *
+ *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
+ *   Boston, MA 02110-1301 USA                                             *
+ ***************************************************************************/
+
+/*!
+* \class GD_Musik
+*
+* Trabaja en forma similar a GD_Sonido3D, en el sentido que los m&eacute;todos
+* estan pensados bajo los mismos conceptos.
+*
+* \note Este m&oacute;dulo funciona solo en win32, ya que ocupa la WINAPI.
+* \note Para compilar en MS Visual C++, es necesario instalar Platform SDK
+*/
+
+//SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#if defined(WIN32) && defined(_GDT_MIDI_)
 
 #include "gd_musik.h"
 
@@ -60,10 +91,10 @@ bool GD_Musik::Iniciar(LPSTR ArchivoMIDI)
 
    return true;
 }
+
 bool GD_Musik::Cargar(LPSTR ArchivoMIDI)
 {
-
-   Iniciar(ArchivoMIDI);
+   return Iniciar(ArchivoMIDI);
 }
 
 void GD_Musik::Destruir()
@@ -106,11 +137,16 @@ int GD_Musik::Loop()
 {
    if(Ejecutando()==false)
       Play();
+
+   return 0;
 }
+
 int GD_Musik::Loop(int Inicio, int Fin)
 {
    if(Ejecutando()==false)
       Play(Inicio,Fin);
+
+      return 0;
 }
 
 void GD_Musik::Stop()
@@ -170,7 +206,7 @@ int GD_Musik::TamMIDI()
 
 char* GD_Musik::ArchivoActual()
 {
-   char* pszArchivo;
+   char* pszArchivo=NULL;
    sprintf(pszArchivo,"%s",lpszArchivoMIDI);
 
    return pszArchivo;
@@ -211,6 +247,5 @@ int GD_Musik::StatusEjecutando()
    return mciStatusParms.dwReturn;
 }
 
-// Este archivo funciona solo en win32
-#endif
+#endif // WIN32 && _GDT_MIDI_
 

@@ -21,6 +21,9 @@
 
 #include "gd_sistema.h" // class's header file
 
+IrrlichtDevice *GD_Sistema::device=NULL;
+int GD_Sistema::ContadorElementosGui;
+
 //    ICameraSceneNode *camaras_n[3];
 //	bool camaras_a[3];
 //    irr::core::rect< s32 >  camaras_v[3];
@@ -73,8 +76,9 @@ Sistema.Inicializar(640,480,16, OPENGL, true, true);
 */
 void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
 	{
-	printf("\n        ---------------------- \n-------| GDT v1.3.3..30.01.07 |-------\n        ---------------------- \n\n\n");
-	
+	printf("\n+-----------------+------------+");
+	printf("\n|GDT v1.3.4-BETA3 | 10.10.2007 |");
+	printf("\n+-----------------+------------+\n");
 	// Init the Irrlicht engine
 
 	device = createDevice(VideoDriver, dimension2d<s32>(ancho,alto), prof, full, StencilBuffer,Vsync, this);
@@ -86,7 +90,7 @@ void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_
 		guienv = device->getGUIEnvironment();
 		colin = smgr->getSceneCollisionManager();
 	
-	device->setWindowCaption(L"GDT Game Developers Toolkit v1.3.3");
+	device->setWindowCaption(L"GDT Game Developers Toolkit v1.3.4-BETA3");
 	
 	skin = guienv->getSkin();
 	//skin->setFont(guienv->getFont("fuente_default.bmp"));
@@ -208,7 +212,7 @@ bool GD_Sistema::OnEvent(SEvent event)
                s32 id = event.GUIEvent.Caller->getID();
 			switch(event.GUIEvent.EventType)
 			{
-                    // Bot�
+                    // Bot?
                 	case EGET_BUTTON_CLICKED:
                     {
                          ultimoIdBotonClick = id;
@@ -229,7 +233,7 @@ bool GD_Sistema::OnEvent(SEvent event)
                          NombreArchivoSeleccionado = ((IGUIFileOpenDialog*)event.GUIEvent.Caller)->getFilename();
                          break;
                     }
-                    // Selecci� en Menu
+                    // Selecci? en Menu
                     case EGET_MENU_ITEM_SELECTED:
                     {
                          IGUIContextMenu* menu = (IGUIContextMenu*)event.GUIEvent.Caller;
@@ -251,9 +255,9 @@ return false;
 bool GD_Sistema::ClickBoton(int id2)
 {
      if(id2 == ultimoIdBotonClick)
-     return true;
+        return true;
      else
-     return false;
+        return false;
 }
 
 /*!
@@ -568,7 +572,7 @@ void GD_Sistema::Dormir(int milisecs)
        }
 }
 
-int GD_Sistema::TeclaPrecionada() //A�dido por Astucia 13-04-2006
+int GD_Sistema::TeclaPrecionada() //A?dido por Astucia 13-04-2006
 {
    int iTecla;
    for(iTecla=0;iTecla<=256;iTecla++)

@@ -23,7 +23,7 @@
 #define GD_ARCHIVO_H
 
 #include "gd_sistema.h"
-//! Permite Leer y escribir en archivos de texto.
+//! Permite Leer y escribir en archivos de texto o estructuras.
 class GD_Archivo
 {
 	public:

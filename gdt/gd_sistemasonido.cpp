@@ -19,6 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+
 #include "gd_sistemasonido.h" // class's header file
 
 // class constructor
@@ -124,3 +126,4 @@ void GD_SistemaSonido::OrientacionOyente(float x1, float y1, float z1)
     alListenerfv(AL_ORIENTATION, SListenerOri);
 }
 
+#endif // _GDT_SONIDO_

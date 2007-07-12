@@ -23,47 +23,58 @@
 #define GD_GUITEXTO_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * GUI Texto
- */
+
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Control GUI "Texto" (Text)
 class GD_GuiTexto : public GD_gui
 {
-    private:
-      int iX,iY,iAlto,iAncho;
+private:
+	int iX,iY,iAlto,iAncho;
 
-	public:
-		// class constructor
-		GD_GuiTexto();
-		// class destructor
-		~GD_GuiTexto();
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_GuiTexto();
+	// class destructor
+	_GDT_EXPORT_ ~GD_GuiTexto();
 
-		IGUIStaticText* guitexto;
+	IGUIStaticText* guitexto;
 
-         wchar_t *szfuente; //variable que alberga el nombre del archivo bmp de la fuente en uso.
+	wchar_t *szfuente; //variable que alberga el nombre del archivo bmp de la fuente en uso.
 
-          void Crear(int x1, int y1, int x2, int y2, wchar_t * texto,bool borde, bool wordWrap,	IGUIElement *padre=0);
-          void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement *padre=0);
-          void Color(int r, int g, int b,int a);
-         //A&ntilde;adido por Astucia 13-04-2006
-          void AsignarFuente(const char fontname[1024]); //Carga un nuevo bmp de fuentes
-          void AsignarFuente(wchar_t * fontname); /// NUEVO
-          wchar_t* FuenteEnUso();   //Regresa el nombre del archivo de fuentes usado.
-                                    //Tambien se puede obtener el nombre mediante la variable wchar_t* szfuente
-          void Texto(const wchar_t *text,int x, int y,int ancho, int alto);
-          void Texto(const wchar_t *text,int x, int y);
-          void TextoCentrado(const wchar_t *text,int x,int y,int ancho, int alto);
-          void TextoCentrado(const wchar_t *text,int x,int y);
-          int PosicionX();
-          int PosicionY();
-          void Posicionar(position2d<s32> PosicionXY);
-          void Posicionar(int X,int Y);
-          int AnchoDelTexto();
-          int AltoDelTexto();
-          void Multilinea(bool activar);
-          void Visible(bool visible);
-          bool EsVisible();
+	//! Crea un control Gui de tipo texto est&aacute;tico.
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, bool wordWrap,	IGUIElement *padre=0);
+	//! Crea un control Gui de tipo texto est&aacute;tico.
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement *padre=0);
+	//! Asigna el color del texto.
+	_GDT_EXPORT_ void Color(int r, int g, int b,int a = 255);
+	//! Asigna la fuente que usar&aacute; el texto.
+	_GDT_EXPORT_ void AsignarFuente(const char fontname[1024]); //Carga un nuevo bmp de fuentes
+	_GDT_EXPORT_ void AsignarFuente(wchar_t * fontname); /// NUEVO
+	//! Obtiene el nombre del archivo de fuentes usado.
+	_GDT_EXPORT_ wchar_t* FuenteEnUso();
+							//
+	_GDT_EXPORT_ void Texto(const wchar_t *text,int x, int y,int ancho, int alto);
+	_GDT_EXPORT_ void Texto(const wchar_t *text,int x, int y);
+	_GDT_EXPORT_ void TextoCentrado(const wchar_t *text,int x,int y,int ancho, int alto);
+	_GDT_EXPORT_ void TextoCentrado(const wchar_t *text,int x,int y);
+	_GDT_EXPORT_ int PosicionX();
+	_GDT_EXPORT_ int PosicionY();
+	_GDT_EXPORT_ void Posicionar(position2d<s32> pos);
+	_GDT_EXPORT_ void Posicionar(int x,int y);
+	_GDT_EXPORT_ int AnchoDelTexto();
+	_GDT_EXPORT_ int AltoDelTexto();
+	_GDT_EXPORT_ void Multilinea(bool activar);
+	_GDT_EXPORT_ void Visible(bool visible);
+	_GDT_EXPORT_ bool EsVisible();
 };
 
 #endif // GD_GUITEXTO_H

@@ -24,24 +24,31 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
-IrrlichtDevice *GD_Sistema::device=NULL;
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
 //! Efectos de Agua
 class GD_Agua : public GD_Nodo
 {
 	public:
 		// class constructor
-		GD_Agua();
+		_GDT_EXPORT_ GD_Agua();
 		// class destructor
-		~GD_Agua();
+		_GDT_EXPORT_ ~GD_Agua();
 
      //! Malla que contiene el plano
      scene::IAnimatedMesh* mesh; 
 
     //! Crea una superficie de agua con su movimiento que se actualiza autom&aacute;ticamente.
-    void CrearNormal(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t);
+    _GDT_EXPORT_ void CrearNormal(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t);
     //! Es igual que CrearNormal pero realista, los par&aacute;metros son los mismos excepto t2 que es la textura del piso.
-    void CrearRealista(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t1, char* t2);
+    _GDT_EXPORT_ void CrearRealista(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t1, char* t2);
 };
 
 #endif // GD_AGUA_H

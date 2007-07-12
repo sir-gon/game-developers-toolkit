@@ -1,4 +1,4 @@
-#ifdef _GDT_FISICAS_
+#ifdef _GDT_FISICAS_NEWTON_
 
 #ifndef GD_MATERIAL_NWTNO_H_
 #define GD_MATERIAL_NWTNO_H_
@@ -58,4 +58,4 @@ class GD_Material_nwtn
 
 #endif // GD_MATERIAL_NWTNO_H_
 
-#endif // _GDT_FISICAS_
+#endif // _GDT_FISICAS_NEWTON_

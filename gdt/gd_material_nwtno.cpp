@@ -1,4 +1,4 @@
-#ifdef _GDT_FISICAS_
+#ifdef _GDT_FISICAS_NEWTON_
 
 #include "gd_material_nwtno.h"
 
@@ -61,6 +61,6 @@ void GD_Material_nwtn::MaterialesABConsistenciaXDefecto(int A, int B,dFloat Cons
    NewtonMaterialSetCollisionCallback(nMundo,A,B,userData);
 }*/
 
-#endif // _GDT_FISICAS_
+#endif // _GDT_FISICAS_NEWTON_
 
 

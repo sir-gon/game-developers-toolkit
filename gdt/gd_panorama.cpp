@@ -65,8 +65,8 @@ void GD_Panorama::CrearDomo(char* texturadomo, int hres, int vres, int texporc, 
     RegistrarDevice(GD_Sistema::device);
     ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
 
-    float texpor = texporc/100;
-    float esfpor = esfporc/50;    
+    float texpor = (float)texporc/100;
+    float esfpor = (float)esfporc/50;    
     
     if(texpor>1) texpor=1;
     if(esfpor>2) texpor=2;

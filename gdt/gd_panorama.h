@@ -24,17 +24,27 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+
 // No description
 class GD_Panorama : public GD_Nodo
 {
 	public:
 		// class constructor
-		GD_Panorama();
+		_GDT_EXPORT_ GD_Panorama();
 		// class destructor
-		~GD_Panorama();
+		_GDT_EXPORT_ ~GD_Panorama();
 		
-         void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
-         void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);       
+		_GDT_EXPORT_ void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
+		_GDT_EXPORT_ void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);       
 };
 
 #endif // GD_PANORAMA_H

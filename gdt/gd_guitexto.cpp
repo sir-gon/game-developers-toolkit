@@ -19,6 +19,13 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_Texto
+*
+* Este Control GUI permite desplegar Texto por la pantalla.
+* Usese para mostrar alertas, mensajes, o para lo que sea conveniente.
+*/
+
 #include "gd_guitexto.h" // class's header file
 
 // class constructor
@@ -52,6 +59,16 @@ void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool bo
 
 }
 
+
+/*!
+\param x1,y1 posici&oacute;n del texto.
+\param x2,y2 posici&oacute;n hasta la que llega el texto.
+\param texto es el texto del Control GUI.
+\param padre
+
+Ejemplo:
+Texto.Crear( 10, 5 , 40, 15, L"Leeme");
+*/
 void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement *padre)
 {
 
@@ -66,11 +83,24 @@ void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIEle
 	iX=x1; iY=y1; iAlto=x2; iAncho=y2; // Dimenciones del recuadro
 }
 
-void GD_GuiTexto::Color(int r, int g, int b,int a=100)
+/*!
+\param r,g,b colores Azul, Verde y Rojo, de 0 a 255.
+\param alpha Transparencia alpha, de 0 a 255.
+
+Ejemplo:
+Texto.Color(255,0,0,255);
+*/
+void GD_GuiTexto::Color(int r, int g, int b,int a)
 {
 	guitexto->setOverrideColor(SColor( a, r, g, b));
 }
 
+/*!
+\since 13-04-2006
+\param fontname ruta al archivo de la fuente. Debe ser un bitmap de caracteres.
+
+\author Astucia 
+*/
 void GD_GuiTexto::AsignarFuente(const char fontname[1024])
 {
 
@@ -103,11 +133,16 @@ void GD_GuiTexto::AsignarFuente(wchar_t * fontname) ///NUEVO
       fuente=guienv->getBuiltInFont();
 }
 
+/*!
+\note Tambi&eacute;n se puede obtener el nombre mediante la propiedad wchar_t* szfuente
+*/
 wchar_t* GD_GuiTexto::FuenteEnUso()
 {
    return szfuente;
 }
 
+/*!
+*/
 void GD_GuiTexto::Texto(const wchar_t *text,int x, int y,int ancho,int alto)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
@@ -124,6 +159,8 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y,int ancho,int alto)
 
 }
 
+/*!
+*/
 void GD_GuiTexto::Texto(const wchar_t *text,int x, int y)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
@@ -140,6 +177,8 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y)
 
 }
 
+/*!
+*/
 void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int alto)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
@@ -157,7 +196,8 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int al
 
 }
 
-
+/*!
+*/
 void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
@@ -175,6 +215,8 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y)
 
 }
 
+/*!
+*/
 int GD_GuiTexto::PosicionX()
 {
    core::rect<s32> caja;
@@ -183,6 +225,8 @@ int GD_GuiTexto::PosicionX()
 
 }
 
+/*!
+*/
 int GD_GuiTexto::PosicionY()
 {
    core::rect<s32> caja;
@@ -191,23 +235,29 @@ int GD_GuiTexto::PosicionY()
 
 }
 
-void GD_GuiTexto::Posicionar(position2d<s32> PosicionXY)
+/*!
+*/
+void GD_GuiTexto::Posicionar(position2d<s32> pos)
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
-   caja.UpperLeftCorner=PosicionXY;
+   caja.UpperLeftCorner=pos;
    guitexto->setRelativePosition(caja);
 }
 
-void GD_GuiTexto::Posicionar(int X,int Y)
+/*!
+*/
+void GD_GuiTexto::Posicionar(int x,int y)
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
-   caja.UpperLeftCorner.X=X;
-   caja.UpperLeftCorner.Y=Y;
+   caja.UpperLeftCorner.X=x;
+   caja.UpperLeftCorner.Y=y;
    guitexto->setRelativePosition(caja);
 }
 
+/*!
+*/
 int GD_GuiTexto::AnchoDelTexto()
 {
    int Ancho=0;
@@ -218,6 +268,8 @@ int GD_GuiTexto::AnchoDelTexto()
 
 }
 
+/*!
+*/
 int GD_GuiTexto::AltoDelTexto()
 {
    int Alto=0;
@@ -227,17 +279,22 @@ int GD_GuiTexto::AltoDelTexto()
    return Alto;
 }
 
+/*!
+*/
 void GD_GuiTexto::Multilinea(bool activar)
 {
    guitexto->setWordWrap(activar);
 }
 
+/*
 void GD_GuiTexto::Visible(bool visible)
 {
       guitexto->setVisible(visible);
 }
 
+
 bool GD_GuiTexto::EsVisible()
 {
       return guitexto->isVisible();
 }
+*/

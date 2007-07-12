@@ -19,6 +19,16 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_GuiEdicion
+*
+* Este Control GUI nos permite ingresar texto a trav&eacute;s de una 
+* caja donde aparecen los caracteres que escribimos.
+*
+* Considerese de aquí en adelante "Edicion" como un ejemplo de un 
+* objeto instanciado de esta clase.
+*/
+
 #include "gd_guiedicion.h" // class's header file
 
 // class constructor
@@ -33,6 +43,18 @@ GD_GuiEdicion::~GD_GuiEdicion()
 	// insert your code here
 }
 
+/*!
+\param x1,y1 posici&oacute;n de cuadro de edici&oacute;n.
+\param x2,y2 hasta donde llega el cuadro de edici&oacute;n.
+\param texto es el texto inicial con el que se crea.
+\param borde true si queremos que el cuadro tenga borde.
+\param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
+
+Ejemplo:
+\code
+Edicion.Crearl(5,5, 30,15, L"Escribe aqui", true);
+\endcode
+*/
 void GD_GuiEdicion::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde,IGUIElement* padre)
 {
 
@@ -45,12 +67,25 @@ void GD_GuiEdicion::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool 
       guiele = editbox;
 }
 
-// Poner 0 para infinito
+/*!
+\param max el n&uacute;mero m&aacute;ximo de caracteres. Poner 0 para infinito.
+
+Ejemplo:
+\code
+Edicion.CaracteresMaximo(20);
+\endcode
+*/
 void GD_GuiEdicion::CaracteresMaximo( int max )
 {
      editbox->setMax(max);
 }
 
+/*!
+Ejemplo:
+\code
+int maximo = Edicion.RetornarCaracteresMaximo();
+\endcode
+*/
 int GD_GuiEdicion::RetornarCaracteresMaximo( void )
 {
      return editbox->getMax();

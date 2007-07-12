@@ -19,6 +19,14 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_GuiImagen
+*
+* Usa una imagen como Control GUI, lo cual nos permite desplegar
+* contenidos de imagen, logotipos, alertas, o lo que sea importante
+* mostrar al usuario que no satisfaga el simple texto.
+*/
+
 #include "gd_guiimagen.h" // class's header file
 
 // class constructor
@@ -33,6 +41,22 @@ GD_GuiImagen::~GD_GuiImagen()
 	// insert your code here
 }
 
+/*!
+Los formatos soportados son:
+
+    -  Adobe Photoshop (.psd)
+    - JPEG File Interchange Format (.jpg)
+    - Portable Network Graphics (.png)
+    - Truevision Targa (.tga)
+    - Windows Bitmap (.bmp)
+    - Zsoft Paintbrush (.pcx)
+    -  Adobe Photoshop (.psd)
+    - JPEG File Interchange Format (.jpg)
+    - Portable Network Graphics (.png)
+    - Truevision Targa (.tga)
+    - Windows Bitmap (.bmp)
+    - Zsoft Paintbrush (.pcx)
+*/
 void GD_GuiImagen::Cargar(char *filename)
 {
 
@@ -62,12 +86,16 @@ void GD_GuiImagen::Cargar(char *filename)
     guiele=img;
 }
 
+/*!
+\param uso true para activar el canal alpha, false para desactivarlo
+
+Ejemplo:
+\code
+Imagen.UsarCanalAlpha(true);
+\endcode
+*/
 void GD_GuiImagen::UsarCanalAlpha(bool uso)
 {
     img->setUseAlphaChannel(uso);
 }
 
-void GD_GuiImagen::Visible(bool estado)
-{
-    img->setVisible(estado);
-}

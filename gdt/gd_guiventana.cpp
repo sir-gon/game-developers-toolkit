@@ -19,6 +19,10 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_GuiVentana
+*/
+
 #include "gd_guiventana.h" // class's header file
 
 // class constructor
@@ -33,20 +37,29 @@ GD_GuiVentana::~GD_GuiVentana()
 	// insert your code here
 }
 
+/*!
+En &eacute;l se podr&aacute;n insertar otros controles.
+
+\param x1,y1 posici&oacute;n de la Ventana.
+\param x2,y2 hastsa donde llega la Ventana.
+\param texto titulo de la ventana.
+\param modal si queremos que la ventana sea modal.
+\param padre
+*/
 void GD_GuiVentana::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal, IGUIElement* padre)
 {
 
-    RegistrarDevice(GD_Sistema::device);
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     ventana=guienv->addWindow(rect<s32>(x1,y1,x2,y2),modal, texto, padre, GD_Sistema::ContadorElementosGui++);
-     
-     // Provisional. Desactivamos y ocultamos el Bot&oacute;n de Cerrar.
-     // Porque si la ventana adopta hijos de un error al cerrarse
-     ventana->getCloseButton()->setEnabled(false); 
-     ventana->getCloseButton()->setVisible(false); 
-     
-      guiele = ventana;
+	RegistrarDevice(GD_Sistema::device);
+	
+	IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	ventana=guienv->addWindow(rect<s32>(x1,y1,x2,y2),modal, texto, padre, GD_Sistema::ContadorElementosGui++);
+	
+	// Provisional. Desactivamos y ocultamos el Bot&oacute;n de Cerrar.
+	// Porque si la ventana adopta hijos de un error al cerrarse
+	ventana->getCloseButton()->setEnabled(false); 
+	ventana->getCloseButton()->setVisible(false); 
+	
+	guiele = ventana;
 }

@@ -20,10 +20,19 @@
  ***************************************************************************/
 
 /*!
- * \class GD_Archivos
+ * \class GD_Archivo
  *
  * Con esta clase se puede manejar informaci&oacute;n en archivos f&aacute;cilmente.
+ *
  * Se puede trabajar con archivos de texto, o con archivos de estructuras.
+ *
+ * Siempre y cuando el usuario tenga permiso de acceso, el programa podrá
+ * leer/escribir en la ruta que necesitemos.
+ *
+ * Trabajar con archivos nos permite (por ejemplo), salvar el estado actual
+ * del juego, puntajes, internacionalizar la interfaz 
+ * (ofreciendola en varios idiomas), en fin, todo lo que requiera 
+ * leer/guardar información.
  */
 
 #include "gd_archivo.h" // class's header file

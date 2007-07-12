@@ -23,24 +23,34 @@
 #define GD_GUIBOTON_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * GUI Botones 
- */
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Control GUI "Boton" (Button)
 class GD_GuiBoton : public GD_gui
 {
-	public:
-		// class constructor
-		GD_GuiBoton();
-		// class destructor
-		~GD_GuiBoton();
-		
-		IGUIButton* boton;
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_GuiBoton();
+	// class destructor
+	_GDT_EXPORT_ ~GD_GuiBoton();
 
-         void Crear(int x1, int y1, int x2, int y2, IGUIElement* padre=0); 
-         void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0);
-         void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
+	IGUIButton* boton;
+
+	//! Crea un control Gui del tipo Bot&oacute;n.
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	//! Crea un control Gui del tipo Bot&oacute;n.
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0);
+	//! Crea un control Gui del tipo Bot&oacute;n, con una imagen.
+	_GDT_EXPORT_ void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
 };
 
 #endif // GD_GUIBOTON_H

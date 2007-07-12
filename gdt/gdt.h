@@ -23,14 +23,14 @@
 
 \image html logoGDT.png
 
-\section intro Introducci&oacute;n
+\section intro Manual de Referencia
 Bienvenido a la documentaci&oacute;n de GDT.
 
 Ac&aacute; encontrar&aacute; los detalles de todas las Clases, Propiedades, M&eacute;todos y Definiciones. En la mayor&iacute;a encontrar&aacute;s las definiciones de los par&aacute;metros, el prop&oacute;sito de cada m&eacute;todo y en ocaciones un ejemplos de su uso.
 
 <A HREF="refman.pdf">Ac&aacute; puede encontrar una copia descargable en formato PDF</A>
 
-\section getting_started Comenenzando con un esqueleto GDT
+\section getting_started Comenzando con un esqueleto GDT
 Para comenzar, puedes ocupar el siguiente programa esqueleto:
 
 \code
@@ -59,16 +59,27 @@ int main()
         return 0;
 }
 \endcode
+
+Para enlazar correctamente con las librerías externas, recuerda que se necesitan:
+
+- gdt
+- Irrlicht
+- openal
+- alut
+- ogg
+- vorvis
+- vorbisenc
+- vorbisfile
+- lua5.1
+
+Dependiendo del compilador y plataforma, el enlazado se configura de diferentes maneras.
 */
 
 
-//Musica
-//#include "gd_musik.h"
 // Sistema
 #include "gd_sistema.h"
 // 3D
 #include "gd_escenario.h"
-#include "gd_malla.h"
 #include "gd_luz.h"
 #include "gd_camara.h"
 #include "gd_panorama.h"
@@ -76,9 +87,9 @@ int main()
 #include "gd_terreno.h"
 #include "gd_agua.h"
 #include "gd_particula.h"
-#include "gd_textura.h"
-//Colisiones
-#include "gd_colisiones3d.h"
+//#include "gd_textura.h"
+//#include "gd_colisiones3d.h"
+#include "gd_malla.h"
 // GUI
 #include "gd_guiimagen.h"
 #include "gd_guitexto.h"
@@ -90,25 +101,52 @@ int main()
 #include "gd_guimenu.h"
 // Reloj
 //#include "gd_reloj.h"
-//Sonido
-#include "gd_sistemasonido.h"
-#include "gd_sonido3d.h"
-#include "gd_sonido.h"
 //Matematicas
 #include "gd_sistemamatematicas.h"
-//Script
-//#include "gd_sistemalua.h"
 //Controles prediseï¿½dos
 //#include "gd_controlesprediseniados.h"
-//Archivos
+// ARCHIVOS
 #include "gd_archivo.h"
 #include "gd_xml.h"
 #include "gd_listaarchivos.h"
 //Otros
 #include "gd_fundido.h"
 
-//Fisicas
-//#include "gd_sistemafisicas.h"
-#include "gd_cuerpo.h"
+// CAPA DE AUDIO
+#if defined(_GDT_SONIDO_)
+  //Sonido
+  #include "gd_sistemasonido.h"
+  #include "gd_sonido3d.h"
+  #include "gd_sonido.h"
+  //Musica
+  #if defined(WIN32)
+     #include "gd_musik.h"
+  #endif
+#endif
 
+//Lenguaje de Scripting LUA
+#if defined(_GDT_SCRIPTING_)
+  #include "gd_sistemalua.h"
+#endif
+
+//Fisicas ODE
+#if defined(_GDT_FISICAS_NEWTON_ODE_)
+  
+#endif
+
+//Fisicas NEWTON DYNAMICS
+#if defined(_GDT_FISICAS_NEWTON_NEWTON_)
+  #include "gd_sistemafisicas.h"
+  #include "gd_cuerpo.h"
+#endif
+
+
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 

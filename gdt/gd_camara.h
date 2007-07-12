@@ -24,8 +24,16 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 #include "gd_escenario.h"
-
 #include "gd_sistemamatematicas.h"
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
 //! Controlador de C&aacute;mara
 /*!
@@ -36,53 +44,65 @@ Por ejemplo, nos permite dejar la c&aacute;mara detr&aacute;s de un personaje pa
 class GD_Camara : public GD_Nodo
 {
    private:
-      double distancia;
+		double distancia;
 	public:
 		// class constructor
-		GD_Camara();
+		_GDT_EXPORT_ GD_Camara();
 		// class destructor
-		~GD_Camara();
+		_GDT_EXPORT_ ~GD_Camara();
 		
 		int miID;
 		
 		GD_SistemaMatematicas SisMat;
 
-	ICameraSceneNode* nodc;
-	//! Crea una C&aacute;mara
-	void Crear(int tipo=Tipo_Normal);
+		ICameraSceneNode* nodc;
+		//! Crea una C&aacute;mara
+		_GDT_EXPORT_ void Crear(int tipo=Tipo_Normal);
+		//! Establece la posición hacia donde la cámara debe mirar.
+		_GDT_EXPORT_ void Orientar(float x, float y, float z);
+		//! Establece la posición hacia donde la cámara debe mirar.
+		_GDT_EXPORT_ void Orientar(vector3df destino);
 
-	void Orientar(float x, float y, float z);
-	void Orientar(vector3df destino);
-
-	//! Retorna la distancia mas lejana hasta donde renderizara
-	double Profundidad();
-	//! Establece la distancia mas lejana hasta donde renderizara
-	void Profundidad(float rango);
-	
-	// establece el viewport
-	//void AreaRender(int x1, int y1, int x2, int y2);
-	
-	// Si se rendereiza con esta camara
-	//void Activada(bool opc);
-	
-	//****************************
-	//! Devuelve el vector hacia el que esta orientada la camara
-	vector3df RetornarObjetivo();
+		//! Retorna la distancia mas lejana hasta donde renderizara
+		_GDT_EXPORT_ double Profundidad();
+		//! Establece la distancia mas lejana hasta donde renderizara
+		_GDT_EXPORT_ void Profundidad(float rango);
 		
-	vector3df Seguir(vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180,  float durezaX=15, float durezaY=15/8, float durezaZ=15);
-	
-	void Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo,  float durezaX, float durezaY, float durezaZ);
-	void Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo,  float durezaX, float durezaY, float durezaZ);
-	void Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo, double dureza);
+		// establece el viewport
+		//_GDT_EXPORT_ void AreaRender(int x1, int y1, int x2, int y2);
+		
+		// Si se rendereiza con esta camara
+		//_GDT_EXPORT_ void Activada(bool opc);
+		
+		//****************************
+		//! Devuelve el vector hacia el que esta orientada la cámara
+		_GDT_EXPORT_ vector3df RetornarObjetivo();
+		//! Posiciona la camara detras de un punto en el espacio con suavizado
+		_GDT_EXPORT_ vector3df Seguir(vector3df PosicionEntrada1, 
+					float anguloY,
+					vector3df PosicionEntrada2,
+					float distancia,
+					float altura,
+					float angulo=180,
+					float durezaX=15,
+					float durezaY=15/8,
+					float durezaZ=15);
 
-	// COMPATIBILIDAD HACIA ATRAS
-	void Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo, double dureza);	
-	void Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo);
-	// FIN COMPATIBILIDAD HACIA ATRAS
+		//! Posiciona la cámara para que "persiga" a un punto
+		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo,  float durezaX, float durezaY, float durezaZ);
+		//! Posiciona la cámara para que "persiga" a un objeto
+		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ);
+		//! Posiciona la cámara para que "persiga" a un objeto
+		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, double dureza);
 
-	void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+		// COMPATIBILIDAD HACIA ATRAS
+		//! Posiciona la cámara para que "persiga" a un punto
+		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, double dureza);	
+		//! Posiciona la cámara para que "persiga" a un objeto
+		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio, double distancia, double altura, double angulo);
+		// FIN COMPATIBILIDAD HACIA ATRAS
 
-
+		_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 
 };
 

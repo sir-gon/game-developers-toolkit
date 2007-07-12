@@ -24,22 +24,31 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
-// No description
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Mallas de Escenario
 class GD_Escenario : public GD_Nodo
 {
 	public:
 		// class constructor
-		GD_Escenario();
+		_GDT_EXPORT_ GD_Escenario();
 		// class destructor
-		~GD_Escenario();
+		_GDT_EXPORT_ ~GD_Escenario();
 		
-          void CargarBSP(char *filenamePK3, char *filenameBSP);
-          void Cargar(char *filename);
+		_GDT_EXPORT_ void CargarBSP(char *filenamePK3, char *filenameBSP);
+		_GDT_EXPORT_ void Cargar(char *filename);
 
-          IAnimatedMesh* mesh;
-          IMesh* meshs;
-          ITriangleSelector* selector;
-          ITriangleSelector* RetornarDatos();
+		IAnimatedMesh* mesh;
+		IMesh* meshs;
+		ITriangleSelector* selector;
+		_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
 };
 
 #endif // GD_ESCENARIO_H

@@ -140,7 +140,9 @@ void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float r
 \param x,y,z => posicion
 \param r,g,b => color
 \param radio => radio
-\param tipo => tipo
+\param tipo => tipo puede ser:
+    - RADIAL
+    - DIRECCIONAL
 */
 void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo)
 {
@@ -170,17 +172,19 @@ void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float r
 */
 void GD_Luz::Crear(int r, int g ,int b, float radio)
 {
-     Crear(100,100,100,r,g,b,3);
+     Crear(100.f,100.f,100.f,(float)r,(float)g,(float)b,radio,3);
 }
 
 /*!
 \param r,g,b => color
 \param radio => radio
-\param tipom => tipo
+\param tipom => puede ser:
+    - RADIAL
+    - DIRECCIONAL
 */
 void GD_Luz::Crear(int r, int g ,int b, float radio, int tipom)
 {
-      Crear(100,100,100,r,g,b,3);
+      Crear(100.f,100.f,100.f,(float)r,(float)g,(float)b,radio,tipom);
       Tipo(tipom);
 }
 
@@ -244,19 +248,18 @@ void GD_Luz::Radio( float rad )
 
 void GD_Luz::ColorAmbiente(s32 r,s32 g,s32 b)
 {
-     sluz.AmbientColor.set(r,g,b);
+     sluz.AmbientColor.set((f32)r,(f32)g,(f32)b);
 }
 
 void GD_Luz::ColorDifuso(s32 r,s32 g,s32 b)
 {
-     sluz.DiffuseColor.set(r,g,b);     
+     sluz.DiffuseColor.set((f32)r,(f32)g,(f32)b);
      printf("cambiando valor de la luz R a %d\n",r);
 }
 
 void GD_Luz::ColorEspecular(s32 r,s32 g,s32 b)
 {
-     sluz.SpecularColor.set(r,g,b);     
-
+     sluz.SpecularColor.set((f32)r,(f32)g,(f32)b);
 }
 
 void GD_Luz::AumentarColorAmbiente(float val)

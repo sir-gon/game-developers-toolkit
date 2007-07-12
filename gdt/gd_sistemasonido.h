@@ -19,6 +19,9 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+//SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#ifdef _GDT_SONIDO_
+
 #ifndef GD_SISTEMASONIDO_H
 #define GD_SISTEMASONIDO_H
 
@@ -36,7 +39,14 @@
 #include <ogg.h>
 #include <vorbisfile.h>
 
-
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
 using namespace std;
 
@@ -46,9 +56,9 @@ class GD_SistemaSonido
     public:
 
 		// class constructor
-		GD_SistemaSonido();
+		_GDT_EXPORT_ GD_SistemaSonido();
 		// class destructor
-		~GD_SistemaSonido();
+		_GDT_EXPORT_ ~GD_SistemaSonido();
 
         //Posicion, velocidad y orientacion del oyente. (no tocar directamente, usar las funciones...)
         ALfloat SListenerPos[2];
@@ -60,25 +70,22 @@ class GD_SistemaSonido
         //variable para saber si esta iniciado o no el openal (0 no, 1 si)
         char SGDsoundIniciado;
 
-
         //funcion para iniciar el GD_Sonido con el dispositivo m&aacute;s compatible que encuentre
-        void Inicializar();
+        _GDT_EXPORT_ void Inicializar();
         //igual pero indicandole que dispositivo tiene que usar
-        void Inicializar(char *);
+        _GDT_EXPORT_ void Inicializar(char *);
         //finaliza el GD_Sonido y desbloquea el dispositivo
-        void FinGDsonido();
+        _GDT_EXPORT_ void FinGDsonido();
         //Ajusta la posicion en 3d del oyente
-        void PosicionOyente(float,float,float);
+        _GDT_EXPORT_ void PosicionOyente(float,float,float);
         //Ajusta el movimiento del oyente en 3d (aun en pruebas)
-        void VelocidadOyente(float,float,float);
+        _GDT_EXPORT_ void VelocidadOyente(float,float,float);
         //Ajusta la orientacion del oyente
-        void OrientacionOyente(float, float, float);
+        _GDT_EXPORT_ void OrientacionOyente(float, float, float);
         //Ajusta la orientacion del oyente (incluyendo roll, 3 ultimos floats)
-        void OrientacionOyente(float, float, float, float, float, float);
-
-
-
+        _GDT_EXPORT_ void OrientacionOyente(float, float, float, float, float, float);
 };
 
-
 #endif // GD_SISTEMASONIDO_H
+
+#endif // _GDT_SONIDO_

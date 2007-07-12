@@ -12,25 +12,47 @@ IF(NOT VIDEO_FOUND)
 ENDIF(NOT VIDEO_FOUND)
 
 IF(NOT SONIDO_FOUND)
-	MESSAGE(FATAL_ERROR "GDT: NO se encontraron algunos paquetes para el Sistema de Sonido")
+	MESSAGE("GDT: NO se encontraron algunos paquetes para el Sistema de Sonido")
 ENDIF(NOT SONIDO_FOUND)
+
+IF(NOT SONIDO_OGG_FOUND)
+	MESSAGE("GDT: NO se encontraron algunos paquetes para el Decodificar OGG")
+ENDIF(NOT SONIDO_OGG_FOUND)
 
 IF(NOT SCRIPTING_FOUND)
 	MESSAGE("GDT: NO se encontraron algunos paquetes para Scripting.")
 	MESSAGE("GDT: Para contar con esta capacidad, instale el paquete de desarrollo de lua5.1")
 ENDIF(NOT SCRIPTING_FOUND)
 
-IF(NOT FISICA_FOUND)
-	MESSAGE("GDT: NO se encontraron algunos paquetes para Fisicas. Para contar con esta capacidad, instale Newton SDK")
-ENDIF(NOT FISICA_FOUND)
+IF(NOT FISICAS_NEWTON_FOUND)
+	MESSAGE("GDT: NO se encontraron algunos paquetes para Fisicas NEWTON. Para contar con esta capacidad, instale Newton SDK")
+ENDIF(NOT FISICAS_NEWTON_FOUND)
 
-IF(VIDEO_FOUND AND SONIDO_FOUND)
+IF(NOT FISICAS_ODE_FOUND)
+	MESSAGE("GDT: NO se encontraron algunos paquetes para Fisicas ODE. Para contar con esta capacidad, instale ODE: Open Dynamics Engine")
+ENDIF(NOT FISICAS_ODE_FOUND)
+
+IF(VIDEO_FOUND)
    #MESSAGE("Se ha encontrado todo para usar construir la Biblioteca GDT")
 
-   INCLUDE_DIRECTORIES(${OPENAL_INCLUDE_DIR} ${IRRLICHT_INCLUDE_DIR} ${ALUT_INCLUDE_DIR} ${OGG_INCLUDE_DIR} ${VORBIS_INCLUDE_DIR})
-   TARGET_LINK_LIBRARIES(gdt ${OPENAL_LIBRARY} ${IRRLICHT_LIBRARY} ${ALUT_LIBRARY} ${OGG_LIBRARY} ${VORBIS_LIBRARY})
+   INCLUDE_DIRECTORIES(${IRRLICHT_INCLUDE_DIR})
+   TARGET_LINK_LIBRARIES(gdt ${OPENAL_LIBRARY})
 
-ENDIF(VIDEO_FOUND AND SONIDO_FOUND)
+ENDIF(VIDEO_FOUND)
+
+IF(SONIDO_FOUND)
+   MESSAGE("GDT: Se ha encontrado OPENAL+ALUT, se puede usar sonido")
+   ADD_DEFINITIONS(-D_GDT_SONIDO_)
+   INCLUDE_DIRECTORIES(${OPENAL_INCLUDE_DIR} ${ALUT_INCLUDE_DIR})
+   TARGET_LINK_LIBRARIES(gdt ${OPENAL_LIBRARY} ${ALUT_LIBRARY})
+ENDIF(SONIDO_FOUND)
+
+IF(SONIDO_OGG_FOUND)
+   MESSAGE("GDT: Se ha encontrado OGG+VORBIS, se puede decodificar OGG")
+   ADD_DEFINITIONS(-D_GDT_SONIDO_OGG_)
+   INCLUDE_DIRECTORIES(${OGG_INCLUDE_DIR} ${VORBIS_INCLUDE_DIR})
+   TARGET_LINK_LIBRARIES(gdt ${OGG_LIBRARY} ${VORBIS_LIBRARY})
+ENDIF(SONIDO_OGG_FOUND)
 
 IF(SCRIPTING_FOUND)
    MESSAGE("GDT: Se ha encontrado LUA, se puede usar scripting")
@@ -39,12 +61,19 @@ IF(SCRIPTING_FOUND)
    TARGET_LINK_LIBRARIES(gdt ${LUA_LIBRARY})
 ENDIF(SCRIPTING_FOUND)
 
-IF(FISICA_FOUND)
-   MESSAGE("GDT: Se ha encontrado Newton, se puede usar fisicas")
-   ADD_DEFINITIONS(-D_GDT_FISICAS_)
+IF(FISICAS_NEWTON_FOUND)
+   MESSAGE("GDT: Se ha encontrado Newton, se puede usar Fisicas Newton")
+   ADD_DEFINITIONS(-D_GDT_FISICAS_NEWTON_)
    INCLUDE_DIRECTORIES(${NEWTON_INCLUDE_DIR})
    TARGET_LINK_LIBRARIES(gdt ${NEWTON_LIBRARY})
-ENDIF(FISICA_FOUND)
+ENDIF(FISICAS_NEWTON_FOUND)
+
+IF(FISICAS_ODE_FOUND)
+   MESSAGE("GDT: Se ha encontrado ODE, se puede usar Fisicas ODE")
+   ADD_DEFINITIONS(-D_GDT_FISICAS_ODE_)
+   INCLUDE_DIRECTORIES(${NEWTON_INCLUDE_DIR})
+   TARGET_LINK_LIBRARIES(gdt ${NEWTON_LIBRARY})
+ENDIF(FISICAS_ODE_FOUND)
 
 #########################
 # REGLAS DE INSTALACION #

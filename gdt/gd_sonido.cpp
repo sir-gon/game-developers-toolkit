@@ -19,6 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+
 #include "gd_sonido.h" // class's header file
 
 // class constructor
@@ -37,75 +39,78 @@ GD_Sonido::~GD_Sonido()
 
 char GD_Sonido::Cargar(char *archivo)
 {
+	/**
     Cargar(archivo);
     RelativoOyente(1);
     Posicionar(0.0f , 0.0f , 0.1f);
+	*/
     return 0;
 }
 
 void GD_Sonido::Descargar()
 {
-    Descargar();
+    //Descargar();
 }
 
 void GD_Sonido::Reproducir()
 {
-    Reproducir();
+    //Reproducir();
 }
 
 void GD_Sonido::Pausa()
 {
-    Pausa();
+    //Pausa();
 }
 
 void GD_Sonido::Detener()
 {
-    Detener();
+    //Detener();
 }
 
 void GD_Sonido::Rebobinar()
 {
-    Rebobinar();
+    //Rebobinar();
 }
 
 void GD_Sonido::Play()
 {
-    Play();
+    //Play();
 }
 
 void GD_Sonido::Pause()
 {
-    Pause();
+    //Pause();
 }
 
 void GD_Sonido::Stop()
 {
-    Stop();
+    //Stop();
 }
 
 void GD_Sonido::Rewind()
 {
-    Rewind();
+    //Rewind();
 }
 void GD_Sonido::Bucle(char loop)
 {
-    Bucle(loop);
+    //Bucle(loop);
 }
 
 void GD_Sonido::Pan(float p)
 {
-   Posicionar(p , 0.0f , 0.1f);
+    Posicionar(p , 0.0f , 0.1f);
 }
 
 void GD_Sonido::Tono(float t)
 {
-   Tono(t);
+   //Tono(t);
 }
 
 int GD_Sonido::Estado()
 {
-    //0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
-    return Estado();
+   //0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
+   //return Estado();
+   return 0;
 }
 void GD_Sonido::Volumen(int vol)
 {
@@ -120,3 +125,4 @@ void GD_Sonido::Volumen(int vol)
    VolumenMaximo(rvol);
 }
 
+#endif // _GDT_SONIDO_

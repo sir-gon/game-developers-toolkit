@@ -23,28 +23,39 @@
 #define GD_LISTAARCHIVOS_H
 
 #include "gd_sistema.h"
+
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
 /*
  * Lista de archivos de un directorio
  */
 class GD_ListaArchivos
 {
-	public:
-		// class constructor
-		GD_ListaArchivos();
-		// class destructor
-		~GD_ListaArchivos();
-		
-		IFileSystem* FileSystem;
-		IFileList* FileList;
-		
-		void Crear(void);
-		
-		int Numero(void);
-		
-		const c8* Nombre(int id);
-		const c8* NombreCompleto(int id);
-		
-		bool EsDirectorio(int id);
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_ListaArchivos();
+	// class destructor
+	_GDT_EXPORT_ ~GD_ListaArchivos();
+	
+	IFileSystem* FileSystem;
+	IFileList* FileList;
+	
+	_GDT_EXPORT_ void Crear(void);
+	//! Obtiene el n&uacute;mero de elementos que tiene la lista.
+	_GDT_EXPORT_ int Numero(void);
+	//! Obtiene el nombre del archivo de la posici&oacute;n indicada de la lista.
+	_GDT_EXPORT_ const c8* Nombre(int id);
+	//! Obtiene el nombre completo (incluyendo la ruta) del archivo de la posici&oacute;n indicada de la lista.
+	_GDT_EXPORT_ const c8* NombreCompleto(int id);
+	//! Comprueba si el archivo de la posici&oacute;n indicada es un Directorio
+	_GDT_EXPORT_ bool EsDirectorio(int id);
 };
 
 #endif // GD_LISTAARCHIVOS_H

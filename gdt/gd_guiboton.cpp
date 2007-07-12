@@ -33,48 +33,75 @@ GD_GuiBoton::~GD_GuiBoton()
 	// insert your code here
 }
 
+/*!
+\param x1,y1 posici&oacute;n del Bot&oacute;n.
+\param x2,y2 hasta donde llega el Bot&oacute;n.
+\param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
+
+Ejemplo:
+\code
+Boton.Crear(5,5, 35,25);
+\endcode
+*/
 void GD_GuiBoton::Crear(int x1, int y1, int x2, int y2,IGUIElement* padre)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
-
-     
-      guiele = boton;
+	RegistrarDevice(GD_Sistema::device);
+	
+	IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	
+	
+	guiele = boton;
 }
 
+/*!
+\param x1,y1 posici&oacute;n del Bot&oacute;n.
+\param x2,y2 hasta donde llega el Bot&oacute;n.
+\param texto es el texto con que se crear&aacute; el bot&oacute;n.
+\param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
+
+Ejemplo:
+\code
+Boton.Texto(5,5, 35,25,L"Pulsame");
+\endcode
+*/
 void GD_GuiBoton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre)
-{    
-    RegistrarDevice(GD_Sistema::device);
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
-     
-     boton->setText(texto);
-     
-     guiele = boton;
+{
+	RegistrarDevice(GD_Sistema::device);
+	
+	IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	
+	boton->setText(texto);
+	
+	guiele = boton;
 }
 
+/*!
+\param x1,y1 posici&oacute;n del Bot&oacute;n.
+\param x2,y2 hasta donde llega el Bot&oacute;n.
+\param filename_boton_normal ruta a la imagen normal del bot&oacute;n.
+\param filename_boton_presionado ruta a la imagen del bot&oacute;n cuando se pulsa.
+\param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
+*/
 void GD_GuiBoton::CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre)
 {
 
-    RegistrarDevice(GD_Sistema::device);
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
- 
-     boton->setImage(driver->getTexture(filename_boton_normal));
-     boton->setPressedImage(driver->getTexture(filename_boton_presionado)); 
-     
-      guiele = boton;
+	RegistrarDevice(GD_Sistema::device);
+	
+	IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	
+	boton->setImage(driver->getTexture(filename_boton_normal));
+	boton->setPressedImage(driver->getTexture(filename_boton_presionado)); 
+	
+	guiele = boton;
 }
 	
 

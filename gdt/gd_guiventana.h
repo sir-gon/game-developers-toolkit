@@ -23,24 +23,29 @@
 #define GD_GUIVENTANA_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * GUI Ventana (Window)
- */
+
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Control GUI "Ventana" (Window)
 class GD_GuiVentana : public GD_gui
 {
-	public:
-		// class constructor
-		GD_GuiVentana();
-		// class destructor
-		~GD_GuiVentana();
-		
-		IGUIWindow* ventana;
-
-		void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0);
-		
-		
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_GuiVentana();
+	// class destructor
+	_GDT_EXPORT_ ~GD_GuiVentana();
+	
+	IGUIWindow* ventana;
+	//! Crea un Control GUI del tipo Ventana
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0);
 };
 
 #endif // GD_GUIVENTANA_H

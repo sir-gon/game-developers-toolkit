@@ -67,7 +67,7 @@ void GD_Agua::CrearNormal(float x, float y, int nx, int ny,int tx,int ty,f32 Alt
 	core::dimension2d<f32>(x,y),
 	core::dimension2d<s32>(nx,ny), 0, 0,
 	core::dimension2d<f32>(0,0),
-	core::dimension2d<f32>(tx,ty));
+	core::dimension2d<f32>((float)tx,(float)ty));
 
     // Se crea el nodo y se le agrega el plano
 	nodon = mismgr->addWaterSurfaceSceneNode(mesh->getMesh(0), AlturaOnda, VelocidadOnda, LongitudOnda);
@@ -109,7 +109,7 @@ void GD_Agua::CrearRealista(float x, float y, int nx, int ny, int tx,int ty, f32
 	core::dimension2d<f32>(x,y), //tamano mosaico
 	core::dimension2d<s32>(nx,ny), 0, 0,//numero mosaicos
 	core::dimension2d<f32>(0,0),
-	core::dimension2d<f32>(tx,ty));
+	core::dimension2d<f32>((float)tx,(float)ty));
 
     // Se crea el nodo y se le agrega el plano
 	nodon = mismgr->addWaterSurfaceSceneNode(mesh->getMesh(0), AlturaOnda, VelocidadOnda, LongitudOnda);

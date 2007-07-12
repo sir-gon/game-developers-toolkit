@@ -19,6 +19,19 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_gui
+*
+* Esta Clase es una plantilla com&uacute;n para todo los objetos GUI
+* (sigla en ingl&eacute;s, Graphical User Interface).
+*
+* Los Controles GUI son objetos que se dibujan en 2D por sobre la escena 
+* 2D/3D que se est&aacute; dibujando con nodos y similares.
+*
+* Con los Controle GUI podemos ingresar/obtener informaci&oacute;n e 
+* interactuar con el programa.
+*/
+
 #include "gd_gui.h" // class's header file
 
 // class constructor
@@ -38,17 +51,41 @@ void GD_gui::RegistrarDevice(	IrrlichtDevice *device )
 	midevice = device;
 }
 
-
+/*!
+Ejemplo:
+\code
+if( Boton.EstaActivado() )
+{
+    // hacer algo
+}
+\endcode
+*/
 bool GD_gui::EstaActivado()
 {
       return guiele->isEnabled();
 }
 
+/*!
+Ejemplo:
+\code
+if( Boton.EstaVisible() )
+{
+}
+\endcode
+*/
 bool GD_gui::EstaVisible()
 {
       return guiele->isVisible();
 }
 
+/*!
+\param x,y coordenadas en pixeles.
+
+Ejemplo:
+\code
+Boton.Posicionar(50, 20);
+\endcode
+*/
 void GD_gui::Posicionar(int x, int y)
 {
     //guiele->move(core::position2d< s32 >( x,  y));
@@ -60,54 +97,109 @@ void GD_gui::Posicionar(int x, int y)
     guiele->setRelativePosition(cua);
 }
 
+/*!
+\param pos vector posicion 2D, en pixeles
+
+Ejemplo:
+\code
+Boton.Posicionar(50, 20);
+\endcode
+*/
 void GD_gui::Posicionar(position2d<s32> pos)
 {
    rect<s32> cua(pos,guiele->getRelativePosition().getSize());
    guiele->setRelativePosition(cua);
 }
 
+/*!
+\param estado True para activado y false para desactivado.
+
+\code
+Boton.Activar(false);
+\endcode
+*/
 void GD_gui::Activado(bool estado)
 {
     guiele->setEnabled(estado);
 }
 
+/*!
+\param text El texto del boton
+
+Ejemplo:
+\code
+Boton.Texto(L"Pulsame");
+\endcode
+*/
 void GD_gui::Texto(const wchar_t *text)
 {
     guiele->setText(text);
 }
 
+/*!
+\return El texto actual del Control GUI
+*/
 const wchar_t* GD_gui::RetornarTexto(void )
 {
     return guiele->getText();
 }
 
+/*!
+Ejemplo:
+\code
+Boton.Visible(false);
+\endcode
+*/
 void GD_gui::Visible(bool estado)
 {
     guiele->setVisible(estado);
 }
 
+/*!
+\code
+int id = Boton.ID();
+\endcode
+*/
 int GD_gui::ID()
 {
     return guiele->getID();
 }
 
+/*!
+Ejemplo:
+\code
+Ventana.AdoptarHijo(Boton1.Elemento() );
+\endcode
+*/
 IGUIElement* GD_gui::Elemento(void)
 {
     return guiele;
 }
 
+/*!
+Ejemplo:
+\code
+Ventana.AdoptarHijo(Boton1.Elemento() );
+\endcode
+*/
 void GD_gui::AdoptarHijo(IGUIElement* hijo)
 {
     guiele->addChild(hijo);
 }
 
+/*!
+Ejemplo:
+\code
+Boton.Destruir();
+\endcode
+*/
 void GD_gui::Destruir(void)
 {
     guiele->remove();
 }
 
-///Retornos *****************************************************
-///**************************************************************
+//Retornos *****************************************************
+//**************************************************************
 
 position2d<s32> GD_gui::Posicion()
 {

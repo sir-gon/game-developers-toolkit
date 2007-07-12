@@ -1,5 +1,3 @@
-#ifdef _GDT_SCRIPTING_
-
 /***************************************************************************
  *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
  *   Copyright (C) 2006 GDT STAFF                                          *
@@ -20,6 +18,9 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
+
+//SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#ifdef _GDT_SCRIPTING_
 
 #ifndef GD_SISTEMALUA_H
 #define GD_SISTEMALUA_H

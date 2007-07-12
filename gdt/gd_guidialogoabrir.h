@@ -23,23 +23,31 @@
 #define GD_GUIDIALOGOABRIR_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * GUI Dialogo de Abrir
- */
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Control GUI "Dialogo de Abrir" para archivos
 class GD_GuiDialogoAbrir : public GD_gui
 {
-	public:
-		// class constructor
-		GD_GuiDialogoAbrir();
-		// class destructor
-		~GD_GuiDialogoAbrir();
-		
-		IGUIFileOpenDialog* opendlg;
-		
-		void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
-		
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_GuiDialogoAbrir();
+	// class destructor
+	_GDT_EXPORT_ ~GD_GuiDialogoAbrir();
+	
+	IGUIFileOpenDialog* opendlg;
+
+	//! Crea un Control GUI del tipo Dialogo Abrir.
+	_GDT_EXPORT_ void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
+	
 };
 
 #endif // GD_GUIDIALOGOABRIR_H

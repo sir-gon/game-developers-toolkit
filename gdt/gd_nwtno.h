@@ -1,4 +1,4 @@
-#ifdef _GDT_FISICAS_
+#ifdef _GDT_FISICAS_NEWTON_
 
 #ifndef GD_NWTNO_H
 #define GD_NWTNO_H
@@ -109,7 +109,7 @@ matrix4 RowMaj2ColumnMaj(matrix4 RowMat);
 matrix4 ColumnMaj2RowMaj(matrix4 ColMat);
 void*  PhysicsAlloc (int sizeInBytes);
 void  PhysicsFree (void *ptr, int sizeInBytes);
-///-----------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
 static void DestruyeNewtoneanoParaCallback(const NewtonBody* nBody);
 static void ConvertidorNewtonIrrlichtParaCallback(const NewtonBody* body,const dFloat *pMatrix);
 static void AplicarFuerza_TorcionParaCallbak(const NewtonBody* body);
@@ -120,7 +120,7 @@ static void LevelCollisionCallback (
 	int vertexstrideInBytes,
 	int indexCount,
 	const int* indexArray);
-///-----------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
 
 
 void DestruyeNewtoneanoParaCallback(const NewtonBody* nBody)
@@ -197,4 +197,4 @@ void LevelCollisionCallback (
 }
 #endif // GD_NWTNO_H
 
-#endif // _GDT_FISICAS_
+#endif // _GDT_FISICAS_NEWTON_

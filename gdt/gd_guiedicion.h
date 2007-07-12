@@ -23,24 +23,34 @@
 #define GD_GUIEDICION_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * GUI Cuadro de Edici&oacute;n (EditBox)
- */
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Control GUI "Cuadro de Edición" (EditBox)
 class GD_GuiEdicion : public GD_gui
 {
-	public:
-		// class constructor
-		GD_GuiEdicion();
-		// class destructor
-		~GD_GuiEdicion();
-		
-		IGUIEditBox* editbox;
-		
-		void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
-		void CaracteresMaximo(int max);
-		int RetornarCaracteresMaximo(void);
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_GuiEdicion();
+	// class destructor
+	_GDT_EXPORT_ ~GD_GuiEdicion();
+	
+	IGUIEditBox* editbox;
+
+	//! Crea un Control Gui del tipo Edici&oacute;n de texto.
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
+	//! Especifica el m&aacute;ximo de caracteres que se pueden escribir.
+	_GDT_EXPORT_ void CaracteresMaximo(int max);
+	//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
+	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
 };
 
 #endif // GD_GUIEDICION_H

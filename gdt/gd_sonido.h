@@ -19,10 +19,22 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+//SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#ifdef _GDT_SONIDO_ 
+
 #ifndef GD_SONIDO_H
 #define GD_SONIDO_H
 
 #include "gd_sonido3d.h" // inheriting class's header file
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
 /*
  * No description
@@ -31,26 +43,29 @@ class GD_Sonido : public GD_Sonido3D
 {
 	public:
 		// class constructor
-		GD_Sonido();
+		_GDT_EXPORT_ GD_Sonido();
 		// class destructor
-		~GD_Sonido();
+		_GDT_EXPORT_ ~GD_Sonido();
 		
-		char Cargar(char *);
-        void Descargar();
-        void Reproducir();
-        void Pausa();
-        void Detener();
-        void Rebobinar();
-        void Play();
-        void Pause();
-        void Stop();
-        void Rewind();
-        void Bucle(char);
-        void Volumen(int);
-        //void FactorRolloff(float);
-        void Pan(float);
-        void Tono(float);
-        int Estado();
+		_GDT_EXPORT_ char Cargar(char *);
+        _GDT_EXPORT_ void Descargar();
+        _GDT_EXPORT_ void Reproducir();
+        _GDT_EXPORT_ void Pausa();
+        _GDT_EXPORT_ void Detener();
+        _GDT_EXPORT_ void Rebobinar();
+        _GDT_EXPORT_ void Play();
+        _GDT_EXPORT_ void Pause();
+        _GDT_EXPORT_ void Stop();
+        _GDT_EXPORT_ void Rewind();
+        _GDT_EXPORT_ void Bucle(char);
+        _GDT_EXPORT_ void Volumen(int);
+        //_GDT_EXPORT_ void FactorRolloff(float);
+        _GDT_EXPORT_ void Pan(float);
+        _GDT_EXPORT_ void Tono(float);
+        _GDT_EXPORT_ int Estado();
 };
 
 #endif // GD_SONIDO_H
+
+#endif // _GDT_SONIDO_
+

@@ -23,27 +23,34 @@
 #define GD_FUNDIDO_H
 
 #include "gd_gui.h" // inheriting class's header file
-
 #include "gd_sistema.h"
-/*
- * Para hacer fundidos de pantalla
- */
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Para hacer fundidos de pantalla
 class GD_Fundido : public GD_gui
 {
 	public:
 		// class constructor
-		GD_Fundido();
+		_GDT_EXPORT_ GD_Fundido();
 		// class destructor
-		~GD_Fundido();
+		_GDT_EXPORT_ ~GD_Fundido();
 		
 		IGUIInOutFader* fundido;
 		
-		void Crear(void);
+		_GDT_EXPORT_ void Crear(void);
 	//	void Crear( int x1, int y1, int x2, int y2);
-		void Color(int r, int g, int b);
-		void FundirHaciaDentro(int tiempo);
-		void FundirHaciaFuera(int tiempo);
-		bool Terminado(void);
+		_GDT_EXPORT_ void Color(int r, int g, int b);
+		_GDT_EXPORT_ void FundirHaciaDentro(int tiempo);
+		_GDT_EXPORT_ void FundirHaciaFuera(int tiempo);
+		_GDT_EXPORT_ bool Terminado(void);
         		
 };
 

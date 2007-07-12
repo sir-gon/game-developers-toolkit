@@ -28,6 +28,15 @@
 #include "gd_nodo.h" // inheriting class's header file
 #include "gd_escenario.h"
 
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
 //! Crea y controla luces
 /*!
 Las luces permiten iluminar las mallas, con el color que sea establecida la luz, incluso se pueden proyectar sombras din&aacute;micas en las mallas ocupando luces.
@@ -36,47 +45,47 @@ class GD_Luz : public GD_Nodo
 {
         public:
         // class constructor
-        GD_Luz();
+        _GDT_EXPORT_ GD_Luz();
         // class destructor
-        ~GD_Luz();
+        _GDT_EXPORT_ ~GD_Luz();
 
         ILightSceneNode* nodl;
         video::SLight sluz; 
 
         //! Crea una luz
-        void Crear();
+        _GDT_EXPORT_ void Crear();
         //! Crea una luz
-        void Crear(int r, int g ,int b, float radio);
+        _GDT_EXPORT_ void Crear(int r, int g ,int b, float radio);
         //! Crea una luz
-        void Crear(int r, int g ,int b, float radio, int tipmo);
+        _GDT_EXPORT_ void Crear(int r, int g ,int b, float radio, int tipmo);
         //! Crea una luz
-        void Crear(float x, float y, float z, float radio);
+        _GDT_EXPORT_ void Crear(float x, float y, float z, float radio);
         //! Crea una luz
-        void Crear(float x, float y, float z, float radio, int tipo);
+        _GDT_EXPORT_ void Crear(float x, float y, float z, float radio, int tipo);
         //! Crea una luz
-        void Crear(float x, float y, float z, float r, float g ,float b, float radio);
+        _GDT_EXPORT_ void Crear(float x, float y, float z, float r, float g ,float b, float radio);
         //! Crea una luz	
-        void Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo);
+        _GDT_EXPORT_ void Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo);
         //! Cambia el tipo de luz.
-        void Tipo(int tipo);
+        _GDT_EXPORT_ void Tipo(int tipo);
         //! Establece si esta luz hace que las mallas tengan sombra.
-        void HacerSombra(bool hacer);
+        _GDT_EXPORT_ void HacerSombra(bool hacer);
         //! Son las coordenadas a la que apunta la luz en el caso de que el tipo sea direccional
-        void Direccion(float x, float y, float z);
+        _GDT_EXPORT_ void Direccion(float x, float y, float z);
         //! Es el vector direcci&oacute;n a la que apunta la luz en el caso de que el tipo sea direccional
-        void Direccion( vector3df vect);
+        _GDT_EXPORT_ void Direccion( vector3df vect);
         //! Establece el radio de la luz en el caso de que sea direccional
-        void Radio(float rad);
+        _GDT_EXPORT_ void Radio(float rad);
 
-        void ColorAmbiente(s32 r,s32 g,s32 b);
-        void ColorDifuso( s32 r,s32 g,s32 b);
-        void ColorEspecular(s32 r,s32 g,s32 b);
+        _GDT_EXPORT_ void ColorAmbiente(s32 r,s32 g,s32 b);
+        _GDT_EXPORT_ void ColorDifuso( s32 r,s32 g,s32 b);
+        _GDT_EXPORT_ void ColorEspecular(s32 r,s32 g,s32 b);
 
-        void AumentarColorAmbiente(float val);
-        void AumentarColorDifuso(float val);
-        void AumentarColorEspecular(float val);
+        _GDT_EXPORT_ void AumentarColorAmbiente(float val);
+        _GDT_EXPORT_ void AumentarColorDifuso(float val);
+        _GDT_EXPORT_ void AumentarColorEspecular(float val);
 
-        void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+        _GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
 
 #endif // GD_LUZ_H

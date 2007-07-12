@@ -19,6 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+
 #include "gd_sonido3d.h" // class's header file
 
 // class constructor
@@ -78,6 +80,8 @@ char GD_Sonido3D::Cargar(char *archivo)
 	return AL_FALSE;
 }
 
+
+//#if defined(_GDT_SONIDO_OGG_)
 /*!
 \param archivo La ruta al archivo OGG
 
@@ -146,6 +150,7 @@ char GD_Sonido3D::CargarOGG(char *archivo)
   printf("Cargado archivo OGG: %s\n", archivo);
   return 'a';
 }
+//#endif // _GDT_SONIDO_OGG_
 
 void GD_Sonido3D::Descargar()
 {
@@ -243,4 +248,5 @@ void GD_Sonido3D::Velocidad(float x, float y, float z)
     alSourcefv(SSource, AL_VELOCITY, SSourceVel);
 }
 
+#endif // _GDT_SONIDO_
 

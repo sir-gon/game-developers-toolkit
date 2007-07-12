@@ -24,7 +24,9 @@
 // class constructor
 GD_ListaArchivos::GD_ListaArchivos()
 {
-	// insert your code here
+     FileSystem = GD_Sistema::device->getFileSystem(); 
+
+     FileList= FileSystem->createFileList();
 }
 
 // class destructor
@@ -33,6 +35,9 @@ GD_ListaArchivos::~GD_ListaArchivos()
 	// insert your code here
 }
 
+/*!
+\deprecated El constructor ya hace esto, no hace falta volver a repetirlo.
+*/
 void GD_ListaArchivos::Crear(void)
 {
      FileSystem = GD_Sistema::device->getFileSystem(); 
@@ -40,21 +45,39 @@ void GD_ListaArchivos::Crear(void)
      FileList= FileSystem->createFileList();
 }
 
+/*!
+Ejemplo:
+\code
+int archivos = Lista.Numero();
+\endcode
+*/
 int GD_ListaArchivos::Numero(void)
 {
     return FileList->getFileCount();
 }
 
+/*!
+*/
 const c8* GD_ListaArchivos::Nombre(int id)
 {
       return FileList->getFileName(id);
 }
 
+/*!
+*/
 const c8* GD_ListaArchivos::NombreCompleto(int id)
 {
       return FileList->getFullFileName(id);
 }
 
+/*!
+\return true si es directorio, en caso contrario es retorna false.
+
+Ejemplo:
+\code
+bool directorio = Lista.EsDirectorio(6);
+\endcode
+*/
 bool GD_ListaArchivos::EsDirectorio(int id)
 {
       return FileList->isDirectory(id);

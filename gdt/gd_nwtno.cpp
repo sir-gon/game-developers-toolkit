@@ -1,4 +1,4 @@
-#ifdef _GDT_FISICAS_
+#ifdef _GDT_FISICAS_NEWTON_
 
 #include "gd_nwtno.h"
 
@@ -428,5 +428,5 @@ void  PhysicsFree (void *ptr, int sizeInBytes)
 ///+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-#endif // _GDT_FISICAS_
+#endif // _GDT_FISICAS_NEWTON_
 
