@@ -19,6 +19,14 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GD_Panorama
+*
+* Un Panorama es la cubierta que podemos darle al escenario, para reemplazar
+* el color plano que presenta por defecto.
+*
+* El Panorama puede ser de 2 tipos, Domo o Cubo.
+*/
 #include "gd_panorama.h" // class's header file
 
 // class constructor
@@ -33,7 +41,25 @@ GD_Panorama::~GD_Panorama()
 	// insert your code here
 }
 
+/*!
+\param up ruta a imagen de la Cara Superior
+\param down ruta a imagen de la Cara Inferior
+\param left ruta a imagen de la Cara Izquierda
+\param right ruta a imagen de la Cara Derecha
+\param front ruta a imagen de la Cara Frontal
+\param back ruta a imagen de la Cara Trasera
 
+Ejemplo:
+\code
+CieloCubo.CrearCubico(
+	"media/cara_superior.jpg",
+	"media/cara_inferior.jpg",
+	"media/cara_izquierda.jpg",
+	"media/cara_derecha.jpg",
+	"media/cara_frontal.jpg",
+	"media/cara_trasera.jpg");
+\endcode
+*/
 void GD_Panorama::CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back)
 {
     
@@ -59,7 +85,18 @@ void GD_Panorama::CrearCubico(char* up, char* down, char* left, char* right, cha
 	
 }
 
+/*!
+\param texturadomo Es la imagen que cubre el domo.
+\param hres
+\param vres
+\param texporc
+\param esfporc
 
+Ejemplo:
+\code
+CieloDomo.CrearDomo("../media/panorama/domin.jpg",13,13,100,100);
+\endcode
+*/
 void GD_Panorama::CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc)
 {
     RegistrarDevice(GD_Sistema::device);

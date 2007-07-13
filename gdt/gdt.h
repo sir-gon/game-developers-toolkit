@@ -30,8 +30,11 @@ Ac&aacute; encontrar&aacute; los detalles de todas las Clases, Propiedades, M&ea
 
 <A HREF="refman.pdf">Ac&aacute; puede encontrar una copia descargable en formato PDF</A>
 
-\section getting_started Comenzando con un esqueleto GDT
-Para comenzar, puedes ocupar el siguiente programa esqueleto:
+\section comenzando Comenzando con un esqueleto GDT
+Para comenzar, los novatos pueden preferir ocupar una versi&oacute;n 
+precompilada de GDT.
+
+Luego, para probar la instalaci&oacute;n, puede ocupar el siguiente programa esqueleto:
 
 \code
 #include <gdt.h>
@@ -41,7 +44,7 @@ GD_Sistema Sistema;
 int main()
 {
         Sistema.Inicializar(640,480,16,false,OPENGL);
-        
+
         GD_Camara Camara;
         Camara.Crear(Tipo_Modelador );
 
@@ -49,21 +52,23 @@ int main()
         {
                 // Cerrar programa con tecla ESC
                 if(Sistema.TeclaAbajo(T_ESC)) Sistema.Matarme();
-                
+
                 //Dibujar contenido de la ventana 
                 Sistema.Render();
         }
-        
+
         Sistema.Matarme();
-        
+
         return 0;
 }
 \endcode
 
-Para enlazar correctamente con las librerías externas, recuerda que se necesitan:
+Para enlazar correctamente con las librer&iacute;as externas, recuerda que se necesitan:
 
 - gdt
 - Irrlicht
+
+Y opcionalmente:
 - openal
 - alut
 - ogg
@@ -73,8 +78,37 @@ Para enlazar correctamente con las librerías externas, recuerda que se necesitan
 - lua5.1
 
 Dependiendo del compilador y plataforma, el enlazado se configura de diferentes maneras.
-*/
 
+\section important Si desea compilar GDT, concidere que...
+
+Antes, era necesario instalar toda las dependencias. Ahora se pueden ocupar
+las mismas, pero ya no son todas obligatorias.
+
+En el caso de que no se requiera, o aparezcan problemas, tal vez desee compilar
+GDT con menos caracter&iacute;sticas.
+
+Para esto, se han establecido algunas definicione para el preprocesador que permiten 
+Compilar:
+
+    - _GDT_SONIDO_ // Incluye soporte para tocar sonido usando Openal + Alut
+    - _GDT_SONIDO_OGG_ // Incluye soporte para decodificar OGG + Vorbis. NO sirve de nada si no se define _GDT_SONIDO_.
+    - _GDT_MIDI_ // Incluye soporte para tocar sonidos Midi. Este m&oacutelo requiere la WINAPI. Viene desactivado en Linux (por razones obvias) y en MS Visual C++ 2005 Express. En este &uacute;ltimo porque necesita tener instalado el Platform SDK previamente. Si desea usar Midi en MSVC, entonces asegurese de tener el PSDK instalado, y luego agregar esta definici&oacute;n en su proyecto.
+    - _GDT_SCRIPTING_ // LUA
+    - _GDT_FISICAS_NEWTON_ // Newton Dynamics, desactivado en forma predeterminada
+    - _GDT_FISICAS_ODE_ // NO implementado aun, pero irá a futuro.
+
+\section evitar Lo que debe evitar:
+
+Por favor, para no tener problemas, no intente:
+
+- Definir _GDT_DOXYGEN_IGNORAR_. Se ha puesto en ciertas partes del c&oacute;digo fuente, para evitar que aparezca en la documentaci&oacute;n algunas cosas que no son necesarias mostrar. Cuando se define _GDT_DOXYGEN_IGNORAR_ el compilador ignorar&aacute; partes que SI SON NECESARIAS PARA COMPILAR.
+
+- Compilar GDT sin haber instalado Irrlicht. Es la principal dependencia de GDT, ya que provee el motor gr&aacute;fico y la base de muchas otras cosas necesarias. Para mayor informaci&oacute;n lea el siguiente punto.
+
+- Compilar GDT con m&oacute;dulos opcionales si sus dependencias no est&aacute; instaladas, o no est&aacute; disponibles. Aseg&uacute;rese que las cabeceras (.h) de las dependencias est&eacute;n disponibles en algun directorio de inclusi&oacute;n o agregar rutas adicionales, donde se tienen instaladas, al proyecto del IDE escogido.
+
+- Usar una caracter&iacute;stica de GDT en un proyecto propio si GDT no fue compilado con ese soporte. En el mejor de los casos provocar&aacute; inevitablemente una caida del ejecutable. De echo es m&aacutes probable que ni siquiera deje compilar/enlazar correctamente el proyecto.
+*/
 
 // Sistema
 #include "gd_sistema.h"

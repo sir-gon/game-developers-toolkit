@@ -1,3 +1,23 @@
+/***************************************************************************
+ *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
+ *   Copyright (C) 2006 GDT STAFF                                          *
+ *   http://gdt.sourceforge.net                                            *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU Library General Public License as       *
+ *   published by the Free Software Foundation; either version 2 of the    *
+ *   License, or (at your option) any later version.                       *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU Lesser General Public      *
+ *   License along with this library; if not, write to the Free Software   *
+ *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
+ *   Boston, MA 02110-1301 USA                                             *
+ ***************************************************************************/
 
 
 #ifndef GD_CONTROLESPREDISENIADOS_H
@@ -7,19 +27,22 @@
 #include "gd_sistema.h"
 #include "gd_malla.h"
 
+/* No Documentar esto */
+#ifndef _GDT_DOXYGEN_IGNORAR_
 
-//! \manonly Estructura de Teclado \endmanonly
 struct stTeclado
 {
    int iUp,iDown,iRight,iLeft,iControl,iShift;
    double dUp,dDown,dRight,dLeft,dControl,dShift;
 };
 
-//! \manonly Estructura de Mouse \endmanonly
 struct stMouse
 {
    f32 MoveX,MoveY,MLeft,MRight,MCenter;
 };
+
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
+
 
 //class GD_Malla;
 
@@ -33,9 +56,7 @@ class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistem
    //protected:
       stTeclado Teclado;
       stMouse Mouse;
-// TODO (Astucia#1#): Crear comandos de teclado predise&ntilde;ados
 
-// TODO (Astucia#1#): Crear funciones con valores de retorno
 
       GD_ControlesPrediseniados();
       GD_ControlesPrediseniados(GD_Sistema sistemaGeneral);

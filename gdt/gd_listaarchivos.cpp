@@ -21,6 +21,13 @@
 
 #include "gd_listaarchivos.h" // class's header file
 
+/*!
+* \class GD_ListaArchivos
+*
+* Implementa métodos de acceso a Directorios del sistema de archivos.
+* Con esto podemos examinar el contenido de un directorio, sus archivos,
+* otros directorios, la cantidad de elementos, etc. 
+*/
 // class constructor
 GD_ListaArchivos::GD_ListaArchivos()
 {
@@ -36,7 +43,7 @@ GD_ListaArchivos::~GD_ListaArchivos()
 }
 
 /*!
-\deprecated El constructor ya hace esto, no hace falta volver a repetirlo.
+\deprecated El constructor inicializa todo, no hace falta volver a repetirlo.
 */
 void GD_ListaArchivos::Crear(void)
 {

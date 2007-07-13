@@ -19,6 +19,31 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/**
+* \class GD_Nodo
+*
+* Acá se coleccionan los m&eacute;todos del espacio comunes entre los objetos.
+*
+* Cada "objeto" del espacio es conciderado un Nodo, las mallas, las luces
+* sistemas de particulas, c&aacute;mara, terrenos, etc.
+* 
+* De aquí en adelante, se conciderar&aacute; para todos los ejemplos, a un
+* nodo de tipo GD_Malla llamado Cubo, el cual se instancia as&iacute;:
+* \code
+* #include "gdt.h"
+* 
+* GD_Sistema Sistema;
+* GD_Malla Cubo;
+*
+* int main()
+* {
+* 	while(Sistema.EnEjecucion()) {
+* 		///// Hacer algo ...
+* 	}
+* return 0;
+* }
+* \endcode
+*/
 
 #include "gd_nodo.h" // class's header file
 

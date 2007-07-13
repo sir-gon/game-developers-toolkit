@@ -385,9 +385,9 @@ double GD_SistemaMatematicas::GiroAngulo(double mirando, double meta)
     double diff;
     diff=mirando-meta;
     while(diff>180)
-        diff=diff-360;
+        diff-=360;
     while(diff<-180)
-        diff=diff+360;
+        diff+=360;
     if(diff==0)
         return 0;
     if(diff<0)
@@ -774,7 +774,7 @@ double GD_SistemaMatematicas::BuscarNormal(double x, double y, double z)
 
 vector3df GD_SistemaMatematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180, float dureza=15)
 {
-      vector3df Salida;
+	vector3df Salida;
 	f32 px = PosicionEntrada1.X;
 	f32 py = PosicionEntrada1.Y;
 	f32 pz = PosicionEntrada1.Z;
@@ -785,9 +785,9 @@ vector3df GD_SistemaMatematicas::Seguir( vector3df PosicionEntrada1, float angul
 	cx = CurvarValor(cx,MueveX(px ,pa ,distancia),dureza);
 	cy = CurvarValor(cy,py+altura,dureza/2);
 	cz = CurvarValor(cz,MueveZ(pz ,pa ,distancia),dureza);
-//	printf("X: %f, Y: %f, Z: %f\n",cx,cy,cz);
-     Salida.set(cx,cy,cz);
-     return Salida;
+	//printf("X: %f, Y: %f, Z: %f\n",cx,cy,cz);
+	Salida.set(cx,cy,cz);
+	return Salida;
 }
 
 /*!

@@ -24,36 +24,45 @@
 
 
 #include <irrlicht.h>
+#include "gd_sistema.h"
 
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
 using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
 
+// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
 
-#include "gd_sistema.h"
-/*
- * No description
- */
+//!
 class GD_Textura
 {
 	public:
 		// class constructor
-		GD_Textura();
+		_GDT_EXPORT_ GD_Textura();
 		// class destructor
-		~GD_Textura();
+		_GDT_EXPORT_ ~GD_Textura();
 		
         IrrlichtDevice *mi_device;
 		
 		ITexture* tex;
 		
-		void Cargar(char* filename);
+		_GDT_EXPORT_ void Cargar(char* filename);
 		
-		ITexture* Textura();
+		_GDT_EXPORT_ ITexture* Textura();
 		
-		void GenerarMapaNormales(float amplitud=1.0);
+		_GDT_EXPORT_ void GenerarMapaNormales(float amplitud=1.0);
 
 };
 

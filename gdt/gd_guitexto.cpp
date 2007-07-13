@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_Texto
+* \class GD_GuiTexto
 *
 * Este Control GUI permite desplegar Texto por la pantalla.
 * Usese para mostrar alertas, mensajes, o para lo que sea conveniente.
@@ -85,7 +85,7 @@ void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIEle
 
 /*!
 \param r,g,b colores Azul, Verde y Rojo, de 0 a 255.
-\param alpha Transparencia alpha, de 0 a 255.
+\param a Transparencia alpha, de 0 a 255.
 
 Ejemplo:
 Texto.Color(255,0,0,255);
@@ -96,9 +96,9 @@ void GD_GuiTexto::Color(int r, int g, int b,int a)
 }
 
 /*!
-\since 13-04-2006
 \param fontname ruta al archivo de la fuente. Debe ser un bitmap de caracteres.
 
+\since 13-04-2006
 \author Astucia 
 */
 void GD_GuiTexto::AsignarFuente(const char fontname[1024])

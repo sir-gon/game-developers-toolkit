@@ -37,14 +37,16 @@
 // No description
 class GD_Panorama : public GD_Nodo
 {
-	public:
-		// class constructor
-		_GDT_EXPORT_ GD_Panorama();
-		// class destructor
-		_GDT_EXPORT_ ~GD_Panorama();
-		
-		_GDT_EXPORT_ void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
-		_GDT_EXPORT_ void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);       
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_Panorama();
+	// class destructor
+	_GDT_EXPORT_ ~GD_Panorama();
+
+	//! Cubre el fondo con un panor&aacute;ma c&uacute;bico
+	_GDT_EXPORT_ void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
+	//! Cubre el fondo con un panor&aacute;ma esf&eacute;rico
+	_GDT_EXPORT_ void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);
 };
 
 #endif // GD_PANORAMA_H

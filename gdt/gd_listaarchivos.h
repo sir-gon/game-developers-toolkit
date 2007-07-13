@@ -33,9 +33,7 @@
   #endif
 #endif
 
-/*
- * Lista de archivos de un directorio
- */
+//! Representa una Lista de Archivos de un directorio /
 class GD_ListaArchivos
 {
 public:

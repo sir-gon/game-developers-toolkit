@@ -26,6 +26,8 @@
 # * VORBISFILE_LIBRARY                                        #
 # * LUA_INCLUDE_DIR                                           #
 # * LUA_LIBRARY                                               #
+# * ODE_INCLUDE_DIR                                           #
+# * ODE_LIBRARY                                               #
 # * NEWTON_INCLUDE_DIR                                        #
 # * NEWTON_LIBRARY                                            #
 ###############################################################
@@ -514,7 +516,7 @@ ENDIF(LUA_INCLUDE_DIR AND LUA_LIBRARY)
 
 ## COMPROBAR GRUPO DE FISICAS NEWTON
 IF(NEWTON_INCLUDE_DIR AND NEWTON_LIBRARY)
-   #SET(FISICAS_NEWTON_FOUND "YES")
+   SET(FISICAS_NEWTON_FOUND "YES")
 ENDIF(NEWTON_INCLUDE_DIR AND NEWTON_LIBRARY)
 
 ## COMPROBAR GRUPO DE FISICAS ODE

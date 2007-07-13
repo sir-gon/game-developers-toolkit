@@ -126,7 +126,7 @@ void GD_Newtoneano::Inicializa(NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int Esc
 	NewtonReleaseCollision (nMundo, pColisionNwtn);
 
    //Cargando el NewtonBody con los valores de la matriz del objeto personaje.
-   NewtonBodySetMatrix (pCuerpoNwtn,(dFloat*)&matrix.M[0]);
+   NewtonBodySetMatrix (pCuerpoNwtn,(dFloat*)matrix.pointer());
    // save the pointer to the graphic object with the body.
 	NewtonBodySetUserData (pCuerpoNwtn, nodoMalla);
 
@@ -217,7 +217,7 @@ void GD_Newtoneano::CrearEscenarioNewtoneano(NewtonWorld* MundoNwtn,ISceneNode* 
 
 void GD_Newtoneano::AsignaMatriz(const matrix4 mat)
 {
-      NewtonBodySetMatrix(pCuerpoNwtn,(dFloat*)&matrix.M[0]);
+      NewtonBodySetMatrix(pCuerpoNwtn,(dFloat*)matrix.pointer());
 }
 
 void GD_Newtoneano::AsignarMasa(dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ)
@@ -282,7 +282,7 @@ void GD_Newtoneano::AsignaMaterial(int MaterialID)
 void GD_Newtoneano::ConvertidorNewtonIrrlicht()
 {
    //Cargando los datos del cuerpo Newtoneano en la matriz del cuerpo Irrlicht
-   NewtonBodyGetMatrix(pCuerpoNwtn,(dFloat*)&matrix.M[0]);
+   NewtonBodyGetMatrix(pCuerpoNwtn,(dFloat*)matrix.pointer());
    //Carga los datos al nodo base
 	nodoMalla = (ISceneNode *)NewtonBodyGetUserData(pCuerpoNwtn);
 	if (nodoMalla)
@@ -302,7 +302,7 @@ ISceneNode* GD_Newtoneano::Actualizar()
    NewtonBodySetTransformCallback (pCuerpoNwtn, ConvertidorNewtonIrrlichtParaCallback);
    nodoMalla=NwtNodo;
 
-   NewtonBodyGetMatrix(pCuerpoNwtn,(dFloat*)&matrix.M[0]);
+   NewtonBodyGetMatrix(pCuerpoNwtn,(dFloat*)matrix.pointer());
    //ConvertidorNewtonIrrlicht();
    return nodoMalla;
 }
@@ -340,10 +340,11 @@ bool GD_Newtoneano::StatusActivo()
 
 matrix4 RowMaj2ColumnMaj(matrix4 RowMat)
 {
-   int Row,Col;
-   int i=0;
-   matrix4 ColMat=RowMat;
 
+   //int Row,Col;
+   //int i=0;
+   matrix4 ColMat=RowMat;
+/*
    dFloat Matriz[4][4];
 
    for(Col=0;Col<4;Col++)
@@ -365,14 +366,17 @@ matrix4 RowMaj2ColumnMaj(matrix4 RowMat)
       }
    }
 
-   return ColMat;
+*/
 
+   ColMat.getTransposed( RowMat ); // Estara correcto?
+
+   return ColMat;
 }
 
 matrix4 ColumnMaj2RowMaj(matrix4 ColMat)
 {
-   int Row,Col;
-   int i=0;
+   //int Row,Col;
+   //int i=0;
    matrix4 RowMat=ColMat;
 
    /*dFloat Matriz[4][4];
@@ -405,10 +409,18 @@ matrix4 ColumnMaj2RowMaj(matrix4 ColMat)
       RowMat.M[o+3]=ColMat.M[i+3];
       o++;
    }*/
+
+// COMENTADO POR SIR_GON. INTENTANDO UNA MEJOR MANERA DE HACER ESTO.
+/*
    RowMat.M[0]=ColMat.M[0]; RowMat.M[1]=ColMat.M[4]; RowMat.M[2]=ColMat.M[8]; RowMat.M[3]=ColMat.M[12];  //Front
    RowMat.M[4]=ColMat.M[1]; RowMat.M[5]=ColMat.M[5]; RowMat.M[6]=ColMat.M[9]; RowMat.M[7]=ColMat.M[13];  //Up
    RowMat.M[8]=ColMat.M[2]; RowMat.M[9]=ColMat.M[6]; RowMat.M[10]=ColMat.M[10]; RowMat.M[11]=ColMat.M[14];  //Right
    RowMat.M[12]=ColMat.M[3]; RowMat.M[13]=ColMat.M[7]; RowMat.M[14]=ColMat.M[11]; RowMat.M[15]=ColMat.M[15];  //Pos
+*/
+
+   RowMat.getTransposed( ColMat ); // Estara correcto?
+
+// FIN ARREGLO SIR GON
 
    return RowMat;
 }

@@ -116,7 +116,7 @@ void GD_Archivo::Escribir(const char *strCadena, int bytes)
 }
 
 /*!
-Copia en el buffer indicado el número de bytes que se quieren leer del archivo.
+Copia en el buffer indicado el n&uacute;mero de bytes que se quieren leer del archivo.
 
 Ejemplo:
 \code
@@ -133,7 +133,7 @@ void GD_Archivo::Leer( char * buffer, int bytes)
 }
 
 /*!
-\return el número de bytes totales del archivo se est&aacute; leyendo, devuelve el número de bytes totales del archivo.
+\return el n&uacute;mero de bytes totales del archivo se est&aacute; leyendo, devuelve el número de bytes totales del archivo.
 
 \code
 char Texto[4];

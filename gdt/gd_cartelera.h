@@ -25,20 +25,29 @@
 #include "gd_nodo.h" // inheriting class's header file
 #include "gd_escenario.h"
 
-//! Maneja imagenes que siempre se ven frontalmente en la cámara
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Imagenes que siempre se ven frontalmente en la c&aacute;mara
 class GD_Cartelera : public GD_Nodo
 {
-	public:
-		// class constructor
-		GD_Cartelera();
-		// class destructor
-		~GD_Cartelera();
-		
-		IBillboardSceneNode* nodb;
-		
-        //! Carga una imágen como una Cartelera.
-		void Crear(float tamx, float tamy, char* filename);
-		void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_Cartelera();
+	// class destructor
+	_GDT_EXPORT_ ~GD_Cartelera();
+	
+	IBillboardSceneNode* nodb;
+	
+	//! Carga una imágen como una Cartelera.
+	_GDT_EXPORT_ void Crear(float tamx, float tamy, char* filename);
+	_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
 
 #endif // GD_CARTELERA_H

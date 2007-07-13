@@ -24,22 +24,31 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
-// No description
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
+//! Generador de Terrenos
 class GD_Terreno : public GD_Nodo
 {
-	public:
-		// class constructor
-		GD_Terreno();
-		// class destructor
-		~GD_Terreno();
-		
-		ITerrainSceneNode* nodt;
-          
-          void Crear(char *filenameHMAP,float x, float y, float z);
-          ITriangleSelector* selector;
-          ITriangleSelector* RetornarDatos();
-          
-          void Texturizar(char *filenameTEX);
+public:
+	// class constructor
+	_GDT_EXPORT_ GD_Terreno();
+	// class destructor
+	_GDT_EXPORT_ ~GD_Terreno();
+	
+	ITerrainSceneNode* nodt;
+	
+	_GDT_EXPORT_ void Crear(char *filenameHMAP,float x, float y, float z);
+	ITriangleSelector* selector;
+	_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
+	
+	_GDT_EXPORT_ void Texturizar(char *filenameTEX);
 };
 
 #endif // GD_TERRENO_H

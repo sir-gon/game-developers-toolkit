@@ -81,11 +81,13 @@ char GD_Sonido3D::Cargar(char *archivo)
 }
 
 
-//#if defined(_GDT_SONIDO_OGG_)
+#if defined(_GDT_SONIDO_OGG_)
 /*!
 \param archivo La ruta al archivo OGG
 
 Carga un archivo OGG en el buffer, y lo deja listo para la reproducci&oacute;n. Vea Reproducir.
+
+\warning ESte m&eacute;todo sol estar&aacute; disponible solo en caso que _GDT_SONIDO_OGG_ est&eacute; en tiempo de compilaci&oacute;n
 
 Ejemplo:
 \code
@@ -96,7 +98,7 @@ Musica.Reproducir();
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 
-Se agradece al siguiente art&iacute;culo de GameDev: http://www.gamedev.net/reference/articles/article2031.asp
+\note Se agradece al siguiente art&iacute;culo de GameDev: http://www.gamedev.net/reference/articles/article2031.asp
 */
 char GD_Sonido3D::CargarOGG(char *archivo)
 {
@@ -150,7 +152,7 @@ char GD_Sonido3D::CargarOGG(char *archivo)
   printf("Cargado archivo OGG: %s\n", archivo);
   return 'a';
 }
-//#endif // _GDT_SONIDO_OGG_
+#endif // _GDT_SONIDO_OGG_
 
 void GD_Sonido3D::Descargar()
 {

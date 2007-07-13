@@ -24,12 +24,16 @@
 
 #include <irrlicht.h>
 
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
 using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
+
 
 // HACK PARA COMPILAR EN VISUAL C++ 2005
 #ifndef _GDT_EXPORT_
@@ -40,7 +44,7 @@ using namespace gui;
   #endif
 #endif
 
-//! Base de los elementos (Controles) de la Interfaz Gr&aacute;fica de Usuario (GUI)
+//! Base de los Controles de la Interfaz Gr&aacute;fica de Usuario (GUI)
 class GD_gui
 {
 public:

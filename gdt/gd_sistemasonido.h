@@ -48,7 +48,10 @@
   #endif
 #endif
 
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
 using namespace std;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 class GD_SistemaSonido
 {

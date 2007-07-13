@@ -29,12 +29,16 @@
 #include <string.h>
 #include <cassert>
 
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
 using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
+
 
 //#include "gd_camara.h"
 //#include "gd_guibarra.h"
