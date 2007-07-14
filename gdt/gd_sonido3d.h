@@ -72,27 +72,8 @@ class GD_Sonido3D
 
 	//! Carga un sonido wav
 	_GDT_EXPORT_ char Cargar(char *);
-
-	// Para cargar un sonido en formato OGG Vorbis.
-	#if defined(_GDT_SONIDO_OGG_)
-	private:
-        FILE*           oggFile;       // file handle
-        OggVorbis_File  oggStream;     // stream handle
-        vorbis_info*    vorbisInfo;    // some formatting data
-        vorbis_comment* vorbisComment; // user comments
-
-        ALenum format;     // internal format
-        vector < char > bufferData; // The sound buffer data from file
-
-	public:
-	//! Carga un sonido Ogg Vorbis
-        _GDT_EXPORT_ char CargarOGG(char *archivo);
-	#endif
-
-    public:
 	//! Libera el buffer de audio
 	_GDT_EXPORT_ void Descargar();
-
 	//! Inicia la reproducci&oacute;n del sonido
 	_GDT_EXPORT_ void Reproducir();
 	//! Alias de Reproducir
@@ -122,6 +103,22 @@ class GD_Sonido3D
 	_GDT_EXPORT_ int Estado();
 	_GDT_EXPORT_ void Posicionar(float, float, float);
 	_GDT_EXPORT_ void Velocidad(float, float, float);
+
+	// Para cargar un sonido en formato OGG Vorbis.
+	#if defined(_GDT_SONIDO_OGG_)
+	private:
+        FILE*           oggFile;       // file handle
+        OggVorbis_File  oggStream;     // stream handle
+        vorbis_info*    vorbisInfo;    // some formatting data
+        vorbis_comment* vorbisComment; // user comments
+
+        ALenum format;     // internal format
+        vector < char > bufferData; // The sound buffer data from file
+
+	public:
+	//! Carga un sonido Ogg Vorbis
+        _GDT_EXPORT_ char CargarOGG(char *archivo);
+	#endif
 };
 
 

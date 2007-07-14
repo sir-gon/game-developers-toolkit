@@ -33,7 +33,8 @@ GD_Textura::~GD_Textura()
 	// insert your code here
 }
 
-
+/*!
+*/
 void GD_Textura::Cargar(char* filename)
 {
    mi_device = GD_Sistema::device;
@@ -42,11 +43,15 @@ void GD_Textura::Cargar(char* filename)
 }
 
 
+/*!
+*/
 ITexture* GD_Textura::Textura()
 {
    return tex;
 }
 
+/*!
+*/
 void GD_Textura::GenerarMapaNormales(float amplitud)
 {
      mi_device->getVideoDriver()->makeNormalMapTexture(tex, amplitud);

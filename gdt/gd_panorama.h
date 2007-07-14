@@ -34,7 +34,7 @@
 #endif
 
 
-// No description
+//! Cubre el fondo con una im&aacute;genes panor&aacute;micas.
 class GD_Panorama : public GD_Nodo
 {
 public:

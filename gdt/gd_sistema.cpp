@@ -19,6 +19,126 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!\mainpage
+
+\image html logoGDT.png
+
+\section intro Manual de Referencia
+Bienvenido a la documentaci&oacute;n de GDT.
+
+Ac&aacute; encontrar&aacute; los detalles de todas las Clases, Propiedades, M&eacute;todos y Definiciones. En la mayor&iacute;a encontrar&aacute;s las definiciones de los par&aacute;metros, el prop&oacute;sito de cada m&eacute;todo y en ocaciones un ejemplos de su uso.
+
+<A HREF="refman.pdf">Ac&aacute; puede encontrar una copia descargable en formato PDF</A>
+
+\section comenzando Comenzando con un esqueleto GDT
+Para comenzar, los novatos pueden preferir ocupar una versi&oacute;n 
+precompilada de GDT.
+
+Luego, para probar la instalaci&oacute;n, puede ocupar el siguiente programa esqueleto:
+
+\code
+#include <gdt.h>
+
+GD_Sistema Sistema;
+
+int main()
+{
+        Sistema.Inicializar(640,480,16,false,OPENGL);
+
+        GD_Camara Camara;
+        Camara.Crear(Tipo_Modelador );
+
+        while(Sistema.EnEjecucion())
+        {
+                // Cerrar programa con tecla ESC
+                if(Sistema.TeclaAbajo(T_ESC)) Sistema.Matarme();
+
+                //Dibujar contenido de la ventana 
+                Sistema.Render();
+        }
+
+        Sistema.Matarme();
+
+        return 0;
+}
+\endcode
+
+Para enlazar correctamente con las librer&iacute;as externas, recuerda que se necesitan:
+
+- gdt
+- Irrlicht
+
+Y opcionalmente:
+- openal
+- alut
+- ogg
+- vorvis
+- vorbisenc
+- vorbisfile
+- lua5.1
+- ode
+- Newton // No incluído con GDT en ninguna versi&oacute;n.
+
+Dependiendo del compilador y plataforma, el enlazado se configura de diferentes maneras.
+
+\section important Si desea compilar GDT, concidere que...
+
+Antes, era necesario instalar toda las dependencias. Ahora se pueden ocupar
+las mismas, pero ya no son todas obligatorias.
+
+En el caso de que no se requiera, o aparezcan problemas, tal vez desee compilar
+GDT con menos caracter&iacute;sticas.
+
+Para esto, se han establecido algunas definicione para el preprocesador que permiten 
+Compilar:
+
+    - _GDT_SONIDO_ // Incluye soporte para tocar sonido usando Openal + Alut
+    - _GDT_SONIDO_OGG_ // Incluye soporte para decodificar OGG + Vorbis. NO sirve de nada si no se define _GDT_SONIDO_.
+    - _GDT_MIDI_ // Incluye soporte para tocar sonidos Midi. Este m&oacutelo requiere la WINAPI. Viene desactivado en Linux (por razones obvias) y en MS Visual C++ 2005 Express. En este &uacute;ltimo porque necesita tener instalado el Platform SDK previamente. Si desea usar Midi en MSVC, entonces asegurese de tener el PSDK instalado, y luego agregar esta definici&oacute;n en su proyecto.
+    - _GDT_SCRIPTING_ // LUA
+    - _GDT_FISICAS_NEWTON_ // Newton Dynamics, desactivado en forma predeterminada
+    - _GDT_FISICAS_ODE_ // NO implementado aun, pero irá a futuro.
+
+\section evitar Lo que debe evitar:
+
+Por favor, para no tener problemas, no intente:
+
+- Definir _GDT_DOXYGEN_IGNORAR_. Se ha puesto en ciertas partes del c&oacute;digo fuente, para evitar que aparezca en la documentaci&oacute;n algunas cosas que no son necesarias mostrar. Cuando se define _GDT_DOXYGEN_IGNORAR_ el compilador ignorar&aacute; partes que SI SON NECESARIAS PARA COMPILAR.
+
+- Compilar GDT sin haber instalado Irrlicht. Es la principal dependencia de GDT, ya que provee el motor gr&aacute;fico y la base de muchas otras cosas necesarias. Para mayor informaci&oacute;n lea el siguiente punto.
+
+- Compilar GDT con m&oacute;dulos opcionales si sus dependencias no est&aacute; instaladas, o no est&aacute; disponibles. Aseg&uacute;rese que las cabeceras (.h) de las dependencias est&eacute;n disponibles en algun directorio de inclusi&oacute;n o agregar rutas adicionales, donde se tienen instaladas, al proyecto del IDE escogido.
+
+- Usar una caracter&iacute;stica de GDT en un proyecto propio si GDT no fue compilado con ese soporte. En el mejor de los casos provocar&aacute; inevitablemente una caida del ejecutable. De echo es m&aacute;s probable que ni siquiera deje compilar/enlazar correctamente el proyecto.
+*/
+
+/*!
+* \class GD_Sistema
+*
+* Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada
+* y salida hasta el control de los nodos y dibujado, incluyendo los 
+* c&aacute;lculos 3D necesarios.
+*
+* Al inicializar el sistema, se generar&aacute; una ventana con un 
+* viewport de las dimenciones dadas.
+*
+* Si lo desea, este viewport puede ser en modo ventana o a pantalla
+* completa, y ocupando el modo que desee (OpenGL, DirectX, Software)
+*
+* Tambi&eacute;n puede en algunos casos si lo desea ocupar un modo de 
+* dibujado NULL, de esta manera no se necesita dibujar por pantalla todo
+* lo que ocurre. Este modo puede ser &uacute;til para programar un servicio
+* compatible con las capacidades de Irrlicht, por ejemplo un servidor para
+* un juego en linea.
+*
+* El Sistema tambi&eacute;n puede ofrecer informaci&oacute;n &uacute;til
+* sobre el estado actual de la ejecuci&oacute;n del programa, como los Cuadros
+* dibujados por cada segundo (CPS, o FPS en ingl&eacute;s).
+*
+* Los M&eacute;todos de Entrada-Salida nos permiten acceder a eventos del 
+* sistema, como por ejemplo si se ha presionado una tecla.
+*/
+
 #include "gd_sistema.h" // class's header file
 
 IrrlichtDevice *GD_Sistema::device=NULL;

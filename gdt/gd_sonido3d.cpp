@@ -87,7 +87,7 @@ char GD_Sonido3D::Cargar(char *archivo)
 
 Carga un archivo OGG en el buffer, y lo deja listo para la reproducci&oacute;n. Vea Reproducir.
 
-\warning ESte m&eacute;todo sol estar&aacute; disponible solo en caso que _GDT_SONIDO_OGG_ est&eacute; en tiempo de compilaci&oacute;n
+\warning Este m&eacute;todo solo estar&aacute; disponible en caso que _GDT_SONIDO_OGG_ est&eacute; definido en tiempo de compilaci&oacute;n
 
 Ejemplo:
 \code
@@ -98,7 +98,7 @@ Musica.Reproducir();
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 
-\note Se agradece al siguiente art&iacute;culo de GameDev: http://www.gamedev.net/reference/articles/article2031.asp
+\note Se agradece al siguiente <A HREF="http://www.gamedev.net/reference/articles/article2031.asp">art&iacute;culo de GameDev:</A>
 */
 char GD_Sonido3D::CargarOGG(char *archivo)
 {

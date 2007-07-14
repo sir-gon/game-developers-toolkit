@@ -45,7 +45,7 @@ using namespace gui;
   #endif
 #endif
 
-//!
+//! Representa una textura.
 class GD_Textura
 {
 	public:
@@ -57,11 +57,12 @@ class GD_Textura
         IrrlichtDevice *mi_device;
 		
 		ITexture* tex;
-		
+
+		//! Carga una Textura
 		_GDT_EXPORT_ void Cargar(char* filename);
-		
+		//! Retorna el objeto interno de la Textura.
 		_GDT_EXPORT_ ITexture* Textura();
-		
+		//! Genera un mapa de normales a partir de la Textura
 		_GDT_EXPORT_ void GenerarMapaNormales(float amplitud=1.0);
 
 };

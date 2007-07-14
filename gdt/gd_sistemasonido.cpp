@@ -85,11 +85,11 @@ void GD_SistemaSonido::Inicializar(char *tipo)
       pContext = alcCreateContext(pDevice, NULL);
       alcMakeContextCurrent(pContext);
     }
-    
+
 
     if(alcGetError(pDevice) != ALC_NO_ERROR)
         SGDsoundIniciado=0;
-        
+
     alGetError();
     SGDsoundIniciado=1;
 }

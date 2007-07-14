@@ -207,18 +207,6 @@ using namespace gui;
 //=====================================================================================//
 
 //! Clase Maestra de GDT
-/**
-Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada y salida hasta el control de los nodos y dibujado, incluyendo los c&aacute;lculos 3D necesarios.
-
-Al inicializar el sistema, se generar&aacute; una ventana con un viewport de las dimenciones dadas.
-Si lo desea, este viewport puede ser en modo ventana o a pantalla completa, y ocupando el modo que desee (OpenGL, DirectX, Software)
-
-Tambi&eacute;n puede en algunos casos si lo desea ocupar un modo de dibujado NULL, de esta manera no se necesita dibujar por pantalla todo lo que ocurre. Este modo puede ser &uacute;til para programar un servicio compatible con las capacidades de Irrlicht, por ejemplo un servidor para un juego en linea.
-
-El Sistema tambi&eacute;n puede ofrecer informaci&oacute;n &uacute;til sobre el estado actual de la ejecuci&oacute;n del programa, como los Cuadros dibujados por cada segundo (CPS, o FPS en ingl&eacute;s).
-
-Los M&eacute;todos de Entrada-Salida nos permiten acceder a eventos del sistema, como por ejemplo si se ha presionado una tecla.
-*/
 class GD_Sistema : public IEventReceiver {
 protected:
 	// misc
