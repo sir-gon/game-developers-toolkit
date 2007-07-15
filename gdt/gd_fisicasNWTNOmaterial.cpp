@@ -21,8 +21,17 @@
 
 #ifdef _GDT_FISICAS_NEWTON_
 
-#include "gd_fisicasNWTNOmaterial.h"
+/*!
+* \class GD_Material_nwtn
+*
+* Implementa las caracter&iacute;sticas del material de f&iacute;sicas Newton
+*
+* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_NEWTON_ est&aacute; definido en tiempo de compilaci&oacute;n.
+*
+* \author Astucia
+*/
 
+#include "gd_fisicasNWTNOmaterial.h"
 
 GD_Material_nwtn::GD_Material_nwtn()
 {

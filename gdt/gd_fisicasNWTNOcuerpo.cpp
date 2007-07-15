@@ -21,9 +21,15 @@
 
 #ifdef _GDT_FISICAS_NEWTON_
 
-/**********************
-GD_Cuerpo.cpp
-**********************/
+/*!
+* \class GD_Cuerpo
+*
+* Implementa un Cuerpo de f&iacute;sicas Newton.
+* 
+* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_NEWTON_ est&aacute; definido en tiempo de compilaci&oacute;n.
+*
+* \author Astucia
+*/
  
 #include "gd_fisicasNWTNOcuerpo.h"
 

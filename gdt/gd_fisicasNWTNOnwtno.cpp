@@ -23,7 +23,18 @@
 
 #include "gd_fisicasNWTNOnwtno.h"
 
-GD_Newtoneano::GD_Newtoneano() {};
+/*!
+* \class GD_Newtoneano
+*
+* Implementa un Mundo de f&iacute;sicas Newton.
+*
+* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_NEWTON_ est&aacute; definido en tiempo de compilaci&oacute;n.
+*
+* \author Astucia
+*/
+
+GD_Newtoneano::GD_Newtoneano()
+{};
 
 GD_Newtoneano::~GD_Newtoneano()
 {};

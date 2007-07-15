@@ -23,14 +23,24 @@
 #define GD_ARCHIVO_H
 
 #include "gd_sistema.h"
+
+// HACK PARA COMPILAR EN VISUAL C++ 2005
+#ifndef _GDT_EXPORT_
+  #ifdef _GDT_VC_STUDIO_2005_
+   #define _GDT_EXPORT_ __declspec(dllexport)
+  #else
+    #define _GDT_EXPORT_
+  #endif
+#endif
+
 //! Permite Leer y escribir en archivos de texto o estructuras.
 class GD_Archivo
 {
 	public:
 		// class constructor
-		GD_Archivo();
+		_GDT_EXPORT_ GD_Archivo();
 		// class destructor
-		~GD_Archivo();
+		_GDT_EXPORT_ ~GD_Archivo();
 		
 		IFileSystem* FileSystem;
 		
@@ -39,27 +49,27 @@ class GD_Archivo
 		IWriteFile* writeFile;
 		IReadFile* readFile;
 		//! Abre un archivo en modo Escritura
-		void AbrirParaEscribir(const char *strArchivo, bool bContinuar = false);
+		_GDT_EXPORT_ void AbrirParaEscribir(const char *strArchivo, bool bContinuar = false);
 		//! Abre un archivo en modo de Lectura
-		void AbrirParaLeer(const char *strArchivo);
+		_GDT_EXPORT_ void AbrirParaLeer(const char *strArchivo);
 		//! Cierra el archivo abierto
-		void Cerrar(void);
+		_GDT_EXPORT_ void Cerrar(void);
 		//! Escribe la cadena en un archivo
-		void Escribir(const char *strCadena, int bytes);
+		_GDT_EXPORT_ void Escribir(const char *strCadena, int bytes);
 		//! Lee el texto de un archivo y lo guarda en buffer
-		void Leer(char *buffer, int bytes);
+		_GDT_EXPORT_ void Leer(char *buffer, int bytes);
 		
 		// Defines para Escribir estructuras. FUNCIONAN!!!
 		// El primer par&aacute;metro es la estructura, y el segundo el tipo.
 		#define EscribirEstructura(estructura, tipo) writeFile->write( reinterpret_cast<char *>(&estructura), sizeof(tipo));
 		#define LeerEstructura(estructura, tipo) readFile->read( reinterpret_cast<char *>(&estructura), sizeof(tipo));
 		
-        	int Bytes(void);
+        	_GDT_EXPORT_ int Bytes(void);
 
-		bool CambiarPosicion(int posicion, bool bRelativo = false);
-		int Posicion(void);
+		_GDT_EXPORT_ bool CambiarPosicion(int posicion, bool bRelativo = false);
+		_GDT_EXPORT_ int Posicion(void);
 			
-		const char *NombreArchivo(void);
+		_GDT_EXPORT_ const char *NombreArchivo(void);
 };
 
 #endif // GD_ARCHIVO_H

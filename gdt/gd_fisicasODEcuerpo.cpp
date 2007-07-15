@@ -21,6 +21,17 @@
 
 #if defined(_GDT_FISICAS_ODE_)
 
+/*!
+* \class GD_CuerpODE
+*
+* Crea y maneja un Cuerpo Rígido, el cual puede interactuar con un Mundo
+* y con otros Cuerpos que esten presentes en el mismo Mundo.
+*
+* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_ODE_ est&aacute; definido en tiempo de compilaci&oacute;n.
+*
+* \author Astucia
+*/
+
 #include "gd_fisicasODEcuerpo.h"
 #include "gd_fisicasODEsistema.h"
 
