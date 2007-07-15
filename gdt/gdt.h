@@ -89,7 +89,7 @@
 // HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
 #ifndef _GDT_EXPORT_
   #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+   #define __declspec(dllexport)
   #else
     #define _GDT_EXPORT_
   #endif

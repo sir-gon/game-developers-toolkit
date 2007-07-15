@@ -22,7 +22,7 @@
 #include "gd_listaarchivos.h" // class's header file
 
 /*!
-* \class GD_ListaArchivos
+* \class GDListaArchivos
 *
 * Implementa métodos de acceso a Directorios del sistema de archivos.
 * Con esto podemos examinar el contenido de un directorio, sus archivos,

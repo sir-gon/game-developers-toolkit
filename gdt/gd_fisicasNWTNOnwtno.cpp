@@ -24,7 +24,7 @@
 #include "gd_fisicasNWTNOnwtno.h"
 
 /*!
-* \class GD_Newtoneano
+* \class GDNewtoneano
 *
 * Implementa un Mundo de f&iacute;sicas Newton.
 *

@@ -22,7 +22,7 @@
 #if defined(_GDT_FISICAS_ODE_)
 
 /*!
-* \class GD_CuerpODE
+* \class GDCuerpODE
 *
 * Crea y maneja un Cuerpo Rígido, el cual puede interactuar con un Mundo
 * y con otros Cuerpos que esten presentes en el mismo Mundo.

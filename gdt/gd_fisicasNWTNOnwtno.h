@@ -32,14 +32,19 @@
 #include <ITimer.h>
 #include "gd_fisicasNWTNOmaterial.h"
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 #define ESCUDO_CUBO     0
 #define ESCUDO_ESFERA   1
@@ -53,7 +58,7 @@
 //static NewtonWorld* nWorld=NewtonCreate (NULL,NULL);
 static NewtonWorld* nWorld;
 
-class GD_Newtoneano
+class _GDT_EXPORT_ GD_Newtoneano
 {
 
    public:
@@ -82,43 +87,43 @@ class GD_Newtoneano
    //triangle3df Triangulos[];
 
 
-   _GDT_EXPORT_ GD_Newtoneano();
-   _GDT_EXPORT_ ~GD_Newtoneano();
+   GD_Newtoneano();
+   ~GD_Newtoneano();
 
-   _GDT_EXPORT_ void DestruyeNewtoneano();
+   void DestruyeNewtoneano();
 
 
-   _GDT_EXPORT_ void Inicializa(NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision=0);
+   void Inicializa(NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision=0);
 
-   _GDT_EXPORT_ void CrearEscenarioNewtoneano(NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh);
+   void CrearEscenarioNewtoneano(NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh);
 
-   _GDT_EXPORT_ NewtonCollision* CreaEscudo(int Escudo);
+   NewtonCollision* CreaEscudo(int Escudo);
 
-   _GDT_EXPORT_ void AsignaMatriz(const matrix4 mat);
+   void AsignaMatriz(const matrix4 mat);
 
-   _GDT_EXPORT_ vector3df AsignarFuerza(float X,float Y,float Z);
-   _GDT_EXPORT_ vector3df AsignarGiro(float X,float Y,float Z);
+   vector3df AsignarFuerza(float X,float Y,float Z);
+   vector3df AsignarGiro(float X,float Y,float Z);
 
-   _GDT_EXPORT_ void AsignarMasa(dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ);
-   _GDT_EXPORT_ void AsignarMasa(float mass,vector3df vecInerciaXYZ);
+   void AsignarMasa(dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ);
+   void AsignarMasa(float mass,vector3df vecInerciaXYZ);
 
-   _GDT_EXPORT_ void AsignarOmega(dFloat OX,dFloat OY,dFloat OZ);
-   _GDT_EXPORT_ void AsignarOmega(vector3df vOmega);
+   void AsignarOmega(dFloat OX,dFloat OY,dFloat OZ);
+   void AsignarOmega(vector3df vOmega);
 
-   _GDT_EXPORT_ void AplicarFuerza_Torcion();
+   void AplicarFuerza_Torcion();
 
-   _GDT_EXPORT_ void AsignaMaterial(int MaterialID);
+   void AsignaMaterial(int MaterialID);
 
-   _GDT_EXPORT_ void ConvertidorNewtonIrrlicht();
+   void ConvertidorNewtonIrrlicht();
 
-   _GDT_EXPORT_ void AsignarValoresDeReposo(dFloat velmov,dFloat velgiro,int maxFPS);
+   void AsignarValoresDeReposo(dFloat velmov,dFloat velgiro,int maxFPS);
 
-   _GDT_EXPORT_ void AsignarMatrizRecursivamente(const matrix4 mat);
+   void AsignarMatrizRecursivamente(const matrix4 mat);
 
-   _GDT_EXPORT_ void Impulsar(dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso);
-   _GDT_EXPORT_ void Impulsar(vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso);
+   void Impulsar(dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso);
+   void Impulsar(vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso);
 
-   _GDT_EXPORT_ bool StatusActivo();
+   bool StatusActivo();
 
    ISceneNode* Actualizar();
 

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiEdicion
+* \class GDGuiEdicion
 *
 * Este Control GUI nos permite ingresar texto a trav&eacute;s de una 
 * caja donde aparecen los caracteres que escribimos.

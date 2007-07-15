@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-\class GD_Cartelera
+\class GDCartelera
 Las Carteleras son imágenes 2D que no importando desde donde las apunte la 
 cámara (en el espacio 3D), siempre se ven de la misma forma.
 

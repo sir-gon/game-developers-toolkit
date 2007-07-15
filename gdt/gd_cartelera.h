@@ -25,29 +25,35 @@
 #include "gd_nodo.h" // inheriting class's header file
 #include "gd_escenario.h"
 
-// HACK PARA COMPILAR EN VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
+
 
 //! Imagenes que siempre se ven frontalmente en la c&aacute;mara
-class GD_Cartelera : public GD_Nodo
+class _GDT_EXPORT_ GD_Cartelera : public GD_Nodo
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Cartelera();
+	GD_Cartelera();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Cartelera();
+	~GD_Cartelera();
 	
 	IBillboardSceneNode* nodb;
 	
 	//! Carga una imágen como una Cartelera.
-	_GDT_EXPORT_ void Crear(float tamx, float tamy, char* filename);
-	_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+	void Crear(float tamx, float tamy, char* filename);
+	void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
 
 #endif // GD_CARTELERA_H

@@ -22,7 +22,7 @@
 #if defined(_GDT_FISICAS_ODE_)
 
 /*!
-* \class GD_SistemaODE
+* \class GDSistemaODE
 *
 * Crea y maneja un Mundo de F&iacute;sicas usando ODE.
 * 

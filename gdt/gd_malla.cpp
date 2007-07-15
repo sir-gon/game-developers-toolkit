@@ -458,7 +458,7 @@ int GD_Malla::RetornarCuadro()
 void GD_Malla::VelocidadAnimacion(int CuadrosPorSegundo)
 {
       RegistrarVelAni(CuadrosPorSegundo);
-      nodoAM->setAnimationSpeed(velani);
+      nodoAM->setAnimationSpeed((float)velani);
 }
 
 /*!
@@ -470,7 +470,7 @@ Dragon.CuadroActual(120);
 void GD_Malla::CuadroActual(int cuadro)
 {
     nodoAM->setCurrentFrame(cuadro);
-    nodoAM->setAnimationSpeed(velani);
+    nodoAM->setAnimationSpeed((f32)velani);
 }
 
 //! Establece el ciclo de la animacion.
@@ -488,12 +488,12 @@ void GD_Malla::CicloCuadros(int ini, int fin)
               old_fin = fin;
 //7196823
               nodoAM->setFrameLoop(ini, fin);
-              nodoAM->setAnimationSpeed(velani);
+              nodoAM->setAnimationSpeed((f32)velani);
           }
      }
      else{
            nodoAM->setFrameLoop(ini, fin);
-           nodoAM->setAnimationSpeed(velani);
+           nodoAM->setAnimationSpeed((f32)velani);
     }
  
 }
@@ -538,7 +538,7 @@ void GD_Malla::CicloMD2(irr::scene::EMD2_ANIMATION_TYPE tipoAnimacionMD2 )
      else
           nodoAM->setMD2Animation( tipoAnimacionMD2 );
 
-     nodoAM->setAnimationSpeed(velani);
+     nodoAM->setAnimationSpeed((f32)velani);
 }
 
 

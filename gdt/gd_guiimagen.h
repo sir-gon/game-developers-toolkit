@@ -26,17 +26,25 @@
 #include "gd_sistema.h"
 
 // HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+
+//EXPORTAR SIMBOLOS AL CREAR DLL
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 
 //! Control GUI "Imagen" (Image)
-class GD_GuiImagen : public GD_gui
+class _GDT_EXPORT_ GD_GuiImagen : public GD_gui
 {
 public:
 	IVideoDriver* driver;
@@ -44,16 +52,16 @@ public:
 	dimension2d< s32 > tam;
 
 	// class constructor
-	_GDT_EXPORT_ GD_GuiImagen();
+	GD_GuiImagen();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiImagen();
+	~GD_GuiImagen();
 
 	IGUIImage* img;
 
 	//! Carga la imagen del control
-	_GDT_EXPORT_ void Cargar(char *filename);
+	void Cargar(char *filename);
 	//! Activa o desactiva que la imagen use el canal alpha.
-	_GDT_EXPORT_ void UsarCanalAlpha(bool uso);
+	void UsarCanalAlpha(bool uso);
 };
 
 #endif // GD_GUIIMAGEN_H

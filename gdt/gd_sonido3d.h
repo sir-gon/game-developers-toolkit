@@ -41,14 +41,19 @@
 using namespace std;
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 //! Manejador de Sonido
 /*!
@@ -56,11 +61,11 @@ Permite tocar sonidos, y hacer cosas interesantes con ellos, como por ejemplo de
 
 Lo m&aacute;s importante, es que soporta formato Wav (onda plana), y OGG (comprimida).
 */
-class GD_Sonido3D
+class _GDT_EXPORT_ GD_Sonido3D
 {
     public:
-	_GDT_EXPORT_ GD_Sonido3D();
-	_GDT_EXPORT_ ~GD_Sonido3D();
+	GD_Sonido3D();
+	~GD_Sonido3D();
     private:
 	ALuint SBuffer;
 	ALuint SSource;
@@ -71,38 +76,38 @@ class GD_Sonido3D
     public:
 
 	//! Carga un sonido wav
-	_GDT_EXPORT_ char Cargar(char *);
+	char Cargar(char *);
 	//! Libera el buffer de audio
-	_GDT_EXPORT_ void Descargar();
+	void Descargar();
 	//! Inicia la reproducci&oacute;n del sonido
-	_GDT_EXPORT_ void Reproducir();
+	void Reproducir();
 	//! Alias de Reproducir
-	_GDT_EXPORT_ void Play();
+	void Play();
 	//! Pausa la reproducci&oacute;n del sonido
-	_GDT_EXPORT_ void Pausa();
+	void Pausa();
 	//! Alias de Pausa
-	_GDT_EXPORT_ void Pause();
+	void Pause();
 	//! Detiene la reproducci&oacute;n del sonido
-	_GDT_EXPORT_ void Detener();
+	void Detener();
 	//! Alias de Detener
-	_GDT_EXPORT_ void Stop();
+	void Stop();
 	//! Rebobina el sonido
-	_GDT_EXPORT_ void Rebobinar();
+	void Rebobinar();
 	//! Alias de Rebobinar
-	_GDT_EXPORT_ void Rewind();
+	void Rewind();
 
         //! Establece que el sonido se debe volver a tocar desde el principio luego de que se acaba.
-	_GDT_EXPORT_ void Bucle(char);
-	_GDT_EXPORT_ void RelativoOyente(char);
-	_GDT_EXPORT_ void VolumenMaximo(float);
-	_GDT_EXPORT_ void VolumenMinimo(float);
-	_GDT_EXPORT_ void ReferenciaDistancia(float);
-	_GDT_EXPORT_ void FactorRolloff(float);
-	_GDT_EXPORT_ void DistanciaMaxima(float);
-	_GDT_EXPORT_ void Tono(float);
-	_GDT_EXPORT_ int Estado();
-	_GDT_EXPORT_ void Posicionar(float, float, float);
-	_GDT_EXPORT_ void Velocidad(float, float, float);
+	void Bucle(char);
+	void RelativoOyente(char);
+	void VolumenMaximo(float);
+	void VolumenMinimo(float);
+	void ReferenciaDistancia(float);
+	void FactorRolloff(float);
+	void DistanciaMaxima(float);
+	void Tono(float);
+	int Estado();
+	void Posicionar(float, float, float);
+	void Velocidad(float, float, float);
 
 	// Para cargar un sonido en formato OGG Vorbis.
 	#if defined(_GDT_SONIDO_OGG_)
@@ -117,7 +122,7 @@ class GD_Sonido3D
 
 	public:
 	//! Carga un sonido Ogg Vorbis
-        _GDT_EXPORT_ char CargarOGG(char *archivo);
+        char CargarOGG(char *archivo);
 	#endif
 };
 

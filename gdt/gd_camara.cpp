@@ -19,8 +19,17 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#include "gd_camara.h" // class's header file
+/*!
+* \class GD_Camara
+* Crea y maneja las c&aacute;maras. Permite manejarlas por teclado o mouse, 
+* orientarlas a gusto y darles el comportamiento que la aplicaci&oacute;n 
+* requiera.
+*
+* Por ejemplo, nos permite dejar la c&aacute;mara detr&aacute;s de un 
+* personaje para juegos de tercera persona, o puede ser de primera persona.
+*/
 
+#include "gd_camara.h" // class's header file
 
 // class constructor
 GD_Camara::GD_Camara()

@@ -19,6 +19,26 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+Esta Clase nos permite manejar informaci&oacute;n, guardandola y leyendola en archivos XML.
+Algunas ideas de porque puede ser &uacute;til trabajar con XML puede ser:
+
+- Guardar/Leer la configuraci&oacute;n de nestro juego, las opciones que tome el usuario.
+
+- Guardar/Leer el avance en un jugeo, para luego restaurarlo y continuar jugando desde el punto guardado.
+
+- Guardar ac&aacute; el di&aacute;logo de los personajes, descripciones de objetos, etc. As&iacute; tambi&eacute;n es posible traducir nuestro juego a varios idiomas.
+
+El formato del archivo es texto plano, codificado como UTF16, y estructurado como XML.
+Es decir, de esta manera:
+
+\code
+<?xml version="1.0"?>
+<!--Se admiten Comentarios-->
+<elemento atributo1="Valor1" atributo2="Valor2">Este es un texto que contiene la etiqueta elemento.</elemento>
+\endcode
+*/
+
 #include "gd_xml.h" // class's header file
 
 // class constructor
@@ -170,6 +190,7 @@ bool GD_XML::Leyendo()
 {
      if(!bEscribir)
          return readXML->read();
+	 return false;
 }
 
 /*!

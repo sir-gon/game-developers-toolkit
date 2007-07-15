@@ -27,14 +27,19 @@
 #include <stdio.h>
 #include <Newton.h>
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 /* No Documentar esto */
 #ifndef _GDT_DOXYGEN_IGNORAR_
@@ -46,27 +51,27 @@ struct MaterialData
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 
-class GD_Material_nwtn
+class _GDT_EXPORT_ GD_Material_nwtn
 {
    public:
 
    NewtonWorld* nMundo;
 
 
-   _GDT_EXPORT_ GD_Material_nwtn();
-   _GDT_EXPORT_ GD_Material_nwtn(NewtonWorld* nMundo);
-   _GDT_EXPORT_ ~GD_Material_nwtn();
+   GD_Material_nwtn();
+   GD_Material_nwtn(NewtonWorld* nMundo);
+   ~GD_Material_nwtn();
 
 
 
-   _GDT_EXPORT_ int IDMaterialPorDefecto();
-   _GDT_EXPORT_ int CreaGrupoID();
-   _GDT_EXPORT_ MaterialData CreaGrupoID(char* pszNombre);
+   int IDMaterialPorDefecto();
+   int CreaGrupoID();
+   MaterialData CreaGrupoID(char* pszNombre);
 
-   _GDT_EXPORT_ void MaterialesABColisionXDefecto(int A, int B, bool Activa);
-   _GDT_EXPORT_ void MaterialesABColisionContinua(int A, int B, bool Activa=true);
+   void MaterialesABColisionXDefecto(int A, int B, bool Activa);
+   void MaterialesABColisionContinua(int A, int B, bool Activa=true);
 
-   _GDT_EXPORT_ void MaterialesABFriccionXDefecto(int A, int B,
+   void MaterialesABFriccionXDefecto(int A, int B,
                                     dFloat Friccion_Estatica,
                                     dFloat Friccion_Cinetica);
    /*Nota: El valor de los coeficientes de friccion deve ser positiva; El valor
@@ -74,11 +79,11 @@ class GD_Material_nwtn
    recomendado para la friccion es: menor o igual a 1.0; Por consideracion hacia
    algunos materiales Newton soporta un valor de 2.0 en la friccion cinetica.*/
 
-   _GDT_EXPORT_ void MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad);
+   void MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad);
    /*Nota: El valor del coeficiente de elasticidad deve ser positivo; Se recomienda
    que se usen valores merores o iguales a 1.0.*/
 
-   _GDT_EXPORT_ void MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia);
+   void MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia);
    /*Nota: El valor del coeficiente de Consistencia (Suavidad) deve ser positivo;
    Se recomienda que se usen valores merores o iguales a 1.0; un valor tipico
    de consistencia es de 0.15*/

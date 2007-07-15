@@ -113,7 +113,7 @@ Por favor, para no tener problemas, no intente:
 */
 
 /*!
-* \class GD_Sistema
+* \class GDSistema
 *
 * Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada
 * y salida hasta el control de los nodos y dibujado, incluyendo los 

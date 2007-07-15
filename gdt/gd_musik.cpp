@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_Musik
+* \class GDMusik
 *
 * Trabaja en forma similar a GD_Sonido3D, en el sentido que los m&eacute;todos
 * estan pensados bajo los mismos conceptos.

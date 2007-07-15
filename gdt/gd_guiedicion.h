@@ -25,32 +25,36 @@
 #include "gd_gui.h" // inheriting class's header file
 #include "gd_sistema.h"
 
-// HACK PARA COMPILAR EN VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
-
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 //! Control GUI "Cuadro de Edición" (EditBox)
-class GD_GuiEdicion : public GD_gui
+class _GDT_EXPORT_ GD_GuiEdicion : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiEdicion();
+	GD_GuiEdicion();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiEdicion();
+	~GD_GuiEdicion();
 	
 	IGUIEditBox* editbox;
 
 	//! Crea un Control Gui del tipo Edici&oacute;n de texto.
-	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
+	void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
 	//! Especifica el m&aacute;ximo de caracteres que se pueden escribir.
-	_GDT_EXPORT_ void CaracteresMaximo(int max);
+	void CaracteresMaximo(int max);
 	//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
-	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
+	int RetornarCaracteresMaximo(void);
 };
 
 #endif // GD_GUIEDICION_H

@@ -24,29 +24,34 @@
 
 #include "gd_nodo.h" // inheriting class's header file
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 
 //! Cubre el fondo con una im&aacute;genes panor&aacute;micas.
-class GD_Panorama : public GD_Nodo
+class _GDT_EXPORT_ GD_Panorama : public GD_Nodo
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Panorama();
+	GD_Panorama();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Panorama();
+	~GD_Panorama();
 
 	//! Cubre el fondo con un panor&aacute;ma c&uacute;bico
-	_GDT_EXPORT_ void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
+	void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
 	//! Cubre el fondo con un panor&aacute;ma esf&eacute;rico
-	_GDT_EXPORT_ void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);
+	void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);
 };
 
 #endif // GD_PANORAMA_H

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
- * \class GD_SistemaMatematicas
+ * \class GDSistemaMatematicas
  *
  * Ac&aacute; podr&aacute;s encontrar las funciones 
  * matem&aacute;ticas m&aacute;s necesarias.

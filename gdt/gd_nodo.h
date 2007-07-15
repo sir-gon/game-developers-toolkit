@@ -23,8 +23,6 @@
 #define GD_NODO_H
 
 #include <irrlicht.h>
-
-
 #include "gd_sistema.h"
 #include "gd_sistemamatematicas.h"
 #include "gd_textura.h"
@@ -39,23 +37,28 @@ using namespace io;
 using namespace gui;
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 //! Controla un objeto en el espacio (un Nodo)
-class GD_Nodo
+class _GDT_EXPORT_ GD_Nodo
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Nodo();
+	 GD_Nodo();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Nodo();
+	 ~GD_Nodo();
 
 	IrrlichtDevice *midevice;
 	ISceneManager* mesh_smgr;
@@ -70,127 +73,127 @@ public:
 	ISceneNode* intersec_coli_e;
 	ISceneNode* intersec_coli_f;
 	
-	_GDT_EXPORT_ void RegistrarDevice(	IrrlichtDevice *device );
+	 void RegistrarDevice(	IrrlichtDevice *device );
 	//! Le asigna una posici&oacute;n en el espacio 3D
-	_GDT_EXPORT_ void Posicionar(float x, float y, float z);
+	 void Posicionar(float x, float y, float z);
 	//! Le asigna una posici&oacute;n en el espacio 3D, recibe como par&aacute;metro un vector.
-	_GDT_EXPORT_ void Posicionar(vector3df pos);
+	 void Posicionar(vector3df pos);
 	//! Le asigna la posici&oacute;n en X conservando la posici&oacute;n actual en Y y Z
-	_GDT_EXPORT_ void PosicionarX(float x);
+	 void PosicionarX(float x);
 	//! Le asigna la posici&oacute;n en Y conservando la posici&oacute;n actual en X y Z
-	_GDT_EXPORT_ void PosicionarY(float y);
+	 void PosicionarY(float y);
 	//! Le asigna la posici&oacute;n en Z conservando la posici&oacute;n actual en X y Y
-	_GDT_EXPORT_ void PosicionarZ(float z);
+	 void PosicionarZ(float z);
 	//! Retorna un vector con la posici&oacute;n actual.
-	_GDT_EXPORT_ vector3df Posicion();
+	 vector3df Posicion();
 	//! Devuelve la posicion X actual del nodo
-	_GDT_EXPORT_ float PosicionX();
+	 float PosicionX();
 	//! Devuelve la posicion Y actual del nodo
-	_GDT_EXPORT_ float PosicionY();
+	 float PosicionY();
 	//! Devuelve la posicion Z actual del nodo
-	_GDT_EXPORT_ float PosicionZ();
+	 float PosicionZ();
 	//! Asigna la rotaci&oacute;n del nodo, en grados.
-	_GDT_EXPORT_ void Rotar(float x, float y, float z);
+	 void Rotar(float x, float y, float z);
 	//! Asigna la rotaci&oacute;n del nodo, en grados. Recibe como par&aacute;metro un vector.
-	_GDT_EXPORT_ void Rotar(vector3df rot);
+	 void Rotar(vector3df rot);
 	//! Le asigna la rotaci&oacute;n en X conservando la rotaci&oacute;n actual en Y y Z, en grados
-	_GDT_EXPORT_ void RotarX(float x);
+	 void RotarX(float x);
 	//! Le asigna la rotaci&oacute;n en Y conservando la rotaci&oacute;n actual en X y Z, en grados
-	_GDT_EXPORT_ void RotarY(float y);
+	 void RotarY(float y);
 	//! Le asigna la rotaci&oacute;n en Z conservando la rotaci&oacute;n actual en X y Y, en grados
-	_GDT_EXPORT_ void RotarZ(float z);
+	 void RotarZ(float z);
 	//! Retorna un vector con la rotaci&oacute;n actual.
-	_GDT_EXPORT_ vector3df Rotacion();
+	 vector3df Rotacion();
 	//! Devuelve la rotacion X actual
-	_GDT_EXPORT_ float RotacionX();
+	 float RotacionX();
 	//! Devuelve la rotacion Y actual
-	_GDT_EXPORT_ float RotacionY();
+	 float RotacionY();
 	//! Devuelve la rotacion Z actual
-	_GDT_EXPORT_ float RotacionZ();
+	 float RotacionZ();
 	//! Cambia el tama&ntilde;o del nodo en X,Y,Z
-	_GDT_EXPORT_ void Escalar(float x, float y, float z);
+	 void Escalar(float x, float y, float z);
 	//! Cambia el tama&ntilde;o del nodo en X,Y,Z. Recibe como par&aacute;metro un vector.
-	_GDT_EXPORT_ void Escalar(vector3df esc);
+	 void Escalar(vector3df esc);
 	//! Cambia el tama&ntilde;o en X (ancho), conservando el tama&ntilde;o actual en Y y Z
-	_GDT_EXPORT_ void EscalarX(float x);
+	 void EscalarX(float x);
 	//! Cambia el tama&ntilde;o en Y (largo), conservando el tama&ntilde;o actual en X y Z
-	_GDT_EXPORT_ void EscalarY(float y);
+	 void EscalarY(float y);
 	//! Cambia el tama&ntilde;o en Z (alto), conservando el tama&ntilde;o actual en Y y X
-	_GDT_EXPORT_ void EscalarZ(float z);
+	 void EscalarZ(float z);
 	//! Mueve el nodo segun su orientacion actual.
-	_GDT_EXPORT_ void Mover(float x, float y, float z);
+	 void Mover(float x, float y, float z);
 	//! Mueve el nodo segun su orientacion actual en X (izquierda,derecha)
-	_GDT_EXPORT_ void MoverX(float x);
+	 void MoverX(float x);
 	//! Mueve el nodo segun su orientacion actual en Y (arriba,abajo)
-	_GDT_EXPORT_ void MoverY(float y);
+	 void MoverY(float y);
 	//! Mueve el nodo segun su orientacion actual en Z (frente,atras)
-	_GDT_EXPORT_ void MoverZ(float z);
+	 void MoverZ(float z);
 	//! Gira el nodo segun su orientacion actual en X,Y,Z
-	_GDT_EXPORT_ void Girar(float x, float y, float z);
+	 void Girar(float x, float y, float z);
 	//! Gira el nodo segun su orientacion actual en X
-	_GDT_EXPORT_ void GirarX(float x);
+	 void GirarX(float x);
 	//! Gira el nodo segun su orientacion actual en Y
-	_GDT_EXPORT_ void GirarY(float y);
+	 void GirarY(float y);
 	//! Gira el nodo segun su orientacion actual en Z
-	_GDT_EXPORT_ void GirarZ(float z);
+	 void GirarZ(float z);
 	
 	//! Orienta el nodo hacia otro.
-	_GDT_EXPORT_ vector3df Orientar(GD_Nodo gdnodito);
+	 vector3df Orientar(GD_Nodo gdnodito);
 	//! Orienta el nodo hacia un vector.
-	_GDT_EXPORT_ vector3df Orientar(vector3df destino);
+	 vector3df Orientar(vector3df destino);
 	//! Orienta el nodo hacia las coordenadas X, Y, Z.
-	_GDT_EXPORT_ vector3df Orientar(float x, float y, float z);
+	 vector3df Orientar(float x, float y, float z);
 	
 	//! Retorna un vector con el tama&ntilde;o actual.
-	_GDT_EXPORT_ vector3df Tamano();
+	 vector3df Tamano();
 	//! Retorna la tama&ntilde;o en X, es decir el ancho
-	_GDT_EXPORT_ float TamanoX();
+	 float TamanoX();
 	//! Retorna la tama&ntilde;o en Y, es decir el alto
-	_GDT_EXPORT_ float TamanoY();
+	 float TamanoY();
 	//! Retorna la tama&ntilde;o en Z, es decir el largo
-	_GDT_EXPORT_ float TamanoZ();
+	 float TamanoZ();
 	
 	//! Aplica una textura al nodo, en base a una imagen
-	_GDT_EXPORT_ void Texturizar(char *filename, int capa=-1);
+	 void Texturizar(char *filename, int capa=-1);
 	//! Aplica una textura al nodo, en base a un objeto GD_Textura
-	_GDT_EXPORT_ void Texturizar(GD_Textura textu, int capa=-1);
+	 void Texturizar(GD_Textura textu, int capa=-1);
 	
 	//! Activa o desactiva un material de renderizado
-	_GDT_EXPORT_ void MaterialFlag(E_MATERIAL_FLAG cual, bool enable);
+	 void MaterialFlag(E_MATERIAL_FLAG cual, bool enable);
 	//! Cambia el tipo de material de renderizado
-	_GDT_EXPORT_ void MaterialTipo(E_MATERIAL_TYPE cual);
+	 void MaterialTipo(E_MATERIAL_TYPE cual);
 	//! Establece el relieve del material
-	_GDT_EXPORT_ void MaterialRelieve(float alt=0.035);
+	 void MaterialRelieve(float alt=0.035);
 	
 	s32 coloralphaA, coloralphaD, coloralphaEm, coloralphaE;
 	
 	//! Establece la forma como refleja el color de ambiente
-	_GDT_EXPORT_ void ColorAmbiente( s32 r,s32 g,s32 b, int capa = -1);
+	 void ColorAmbiente( s32 r,s32 g,s32 b, int capa = -1);
 	//! Establece el color difuso
-	_GDT_EXPORT_ void ColorDifuso( s32 r,s32 g,s32 b, int capa = -1);
+	 void ColorDifuso( s32 r,s32 g,s32 b, int capa = -1);
 	//! Establece el color emisivo
-	_GDT_EXPORT_ void ColorEmisivo(s32 r,s32 g,s32 b, int capa = -1);
+	 void ColorEmisivo(s32 r,s32 g,s32 b, int capa = -1);
 	//! Establece la forma como refleja el color especular o brillo
-	_GDT_EXPORT_ void ColorEspecular( s32 r,s32 g,s32 b, int capa = -1); 
+	 void ColorEspecular( s32 r,s32 g,s32 b, int capa = -1); 
 	
 	//! Destruye el nodo
-	_GDT_EXPORT_ void Destruir(void);
+	 void Destruir(void);
 	
 	//!Ajusta el nivel transparencia de un nodo.
-	_GDT_EXPORT_ void NivelTransparencia(s32 v);
+	 void NivelTransparencia(s32 v);
 	
 	//! Establece la visibilidad del nodo
-	_GDT_EXPORT_ void Visible(bool estado);
+	 void Visible(bool estado);
 	//! Comprueba si el nodo actualmente es visible o no
-	_GDT_EXPORT_ bool EsVisible();
+	 bool EsVisible();
 	
 	//! Le ancla un nodo
-	_GDT_EXPORT_ void Anclar(GD_Nodo gdnodito);
+	 void Anclar(GD_Nodo gdnodito);
 	//! Desancla un nodo previamente anclado.
-	_GDT_EXPORT_ void DesAnclar(GD_Nodo gdnodito);
+	 void DesAnclar(GD_Nodo gdnodito);
 	
 	//! Crea una respuesta de colisi&oacute;n.
-	_GDT_EXPORT_ void CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
+	 void CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
 
 };
 

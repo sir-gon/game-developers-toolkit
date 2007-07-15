@@ -25,28 +25,33 @@
 #include "gd_gui.h" // inheriting class's header file
 #include "gd_sistema.h"
 
-// HACK PARA COMPILAR EN VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Dialogo de Abrir" para archivos
-class GD_GuiDialogoAbrir : public GD_gui
+class _GDT_EXPORT_ GD_GuiDialogoAbrir : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiDialogoAbrir();
+	GD_GuiDialogoAbrir();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiDialogoAbrir();
+	~GD_GuiDialogoAbrir();
 	
 	IGUIFileOpenDialog* opendlg;
 
 	//! Crea un Control GUI del tipo Dialogo Abrir.
-	_GDT_EXPORT_ void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
+	void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
 	
 };
 

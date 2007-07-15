@@ -27,17 +27,22 @@
 #include "gd_sistema.h"
 #include "gd_malla.h"
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 /* No Documentar esto */
-#ifndef _GDT_DOXYGEN_IGNORAR_
+//#ifndef _GDT_DOXYGEN_IGNORAR_
 struct stTeclado
 {
    int iUp,iDown,iRight,iLeft,iControl,iShift;
@@ -48,11 +53,9 @@ struct stMouse
 {
    f32 MoveX,MoveY,MLeft,MRight,MCenter;
 };
-#endif /* _GDT_DOXYGEN_IGNORAR_ */
+//#endif /* _GDT_DOXYGEN_IGNORAR_ */
 
-
-//class GD_Malla;
-
+//class _GDT_EXPORTAR_ GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistema
 class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistema
 {
    private:
@@ -64,25 +67,24 @@ class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistem
       stTeclado Teclado;
       stMouse Mouse;
 
+      GD_ControlesPrediseniados();
+      GD_ControlesPrediseniados(GD_Sistema sistemaGeneral);
+      ~GD_ControlesPrediseniados();
 
-      _GDT_EXPORT_ GD_ControlesPrediseniados();
-      _GDT_EXPORT_ GD_ControlesPrediseniados(GD_Sistema sistemaGeneral);
-      _GDT_EXPORT_ ~GD_ControlesPrediseniados();
-
-      _GDT_EXPORT_ void TeclasActivas(int iUp,int iDown,int iRight,int iLeft,int iControl,int iShift);
-      _GDT_EXPORT_ void ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift);
+      void TeclasActivas(int iUp,int iDown,int iRight,int iLeft,int iControl,int iShift);
+      void ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift);
 
       //Plantilla de tipos de dato que usan la clase nodo
-      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem,GD_SistemaMatematicas Matematicas);
-      _GDT_EXPORT_ void TecladoUDRL(GD_Malla Malla);
-      _GDT_EXPORT_ void TecladoUDRLCtrlShift();
-      _GDT_EXPORT_ void TecladoURLDMouseMove();
-      _GDT_EXPORT_ void TecladoUDRLCtrlShiftMouseMove();
+      void ActivarSistema(GD_Sistema sistem,GD_SistemaMatematicas Matematicas);
+      void TecladoUDRL(GD_Malla Malla);
+      void TecladoUDRLCtrlShift();
+      void TecladoURLDMouseMove();
+      void TecladoUDRLCtrlShiftMouseMove();
 
-      _GDT_EXPORT_ void TecladoUDRL(stTeclado *pTeclado);
-      _GDT_EXPORT_ void TecladoUDRLCtrlShift(stTeclado *pTeclado);
-      _GDT_EXPORT_ void TecladoURLDMouseMove(stTeclado *pTeclado,stMouse *pMouse);
-      _GDT_EXPORT_ void TecladoUDRLCtrlShiftMouseMove(stTeclado *pTeclado,stMouse *pMouse);
+      void TecladoUDRL(stTeclado *pTeclado);
+      void TecladoUDRLCtrlShift(stTeclado *pTeclado);
+      void TecladoURLDMouseMove(stTeclado *pTeclado,stMouse *pMouse);
+      void TecladoUDRLCtrlShiftMouseMove(stTeclado *pTeclado,stMouse *pMouse);
 
 
 

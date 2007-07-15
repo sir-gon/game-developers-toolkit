@@ -25,35 +25,40 @@
 #include "gd_gui.h" // inheriting class's header file
 #include "gd_sistema.h"
 
-// HACK PARA COMPILAR EN VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Barra de Desplazamiento" (ScrollBar)
-class GD_GuiBarra : public GD_gui
+class _GDT_EXPORT_ GD_GuiBarra : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiBarra();
+	GD_GuiBarra();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiBarra();
+	~GD_GuiBarra();
 
 	IGUIScrollBar* barra;
 	//! Crea un control Gui del tipo Barra. La Barra será horizontal.
-	_GDT_EXPORT_ void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
 	//! Crea un control Gui del tipo Barra. La Barra será vertical.
-	_GDT_EXPORT_ void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
 	//! Especifica el máximo valor que puede tener la barra
-	_GDT_EXPORT_ void MaximoValor(int maximo);
+	void MaximoValor(int maximo);
 	//! Obtiene la posici&oacute;n de la barra
-	_GDT_EXPORT_ int Posicion(void);
+	int Posicion(void);
 	//! Cambia la posici&oacute;n de la barra.
-	_GDT_EXPORT_ void Posicionar(int posicion);
+	void Posicionar(int posicion);
 };
 
 #endif // GD_GUIBARRA_H

@@ -30,27 +30,22 @@
 #define XML_LEIDO_TEXTO        EXN_TEXT
 #define XML_LEIDO_COMENTARIO   EXN_COMMENT
 
+//EXPORTAR SIMBOLOS AL CREAR DLL
+#ifndef _GDT_EXPORT_
+  #ifdef WIN32
+	#ifdef BUILDING_DLL
+	   #define _GDT_EXPORT_ __declspec (dllexport)
+	#else /* Not BUILDING_DLL */
+	   #define _GDT_EXPORT_ __declspec (dllimport)
+	#endif /* Not BUILDING_DLL */
+  #else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
+
 //! Escribir y Leer Archivos XML
-/*!
-Esta Clase nos permite manejar informaci&oacute;n, guardandola y leyendola en archivos XML.
-Algunas ideas de porque puede ser &uacute;til trabajar con XML puede ser:
-
-- Guardar/Leer la configuraci&oacute;n de nestro juego, las opciones que tome el usuario.
-
-- Guardar/Leer el avance en un jugeo, para luego restaurarlo y continuar jugando desde el punto guardado.
-
-- Guardar ac&aacute; el di&aacute;logo de los personajes, descripciones de objetos, etc. As&iacute; tambi&eacute;n es posible traducir nuestro juego a varios idiomas.
-
-El formato del archivo es texto plano, codificado como UTF16, y estructurado como XML.
-Es decir, de esta manera:
-
-\code
-<?xml version="1.0"?>
-<!--Se admiten Comentarios-->
-<elemento atributo1="Valor1" atributo2="Valor2">Este es un texto que contiene la etiqueta elemento.</elemento>
-\endcode
-*/
-class GD_XML
+class _GDT_EXPORT_ GD_XML
 {
 	public:
 		// class constructor

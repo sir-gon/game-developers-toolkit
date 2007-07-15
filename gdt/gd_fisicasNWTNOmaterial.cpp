@@ -22,7 +22,7 @@
 #ifdef _GDT_FISICAS_NEWTON_
 
 /*!
-* \class GD_Material_nwtn
+* \class GDMaterial_nwtn
 *
 * Implementa las caracter&iacute;sticas del material de f&iacute;sicas Newton
 *

@@ -22,7 +22,7 @@
 #ifdef _GDT_FISICAS_NEWTON_
 
 /*!
-* \class GD_Cuerpo
+* \class GDCuerpo
 *
 * Implementa un Cuerpo de f&iacute;sicas Newton.
 * 

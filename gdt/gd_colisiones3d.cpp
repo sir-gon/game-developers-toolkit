@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_Colisiones3d
+* \class GDColisiones3d
 *
 * Clase Colisiones 3d para mallas.
 *
