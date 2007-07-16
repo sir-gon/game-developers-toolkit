@@ -24,6 +24,17 @@
 #ifndef GD_FISICAS_NEWTON_NWTNO_H
 #define GD_FISICAS_NEWTON_NWTNO_H
 
+#include <stdio.h>
+#include <Newton.h>
+#include "gd_sistema.h"
+#include "gd_sistemamatematicas.h"
+#include "gd_nodo.h"
+#include "gd_malla.h"
+#include <Newton.h>
+#include <ITimer.h>
+#include "gd_fisicasNWTNOmaterial.h"
+
+
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
@@ -38,14 +49,6 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
-#ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
-  #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
 
 #define ESCUDO_CUBO     0
 #define ESCUDO_ESFERA   1
@@ -53,7 +56,6 @@
 #define ESCUDO_CAPSULA  3
 #define ESCUDO_CILINDRO 4
 #define ESCUDO_SEMICILINDRO   5
-
 
 
 //static NewtonWorld* nWorld=NewtonCreate (NULL,NULL);

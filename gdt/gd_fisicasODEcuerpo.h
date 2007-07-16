@@ -57,7 +57,7 @@ class GD_CuerpODE
     dMass*           Masa;
 
     //Funciones
-    vdBodyID Crear(dWorldID MundoODE);
+    dBodyID Crear(dWorldID MundoODE);
     _GDT_EXPORT_ void Destruir();
 
     _GDT_EXPORT_ vector3df Posicion();
