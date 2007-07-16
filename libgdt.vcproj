@@ -18,7 +18,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="bin\win32-visualstudio"
-			IntermediateDirectory="OBJS\$(TargetName)\$(ConfigurationName)"
+			IntermediateDirectory="OBJS\win32-visualstudio\$(TargetName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			UseOfMFC="0"
 			CharacterSet="1"
@@ -96,7 +96,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="bin\win32-visualstudio"
-			IntermediateDirectory="OBJS\$(TargetName)\$(ConfigurationName)"
+			IntermediateDirectory="OBJS\win32-visualstudio\$(TargetName)\$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
 			ManagedExtensions="0"
