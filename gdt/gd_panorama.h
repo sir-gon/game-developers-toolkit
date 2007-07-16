@@ -27,11 +27,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,18 +40,18 @@
 
 
 //! Cubre el fondo con una im&aacute;genes panor&aacute;micas.
-class _GDT_EXPORT_ GD_Panorama : public GD_Nodo
+class GD_Panorama : public GD_Nodo
 {
 public:
 	// class constructor
-	GD_Panorama();
+	_GDT_EXPORT_ GD_Panorama();
 	// class destructor
-	~GD_Panorama();
+	_GDT_EXPORT_ ~GD_Panorama();
 
 	//! Cubre el fondo con un panor&aacute;ma c&uacute;bico
-	void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
+	_GDT_EXPORT_ void CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back);
 	//! Cubre el fondo con un panor&aacute;ma esf&eacute;rico
-	void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);
+	_GDT_EXPORT_ void CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc);
 };
 
 #endif // GD_PANORAMA_H

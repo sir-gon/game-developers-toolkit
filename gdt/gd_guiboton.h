@@ -28,11 +28,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,22 +40,22 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Boton" (Button)
-class _GDT_EXPORT_ GD_GuiBoton : public GD_gui
+class GD_GuiBoton : public GD_gui
 {
 public:
 	// class constructor
-	GD_GuiBoton();
+	_GDT_EXPORT_ GD_GuiBoton();
 	// class destructor
-	~GD_GuiBoton();
+	_GDT_EXPORT_ ~GD_GuiBoton();
 
 	IGUIButton* boton;
 
 	//! Crea un control Gui del tipo Bot&oacute;n.
-	void Crear(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
 	//! Crea un control Gui del tipo Bot&oacute;n.
-	void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0);
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0);
 	//! Crea un control Gui del tipo Bot&oacute;n, con una imagen.
-	void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
+	_GDT_EXPORT_ void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
 };
 
 #endif // GD_GUIBOTON_H

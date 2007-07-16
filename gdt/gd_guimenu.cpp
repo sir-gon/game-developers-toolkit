@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDGuiMenu
+* \class GD_GuiMenu
 *
 * Este Control GUI permite darle a escoger al usuario una de varias opciones.
 *

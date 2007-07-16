@@ -27,11 +27,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -39,26 +39,26 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Representa una Lista de Archivos de un directorio /
-class _GDT_EXPORT_ GD_ListaArchivos
+class GD_ListaArchivos
 {
 public:
 	// class constructor
-	GD_ListaArchivos();
+	_GDT_EXPORT_ GD_ListaArchivos();
 	// class destructor
-	~GD_ListaArchivos();
+	_GDT_EXPORT_ ~GD_ListaArchivos();
 	
 	IFileSystem* FileSystem;
 	IFileList* FileList;
 	
-	void Crear(void);
+	_GDT_EXPORT_ void Crear(void);
 	//! Obtiene el n&uacute;mero de elementos que tiene la lista.
-	int Numero(void);
+	_GDT_EXPORT_ int Numero(void);
 	//! Obtiene el nombre del archivo de la posici&oacute;n indicada de la lista.
-	const c8* Nombre(int id);
+	_GDT_EXPORT_ const c8* Nombre(int id);
 	//! Obtiene el nombre completo (incluyendo la ruta) del archivo de la posici&oacute;n indicada de la lista.
-	const c8* NombreCompleto(int id);
+	_GDT_EXPORT_ const c8* NombreCompleto(int id);
 	//! Comprueba si el archivo de la posici&oacute;n indicada es un Directorio
-	bool EsDirectorio(int id);
+	_GDT_EXPORT_ bool EsDirectorio(int id);
 };
 
 #endif // GD_LISTAARCHIVOS_H

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDgui
+* \class GD_gui
 *
 * Esta Clase es una plantilla com&uacute;n para todo los objetos GUI
 * (sigla en ingl&eacute;s, Graphical User Interface).

@@ -81,7 +81,7 @@ char GD_Sonido3D::Cargar(char *archivo)
 }
 
 
-#if defined(_GDT_SONIDO_OGG_)
+#ifdef _GDT_SONIDO_OGG_
 /*!
 \param archivo La ruta al archivo OGG
 

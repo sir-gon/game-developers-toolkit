@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDGuiImagen
+* \class GD_GuiImagen
 *
 * Usa una imagen como Control GUI, lo cual nos permite desplegar
 * contenidos de imagen, logotipos, alertas, o lo que sea importante

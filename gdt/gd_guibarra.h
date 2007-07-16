@@ -28,11 +28,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,25 +40,25 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Barra de Desplazamiento" (ScrollBar)
-class _GDT_EXPORT_ GD_GuiBarra : public GD_gui
+class GD_GuiBarra : public GD_gui
 {
 public:
 	// class constructor
-	GD_GuiBarra();
+	_GDT_EXPORT_ GD_GuiBarra();
 	// class destructor
-	~GD_GuiBarra();
+	_GDT_EXPORT_ ~GD_GuiBarra();
 
 	IGUIScrollBar* barra;
 	//! Crea un control Gui del tipo Barra. La Barra será horizontal.
-	void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	_GDT_EXPORT_ void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
 	//! Crea un control Gui del tipo Barra. La Barra será vertical.
-	void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
+	_GDT_EXPORT_ void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
 	//! Especifica el máximo valor que puede tener la barra
-	void MaximoValor(int maximo);
+	_GDT_EXPORT_ void MaximoValor(int maximo);
 	//! Obtiene la posici&oacute;n de la barra
-	int Posicion(void);
+	_GDT_EXPORT_ int Posicion(void);
 	//! Cambia la posici&oacute;n de la barra.
-	void Posicionar(int posicion);
+	_GDT_EXPORT_ void Posicionar(int posicion);
 };
 
 #endif // GD_GUIBARRA_H

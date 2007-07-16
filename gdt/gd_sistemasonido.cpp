@@ -72,7 +72,7 @@ void GD_SistemaSonido::Inicializar(char *tipo)
 
     ALCdevice* pDevice;
     ALCcontext* pContext;
-    ALCubyte* defaultDevice;
+    //ALCubyte* defaultDevice;
 
 //    pDevice = alcOpenDevice((ALCubyte*)"DirectSound3D");
 #ifdef __MINGW32__

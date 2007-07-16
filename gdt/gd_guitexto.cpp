@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDGuiTexto
+* \class GD_GuiTexto
 *
 * Este Control GUI permite desplegar Texto por la pantalla.
 * Usese para mostrar alertas, mensajes, o para lo que sea conveniente.

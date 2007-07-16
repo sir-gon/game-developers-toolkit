@@ -37,11 +37,11 @@ using namespace gui;
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -49,13 +49,13 @@ using namespace gui;
 #endif /* _GDT_EXPORT_ */
 
 //! Base de los Controles de la Interfaz Gr&aacute;fica de Usuario (GUI)
-class _GDT_EXPORT_ GD_gui
+class GD_gui
 {
 public:
 	// class constructor
-	GD_gui();
+	_GDT_EXPORT_ GD_gui();
 	// class destructor
-	~GD_gui();
+	_GDT_EXPORT_ ~GD_gui();
 	
 	IrrlichtDevice *midevice;
 	
@@ -65,71 +65,71 @@ public:
 	IGUIElement* guiele;
 
 	//!
-	void RegistrarDevice( IrrlichtDevice *device );
+	_GDT_EXPORT_ void RegistrarDevice( IrrlichtDevice *device );
 	//! Comprueba si el control GUI est&aacute; activado.
-	bool EstaActivado();
+	_GDT_EXPORT_ bool EstaActivado();
 	//! Comprueba si el control GUI es visible.
-	bool EstaVisible();
+	_GDT_EXPORT_ bool EstaVisible();
 	//! Ubica el control GUI en las coordenadas que se indiquen.
-	void Posicionar(int x, int y);
+	_GDT_EXPORT_ void Posicionar(int x, int y);
 	//! Ubica el control GUI donde se indique usando un vector 2D.
-	void Posicionar(position2d<s32> pos);
+	_GDT_EXPORT_ void Posicionar(position2d<s32> pos);
 	//Agregado-------------------------------
-	//void Mover(int x, int y);
+	//_GDT_EXPORT_ void Mover(int x, int y);
 	//---------------------------------------
 	//! Activa o desactiva un Control GUI.
-	void Activado(bool estado);
+	_GDT_EXPORT_ void Activado(bool estado);
 	//! Cambia el texto de un Control GUI.
-	void Texto(const wchar_t *text);
+	_GDT_EXPORT_ void Texto(const wchar_t *text);
 	//! Obtiene el texto de un Control GUI.
-	const wchar_t* RetornarTexto(void);
+	_GDT_EXPORT_ const wchar_t* RetornarTexto(void);
 	//! Establece si el control es visible o no
-	void Visible(bool estado);
+	_GDT_EXPORT_ void Visible(bool estado);
 	//! Obtiene la identiadad (ID) del Control GUI
-	int ID(void);
+	_GDT_EXPORT_ int ID(void);
 	//! Obtiene el "elemento" del Control GUI.
-	IGUIElement* Elemento(void);
+	_GDT_EXPORT_ IGUIElement* Elemento(void);
 	//! Hace que el Control GUI adopte otro control como su Hijo.
-	void AdoptarHijo(IGUIElement* hijo);
+	_GDT_EXPORT_ void AdoptarHijo(IGUIElement* hijo);
 	//! Destruye el control Gui.
-	void Destruir(void);
+	_GDT_EXPORT_ void Destruir(void);
 	
 	
 	//Retornos
 	//! Obtiene la posición del Control GUI
-	position2d<s32> Posicion();
-	int PosicionX();
-	int PosicionY();
+	_GDT_EXPORT_ position2d<s32> Posicion();
+	_GDT_EXPORT_ int PosicionX();
+	_GDT_EXPORT_ int PosicionY();
 	//! Obtiene la posición del centro del Control GUI
-	position2d<s32> Centro();
-	int CentroX();
-	int CentroY();
+	_GDT_EXPORT_ position2d<s32> Centro();
+	_GDT_EXPORT_ int CentroX();
+	_GDT_EXPORT_ int CentroY();
 	//! Obtiene las dimensiones del Control GUI
-	dimension2d<s32> Tamanio();
+	_GDT_EXPORT_ dimension2d<s32> Tamanio();
 	//! Obtiene el ancho del Control GUI
-	int Ancho();
+	_GDT_EXPORT_ int Ancho();
 	//! Obtiene el alto del Control GUI
-	int Alto();
+	_GDT_EXPORT_ int Alto();
 	//! Obtiene la posición de la esquina Superior Izquierda
-	position2d<s32> EsquinaSuperiorIzquierda();
+	_GDT_EXPORT_ position2d<s32> EsquinaSuperiorIzquierda();
 	//! Obtiene la coordenada X de la posición de la esquina Superior Izquierda
-	int EsquinaSuperiorIzquierdaX();
+	_GDT_EXPORT_ int EsquinaSuperiorIzquierdaX();
 	//! Obtiene la coordenada Y de la posición de la esquina Superior Izquierda
-	int EsquinaSuperiorIzquierdaY();
+	_GDT_EXPORT_ int EsquinaSuperiorIzquierdaY();
 	//! Obtiene la posición de la esquina Inferior Derecha
-	position2d<s32> EsquinaInferiorDerecha();
+	_GDT_EXPORT_ position2d<s32> EsquinaInferiorDerecha();
 	//! Obtiene la coordenada X de la posición de la esquina Inferior Derecha
-	int EsquinaInferiorDerechaX();
+	_GDT_EXPORT_ int EsquinaInferiorDerechaX();
 	//! Obtiene la coordenada Y de la posición de la esquina Inferior Derecha
-	int EsquinaInferiorDerechaY();
+	_GDT_EXPORT_ int EsquinaInferiorDerechaY();
 	//! Comprueba si un punto está al interior del Control GUI
-	bool EsPuntoInterno(position2d<s32> punto);
+	_GDT_EXPORT_ bool EsPuntoInterno(position2d<s32> punto);
 	//! Comprueba si un las coordenadas están dentro del Control GUI
-	bool EsPuntoInterno(int x,int y);
+	_GDT_EXPORT_ bool EsPuntoInterno(int x,int y);
 	//!
-	bool Colision(rect<s32> Rectangulo);
+	_GDT_EXPORT_ bool Colision(rect<s32> Rectangulo);
 	//!
-	bool Colision(IGUIElement* guiElemento);
+	_GDT_EXPORT_ bool Colision(IGUIElement* guiElemento);
 };
 
 #endif // GD_GUI_H

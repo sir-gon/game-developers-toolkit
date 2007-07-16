@@ -20,9 +20,9 @@
  ***************************************************************************/
 
 /**
-* \class GDNodo
+* \class GD_Nodo
 *
-* Ac&aacute; se coleccionan los m&eacute;todos del espacio comunes entre los objetos.
+* Acá se coleccionan los m&eacute;todos del espacio comunes entre los objetos.
 *
 * Cada "objeto" del espacio es conciderado un Nodo, las mallas, las luces
 * sistemas de particulas, c&aacute;mara, terrenos, etc.

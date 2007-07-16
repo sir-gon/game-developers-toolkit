@@ -27,11 +27,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -39,21 +39,21 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Generador de Terrenos
-class _GDT_EXPORT_ GD_Terreno : public GD_Nodo
+class GD_Terreno : public GD_Nodo
 {
 public:
 	// class constructor
-	GD_Terreno();
+	_GDT_EXPORT_ GD_Terreno();
 	// class destructor
-	~GD_Terreno();
+	_GDT_EXPORT_ ~GD_Terreno();
 	
 	ITerrainSceneNode* nodt;
 	
-	void Crear(char *filenameHMAP,float x, float y, float z);
+	_GDT_EXPORT_ void Crear(char *filenameHMAP,float x, float y, float z);
 	ITriangleSelector* selector;
-	ITriangleSelector* RetornarDatos();
+	_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
 	
-	void Texturizar(char *filenameTEX);
+	_GDT_EXPORT_ void Texturizar(char *filenameTEX);
 };
 
 #endif // GD_TERRENO_H

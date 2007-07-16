@@ -43,11 +43,11 @@ extern "C"
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -55,82 +55,82 @@ extern "C"
 #endif /* _GDT_EXPORT_ */
 
 //! Sistema de Scripting LUA
-class _GDT_EXPORT_ GD_SistemaLua
+class GD_SistemaLua
 {
 public:
 	// class constructor
-	GD_SistemaLua();
-	GD_SistemaLua(lua_State* L);
+	_GDT_EXPORT_ GD_SistemaLua();
+	_GDT_EXPORT_ GD_SistemaLua(lua_State* L);
 	
 	// class destructor
-	~GD_SistemaLua();
+	_GDT_EXPORT_ ~GD_SistemaLua();
 	
 	//---------
 	//Funciones
 	//---------
 	// Inicio y Cierre
-	void Inicializar(void);
+	_GDT_EXPORT_ void Inicializar(void);
 	//! Cierra el sistema Lua.
-	void Cerrar(void);
+	_GDT_EXPORT_ void Cerrar(void);
 	//! Obtiene la m&aacute;quina virtual Lua.
-	lua_State* RetornarEstado(void);
+	_GDT_EXPORT_ lua_State* RetornarEstado(void);
 		
 	// Ejecucion
 	//! Ejecuta una cadena Lua.
-	int EjecutarCadena(char* strCadenaLua);
+	_GDT_EXPORT_ int EjecutarCadena(char* strCadenaLua);
 	//! Carga y ejecuta un archivo Lua.
-	int EjecutarArchivo(char* strArchivo);
+	_GDT_EXPORT_ int EjecutarArchivo(char* strArchivo);
 	
 	// Obtenciï¿½ de valores
 	//! Obtiene un número de una variable global o de una variable que de una tabla.
-	lua_Number RetornarNumero(char *strCadenaTabla);
+	_GDT_EXPORT_ lua_Number RetornarNumero(char *strCadenaTabla);
 	//! Obtiene una cadena de texto de una variable global o de una variable dentro de una tabla.
-	const char *RetornarCadena( char *strCadenaTabla);
+	_GDT_EXPORT_ const char *RetornarCadena( char *strCadenaTabla);
 	
 	// Cambio de valores
 	//! Cambia el valor n&uacute;mero de una variable global o de una variable dentro de una tabla.
-	void CambiarNumero(char *strCadenaTabla, lua_Number lnNumero);
+	_GDT_EXPORT_ void CambiarNumero(char *strCadenaTabla, lua_Number lnNumero);
 	//! Cambia el texto de una variable global o de una variable dentro de una tabla.
-	void CambiarCadena(char *strCadenaTabla, const char *strCadenaTexto);
+	_GDT_EXPORT_ void CambiarCadena(char *strCadenaTabla, const char *strCadenaTexto);
 	
 	// Llamar Funciones
 	//! Prepara una función, que esté en un script Lua, para ser llamada desde GDT.
-	void PrepararFuncion(char *strFuncion);
+	_GDT_EXPORT_ void PrepararFuncion(char *strFuncion);
 	//! Pone un parámetro número a la función Lua que va a ser llamada.
-	void PonerParametroNumero(lua_Number lNumero);
+	_GDT_EXPORT_ void PonerParametroNumero(lua_Number lNumero);
 	//! Pone un parámetro de cadena de texto a la función Lua que va a ser llamada.
-	void PonerParametroCadena(char *strCadena);
+	_GDT_EXPORT_ void PonerParametroCadena(char *strCadena);
 	//! Llama a una función Lua previamente preparada.
-	int LlamarFuncion(int nArgumentos, int nResultados);
+	_GDT_EXPORT_ int LlamarFuncion(int nArgumentos, int nResultados);
 	//! Obtiene el resultado número de una función Lua llamada.
-	lua_Number RetornarResultadoNumero(void);
+	_GDT_EXPORT_ lua_Number RetornarResultadoNumero(void);
 	//! Obtiene el resultado cadena de texto de una función Lua llamada.
-	const char *RetornarResultadoCadena(void);
+	_GDT_EXPORT_ const char *RetornarResultadoCadena(void);
 	//! Borra de la menoría todos los resultados devueltos por una función Lua.
-	void LimpiarResultados(void);
+	_GDT_EXPORT_ void LimpiarResultados(void);
 	
 	// Funciones C a LUA
 	//! El primer parámetro es el nombre que tendrá la función en Lua.
-	void RegistrarFuncion(const char *strNombre, lua_CFunction fFuncion);
+	_GDT_EXPORT_ void RegistrarFuncion(const char *strNombre, lua_CFunction fFuncion);
 	//! En una función GDT a&ntilde;adida a Lua, retorna el número de parámetros que ha recibido la función.
-	int NumeroParametros(void);
+	_GDT_EXPORT_ int NumeroParametros(void);
 	//! En una función GDT a&ntilde;adida a Lua, retorna el valor número del parámetro indicado,
-	lua_Number RetornarParametroNumero(int nParametro);
+	_GDT_EXPORT_ lua_Number RetornarParametroNumero(int nParametro);
 	//! En una función GDT a&ntilde;adida a Lua, retorna la cadena de texto del parámetro indicado.
-	const char *RetornarParametroCadena(int nParametro);
+	_GDT_EXPORT_ const char *RetornarParametroCadena(int nParametro);
 	//! En una función GDT a&ntilde;adida a Lua, borra los parámetros de la memoria.
-	void LimpiarParametros(void);
+	_GDT_EXPORT_ void LimpiarParametros(void);
 	//! En una función GDT a&ntilde;adida a Lua, pone un número como resultado (valor devuelto) de la función.
-	void PonerResultadoNumero(lua_Number lNumero);
+	_GDT_EXPORT_ void PonerResultadoNumero(lua_Number lNumero);
 	//! En una función GDT a&ntilde;adida a Lua, pone una cadena de texto como resultado (valor devuelto) de la función.
-	void PonerResultadoCadena(const char *strCadena);
+	_GDT_EXPORT_ void PonerResultadoCadena(const char *strCadena);
 	
 	
 	// Errores
 	//! Activa o desactiva que los errores encontrados durante el procesamiento de Lua se muestran automáticamente.
-	void MostrarErroresAutomaticamente(bool bMostrar);
+	_GDT_EXPORT_ void MostrarErroresAutomaticamente(bool bMostrar);
 	//! Muestra, en la consola, información sobre un error Lua que se ha producido.
-	void MostrarError();
+	_GDT_EXPORT_ void MostrarError();
 	
 private:
 	lua_State* LuaMV;  

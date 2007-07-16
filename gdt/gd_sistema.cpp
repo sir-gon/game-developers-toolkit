@@ -77,7 +77,7 @@ Y opcionalmente:
 - vorbisfile
 - lua5.1
 - ode
-- Newton // No incluído con GDT en ninguna versi&oacute;n.
+- Newton // No inclu&iacute;do con GDT en ninguna versi&oacute;n.
 
 Dependiendo del compilador y plataforma, el enlazado se configura de diferentes maneras.
 
@@ -113,7 +113,7 @@ Por favor, para no tener problemas, no intente:
 */
 
 /*!
-* \class GDSistema
+* \class GD_Sistema
 *
 * Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada
 * y salida hasta el control de los nodos y dibujado, incluyendo los 

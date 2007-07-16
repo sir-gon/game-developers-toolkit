@@ -40,11 +40,11 @@ using namespace gui;
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -58,7 +58,7 @@ vector3df RealAVector3d(const dReal* Val);
 dReal* Vector3dAReal(const vector3df Val);
 
 //! Soporte de F&iacute;sicas Open Dynamics Engine (ODE)
-class _GDT_EXPORT_ GD_SistemaODE
+class GD_SistemaODE
 {
     public:
     //variables
@@ -70,47 +70,47 @@ class _GDT_EXPORT_ GD_SistemaODE
     //funciones
     GD_SistemaODE();
 
-    dWorldID CrearMundoODE();
-    void DestruirMundoODE();
+    _GDT_EXPORT_ dWorldID CrearMundoODE();
+    _GDT_EXPORT_ void DestruirMundoODE();
 
-    vector3df Gravedad(dReal x, dReal y, dReal z);
-    vector3df Gravedad(vector3df grav);
-    vector3df Gravedad();
+    _GDT_EXPORT_ vector3df Gravedad(dReal x, dReal y, dReal z);
+    _GDT_EXPORT_ vector3df Gravedad(vector3df grav);
+    _GDT_EXPORT_ vector3df Gravedad();
 
-    void AsignarERP(dReal erp);
-    dReal ObtenerERP();
-    void AsignarCFM(dReal cfm);
-    dReal ObtenerCFM();
+    _GDT_EXPORT_ void AsignarERP(dReal erp);
+    _GDT_EXPORT_ dReal ObtenerERP();
+    _GDT_EXPORT_ void AsignarCFM(dReal cfm);
+    _GDT_EXPORT_ dReal ObtenerCFM();
 
-    void ModoAutodesactivar(bool bDeshabilitable);
-    bool ValorModoAutodesactivar();
-    void Autodesactivacion_por_UmbralLinear(dReal UmbralLinear);
-    dReal ValorAutodesactivacion_por_UmbralLinear();
-    void AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular);
-    dReal ValorAutoDesactivacion_por_UmbralAngular();
-    void AutoDesactivacion_por_Iteraciones(int Iteraciones);
-    int ValorAutoDesactivacion_por_Iteraciones();
-    void AutoDesactivacion_por_Tiempo(dReal Tiempo);
-    dReal ValorAutoDesactivacion_por_Tiempo();
+    _GDT_EXPORT_ void ModoAutodesactivar(bool bDeshabilitable);
+    _GDT_EXPORT_ bool ValorModoAutodesactivar();
+    _GDT_EXPORT_ void Autodesactivacion_por_UmbralLinear(dReal UmbralLinear);
+    _GDT_EXPORT_ dReal ValorAutodesactivacion_por_UmbralLinear();
+    _GDT_EXPORT_ void AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular);
+    _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_UmbralAngular();
+    _GDT_EXPORT_ void AutoDesactivacion_por_Iteraciones(int Iteraciones);
+    _GDT_EXPORT_ int ValorAutoDesactivacion_por_Iteraciones();
+    _GDT_EXPORT_ void AutoDesactivacion_por_Tiempo(dReal Tiempo);
+    _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_Tiempo();
 
-    vector3df Impulso_a_Fuerza(dReal Incremento,vector3df Impulso);
-    void CerrarODE(){dCloseODE();};
+    _GDT_EXPORT_ vector3df Impulso_a_Fuerza(dReal Incremento,vector3df Impulso);
+    _GDT_EXPORT_ void CerrarODE(){dCloseODE();};
 
-    void Actualizar(dReal VelIteracion);
-    void Actualzar_Modo_QS(dReal VelIteracion);
-    void NumIteraciones_modo_QS(int Iteraciones);
-    int ValorNumIteraciones_modo_QS();
+    _GDT_EXPORT_ void Actualizar(dReal VelIteracion);
+    _GDT_EXPORT_ void Actualzar_Modo_QS(dReal VelIteracion);
+    _GDT_EXPORT_ void NumIteraciones_modo_QS(int Iteraciones);
+    _GDT_EXPORT_ int ValorNumIteraciones_modo_QS();
 
-    void VelocidadMaximaDeCorreccion_por_Contacto(dReal vel);
-    dReal ValorVelocidadMaximaDeCorreccion_por_Contacto();
+    _GDT_EXPORT_ void VelocidadMaximaDeCorreccion_por_Contacto(dReal vel);
+    _GDT_EXPORT_ dReal ValorVelocidadMaximaDeCorreccion_por_Contacto();
 
-    void SuperficieDeContacto(dReal Profundidad);
-    dReal ValorSuperficieDeContacto();
+    _GDT_EXPORT_ void SuperficieDeContacto(dReal Profundidad);
+    _GDT_EXPORT_ dReal ValorSuperficieDeContacto();
 
-    void Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones);
+    _GDT_EXPORT_ void Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones);
 
-    void ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion);
-    int ValorProfundidadDeAutoactivacionSF1();
+    _GDT_EXPORT_ void ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion);
+    _GDT_EXPORT_ int ValorProfundidadDeAutoactivacionSF1();
 };
 
 #endif //GD_FISICASODESISTEMA_H

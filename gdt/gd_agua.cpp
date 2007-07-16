@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
- * \class GDAgua
+ * \class GD_Agua
  *
  * Permite simular la superficie de un l&iacute;quido.
  * La t&eacute;cnica es poner el nodo GD_Agua en un lugar del escenario donde

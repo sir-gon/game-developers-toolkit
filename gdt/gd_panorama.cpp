@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDPanorama
+* \class GD_Panorama
 *
 * Un Panorama es la cubierta que podemos darle al escenario, para reemplazar
 * el color plano que presenta por defecto.

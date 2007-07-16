@@ -28,33 +28,34 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
+
 //! Control GUI "Cuadro de Edición" (EditBox)
-class _GDT_EXPORT_ GD_GuiEdicion : public GD_gui
+class GD_GuiEdicion : public GD_gui
 {
 public:
 	// class constructor
-	GD_GuiEdicion();
+	_GDT_EXPORT_ GD_GuiEdicion();
 	// class destructor
-	~GD_GuiEdicion();
+	_GDT_EXPORT_ ~GD_GuiEdicion();
 	
 	IGUIEditBox* editbox;
 
 	//! Crea un Control Gui del tipo Edici&oacute;n de texto.
-	void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
+	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
 	//! Especifica el m&aacute;ximo de caracteres que se pueden escribir.
-	void CaracteresMaximo(int max);
+	_GDT_EXPORT_ void CaracteresMaximo(int max);
 	//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
-	int RetornarCaracteresMaximo(void);
+	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
 };
 
 #endif // GD_GUIEDICION_H

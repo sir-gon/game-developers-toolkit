@@ -28,11 +28,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,18 +40,18 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Dialogo de Abrir" para archivos
-class _GDT_EXPORT_ GD_GuiDialogoAbrir : public GD_gui
+class GD_GuiDialogoAbrir : public GD_gui
 {
 public:
 	// class constructor
-	GD_GuiDialogoAbrir();
+	_GDT_EXPORT_ GD_GuiDialogoAbrir();
 	// class destructor
-	~GD_GuiDialogoAbrir();
+	_GDT_EXPORT_ ~GD_GuiDialogoAbrir();
 	
 	IGUIFileOpenDialog* opendlg;
 
 	//! Crea un Control GUI del tipo Dialogo Abrir.
-	void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
+	_GDT_EXPORT_ void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
 	
 };
 

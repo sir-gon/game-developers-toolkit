@@ -31,18 +31,19 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
+
 //! Crea un Cuerpo para f&iacute;sicas Open Dynamics Engine (ODE)
-class _GDT_EXPORT_ GD_CuerpODE
+class GD_CuerpODE
 {
     public:
 
@@ -57,111 +58,111 @@ class _GDT_EXPORT_ GD_CuerpODE
 
     //Funciones
     vdBodyID Crear(dWorldID MundoODE);
-    void Destruir();
+    _GDT_EXPORT_ void Destruir();
 
-    vector3df Posicion();
-    vector3df Rotacion();
-    vector3df ValorQuaternion();
-    vector3df ValorVelocidadLinear();
-    vector3df ValorVelocidadAngular();
+    _GDT_EXPORT_ vector3df Posicion();
+    _GDT_EXPORT_ vector3df Rotacion();
+    _GDT_EXPORT_ vector3df ValorQuaternion();
+    _GDT_EXPORT_ vector3df ValorVelocidadLinear();
+    _GDT_EXPORT_ vector3df ValorVelocidadAngular();
 
-    void Posicionar(dReal X, dReal Y, dReal Z);
-    void Posicionar(vector3df Pos);
-    void PosicionarX(dReal X);
-    void PosicionarY(dReal Y);
-    void PosicionarZ(dReal Z);
+    _GDT_EXPORT_ void Posicionar(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void Posicionar(vector3df Pos);
+    _GDT_EXPORT_ void PosicionarX(dReal X);
+    _GDT_EXPORT_ void PosicionarY(dReal Y);
+    _GDT_EXPORT_ void PosicionarZ(dReal Z);
 
-    void Rotar(const dMatrix3 R);
-    void Quaternion(const dQuaternion q);
+    _GDT_EXPORT_ void Rotar(const dMatrix3 R);
+    _GDT_EXPORT_ void Quaternion(const dQuaternion q);
 
-    void VelocidadLinear(dReal x, dReal y, dReal z);
-    void VelocidadLinear(vector3df VelLinear);
+    _GDT_EXPORT_ void VelocidadLinear(dReal x, dReal y, dReal z);
+    _GDT_EXPORT_ void VelocidadLinear(vector3df VelLinear);
 
-    void VelocidadAngular(dReal x, dReal y, dReal z);
-    void VelocidadAngular(vector3df VelAngular);
+    _GDT_EXPORT_ void VelocidadAngular(dReal x, dReal y, dReal z);
+    _GDT_EXPORT_ void VelocidadAngular(vector3df VelAngular);
 
-    void AsignarMasa(const dMass *mass);
-    dMass* ValorMasa();
+    _GDT_EXPORT_ void AsignarMasa(const dMass *mass);
+    _GDT_EXPORT_ dMass* ValorMasa();
 
-    void AniadirFuerza(dReal X, dReal Y, dReal Z);
-    void AniadirFuerza(vector3df Fuerza);
-    void AniadirGiro(dReal X, dReal Y, dReal Z);
-    void AniadirGiro(vector3df Giro);
-    void AniadirFuerzaRelativa(dReal X, dReal Y, dReal Z);
-    void AniadirFuerzaRelativa(vector3df Fuerza);
-    void AniadirGiroRelativo(dReal X, dReal Y, dReal Z);
-    void AniadirGiroRelativo(vector3df Giro);
-    void AniadirFuerzaDesdePosicion(dReal cX, dReal cY, dReal cZ,
+    _GDT_EXPORT_ void AniadirFuerza(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AniadirFuerza(vector3df Fuerza);
+    _GDT_EXPORT_ void AniadirGiro(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AniadirGiro(vector3df Giro);
+    _GDT_EXPORT_ void AniadirFuerzaRelativa(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AniadirFuerzaRelativa(vector3df Fuerza);
+    _GDT_EXPORT_ void AniadirGiroRelativo(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AniadirGiroRelativo(vector3df Giro);
+    _GDT_EXPORT_ void AniadirFuerzaDesdePosicion(dReal cX, dReal cY, dReal cZ,
                                     dReal pX, dReal pY, dReal pZ);
-    void AniadirFuerzaDesdePosicion(vector3df Fuerza,vector3df Posicion);
-    void AniadirFuerzaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
+    _GDT_EXPORT_ void AniadirFuerzaDesdePosicion(vector3df Fuerza,vector3df Posicion);
+    _GDT_EXPORT_ void AniadirFuerzaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
                                             dReal pX, dReal pY, dReal pZ);
-    void AniadirFuerzaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion);
-    void AniadirFuerzaRelativaDesdePosicion(dReal cX, dReal cY, dReal cZ,
+    _GDT_EXPORT_ void AniadirFuerzaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion);
+    _GDT_EXPORT_ void AniadirFuerzaRelativaDesdePosicion(dReal cX, dReal cY, dReal cZ,
                                             dReal pX, dReal pY, dReal pZ);
-    void AniadirFuerzaRelativaDesdePosicion(vector3df Fuerza,vector3df Posicion);
-    void AniadirFuerzaRelativaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
+    _GDT_EXPORT_ void AniadirFuerzaRelativaDesdePosicion(vector3df Fuerza,vector3df Posicion);
+    _GDT_EXPORT_ void AniadirFuerzaRelativaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
                                                     dReal pX, dReal pY, dReal pZ);
-    void AniadirFuerzaRelativaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion);
+    _GDT_EXPORT_ void AniadirFuerzaRelativaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion);
 
-    const dReal* RetornarFuerza();
-    const dReal* RetornarGiro();
+    _GDT_EXPORT_ const dReal* RetornarFuerza();
+    _GDT_EXPORT_ const dReal* RetornarGiro();
 
-    void AsignarFuerza(dReal X, dReal Y, dReal Z);
-    void AsignarFuerza(vector3df Fuerza);
-    void AsignarGiro(dReal X, dReal Y, dReal Z);
-    void AsignarGiro(vector3df Giro);
+    _GDT_EXPORT_ void AsignarFuerza(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AsignarFuerza(vector3df Fuerza);
+    _GDT_EXPORT_ void AsignarGiro(dReal X, dReal Y, dReal Z);
+    _GDT_EXPORT_ void AsignarGiro(vector3df Giro);
 
-    void RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ void RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz,
                                          dVector3 result);
-    vector3df RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ vector3df RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz);
 
-    void RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ void RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz,
                                             dVector3 result);
-    vector3df RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz);
-    void RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ vector3df RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ void RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz,
                                     dVector3 result);
-    vector3df RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz);
-    void RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ vector3df RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ void RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz,
                                          dVector3 result);
-    vector3df RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ vector3df RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz);
 
-    void Vector_A_Mundo(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ void Vector_A_Mundo(dReal px, dReal py, dReal pz,
                         dVector3 result);
-    vector3df Vector_A_Mundo(dReal px, dReal py, dReal pz);
-    void Vector_De_Mundo(dReal px, dReal py, dReal pz,
+    _GDT_EXPORT_ vector3df Vector_A_Mundo(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ void Vector_De_Mundo(dReal px, dReal py, dReal pz,
                            dVector3 result);
-    vector3df Vector_De_Mundo(dReal px, dReal py, dReal pz);
+    _GDT_EXPORT_ vector3df Vector_De_Mundo(dReal px, dReal py, dReal pz);
 
-    void Activar();
-    void Desactivar();
-    bool Activo();
+    _GDT_EXPORT_ void Activar();
+    _GDT_EXPORT_ void Desactivar();
+    _GDT_EXPORT_ bool Activo();
 
-    void ModoAutodesactivar(bool bDeshabilitable);
-    bool ValorModoAutodesactivar();
-    void Autodesactivacion_por_UmbralLinear(dReal UmbralLinear);
-    dReal ValorAutodesactivacion_por_UmbralLinear();
-    void AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular);
-    dReal ValorAutoDesactivacion_por_UmbralAngular();
-    void AutoDesactivacion_por_Iteraciones(int Iteraciones);
-    int ValorAutoDesactivacion_por_Iteraciones();
-    void AutoDesactivacion_por_Tiempo(dReal Tiempo);
-    dReal ValorAutoDesactivacion_por_Tiempo();
-    void AutoDesactivacion_por_Default();
+    _GDT_EXPORT_ void ModoAutodesactivar(bool bDeshabilitable);
+    _GDT_EXPORT_ bool ValorModoAutodesactivar();
+    _GDT_EXPORT_ void Autodesactivacion_por_UmbralLinear(dReal UmbralLinear);
+    _GDT_EXPORT_ dReal ValorAutodesactivacion_por_UmbralLinear();
+    _GDT_EXPORT_ void AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular);
+    _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_UmbralAngular();
+    _GDT_EXPORT_ void AutoDesactivacion_por_Iteraciones(int Iteraciones);
+    _GDT_EXPORT_ int ValorAutoDesactivacion_por_Iteraciones();
+    _GDT_EXPORT_ void AutoDesactivacion_por_Tiempo(dReal Tiempo);
+    _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_Tiempo();
+    _GDT_EXPORT_ void AutoDesactivacion_por_Default();
 
-    void SetData(void *data);
-    void* GetData();
+    _GDT_EXPORT_ void SetData(void *data);
+    _GDT_EXPORT_ void* GetData();
 
-    void ModoDeRotacionFinita(bool activo);
-    bool RotacionFinitaActivada();
-    void EjeDeRotacionFinita(dReal x, dReal y, dReal z);
-    void EjeDeRotacionFinita(vector3df ejes);
+    _GDT_EXPORT_ void ModoDeRotacionFinita(bool activo);
+    _GDT_EXPORT_ bool RotacionFinitaActivada();
+    _GDT_EXPORT_ void EjeDeRotacionFinita(dReal x, dReal y, dReal z);
+    _GDT_EXPORT_ void EjeDeRotacionFinita(vector3df ejes);
 
-    int Articulaciones();
-    dJointID SelecArticulacion(int index);
+    _GDT_EXPORT_ int Articulaciones();
+    _GDT_EXPORT_ dJointID SelecArticulacion(int index);
 
-    void ActivarGravedad(bool activo);
-    bool GravedadActiva();
+    _GDT_EXPORT_ void ActivarGravedad(bool activo);
+    _GDT_EXPORT_ bool GravedadActiva();
 
     /* ///Funciones escritas en la documentacion de ODG pero que no son operativas
     void UmbralDeAutoDesactivacion_ModoSF1(dReal umbral);

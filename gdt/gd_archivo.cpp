@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
- * \class GDArchivo
+ * \class GD_Archivo
  *
  * Con esta clase se puede manejar informaci&oacute;n en archivos f&aacute;cilmente.
  *

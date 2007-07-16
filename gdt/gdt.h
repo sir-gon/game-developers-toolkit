@@ -30,8 +30,8 @@
 #include "gd_terreno.h"
 #include "gd_agua.h"
 #include "gd_particula.h"
-//#include "gd_textura.h"
-//#include "gd_colisiones3d.h"
+#include "gd_textura.h"
+#include "gd_colisiones3d.h"
 #include "gd_malla.h"
 // GUI
 #include "gd_guiimagen.h"
@@ -47,7 +47,7 @@
 //Matematicas
 #include "gd_sistemamatematicas.h"
 //Controles predise�dos
-//#include "gd_controlesprediseniados.h"
+#include "gd_controlesprediseniados.h"
 // ARCHIVOS
 #include "gd_archivo.h"
 #include "gd_xml.h"
@@ -85,13 +85,17 @@
   #include "gd_fisicasNWTNOcuerpo.h"
 #endif
 
-
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define __declspec(dllexport)
+  #ifdef WIN32
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
+// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
 

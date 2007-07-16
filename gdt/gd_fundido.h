@@ -28,11 +28,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,22 +40,22 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Para hacer fundidos de pantalla
-class _GDT_EXPORT_ GD_Fundido : public GD_gui
+class GD_Fundido : public GD_gui
 {
 	public:
 		// class constructor
-		GD_Fundido();
+		_GDT_EXPORT_ GD_Fundido();
 		// class destructor
-		~GD_Fundido();
+		_GDT_EXPORT_ ~GD_Fundido();
 		
 		IGUIInOutFader* fundido;
 		
-		void Crear(void);
+		_GDT_EXPORT_ void Crear(void);
 	//	void Crear( int x1, int y1, int x2, int y2);
-		void Color(int r, int g, int b);
-		void FundirHaciaDentro(int tiempo);
-		void FundirHaciaFuera(int tiempo);
-		bool Terminado(void);
+		_GDT_EXPORT_ void Color(int r, int g, int b);
+		_GDT_EXPORT_ void FundirHaciaDentro(int tiempo);
+		_GDT_EXPORT_ void FundirHaciaFuera(int tiempo);
+		_GDT_EXPORT_ bool Terminado(void);
         		
 };
 

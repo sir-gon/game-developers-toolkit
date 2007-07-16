@@ -22,7 +22,7 @@
 #ifdef _GDT_SCRIPTING_
 
 /*!
-* \class GDSistemaLua
+* \class GD_SistemaLua
 *
 * Provee una capa de Scripting externa, en Lenguaje Lua.
 */

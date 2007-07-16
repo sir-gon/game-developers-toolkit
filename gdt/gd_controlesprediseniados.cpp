@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-\class GDControlesPrediseniados
+\class GD_ControlesPrediseniados
 
 
 \todo (Astucia#1#): Crear comandos de teclado predise&ntilde;ados

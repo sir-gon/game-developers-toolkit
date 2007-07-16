@@ -39,11 +39,11 @@ using namespace gui;
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -51,24 +51,24 @@ using namespace gui;
 #endif /* _GDT_EXPORT_ */
 
 //! Representa una textura.
-class _GDT_EXPORT_ GD_Textura
+class GD_Textura
 {
 	public:
 		// class constructor
-		GD_Textura();
+		_GDT_EXPORT_ GD_Textura();
 		// class destructor
-		~GD_Textura();
+		_GDT_EXPORT_ ~GD_Textura();
 		
         IrrlichtDevice *mi_device;
 		
 		ITexture* tex;
 
 		//! Carga una Textura
-		void Cargar(char* filename);
+		_GDT_EXPORT_ void Cargar(char* filename);
 		//! Retorna el objeto interno de la Textura.
-		ITexture* Textura();
+		_GDT_EXPORT_ ITexture* Textura();
 		//! Genera un mapa de normales a partir de la Textura
-		void GenerarMapaNormales(float amplitud=1.0);
+		_GDT_EXPORT_ void GenerarMapaNormales(float amplitud=1.0);
 
 };
 

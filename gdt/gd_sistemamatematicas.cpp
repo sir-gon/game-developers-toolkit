@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
- * \class GDSistemaMatematicas
+ * \class GD_SistemaMatematicas
  *
  * Ac&aacute; podr&aacute;s encontrar las funciones 
  * matem&aacute;ticas m&aacute;s necesarias.
@@ -782,9 +782,9 @@ vector3df GD_SistemaMatematicas::Seguir( vector3df PosicionEntrada1, float angul
 	f32 cx = PosicionEntrada2.X;
 	f32 cy = PosicionEntrada2.Y;
 	f32 cz = PosicionEntrada2.Z;
-	cx = CurvarValor(cx,MueveX(px ,pa ,distancia),dureza);
+	cx = CurvarValor(cx,MueveX(px ,(float) pa ,distancia),dureza);
 	cy = CurvarValor(cy,py+altura,dureza/2);
-	cz = CurvarValor(cz,MueveZ(pz ,pa ,distancia),dureza);
+	cz = CurvarValor(cz,MueveZ(pz ,(float) pa ,distancia),dureza);
 	//printf("X: %f, Y: %f, Z: %f\n",cx,cy,cz);
 	Salida.set(cx,cy,cz);
 	return Salida;

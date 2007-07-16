@@ -44,16 +44,17 @@ using namespace std;
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
+
 
 //! Manejador de Sonido
 /*!
@@ -61,11 +62,11 @@ Permite tocar sonidos, y hacer cosas interesantes con ellos, como por ejemplo de
 
 Lo m&aacute;s importante, es que soporta formato Wav (onda plana), y OGG (comprimida).
 */
-class _GDT_EXPORT_ GD_Sonido3D
+class GD_Sonido3D
 {
     public:
-	GD_Sonido3D();
-	~GD_Sonido3D();
+	_GDT_EXPORT_ GD_Sonido3D();
+	_GDT_EXPORT_ ~GD_Sonido3D();
     private:
 	ALuint SBuffer;
 	ALuint SSource;
@@ -76,41 +77,42 @@ class _GDT_EXPORT_ GD_Sonido3D
     public:
 
 	//! Carga un sonido wav
-	char Cargar(char *);
+	_GDT_EXPORT_ char Cargar(char *);
 	//! Libera el buffer de audio
-	void Descargar();
+	_GDT_EXPORT_ void Descargar();
 	//! Inicia la reproducci&oacute;n del sonido
-	void Reproducir();
+	_GDT_EXPORT_ void Reproducir();
 	//! Alias de Reproducir
-	void Play();
+	_GDT_EXPORT_ void Play();
 	//! Pausa la reproducci&oacute;n del sonido
-	void Pausa();
+	_GDT_EXPORT_ void Pausa();
 	//! Alias de Pausa
-	void Pause();
+	_GDT_EXPORT_ void Pause();
 	//! Detiene la reproducci&oacute;n del sonido
-	void Detener();
+	_GDT_EXPORT_ void Detener();
 	//! Alias de Detener
-	void Stop();
+	_GDT_EXPORT_ void Stop();
 	//! Rebobina el sonido
-	void Rebobinar();
+	_GDT_EXPORT_ void Rebobinar();
 	//! Alias de Rebobinar
-	void Rewind();
+	_GDT_EXPORT_ void Rewind();
 
         //! Establece que el sonido se debe volver a tocar desde el principio luego de que se acaba.
-	void Bucle(char);
-	void RelativoOyente(char);
-	void VolumenMaximo(float);
-	void VolumenMinimo(float);
-	void ReferenciaDistancia(float);
-	void FactorRolloff(float);
-	void DistanciaMaxima(float);
-	void Tono(float);
-	int Estado();
-	void Posicionar(float, float, float);
-	void Velocidad(float, float, float);
+	_GDT_EXPORT_ void Bucle(char);
+	_GDT_EXPORT_ void RelativoOyente(char);
+	_GDT_EXPORT_ void VolumenMaximo(float);
+	_GDT_EXPORT_ void VolumenMinimo(float);
+	_GDT_EXPORT_ void ReferenciaDistancia(float);
+	_GDT_EXPORT_ void FactorRolloff(float);
+	_GDT_EXPORT_ void DistanciaMaxima(float);
+	_GDT_EXPORT_ void Tono(float);
+	_GDT_EXPORT_ int Estado();
+	_GDT_EXPORT_ void Posicionar(float, float, float);
+	_GDT_EXPORT_ void Velocidad(float, float, float);
 
 	// Para cargar un sonido en formato OGG Vorbis.
-	#if defined(_GDT_SONIDO_OGG_)
+	#ifdef _GDT_SONIDO_OGG_
+	
 	private:
         FILE*           oggFile;       // file handle
         OggVorbis_File  oggStream;     // stream handle
@@ -122,7 +124,7 @@ class _GDT_EXPORT_ GD_Sonido3D
 
 	public:
 	//! Carga un sonido Ogg Vorbis
-        char CargarOGG(char *archivo);
+        _GDT_EXPORT_ char CargarOGG(char *archivo);
 	#endif
 };
 

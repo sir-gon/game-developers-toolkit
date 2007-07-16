@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /**
-* \class GDGuiDialogoAbrir
+* \class GD_GuiDialogoAbrir
 *
 * Este Control GUI nos permite interactuar con el sistema de archivos,
 * mostrando las carpetas y archivos, y brindando la posibilidad de navegar

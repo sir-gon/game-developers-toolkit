@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GDGuiVentana
+* \class GD_GuiVentana
 */
 
 #include "gd_guiventana.h" // class's header file

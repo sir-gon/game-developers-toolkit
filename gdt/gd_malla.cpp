@@ -458,7 +458,7 @@ int GD_Malla::RetornarCuadro()
 void GD_Malla::VelocidadAnimacion(int CuadrosPorSegundo)
 {
       RegistrarVelAni(CuadrosPorSegundo);
-      nodoAM->setAnimationSpeed((float)velani);
+      nodoAM->setAnimationSpeed((f32)velani);
 }
 
 /*!

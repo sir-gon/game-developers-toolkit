@@ -28,11 +28,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -40,14 +40,14 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Control GUI "Menu" y "SubMenu"
-class _GDT_EXPORT_ GD_GuiMenu : public GD_gui
+class GD_GuiMenu : public GD_gui
 {
 public:
 	// class constructor
-	GD_GuiMenu();
-	GD_GuiMenu(IGUIContextMenu* SubMenu);
+	_GDT_EXPORT_ GD_GuiMenu();
+	_GDT_EXPORT_ GD_GuiMenu(IGUIContextMenu* SubMenu);
 	// class destructor
-	~GD_GuiMenu();
+	_GDT_EXPORT_ ~GD_GuiMenu();
 
 	int MenuID;
 
@@ -55,27 +55,27 @@ public:
 	IGUIContextMenu* submenu; // NUEVO
 
 	//! Crea un Control Gui del tipo Men&uacute;. En &eacute;l se pueden insertar Opciones y SubMenus.
-	void Crear(IGUIElement* padre=0);
+	_GDT_EXPORT_ void Crear(IGUIElement* padre=0);
 	//! Inserta una Opci&oacute;n para elegir dentro de un men&uacute;.
 	void InsertarOpcion(wchar_t * texto, int nID=-1, bool bsubmenu = false, bool activado=true); // MODIFICADO //
 	//!
-	IGUIContextMenu* SubMenu(int  nID);
+	_GDT_EXPORT_ IGUIContextMenu* SubMenu(int  nID);
 	//! 
-	void AbrirSubMenu(int iNivel,bool bPadre_es_Menu); // NUEVO //
+	_GDT_EXPORT_ void AbrirSubMenu(int iNivel,bool bPadre_es_Menu); // NUEVO //
 	//! Inserta un submen&uacute;.
-	void InsertarSubMenu(wchar_t * texto, int nID,bool activado=true, bool bsubmenu = false);// NUEVO //
+	_GDT_EXPORT_ void InsertarSubMenu(wchar_t * texto, int nID,bool activado=true, bool bsubmenu = false);// NUEVO //
 	//! Inserta un separador en el men&uacute;.
-	void InsertarSeparador(void);
+	_GDT_EXPORT_ void InsertarSeparador(void);
 	//! Cambia el texto de una Opci&oacute;n.
-	void CambiarTextoOpcion(int nID, const wchar_t* texto, bool bPadre_es_Menu=true);
+	_GDT_EXPORT_ void CambiarTextoOpcion(int nID, const wchar_t* texto, bool bPadre_es_Menu=true);
 	//! Obtiene el texto de una Opci&oacute;n;.
-	const wchar_t* RetornarTextoOpcion(int nID);
+	_GDT_EXPORT_ const wchar_t* RetornarTextoOpcion(int nID);
 	//! Establece una Opci&oacute;n como activada o desactivada.
-	void OpcionActivada(int nID, bool activado);
+	_GDT_EXPORT_ void OpcionActivada(int nID, bool activado);
 	//! Comprueba si una Opci&oacute;n est&aacute activada.
-	bool OpcionEstaActivada(int nID);
+	_GDT_EXPORT_ bool OpcionEstaActivada(int nID);
 	//!
-	int Seleccionado();
+	_GDT_EXPORT_ int Seleccionado();
 
 };
 

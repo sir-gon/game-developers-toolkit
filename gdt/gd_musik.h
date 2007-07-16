@@ -34,11 +34,11 @@
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef WIN32
-	#ifdef BUILDING_DLL
-	   #define _GDT_EXPORT_ __declspec (dllexport)
-	#else /* Not BUILDING_DLL */
-	   #define _GDT_EXPORT_ __declspec (dllimport)
-	#endif /* Not BUILDING_DLL */
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
   #else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR 
     #define _GDT_EXPORT_ /* Definido nulo */
@@ -55,7 +55,7 @@
 
 
 //!  Permite tocar musica desde archivos MIDI
-class _GDT_EXPORT_ GD_Musik
+class GD_Musik
 {
    private:
 	HMIDIOUT hmidiout;
@@ -85,30 +85,30 @@ class _GDT_EXPORT_ GD_Musik
 	HWND hwReturn;
 	LPSTR lpszArchivoMIDI;
 	
-	GD_Musik();
-	~GD_Musik();
-	bool Iniciar(LPSTR ArchivoMIDI);
-	bool Cargar(LPSTR ArchivoMIDI);
-	void Destruir();
-	void Inicio_Fin(int Inicio,int Fin);
-	void InicioEn(int Inicio);
-	void FinEn(int Fin);
-	void Play();
-	void Play(int Inicio,int Fin);
-	int Loop();
-	int Loop(int Inicio, int Fin);
-	void Stop();
-	void Pause();
-	void Resume();
-	int Posicion();
-	void Volumen(DWORD dwVolumen);
+	_GDT_EXPORT_ GD_Musik();
+	_GDT_EXPORT_ ~GD_Musik();
+	_GDT_EXPORT_ bool Iniciar(LPSTR ArchivoMIDI);
+	_GDT_EXPORT_ bool Cargar(LPSTR ArchivoMIDI);
+	_GDT_EXPORT_ void Destruir();
+	_GDT_EXPORT_ void Inicio_Fin(int Inicio,int Fin);
+	_GDT_EXPORT_ void InicioEn(int Inicio);
+	_GDT_EXPORT_ void FinEn(int Fin);
+	_GDT_EXPORT_ void Play();
+	_GDT_EXPORT_ void Play(int Inicio,int Fin);
+	_GDT_EXPORT_ int Loop();
+	_GDT_EXPORT_ int Loop(int Inicio, int Fin);
+	_GDT_EXPORT_ void Stop();
+	_GDT_EXPORT_ void Pause();
+	_GDT_EXPORT_ void Resume();
+	_GDT_EXPORT_ int Posicion();
+	_GDT_EXPORT_ void Volumen(DWORD dwVolumen);
 	// Status
-	int VolumenActual();
-	bool Ejecutando();
-	int StatusEjecutando();
-	int TamMIDI();
-	char* ArchivoActual();
-	void DeviceId();
+	_GDT_EXPORT_ int VolumenActual();
+	_GDT_EXPORT_ bool Ejecutando();
+	_GDT_EXPORT_ int StatusEjecutando();
+	_GDT_EXPORT_ int TamMIDI();
+	_GDT_EXPORT_ char* ArchivoActual();
+	_GDT_EXPORT_ void DeviceId();
 
 };
 
