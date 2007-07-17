@@ -1,0 +1,21 @@
+Source: libgdt
+Priority: optional
+Maintainer: Gonzalo Camilo Díaz Cruz <sir_gon@users.sourceforge.net>
+Build-Depends: debhelper (>= 5), cmake (>= 2), libirrlicht-dev(>= 1.2), libalut-dev(>= 1), libopenal-dev(>= 0.0.8), libogg-dev(>= 1.1), libvorbis-dev(>= 1.1.2), liblua5.1-0-dev(= 5.1)
+Standards-Version: 3.7.2
+Section: libs
+
+Package: libgdt-dev
+Section: libdevel
+Architecture: i386
+Depends: libgdt (= ${Source-Version}), libirrlicht-dev(>= 1.2), libalut-dev(>= 1), libopenal-dev(>= 0.0.8), libogg-dev(>= 1.1), libvorbis-dev(>= 1.1.2), liblua5.1-0-dev
+Description: Game Developers Toolkit, cabeceras
+ Cabeceras necesarias para desarrollar juegos con GDT.
+
+Package: libgdt
+Section: libs
+Architecture: i386
+Depends: ${shlibs:Depends}, ${misc:Depends}, libirrlicht(>= 1.2)
+Description: Game Developers Toolkit, Biblioteca
+ Game Developers Toolkit, biblioteca necesaria
+ para ejecutar un juego basado en GDT.
