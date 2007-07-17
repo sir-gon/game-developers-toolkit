@@ -7,9 +7,9 @@ FILE(GLOB GDT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
 #build a library
 ADD_LIBRARY(gdt SHARED ${GDT_SOURCES})
 
-IF(NOT VIDEO_FOUND)
+IF(NOT GRAFICOS_FOUND)
 	MESSAGE(FATAL_ERROR "GDT: NO se encontraron algunos paquetes para el Video")
-ENDIF(NOT VIDEO_FOUND)
+ENDIF(NOT GRAFICOS_FOUND)
 
 IF(NOT SONIDO_FOUND)
 	MESSAGE("GDT: NO se encontraron algunos paquetes para el Sistema de Sonido")
@@ -32,13 +32,13 @@ IF(NOT FISICAS_ODE_FOUND)
 	MESSAGE("GDT: NO se encontraron algunos paquetes para Fisicas ODE. Para contar con esta capacidad, instale ODE: Open Dynamics Engine")
 ENDIF(NOT FISICAS_ODE_FOUND)
 
-IF(VIDEO_FOUND)
+IF(GRAFICOS_FOUND)
    #MESSAGE("Se ha encontrado todo para usar construir la Biblioteca GDT")
 
    INCLUDE_DIRECTORIES(${IRRLICHT_INCLUDE_DIR})
    TARGET_LINK_LIBRARIES(gdt ${OPENAL_LIBRARY})
 
-ENDIF(VIDEO_FOUND)
+ENDIF(GRAFICOS_FOUND)
 
 IF(SONIDO_FOUND)
    MESSAGE("GDT: Se ha encontrado OPENAL+ALUT, se puede usar sonido")
@@ -78,8 +78,13 @@ ENDIF(FISICAS_ODE_FOUND)
 #########################
 # REGLAS DE INSTALACION #
 #########################
-INSTALL(FILES ${GDT_HEADERS} DESTINATION include/gdt)
 
-INSTALL(TARGETS gdt LIBRARY
-	DESTINATION lib
+#INSTALL(FILES ${GDT_HEADERS} DESTINATION include/gdt)
+INSTALL(FILES ${GDT_HEADERS} DESTINATION /usr/local/include/gdt)
+
+INSTALL(TARGETS gdt
+   #LIBRARY DESTINATION lib
+   RUNTIME DESTINATION /usr/local/bin
+   LIBRARY DESTINATION /usr/local/lib
+   ARCHIVE DESTINATION /usr/local/lib
 )
