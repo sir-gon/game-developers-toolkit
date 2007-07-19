@@ -4,7 +4,7 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = "Game Developers Toolkit"
-PROJECT_NUMBER         = 1.3.4
+PROJECT_NUMBER         = "1.3.4 - BETA"
 OUTPUT_DIRECTORY       = ../gdtdoc
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = Spanish

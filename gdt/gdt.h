@@ -45,7 +45,7 @@
 // Reloj
 //#include "gd_reloj.h"
 //Matematicas
-#include "gd_sistemamatematicas.h"
+#include "gd_matematicas.h"
 //Controles predise�dos
 #include "gd_controlesprediseniados.h"
 // ARCHIVOS
@@ -74,15 +74,15 @@
 
 //Fisicas ODE
 #if defined(_GDT_FISICAS_ODE_)
-  #include "gd_fisicasODEsistema.h"
-  #include "gd_fisicasODEcuerpo.h"
+  #include "gd_fisicasOdeSistema.h"
+  #include "gd_fisicasOdeCuerpo.h"
 #endif
 
 //Fisicas NEWTON DYNAMICS
 #if defined(_GDT_FISICAS_NEWTON_)
-  #include "gd_fisicasNWTNOnwtno.h"
-  #include "gd_fisicasNWTNOmaterial.h"
-  #include "gd_fisicasNWTNOcuerpo.h"
+  #include "gd_fisicasNwtMundo.h"
+  #include "gd_fisicasNwtMaterial.h"
+  #include "gd_fisicasNwtCuerpo.h"
 #endif
 
 //EXPORTAR SIMBOLOS AL CREAR DLL

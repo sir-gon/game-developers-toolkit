@@ -22,10 +22,10 @@
 
 #ifdef _GDT_FISICAS_NEWTON_
 
-#include "gd_fisicasNWTNOnwtno.h"
+#include "gd_fisicasNwtMundo.h"
 
 /*!
-* \class GD_Newtoneano
+* \class GD_FisicasNwtMundo
 *
 * Implementa un Mundo de f&iacute;sicas Newton.
 *
@@ -34,20 +34,20 @@
 * \author Astucia
 */
 
-GD_Newtoneano::GD_Newtoneano()
+GD_FisicasNwtMundo::GD_FisicasNwtMundo()
 {};
 
-GD_Newtoneano::~GD_Newtoneano()
+GD_FisicasNwtMundo::~GD_FisicasNwtMundo()
 {};
 
-void GD_Newtoneano::DestruyeNewtoneano()
+void GD_FisicasNwtMundo::DestruyeNewtoneano()
 {};
 
-NewtonCollision* GD_Newtoneano::CreaEscudo ( int Escudo )
+NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 {
 	NewtonCollision* collision;
 
-	GD_SistemaMatematicas MT;
+	GD_Matematicas MT;
 	irr::core::aabbox3d<f32> boundingBox;
 	vector3df centro;
 	dFloat Largo,Ancho,Alto;
@@ -142,7 +142,7 @@ NewtonCollision* GD_Newtoneano::CreaEscudo ( int Escudo )
 
 }
 
-void GD_Newtoneano::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
+void GD_FisicasNwtMundo::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
 {
 
 	//Cargando el objeto Malla.
@@ -169,7 +169,7 @@ void GD_Newtoneano::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int E
 
 }
 
-void GD_Newtoneano::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
+void GD_FisicasNwtMundo::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
 {
 
 	vector3df e0, e1, area;
@@ -246,12 +246,12 @@ void GD_Newtoneano::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode
 }
 
 
-void GD_Newtoneano::AsignaMatriz ( const matrix4 mat )
+void GD_FisicasNwtMundo::AsignaMatriz ( const matrix4 mat )
 {
 	NewtonBodySetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
 }
 
-void GD_Newtoneano::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
+void GD_FisicasNwtMundo::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
 {
 	// set the body mass and inertia
 	masa=mass;
@@ -261,40 +261,40 @@ void GD_Newtoneano::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dF
 	NewtonBodySetMassMatrix ( pCuerpoNwtn, ( dFloat ) masa, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GD_Newtoneano::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
+void GD_FisicasNwtMundo::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
 {
 	AsignarMasa ( ( dFloat ) mass, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GD_Newtoneano::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
+void GD_FisicasNwtMundo::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={OX,OY,OZ,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-void GD_Newtoneano::AsignarOmega ( vector3df vOmega )
+void GD_FisicasNwtMundo::AsignarOmega ( vector3df vOmega )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={ ( dFloat ) vOmega.X, ( dFloat ) vOmega.Y, ( dFloat ) vOmega.Z,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-vector3df GD_Newtoneano::AsignarFuerza ( float X,float Y,float Z )
+vector3df GD_FisicasNwtMundo::AsignarFuerza ( float X,float Y,float Z )
 {
 	fuerza.X=X;
 	fuerza.Y=Y;
 	fuerza.Z=Z;
 }
 
-vector3df GD_Newtoneano::AsignarGiro ( float X,float Y,float Z )
+vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
 {
 	giro.X=X;
 	giro.Y=Y;
 	giro.Z=Z;
 }
 
-void GD_Newtoneano::AplicarFuerza_Torcion()
+void GD_FisicasNwtMundo::AplicarFuerza_Torcion()
 {
 
 	NwtnFuerza.X=fuerza.X;
@@ -304,13 +304,13 @@ void GD_Newtoneano::AplicarFuerza_Torcion()
 	NewtonBodySetForceAndTorqueCallback ( pCuerpoNwtn, AplicarFuerza_TorcionParaCallbak );
 }
 
-void GD_Newtoneano::AsignaMaterial ( int MaterialID )
+void GD_FisicasNwtMundo::AsignaMaterial ( int MaterialID )
 {
 	NewtonBodySetMaterialGroupID ( pCuerpoNwtn, MaterialID );
 }
 
 
-void GD_Newtoneano::ConvertidorNewtonIrrlicht()
+void GD_FisicasNwtMundo::ConvertidorNewtonIrrlicht()
 {
 	//Cargando los datos del cuerpo Newtoneano en la matriz del cuerpo Irrlicht
 	NewtonBodyGetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
@@ -325,7 +325,7 @@ void GD_Newtoneano::ConvertidorNewtonIrrlicht()
 
 }
 
-ISceneNode* GD_Newtoneano::Actualizar()
+ISceneNode* GD_FisicasNwtMundo::Actualizar()
 {
 
 	// set the transform call back function
@@ -338,30 +338,30 @@ ISceneNode* GD_Newtoneano::Actualizar()
 	return nodoMalla;
 }
 
-void GD_Newtoneano::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
+void GD_FisicasNwtMundo::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
 {
-	GD_SistemaMatematicas SMT;
+	GD_Matematicas SMT;
 
 	velmov=SMT.Potencia ( velmov,2.0 );
 	velgiro=SMT.Potencia ( velgiro,2.0 );
 	NewtonBodySetFreezeTreshold ( pCuerpoNwtn,velmov,velgiro,maxFPS );
 }
 
-void GD_Newtoneano::AsignarMatrizRecursivamente ( const matrix4 mat )
+void GD_FisicasNwtMundo::AsignarMatrizRecursivamente ( const matrix4 mat )
 {
 	NewtonBodySetMatrixRecursive ( pCuerpoNwtn, ( dFloat* ) &mat );
 }
 
-void GD_Newtoneano::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
+void GD_FisicasNwtMundo::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn,vecVelocidadDelta,vecVelocidadDelta );
 }
-void GD_Newtoneano::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
+void GD_FisicasNwtMundo::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn, ( dFloat* ) &vecVelocidadDelta, ( dFloat* ) &vecPuntoDeImpulso );
 }
 
-bool GD_Newtoneano::StatusActivo()
+bool GD_FisicasNwtMundo::StatusActivo()
 {
 	return ( bool ) NewtonBodyGetSleepingState ( pCuerpoNwtn );
 }

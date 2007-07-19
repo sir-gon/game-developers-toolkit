@@ -26,13 +26,12 @@
 
 #include <stdio.h>
 #include <Newton.h>
+#include <ITimer.h>
 #include "gd_sistema.h"
-#include "gd_sistemamatematicas.h"
+#include "gd_matematicas.h"
 #include "gd_nodo.h"
 #include "gd_malla.h"
-#include <Newton.h>
-#include <ITimer.h>
-#include "gd_fisicasNWTNOmaterial.h"
+#include "gd_fisicasNwtMaterial.h"
 
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
@@ -61,7 +60,7 @@
 //static NewtonWorld* nWorld=NewtonCreate (NULL,NULL);
 static NewtonWorld* nWorld;
 
-class GD_Newtoneano
+class GD_FisicasNwtMundo
 {
 
    public:
@@ -90,8 +89,8 @@ class GD_Newtoneano
    //triangle3df Triangulos[];
 
 
-   _GDT_EXPORT_ GD_Newtoneano();
-   _GDT_EXPORT_ ~GD_Newtoneano();
+   _GDT_EXPORT_ GD_FisicasNwtMundo();
+   _GDT_EXPORT_ ~GD_FisicasNwtMundo();
 
    _GDT_EXPORT_ void DestruyeNewtoneano();
 

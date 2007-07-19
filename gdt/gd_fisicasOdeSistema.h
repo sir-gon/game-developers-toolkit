@@ -58,7 +58,7 @@ vector3df RealAVector3d(const dReal* Val);
 dReal* Vector3dAReal(const vector3df Val);
 
 //! Soporte de F&iacute;sicas Open Dynamics Engine (ODE)
-class GD_SistemaODE
+class GD_FisicasOdeSistema
 {
     public:
     //variables
@@ -68,7 +68,7 @@ class GD_SistemaODE
 
 
     //funciones
-    GD_SistemaODE();
+    GD_FisicasOdeSistema();
 
     _GDT_EXPORT_ dWorldID CrearMundoODE();
     _GDT_EXPORT_ void DestruirMundoODE();

@@ -136,8 +136,8 @@
 *  las constantes que activan tal caracter&iacute;stica. Por ejemplo, es 
 *  incorrecto ocupar GD_Sonido sin haber definido _GDT_SONIDO_. Estas constantes 
 *  se pueden definir en el proyecto de su IDE, as&iacute; como manualmente en su
-*  propio c&odigo mediante la directiva #define, pero asegurese de hacerlo antes
-*  incluir GDT, por ejemplo as&iacute;:
+*  propio c&odigo, pero asegurese de hacerlo antes incluir GDT,
+*  por ejemplo as&iacute;:
 * 
 * \code
 * #define _GDT_SONIDO_

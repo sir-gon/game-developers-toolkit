@@ -22,107 +22,112 @@
 #if defined(_GDT_FISICAS_ODE_)
 
 /*!
-* \class GD_SistemaODE
+* \class GD_FisicasOdeSistema
 *
 * Crea y maneja un Mundo de F&iacute;sicas usando ODE.
 * 
-* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_ODE_ est&aacute; definido en tiempo de compilaci&oacute;n.
+* \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_ODE_
+* est&aacute; definido en tiempo de compilaci&oacute;n.
 *
 * \author Astucia
 */
 
-#include "gd_fisicasODEsistema.h"
+#include "gd_fisicasOdeSistema.h"
 
-GD_SistemaODE::GD_SistemaODE()
+// Para mironear las variables:
+#include <iostream>
+using namespace std;
+
+GD_FisicasOdeSistema::GD_FisicasOdeSistema()
 {
    MundoODE=CrearMundoODE();
 }
 
-dWorldID GD_SistemaODE::CrearMundoODE()
+dWorldID GD_FisicasOdeSistema::CrearMundoODE()
 {
    return dWorldCreate();
 }
-void GD_SistemaODE::DestruirMundoODE()
+void GD_FisicasOdeSistema::DestruirMundoODE()
 {
    dWorldDestroy(MundoODE);
 }
 
-vector3df GD_SistemaODE::Gravedad(dReal x, dReal y, dReal z)
+vector3df GD_FisicasOdeSistema::Gravedad(dReal x, dReal y, dReal z)
 {
    dWorldSetGravity(MundoODE,x, y, z);
    return Gravedad();
 }
-vector3df GD_SistemaODE::Gravedad(vector3df grav)
+vector3df GD_FisicasOdeSistema::Gravedad(vector3df grav)
 {
    Gravedad((dReal) grav.X, (dReal) grav.Y, (dReal) grav.Z);
    return Gravedad();
 }
 
-vector3df GD_SistemaODE::Gravedad()
+vector3df GD_FisicasOdeSistema::Gravedad()
 {
    vector3df gravI;
    dWorldGetGravity(MundoODE, (dReal*) &gravI);
    return gravI;
 }
 
-void GD_SistemaODE::AsignarERP(dReal erp)
+void GD_FisicasOdeSistema::AsignarERP(dReal erp)
 {
    dWorldSetERP(MundoODE,erp);
 }
-dReal GD_SistemaODE::ObtenerERP()
+dReal GD_FisicasOdeSistema::ObtenerERP()
 {
    return dWorldGetERP(MundoODE);
 }
-void GD_SistemaODE::AsignarCFM(dReal cfm)
+void GD_FisicasOdeSistema::AsignarCFM(dReal cfm)
 {
    dWorldSetCFM(MundoODE,cfm);
 }
-dReal GD_SistemaODE::ObtenerCFM()
+dReal GD_FisicasOdeSistema::ObtenerCFM()
 {
    return dWorldGetCFM (MundoODE);
 }
 
-void GD_SistemaODE::ModoAutodesactivar(bool bDeshabilitable)
+void GD_FisicasOdeSistema::ModoAutodesactivar(bool bDeshabilitable)
 {
     dWorldSetAutoDisableFlag(MundoODE, (int) bDeshabilitable);
 }
-bool GD_SistemaODE::ValorModoAutodesactivar()
+bool GD_FisicasOdeSistema::ValorModoAutodesactivar()
 {
     return (bool)dWorldGetAutoDisableFlag(MundoODE);
 }
-void GD_SistemaODE::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
+void GD_FisicasOdeSistema::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
 {
     dWorldSetAutoDisableLinearThreshold(MundoODE, UmbralLinear);
 }
-dReal GD_SistemaODE::ValorAutodesactivacion_por_UmbralLinear()
+dReal GD_FisicasOdeSistema::ValorAutodesactivacion_por_UmbralLinear()
 {
     return dWorldGetAutoDisableLinearThreshold(MundoODE);
 }
-void GD_SistemaODE::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
+void GD_FisicasOdeSistema::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
 {
     dWorldSetAutoDisableAngularThreshold(MundoODE, UmbralAngular);
 }
-dReal GD_SistemaODE::ValorAutoDesactivacion_por_UmbralAngular()
+dReal GD_FisicasOdeSistema::ValorAutoDesactivacion_por_UmbralAngular()
 {
     return dWorldGetAutoDisableAngularThreshold(MundoODE);
 }
-void GD_SistemaODE::AutoDesactivacion_por_Iteraciones(int Iteraciones)
+void GD_FisicasOdeSistema::AutoDesactivacion_por_Iteraciones(int Iteraciones)
 {
     dWorldSetAutoDisableSteps(MundoODE, Iteraciones);
 }
-int GD_SistemaODE::ValorAutoDesactivacion_por_Iteraciones()
+int GD_FisicasOdeSistema::ValorAutoDesactivacion_por_Iteraciones()
 {
     return dWorldGetAutoDisableSteps(MundoODE);
 }
-void GD_SistemaODE::AutoDesactivacion_por_Tiempo(dReal Tiempo)
+void GD_FisicasOdeSistema::AutoDesactivacion_por_Tiempo(dReal Tiempo)
 {
     dWorldSetAutoDisableTime(MundoODE, Tiempo);
 }
-dReal GD_SistemaODE::ValorAutoDesactivacion_por_Tiempo()
+dReal GD_FisicasOdeSistema::ValorAutoDesactivacion_por_Tiempo()
 {
     return dWorldGetAutoDisableTime(MundoODE);
 }
-vector3df GD_SistemaODE::Impulso_a_Fuerza(dReal Incremento,vector3df Impulso)
+vector3df GD_FisicasOdeSistema::Impulso_a_Fuerza(dReal Incremento,vector3df Impulso)
 {
     dVector3 vFuerza;
     vector3df vFuerzaR;
@@ -137,50 +142,50 @@ vector3df GD_SistemaODE::Impulso_a_Fuerza(dReal Incremento,vector3df Impulso)
 }
 
 
-void GD_SistemaODE::Actualizar(dReal VelIteracion)
+void GD_FisicasOdeSistema::Actualizar(dReal VelIteracion)
 {
     dWorldStep (MundoODE, VelIteracion);
 }
-void GD_SistemaODE::Actualzar_Modo_QS(dReal VelIteracion)
+void GD_FisicasOdeSistema::Actualzar_Modo_QS(dReal VelIteracion)
 {
     dWorldStep(MundoODE,VelIteracion);
 }
-void GD_SistemaODE::NumIteraciones_modo_QS(int Iteraciones)
+void GD_FisicasOdeSistema::NumIteraciones_modo_QS(int Iteraciones)
 {
     dWorldSetQuickStepNumIterations (MundoODE, Iteraciones);
 }
-int GD_SistemaODE::ValorNumIteraciones_modo_QS()
+int GD_FisicasOdeSistema::ValorNumIteraciones_modo_QS()
 {
     return dWorldGetQuickStepNumIterations(MundoODE);
 }
 
-void GD_SistemaODE::VelocidadMaximaDeCorreccion_por_Contacto(dReal vel)
+void GD_FisicasOdeSistema::VelocidadMaximaDeCorreccion_por_Contacto(dReal vel)
 {
     dWorldSetContactMaxCorrectingVel(MundoODE, vel);
 }
-dReal GD_SistemaODE::ValorVelocidadMaximaDeCorreccion_por_Contacto()
+dReal GD_FisicasOdeSistema::ValorVelocidadMaximaDeCorreccion_por_Contacto()
 {
     return dWorldGetContactMaxCorrectingVel(MundoODE);
 }
 
-void GD_SistemaODE::SuperficieDeContacto(dReal Profundidad)
+void GD_FisicasOdeSistema::SuperficieDeContacto(dReal Profundidad)
 {
     dWorldSetContactSurfaceLayer (MundoODE,Profundidad);
 }
-dReal GD_SistemaODE::ValorSuperficieDeContacto()
+dReal GD_FisicasOdeSistema::ValorSuperficieDeContacto()
 {
     return dWorldGetContactSurfaceLayer(MundoODE);
 }
 
-void GD_SistemaODE::Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones)
+void GD_FisicasOdeSistema::Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones)
 {
     dWorldStepFast1(MundoODE, VelIteracion, MaxIteraciones);
 }
-void GD_SistemaODE::ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion)
+void GD_FisicasOdeSistema::ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion)
 {
     dWorldSetAutoEnableDepthSF1(MundoODE, ProfundidadDeAutoactivacion);
 }
-int GD_SistemaODE::ValorProfundidadDeAutoactivacionSF1()
+int GD_FisicasOdeSistema::ValorProfundidadDeAutoactivacionSF1()
 {
     return dWorldGetAutoEnableDepthSF1(MundoODE);
 }

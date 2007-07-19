@@ -286,7 +286,7 @@ void GD_GuiTexto::Multilinea(bool activar)
    guitexto->setWordWrap(activar);
 }
 
-/*
+
 void GD_GuiTexto::Visible(bool visible)
 {
       guitexto->setVisible(visible);
@@ -297,4 +297,4 @@ bool GD_GuiTexto::EsVisible()
 {
       return guitexto->isVisible();
 }
-*/
+

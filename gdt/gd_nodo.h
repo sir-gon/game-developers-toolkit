@@ -25,7 +25,7 @@
 #include <irrlicht.h>
 
 #include "gd_sistema.h"
-#include "gd_sistemamatematicas.h"
+#include "gd_matematicas.h"
 #include "gd_textura.h"
 
 /* No documentar */

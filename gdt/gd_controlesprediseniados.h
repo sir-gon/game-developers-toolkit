@@ -59,11 +59,11 @@ struct stMouse
 
 //class GD_Malla;
 
-class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistema
+class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
 {
    private:
       GD_Sistema sistema;
-      GD_SistemaMatematicas Mat;
+      GD_Matematicas Mat;
       //GD_Malla Malla;
    public:
    //protected:
@@ -79,7 +79,7 @@ class GD_ControlesPrediseniados : public GD_SistemaMatematicas, public GD_Sistem
       _GDT_EXPORT_ void ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift);
 
       //Plantilla de tipos de dato que usan la clase nodo
-      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem,GD_SistemaMatematicas Matematicas);
+      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem,GD_Matematicas Matematicas);
       _GDT_EXPORT_ void TecladoUDRL(GD_Malla Malla);
       _GDT_EXPORT_ void TecladoUDRLCtrlShift();
       _GDT_EXPORT_ void TecladoURLDMouseMove();

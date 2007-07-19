@@ -43,7 +43,7 @@
 #endif /* _GDT_EXPORT_ */
 
 //! Crea un Cuerpo para f&iacute;sicas Open Dynamics Engine (ODE)
-class GD_CuerpODE
+class GD_FisicasOdeCuerpo
 {
     public:
 

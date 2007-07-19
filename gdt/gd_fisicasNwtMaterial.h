@@ -21,12 +21,11 @@
 
 #ifdef _GDT_FISICAS_NEWTON_
 
-#ifndef GD_CUERPO_NEWTON_H
-#define GD_CUERPO_NEWTON_H
+#ifndef GD_FISICAS_NEWTON_MATERIAL_H_
+#define GD_FISICAS_NEWTON_MATERIAL_H_
 
-#include "gd_malla.h"
-#include "gd_fisicasNWTNOnwtno.h"
-#include "gd_fisicasNWTNOmaterial.h"
+#include <stdio.h>
+#include <Newton.h>
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
@@ -42,53 +41,59 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
-//! Un Cuerpo Newton
-class GD_Cuerpo
+/* No Documentar esto */
+#ifndef _GDT_DOXYGEN_IGNORAR_
+struct MaterialData
 {
-	public:
-		_GDT_EXPORT_ GD_Cuerpo();
-		_GDT_EXPORT_ GD_Cuerpo ( NewtonWorld* NwtnWorld );
-		_GDT_EXPORT_ ~GD_Cuerpo();
+   char* pszNombre;
+   int ID;
+};
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 
-		NewtonWorld* MundoNwtn;
-		GD_Malla malla;
-		GD_Newtoneano fisica;
-		GD_Material_nwtn material;
+class GD_FisicasNwtMaterial
+{
+   public:
 
-		//Creacion
-		_GDT_EXPORT_ void Inicializar ( NewtonWorld* NwtnWorld );
-		_GDT_EXPORT_ void Cargar ( char *filename,int EscudoColision=0 );
-		_GDT_EXPORT_ void CargarTangentes ( char *filename,int EscudoColision=0 );
-		_GDT_EXPORT_ void CrearCubo();
-		_GDT_EXPORT_ void CrearCubo ( float tamx, float tamy, float tamz );
-		_GDT_EXPORT_ void CrearPlano ( int tx, int ty );
-		_GDT_EXPORT_ void CrearCilindro ( int tx, int ty, f32 radio );
-		_GDT_EXPORT_ void CrearCono ( int tx, int ty, f32 radio );
-		_GDT_EXPORT_ void CrearEsfera ( float radio, int polynum = 16 );
-		_GDT_EXPORT_ void CrearEscenarioNewtoneano ( char *filename );
-		// Fisica
-		_GDT_EXPORT_ void AplicarFisica() {fisica.AplicarFuerza_Torcion();};
+   NewtonWorld* nMundo;
 
-		_GDT_EXPORT_ void AsignarFisicas ( float masa,vector3df vinercia,
-		                      vector3df vfuerza,
-		                      vector3df vomega,
-		                      int MatID );
 
-		_GDT_EXPORT_ void Fuerza ( vector3df vfuerza );
-		_GDT_EXPORT_ void Omega ( vector3df vomega );
-		_GDT_EXPORT_ void Masa ( float masa,vector3df vinercia );
-		_GDT_EXPORT_ void Material ( int MatID );
+   _GDT_EXPORT_ GD_FisicasNwtMaterial();
+   _GDT_EXPORT_ GD_FisicasNwtMaterial(NewtonWorld* nMundo);
+   _GDT_EXPORT_ ~GD_FisicasNwtMaterial();
 
-		//Modificacion
-		_GDT_EXPORT_ void Posicionar ( vector3df pos );
-		_GDT_EXPORT_ void Actualizar_Transformacion();
-		_GDT_EXPORT_ void Actualizar();
-		_GDT_EXPORT_ void ActivarFisicas() {Actualizar();};
+
+
+   _GDT_EXPORT_ int IDMaterialPorDefecto();
+   _GDT_EXPORT_ int CreaGrupoID();
+   _GDT_EXPORT_ MaterialData CreaGrupoID(char* pszNombre);
+
+   _GDT_EXPORT_ void MaterialesABColisionXDefecto(int A, int B, bool Activa);
+   _GDT_EXPORT_ void MaterialesABColisionContinua(int A, int B, bool Activa=true);
+
+   _GDT_EXPORT_ void MaterialesABFriccionXDefecto(int A, int B,
+                                    dFloat Friccion_Estatica,
+                                    dFloat Friccion_Cinetica);
+   /*Nota: El valor de los coeficientes de friccion deve ser positiva; El valor
+   de la friccion cintetica deve ser menor a la friccion estatica; El valor
+   recomendado para la friccion es: menor o igual a 1.0; Por consideracion hacia
+   algunos materiales Newton soporta un valor de 2.0 en la friccion cinetica.*/
+
+   _GDT_EXPORT_ void MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad);
+   /*Nota: El valor del coeficiente de elasticidad deve ser positivo; Se recomienda
+   que se usen valores merores o iguales a 1.0.*/
+
+   _GDT_EXPORT_ void MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia);
+   /*Nota: El valor del coeficiente de Consistencia (Suavidad) deve ser positivo;
+   Se recomienda que se usen valores merores o iguales a 1.0; un valor tipico
+   de consistencia es de 0.15*/
+
+   //void RetrollamadaColisionMaterialesAB(int A,int B,void *userData);
+
 
 };
 
 
-#endif  // GD_CUERPO_NEWTON_H
+#endif // GD_FISICAS_NEWTON_MATERIAL_H_
 
 #endif // _GDT_FISICAS_NEWTON_

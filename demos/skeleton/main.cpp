@@ -1,12 +1,12 @@
-/***************************************************************************
- *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
- *   Copyright (C) 2006 GDT STAFF                                          *
- *   http://gdt.sourceforge.net                                            *
- *                                                                         *
- *   Use este programa de Ejemplo para comenzar a armar su propio juego    *
- *                                                                         *
- ***************************************************************************/
- 
+/*****************************************
+ *   GDT (GAME DEVELOPERS TOOLKIT)       *
+ *   Copyright (C) 2006 GDT STAFF        *
+ *   http://gdt.sourceforge.net          *
+ *                                       *
+ *   Use este programa de Ejemplo para   *
+ *   comenzar a armar su propio juego    *
+ *                                       *
+ *****************************************/
  
 #include <gdt.h>
 

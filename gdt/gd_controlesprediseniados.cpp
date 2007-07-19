@@ -52,7 +52,7 @@ GD_ControlesPrediseniados::GD_ControlesPrediseniados(GD_Sistema sistemaGeneral)
       Teclado.iShift=16;
 }
 
-void GD_ControlesPrediseniados::ActivarSistema(GD_Sistema sistem,GD_SistemaMatematicas Matematicas)
+void GD_ControlesPrediseniados::ActivarSistema(GD_Sistema sistem,GD_Matematicas Matematicas)
 {
    sistema=sistem;
    Mat=Matematicas;
