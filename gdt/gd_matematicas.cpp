@@ -20,31 +20,45 @@
  ***************************************************************************/
 
 /*!
- * \class GD_SistemaMatematicas
+ * \class GD_Matematicas
  *
  * Ac&aacute; podr&aacute;s encontrar las funciones 
  * matem&aacute;ticas m&aacute;s necesarias.
  *
- * Para todos los ejemplos, se asume que GD_SistemaMatematicas está
+ * Para todos los ejemplos, se asume que GD_Matematicas está
  * instanciado en una variable llamada Calcular, es decir:
- \code
-     #include <gdt.h>
-
-     GD_Sistema Sistema;
-     GD_SistemaMatematicas Calcular;
-
-     main {
-         ////.....
-     }
- \endcode
+ * \code
+ *     #include <gdt.h>
+ *
+ *     GD_Sistema Sistema;
+ *     GD_Matematicas Calcular;
+ *
+ *     main {
+ *         ////.....
+ *     }
+ * \endcode
+ * 
+ * \since gdt-1.3.4-beta3
  */
 
-#include "gd_sistemamatematicas.h" // class's header file
+#include "gd_matematicas.h" // class's header file
+
+
+GD_SistemaMatematicas::GD_SistemaMatematicas()
+{
+ GD_Matematicas();
+}
+
+GD_SistemaMatematicas::~GD_SistemaMatematicas()
+{
+ //~GD_Matematicas();
+}
+
 
 /*!
 Inicializa el sistema de generaci&oacute;n de n&uacute;meros pseudo-aletatorios, y calcula las funciones trigonom&eacute;tricas de los 360 &aacute;ngulos enteros, para obtenerlos r&aacute;pido posteriormente.
 */
-GD_SistemaMatematicas::GD_SistemaMatematicas()
+GD_Matematicas::GD_Matematicas()
 {
     //inicio los cosenos y senos rapidos
     for(int i=0; i<361; i++)
@@ -57,7 +71,7 @@ GD_SistemaMatematicas::GD_SistemaMatematicas()
 }
 
 // class destructor
-GD_SistemaMatematicas::~GD_SistemaMatematicas()
+GD_Matematicas::~GD_Matematicas()
 {
 	// insert your code here
 }
@@ -74,7 +88,7 @@ perimetro_circulo = 2 * Calcular.PI() * r;
 perimetro_circulo = 2 * M_PI * r;
 \endcode
 */
-double GD_SistemaMatematicas::PI()
+double GD_Matematicas::PI()
 {
     return M_PI;
 
@@ -83,7 +97,7 @@ double GD_SistemaMatematicas::PI()
 /*!
 \return el valor de la constante "e". Es el mismo valor que se puede acceder por la constante M_E.
 */
-double GD_SistemaMatematicas::E()
+double GD_Matematicas::E()
 {
     return M_E;
 }
@@ -91,7 +105,7 @@ double GD_SistemaMatematicas::E()
 /*!
 \param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 */
-int GD_SistemaMatematicas::Capar(int ang)
+int GD_Matematicas::Capar(int ang)
 {
     while(ang>360.0)
         ang-=360;
@@ -103,7 +117,7 @@ int GD_SistemaMatematicas::Capar(int ang)
 /*!
 \param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 */
-double GD_SistemaMatematicas::Capar(double ang)
+double GD_Matematicas::Capar(double ang)
 {
     while(ang>360.0)
         ang=ang-360.0;
@@ -121,7 +135,7 @@ ComponenteY = longitud * Calcular.Seno( angulo );
 \endcode
 */
 //Error 0
-double GD_SistemaMatematicas::Seno(int ang)
+double GD_Matematicas::Seno(int ang)
 {
     return FastSin[Capar(ang)];
 }
@@ -135,7 +149,7 @@ ComponenteY = longitud * Calcular.Seno( angulo );
 \endcode
 */
 //Error menor de 0.0002
-double GD_SistemaMatematicas::Seno(double ang)
+double GD_Matematicas::Seno(double ang)
 {
     int a,b;
     double c,d;
@@ -155,7 +169,7 @@ ComponenteX = longitud * Calcular.Coseno( angulo );
 \endcode
 */
 //Error 0
-double GD_SistemaMatematicas::Coseno(int ang)
+double GD_Matematicas::Coseno(int ang)
 {
     return FastCos[Capar(ang)];
 }
@@ -169,7 +183,7 @@ ComponenteX = longitud * Calcular.Coseno( angulo );
 \endcode
 */
 //Error menor de 0.0002
-double GD_SistemaMatematicas::Coseno(double ang)
+double GD_Matematicas::Coseno(double ang)
 {
     int a,b;
     double c,d;
@@ -188,7 +202,7 @@ Ejemplo:
 pendiente = Calcular.Tangente( angulo );
 \endcode
 */
-double GD_SistemaMatematicas::Tangente(int ang)
+double GD_Matematicas::Tangente(int ang)
 {
     return FastTan[Capar(ang)];
 }
@@ -201,7 +215,7 @@ Ejemplo:
 pendiente = Calcular.Tangente( angulo );
 \endcode
 */
-double GD_SistemaMatematicas::Tangente(double ang)
+double GD_Matematicas::Tangente(double ang)
 {
     int a,b;
     double c,d;
@@ -225,7 +239,7 @@ min = Calcular.Minimo(10,20);
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-int GD_SistemaMatematicas::Minimo(int ValorA,int ValorB)
+int GD_Matematicas::Minimo(int ValorA,int ValorB)
 {
     if(ValorA > ValorB)
 	return ValorB;
@@ -244,7 +258,7 @@ min = Calcular.Minimo(0, 2*Calcular.PI());
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_SistemaMatematicas::Minimo(double ValorA,double ValorB)
+double GD_Matematicas::Minimo(double ValorA,double ValorB)
 {
     if(ValorA > ValorB)
 	return ValorB;
@@ -263,7 +277,7 @@ min = Calcular.Maximo(0, 234);
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-int GD_SistemaMatematicas::Maximo(int ValorA,int ValorB)
+int GD_Matematicas::Maximo(int ValorA,int ValorB)
 {
     if(ValorA < ValorB)
 	return ValorB;
@@ -282,7 +296,7 @@ min = Calcular.Maximo(0, 2*Calcular.PI());
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_SistemaMatematicas::Maximo(double ValorA,double ValorB)
+double GD_Matematicas::Maximo(double ValorA,double ValorB)
 {
     if(ValorA < ValorB)
 	return ValorB;
@@ -303,7 +317,7 @@ probabilidad = Calcular.Azar(0,100); // un porcentaje entero al azar
 
 Se agradece a: http://www.daniweb.com/forums/thread1769.html
 */
-int GD_SistemaMatematicas::Azar(int min,int max)
+int GD_Matematicas::Azar(int min,int max)
 {
     return (rand()%Absoluto(max-min+1)) + Minimo(min, max);
 }
@@ -319,7 +333,7 @@ probabilidad = Calcular.Azar(0,100); // un porcentaje real al azar
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_SistemaMatematicas::Azar(double min, double max)
+double GD_Matematicas::Azar(double min, double max)
 {
     return rand()/(double(RAND_MAX)+1) * Absoluto(min-max) + Minimo(min, max);
 }
@@ -334,7 +348,7 @@ Ejemplo:
 raiz = Calcular.Raiz(4)
 \endcode
 */
-double GD_SistemaMatematicas::Raiz(double x)
+double GD_Matematicas::Raiz(double x)
 {
     return sqrt(x);
 }
@@ -351,7 +365,7 @@ La fórmula es la siguiente:
 
 Para mayor información sobre el origen de la fórmula, lea <A HREF="http://es.wikipedia.org/wiki/Pendiente_de_una_recta">este artículo</A>.
 */
-double GD_SistemaMatematicas::Angulo(double x1, double y1, double x2, double y2)
+double GD_Matematicas::Angulo(double x1, double y1, double x2, double y2)
 {
     return atan2(y2-y1,x2-x1) * 180.0 / M_PI;
 }
@@ -363,7 +377,7 @@ La formula es:
    \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \f]
 */
-double GD_SistemaMatematicas::Distancia(double x1, double y1, double x2, double y2)
+double GD_Matematicas::Distancia(double x1, double y1, double x2, double y2)
 {
     return sqrt(pow((x1-x2),2) + pow((y1-y2),2));
 }
@@ -375,12 +389,12 @@ La formula es:
    \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}
 \f]
 */
-double GD_SistemaMatematicas::Distancia3d(double x1, double y1, double z1, double x2, double y2, double z2)
+double GD_Matematicas::Distancia3d(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     return sqrt(pow((x1-x2),2) + pow((y1-y2),2) + pow((z1-z2),2));
 }
 
-double GD_SistemaMatematicas::GiroAngulo(double mirando, double meta)
+double GD_Matematicas::GiroAngulo(double mirando, double meta)
 {
     double diff;
     diff=mirando-meta;
@@ -406,7 +420,7 @@ f(x) = \frac{e^x - e^{-x}}{2}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Seno_hiperb%C3%B3lico">lea este art&iacute;culo</A>.
 */
-double GD_SistemaMatematicas::SenoHyperbolico(double x)
+double GD_Matematicas::SenoHyperbolico(double x)
 {
     return sinh(x);
 }
@@ -421,7 +435,7 @@ f(x) = \frac{e^x + e^{-x}}{2}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Coseno_hiperb%C3%B3lico">lea este art&iacute;culo</A>.
 */
-double GD_SistemaMatematicas::CosenoHyperbolico(double x)
+double GD_Matematicas::CosenoHyperbolico(double x)
 {
     return cosh(x);
 }
@@ -436,7 +450,7 @@ f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Tangente_hiperb%C3%B3lica">lea este art&iacute;culo</A>.
 */
-double GD_SistemaMatematicas::TangenteHyperbolica(double t)
+double GD_Matematicas::TangenteHyperbolica(double t)
 {
     return tanh(t);
 }
@@ -446,7 +460,7 @@ double GD_SistemaMatematicas::TangenteHyperbolica(double t)
 
 Es la inversa del Seno().
 */
-double GD_SistemaMatematicas::ArcoSeno(double x)
+double GD_Matematicas::ArcoSeno(double x)
 {
     return asin(x);
 }
@@ -456,7 +470,7 @@ double GD_SistemaMatematicas::ArcoSeno(double x)
 
 Es la inversa del Coseno().
 */
-double GD_SistemaMatematicas::ArcoCoseno(double x)
+double GD_Matematicas::ArcoCoseno(double x)
 {
     return acos(x);
 }
@@ -466,7 +480,7 @@ double GD_SistemaMatematicas::ArcoCoseno(double x)
 
 Es la inversa de la Tangente().
 */
-double GD_SistemaMatematicas::ArcoTangente(double x)
+double GD_Matematicas::ArcoTangente(double x)
 {
     return atan(x);
 }
@@ -476,7 +490,7 @@ double GD_SistemaMatematicas::ArcoTangente(double x)
 
 Es la inversa del Logaritmo Natural (Logaritmo()).
 */
-double GD_SistemaMatematicas::Exponencial(double x)
+double GD_Matematicas::Exponencial(double x)
 {
     return exp(x);
 }
@@ -502,7 +516,7 @@ resultado = Calcular.Logaritmo( E_() ); // Retorna 1
 
 Nota: El n&uacute;mero "e" se puede obtener usando E().
 */
-double GD_SistemaMatematicas::Logaritmo(double x)
+double GD_Matematicas::Logaritmo(double x)
 {
     return log(x);
 }
@@ -520,7 +534,7 @@ resultado = Calcular.Logaritmo( 10 ); // Retorna 1
 \endcode
 
 */
-double GD_SistemaMatematicas::Logaritmo10(double x)
+double GD_Matematicas::Logaritmo10(double x)
 {
     return log10(x);
 }
@@ -531,7 +545,7 @@ Definici&oacute;n:
 Potencia(x, y) = x^y
 \f]
 */
-double GD_SistemaMatematicas::Potencia(double x, double y)
+double GD_Matematicas::Potencia(double x, double y)
 {
     return pow(x,y);
 }
@@ -546,7 +560,7 @@ Ejemplo:
 aproximado = Calcular.RedondearArriba(0.0000000000000001) // Retorna 1
 \endcode
 */
-int GD_SistemaMatematicas::RedondearArriba(double x)
+int GD_Matematicas::RedondearArriba(double x)
 {
     return (int)ceil(x);
 }
@@ -561,7 +575,7 @@ Ejemplo:
 aproximado = Calcular.RedondearAbajo(10.9) // Retorna 10
 \endcode
 */
-int GD_SistemaMatematicas::RedondearAbajo(double x)
+int GD_Matematicas::RedondearAbajo(double x)
 {
     return (int)floor(x);
 }
@@ -576,7 +590,7 @@ aproximado = Calcular.RedondearAbajo(3.5) // Retorna 4
 aproximado = Calcular.RedondearAbajo(3.4) // Retorna 3
 \endcode
 */
-int GD_SistemaMatematicas::Redondear(double x)
+int GD_Matematicas::Redondear(double x)
 {
     int y;
     double z;
@@ -591,7 +605,7 @@ int GD_SistemaMatematicas::Redondear(double x)
 /*!
 
 */
-int GD_SistemaMatematicas::Entero(double x)
+int GD_Matematicas::Entero(double x)
 {
     return (int)x;
 }
@@ -618,7 +632,7 @@ if(valor == 10) {
 }
 \endcode
 */
-int GD_SistemaMatematicas::Absoluto(int x)
+int GD_Matematicas::Absoluto(int x)
 {
     return abs(x);
 }
@@ -645,12 +659,12 @@ if(valor == 10) {
 }
 \endcode
 */
-double GD_SistemaMatematicas::Absoluto(double x)
+double GD_Matematicas::Absoluto(double x)
 {
     return fabs(x);
 }
 
-float GD_SistemaMatematicas::CurvarValor(float actual, float destino, float velocidad)
+float GD_Matematicas::CurvarValor(float actual, float destino, float velocidad)
 {
     float diferencia=destino-actual;
     if(velocidad==0)
@@ -659,7 +673,7 @@ float GD_SistemaMatematicas::CurvarValor(float actual, float destino, float velo
         return actual+(diferencia*(1/velocidad));
 }
 
-double GD_SistemaMatematicas::CurvarAngulo(double actual, double destino, double velocidad)
+double GD_Matematicas::CurvarAngulo(double actual, double destino, double velocidad)
 {
     double diferencia;
     actual=Capar(actual);
@@ -682,7 +696,7 @@ double GD_SistemaMatematicas::CurvarAngulo(double actual, double destino, double
     }
 }
 
-double GD_SistemaMatematicas::MueveX(double x, double angulo, double velocidad)
+double GD_Matematicas::MueveX(double x, double angulo, double velocidad)
 {
      /*double angulop = Rad(angulo);
      double xf;
@@ -692,13 +706,13 @@ double GD_SistemaMatematicas::MueveX(double x, double angulo, double velocidad)
      return x+velocidad*sin(Rad(angulo));
 }
 
-double GD_SistemaMatematicas::MueveY(double y, double angulo, double velocidad)
+double GD_Matematicas::MueveY(double y, double angulo, double velocidad)
 {
     return y+velocidad*tan(Rad(angulo));
 
 }
 
-double GD_SistemaMatematicas::MueveZ(double z, double angulo, double velocidad)
+double GD_Matematicas::MueveZ(double z, double angulo, double velocidad)
 {
      return z+velocidad*cos(Rad(angulo));
 }
@@ -709,7 +723,7 @@ double GD_SistemaMatematicas::MueveZ(double z, double angulo, double velocidad)
 \param incluir Si es True se incluyen los extremos, en caso contrario se excluyen.
 \return True si el número x se encuentra en el interior del intervalo.
 */
-char GD_SistemaMatematicas::Rango(double x, double min, double max, char incluir)
+char GD_Matematicas::Rango(double x, double min, double max, char incluir)
 {
 /*
     if(incluir)
@@ -741,7 +755,7 @@ char GD_SistemaMatematicas::Rango(double x, double min, double max, char incluir
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-char GD_SistemaMatematicas::RangoAbierto(double x, double min, double max)
+char GD_Matematicas::RangoAbierto(double x, double min, double max)
 {
     if(min < x && x < max)
         return 1;
@@ -756,7 +770,7 @@ char GD_SistemaMatematicas::RangoAbierto(double x, double min, double max)
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-char GD_SistemaMatematicas::RangoCerrado(double x, double min, double max)
+char GD_Matematicas::RangoCerrado(double x, double min, double max)
 {
     if(min <= x && x <= max)
         return 1;
@@ -767,12 +781,12 @@ char GD_SistemaMatematicas::RangoCerrado(double x, double min, double max)
 /*!
 \bug Esta implementación siempre retorna 0.
 */
-double GD_SistemaMatematicas::BuscarNormal(double x, double y, double z)
+double GD_Matematicas::BuscarNormal(double x, double y, double z)
 {
     return 0;
 }
 
-vector3df GD_SistemaMatematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180, float dureza=15)
+vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180, float dureza=15)
 {
 	vector3df Salida;
 	f32 px = PosicionEntrada1.X;
@@ -794,7 +808,7 @@ vector3df GD_SistemaMatematicas::Seguir( vector3df PosicionEntrada1, float angul
 \param Deg es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 \return el valor del &aacute;ngulo en radianes.
 */
-double GD_SistemaMatematicas::Rad(double Deg)
+double GD_Matematicas::Rad(double Deg)
 {
 Deg = (Deg/180.0f); //Divide by 180
 Deg = Deg*3.14159f; //Multuply by approximation to PI
@@ -803,7 +817,7 @@ return (float)Deg;
 
 // POSICION *************************************************************
 // Evita que el angulo sea mayor de 360 o menor a 0
-double GD_SistemaMatematicas::WrapValue(double Angulo)
+double GD_Matematicas::WrapValue(double Angulo)
 {
    while (Angulo>=360){Angulo-=360;}
    while (Angulo<0){Angulo+=360;}
@@ -811,17 +825,17 @@ double GD_SistemaMatematicas::WrapValue(double Angulo)
 }
 //Regresa el nuevo valor del valor de la ordenadas X,Y,Z (segun el caso)
 //segun un angulo y una distancia dadas.
-double GD_SistemaMatematicas::NewXValue(double dXActual,double dAngulo,double dDistancia)
+double GD_Matematicas::NewXValue(double dXActual,double dAngulo,double dDistancia)
 {
    return ((Seno(dAngulo)*dDistancia)+dXActual);
 }
 
-double GD_SistemaMatematicas::NewYValue(double dYActual,double dAngulo,double dDistancia)
+double GD_Matematicas::NewYValue(double dYActual,double dAngulo,double dDistancia)
 {
    return  -1*((Seno(dAngulo)*dDistancia)+dYActual);
 }
 
-double GD_SistemaMatematicas::NewZValue(double dZActual,double dAngulo,double dDistancia)
+double GD_Matematicas::NewZValue(double dZActual,double dAngulo,double dDistancia)
 {
       return ((Coseno(dAngulo)*dDistancia)+dZActual);
 }

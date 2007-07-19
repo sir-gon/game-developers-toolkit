@@ -57,13 +57,13 @@ using namespace gui;
 #endif /* _GDT_EXPORT_ */
 
 //! C&aacute;lculos Matem&aacute;ticos
-class GD_SistemaMatematicas
+class GD_Matematicas
 {
 public:
-	//! [Constructor] Inicializa el Sistema de matem&aacute;ticas
-	_GDT_EXPORT_ GD_SistemaMatematicas();
+	//! Inicializa el Sistema de matem&aacute;ticas
+	_GDT_EXPORT_ GD_Matematicas();
 	// class destructor
-	_GDT_EXPORT_ ~GD_SistemaMatematicas();
+	_GDT_EXPORT_ ~GD_Matematicas();
 	
 	
 	double FastCos[361];
@@ -190,7 +190,17 @@ public:
 	_GDT_EXPORT_ double NewZValue(double dZActual,double dAngulo,double dDistancia);
 	//******************************************************************
 
-	
+};
+
+//! Use GD_Matematicas
+/**
+* \deprecated en favor de GD_Matematicas cuyo nombre es mas corto
+*/
+class GD_SistemaMatematicas : public GD_Matematicas
+{
+public:
+	_GDT_EXPORT_ GD_SistemaMatematicas();
+	_GDT_EXPORT_ ~GD_SistemaMatematicas();
 };
 
 #endif // GD_MATEMATICAS_H
