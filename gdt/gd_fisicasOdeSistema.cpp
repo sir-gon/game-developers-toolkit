@@ -34,24 +34,46 @@
 
 #include "gd_fisicasOdeSistema.h"
 
-// Para mironear las variables:
-#include <iostream>
-using namespace std;
-
+/*!
+* Crea autom&aacute;ticamente un Mundo predeterminado
+* para la instancia.
+*/
 GD_FisicasOdeSistema::GD_FisicasOdeSistema()
 {
    MundoODE=CrearMundoODE();
 }
 
+/*!
+* Crea un Mundo y retorna su ID.
+*
+* \note Este Mundo no sobreescribe el mundo definido por defecto 
+* para la instancia, sino que crea otro Mundo aparte.
+*/
 dWorldID GD_FisicasOdeSistema::CrearMundoODE()
 {
    return dWorldCreate();
 }
+
+/*!
+* Destruye el Mundo actual
+*
+* Para volver a crear un Mundo para la instancia,
+* deber&aacute; llamar nuevamente al constructor GD_FisicasOdeSistema()
+*/
 void GD_FisicasOdeSistema::DestruirMundoODE()
 {
    dWorldDestroy(MundoODE);
 }
 
+/*!
+* Establece la gravedad del mundo en cada coordenada.
+* Las unidades son: \f$ \frac{m}{s^2} \f$ (metro partido por (segundo al cuadrado))
+*
+* Ejemplo:
+* \code
+* Mundo.Gravedad(dReal x, dReal y, dReal z)
+* \endcode
+*/
 vector3df GD_FisicasOdeSistema::Gravedad(dReal x, dReal y, dReal z)
 {
    dWorldSetGravity(MundoODE,x, y, z);

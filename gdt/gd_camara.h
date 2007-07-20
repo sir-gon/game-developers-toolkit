@@ -63,9 +63,9 @@ class GD_Camara : public GD_Nodo
 		ICameraSceneNode* nodc;
 		//! Crea una C&aacute;mara
 		_GDT_EXPORT_ void Crear(int tipo=Tipo_Normal);
-		//! Establece la posici� hacia donde la c�ara debe mirar.
+		//! Establece la posici&oacute;n hacia donde la c&aacute;mara debe mirar.
 		_GDT_EXPORT_ void Orientar(float x, float y, float z);
-		//! Establece la posici� hacia donde la c�ara debe mirar.
+		//! Establece la posici&oacute;n hacia donde la c&aacute;mara debe mirar.
 		_GDT_EXPORT_ void Orientar(vector3df destino);
 
 		//! Retorna la distancia mas lejana hasta donde renderizara
@@ -80,7 +80,7 @@ class GD_Camara : public GD_Nodo
 		//_GDT_EXPORT_ void Activada(bool opc);
 		
 		//****************************
-		//! Devuelve el vector hacia el que esta orientada la c�ara
+		//! Devuelve el vector hacia el que esta orientada la c&aacute;mara
 		_GDT_EXPORT_ vector3df RetornarObjetivo();
 		//! Posiciona la camara detras de un punto en el espacio con suavizado
 		_GDT_EXPORT_ vector3df Seguir(vector3df PosicionEntrada1, 
@@ -93,17 +93,17 @@ class GD_Camara : public GD_Nodo
 					float durezaY=15/8,
 					float durezaZ=15);
 
-		//! Posiciona la c�ara para que "persiga" a un punto
+		//! Posiciona la c&aacute;mara para que "persiga" a un punto
 		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo,  float durezaX, float durezaY, float durezaZ);
-		//! Posiciona la c�ara para que "persiga" a un objeto
+		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
 		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ);
-		//! Posiciona la c�ara para que "persiga" a un objeto
+		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
 		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, double dureza);
 
 		// COMPATIBILIDAD HACIA ATRAS
-		//! Posiciona la c�ara para que "persiga" a un punto
+		//! Posiciona la c&aacute;mara para que "persiga" a un punto
 		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, double dureza);	
-		//! Posiciona la c�ara para que "persiga" a un objeto
+		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
 		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio, double distancia, double altura, double angulo);
 		// FIN COMPATIBILIDAD HACIA ATRAS
 

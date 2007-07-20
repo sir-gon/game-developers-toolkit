@@ -87,8 +87,8 @@ class GD_Musik
 	
 	_GDT_EXPORT_ GD_Musik();
 	_GDT_EXPORT_ ~GD_Musik();
-	_GDT_EXPORT_ bool Iniciar(LPSTR ArchivoMIDI);
-	_GDT_EXPORT_ bool Cargar(LPSTR ArchivoMIDI);
+	_GDT_EXPORT_ bool Iniciar(LPWSTR ArchivoMIDI);
+	_GDT_EXPORT_ bool Cargar(LPWSTR ArchivoMIDI);
 	_GDT_EXPORT_ void Destruir();
 	_GDT_EXPORT_ void Inicio_Fin(int Inicio,int Fin);
 	_GDT_EXPORT_ void InicioEn(int Inicio);
