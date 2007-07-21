@@ -42,8 +42,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="gdt;include;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_GDT_DLL_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;"
+				AdditionalIncludeDirectories="gdt;include;include\ode\;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_GDT_DLL_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -60,7 +60,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Irrlicht.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib $(NOINHERIT)"
+				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=".\lib\win32-visualstudio;.\bin\win32-visualstudio"
 				GenerateManifest="true"
@@ -119,8 +119,9 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="gdt;include;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_GDT_DLL_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;"
+				UseUnicodeResponseFiles="false"
+				AdditionalIncludeDirectories="gdt;include;include\ode\;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_GDT_DLL_;_GDT_MIDI_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -139,7 +140,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				UseLibraryDependencyInputs="true"
-				AdditionalDependencies="Irrlicht.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib $(NOINHERIT)"
+				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;lib\win32-visualstudio&quot;;&quot;bin\win32-visualstudio&quot;"
 				GenerateManifest="true"
@@ -209,23 +210,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOcuerpo.cpp"
+				RelativePath=".\gdt\gd_fisicasNwtCuerpo.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOmaterial.cpp"
+				RelativePath=".\gdt\gd_fisicasNwtMaterial.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOnwtno.cpp"
+				RelativePath=".\gdt\gd_fisicasNwtMundo.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasODEcuerpo.cpp"
+				RelativePath=".\gdt\gd_fisicasOdeCuerpo.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasODEsistema.cpp"
+				RelativePath=".\gdt\gd_fisicasOdeSistema.cpp"
 				>
 			</File>
 			<File
@@ -281,6 +282,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gdt\gd_matematicas.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\gdt\gd_musik.cpp"
 				>
 			</File>
@@ -302,10 +307,6 @@
 			</File>
 			<File
 				RelativePath=".\gdt\gd_sistemalua.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\gdt\gd_sistemamatematicas.cpp"
 				>
 			</File>
 			<File
@@ -367,23 +368,23 @@
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOcuerpo.h"
+				RelativePath=".\gdt\gd_fisicasNwtCuerpo.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOmaterial.h"
+				RelativePath=".\gdt\gd_fisicasNwtMaterial.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasNWTNOnwtno.h"
+				RelativePath=".\gdt\gd_fisicasNwtMundo.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasODEcuerpo.h"
+				RelativePath=".\gdt\gd_fisicasOdeCuerpo.h"
 				>
 			</File>
 			<File
-				RelativePath=".\gdt\gd_fisicasODEsistema.h"
+				RelativePath=".\gdt\gd_fisicasOdeSistema.h"
 				>
 			</File>
 			<File
@@ -439,6 +440,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gdt\gd_matematicas.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gdt\gd_musik.h"
 				>
 			</File>
@@ -460,10 +465,6 @@
 			</File>
 			<File
 				RelativePath=".\gdt\gd_sistemalua.h"
-				>
-			</File>
-			<File
-				RelativePath=".\gdt\gd_sistemamatematicas.h"
 				>
 			</File>
 			<File

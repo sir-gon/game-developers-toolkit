@@ -44,8 +44,6 @@ GD_FisicasOdeSistema::GD_FisicasOdeSistema()
 }
 
 /*!
-* Crea un Mundo y retorna su ID.
-*
 * \note Este Mundo no sobreescribe el mundo definido por defecto 
 * para la instancia, sino que crea otro Mundo aparte.
 */
@@ -55,8 +53,6 @@ dWorldID GD_FisicasOdeSistema::CrearMundoODE()
 }
 
 /*!
-* Destruye el Mundo actual
-*
 * Para volver a crear un Mundo para la instancia,
 * deber&aacute; llamar nuevamente al constructor GD_FisicasOdeSistema()
 */
@@ -66,7 +62,6 @@ void GD_FisicasOdeSistema::DestruirMundoODE()
 }
 
 /*!
-* Establece la gravedad del mundo en cada coordenada.
 * Las unidades son: \f$ \frac{m}{s^2} \f$ (metro partido por (segundo al cuadrado))
 *
 * Ejemplo:
@@ -79,12 +74,32 @@ vector3df GD_FisicasOdeSistema::Gravedad(dReal x, dReal y, dReal z)
    dWorldSetGravity(MundoODE,x, y, z);
    return Gravedad();
 }
+
+/*!
+* Las unidades son: \f$ \frac{m}{s^2} \f$ (metro partido por (segundo al cuadrado))
+*
+* Ejemplo:
+* \code
+* 
+* \endcode
+*/
+
 vector3df GD_FisicasOdeSistema::Gravedad(vector3df grav)
 {
    Gravedad((dReal) grav.X, (dReal) grav.Y, (dReal) grav.Z);
    return Gravedad();
 }
 
+/*!
+* \return Un vector con la gravedad del mundo en cada eje.
+*
+* Las unidades son: \f$ \frac{m}{s^2} \f$ (metro partido por (segundo al cuadrado))
+*
+* Ejemplo:
+* \code
+*
+* \endcode
+*/
 vector3df GD_FisicasOdeSistema::Gravedad()
 {
    vector3df gravI;
@@ -92,10 +107,24 @@ vector3df GD_FisicasOdeSistema::Gravedad()
    return gravI;
 }
 
+/*!
+* (Error Reduction Parameter)
+*
+* Debe ser un valor entre 0 y 1
+*
+* Ejemplo:
+* \code
+* Mundo.AsignarERP(0.4);
+* \endcode
+*/
 void GD_FisicasOdeSistema::AsignarERP(dReal erp)
 {
    dWorldSetERP(MundoODE,erp);
 }
+
+/*!
+* \return el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
+*/
 dReal GD_FisicasOdeSistema::ObtenerERP()
 {
    return dWorldGetERP(MundoODE);

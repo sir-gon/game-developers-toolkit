@@ -83,12 +83,20 @@ class GD_Musik
 	
 	
 	HWND hwReturn;
+#ifdef _MSC_VER
+	LPWSTR lpszArchivoMIDI;
+#else
 	LPSTR lpszArchivoMIDI;
-	
+#endif
 	_GDT_EXPORT_ GD_Musik();
 	_GDT_EXPORT_ ~GD_Musik();
+#ifdef _MSC_VER
 	_GDT_EXPORT_ bool Iniciar(LPWSTR ArchivoMIDI);
 	_GDT_EXPORT_ bool Cargar(LPWSTR ArchivoMIDI);
+#else
+	_GDT_EXPORT_ bool Iniciar(LPSTR ArchivoMIDI);
+	_GDT_EXPORT_ bool Cargar(LPSTR ArchivoMIDI);
+#endif
 	_GDT_EXPORT_ void Destruir();
 	_GDT_EXPORT_ void Inicio_Fin(int Inicio,int Fin);
 	_GDT_EXPORT_ void InicioEn(int Inicio);

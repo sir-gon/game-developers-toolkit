@@ -38,7 +38,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\gdt;..\..\include;..\..\include\Irrlicht;..\..\include\AL;..\..\include\ogg;..\..\include\vorbis;"
+				AdditionalIncludeDirectories="..\intro\;..\..\gdt;..\..\include;..\..\include\ode;..\..\include\Irrlicht;..\..\include\AL;..\..\include\ogg;..\..\include\vorbis;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_GDT_DLL_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -51,7 +52,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Irrlicht.lib;$(NoInherit)"
+				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				AdditionalLibraryDirectories="..\..\lib\win32-visualstudio;..\..\bin\win32-visualstudio"
 			/>
 			<Tool
@@ -104,7 +105,8 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="..\..\gdt;..\..\include;..\..\include\Irrlicht;..\..\include\AL;..\..\include\ogg;..\..\include\vorbis;"
+				AdditionalIncludeDirectories="..\intro\;..\..\gdt;..\..\include;..\..\include\ode;..\..\include\Irrlicht;..\..\include\AL;..\..\include\ogg;..\..\include\vorbis;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_GDT_DLL_;_GDT_MIDI_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -117,7 +119,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Irrlicht.lib;$(NoInherit)"
+				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				AdditionalLibraryDirectories="..\..\lib\win32-visualstudio;..\..\bin\win32-visualstudio"
 			/>
 			<Tool

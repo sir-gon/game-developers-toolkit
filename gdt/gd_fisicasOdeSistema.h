@@ -69,16 +69,22 @@ class GD_FisicasOdeSistema
 
     //funciones
     GD_FisicasOdeSistema();
-
+    //! Crea un Mundo y retorna su ID.
     _GDT_EXPORT_ dWorldID CrearMundoODE();
+    //! Destruye el Mundo actual
     _GDT_EXPORT_ void DestruirMundoODE();
-
+    //! Establece la gravedad del mundo en cada coordenada.
     _GDT_EXPORT_ vector3df Gravedad(dReal x, dReal y, dReal z);
+    //! Establece la gravedad del mundo en cada coordenada usando un vector.
     _GDT_EXPORT_ vector3df Gravedad(vector3df grav);
+    //!
     _GDT_EXPORT_ vector3df Gravedad();
 
+    //! Establece el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
     _GDT_EXPORT_ void AsignarERP(dReal erp);
+    //! Establece el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
     _GDT_EXPORT_ dReal ObtenerERP();
+    //! 
     _GDT_EXPORT_ void AsignarCFM(dReal cfm);
     _GDT_EXPORT_ dReal ObtenerCFM();
 

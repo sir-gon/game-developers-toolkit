@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<!DOCTYPE CodeBlocks_project_file>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="1"/>
+	<Project>
+		<Option title="GDT v1.3.4 BETA2"/>
+		<Option makefile="Makefile"/>
+		<Option makefile_is_custom="0"/>
+		<Option default_target="-1"/>
+		<Option compiler="0"/>
+		<Build>
+			<Target title="gdt">
+				<Option output="lib\win32-mingw\gdt.dll"/>
+				<Option working_dir="."/>
+				<Option object_output="OBJS\win32-mingw"/>
+				<Option deps_output=".deps"/>
+				<Option type="3"/>
+				<Option compiler="0"/>
+				<Option createDefFile="1"/>
+				<Option createStaticLib="1"/>
+				<Compiler>
+					<Add option="-O2"/>
+					<Add directory="include\AL"/>
+					<Add directory="include\Irrlicht"/>
+					<Add directory="include\ogg"/>
+					<Add directory="include\vorbis"/>
+					<Add directory="include"/>
+				</Compiler>
+				<Linker>
+					<Add library="lib\win32-mingw\libIrrlicht.a"/>
+					<Add library="lib\win32-mingw\liblua5.1.a"/>
+					<Add directory="lib\win32-mingw"/>
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-D_GDT_DLL_"/>
+			<Add option="-D_GDT_SONIDO_"/>
+			<Add option="-D_GDT_SONIDO_OGG_"/>
+			<Add option="-D_GDT_MIDI_"/>
+			<Add option="-D_GDT_FISICAS_ODE_"/>
+			<Add directory="include\AL"/>
+			<Add directory="include\ogg"/>
+			<Add directory="include\vorbis"/>
+			<Add directory="include\Irrlicht"/>
+			<Add directory="include\lua5.1"/>
+		</Compiler>
+		<Linker>
+			<Add option="--no-export-all-symbols --add-stdcall-alias"/>
+			<Add library="Irrlicht"/>
+			<Add library="alut"/>
+			<Add library="ogg"/>
+			<Add library="openal"/>
+			<Add library="vorbis"/>
+			<Add library="vorbisenc"/>
+			<Add library="vorbisfile"/>
+			<Add library="winmm"/>
+			<Add library="uuid"/>
+			<Add directory="lib\win32"/>
+			<Add directory="lib\win32-mingw"/>
+		</Linker>
+		<Unit filename="gdt\gd_agua.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_agua.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_archivo.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_archivo.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_camara.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_camara.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cartelera.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cartelera.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_colisiones3d.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_colisiones3d.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_controlesprediseniados.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_controlesprediseniados.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_escenario.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_escenario.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtCuerpo.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtCuerpo.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtMaterial.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtMaterial.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtMundo.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasNwtMundo.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasOdeCuerpo.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasOdeCuerpo.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasOdeSistema.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fisicasOdeSistema.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fundido.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_fundido.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_gui.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_gui.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guibarra.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guibarra.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiboton.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiboton.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guidialogoabrir.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guidialogoabrir.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiedicion.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiedicion.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiimagen.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiimagen.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guimenu.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guimenu.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guitexto.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guitexto.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiventana.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_guiventana.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_listaarchivos.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_listaarchivos.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_luz.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_luz.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_malla.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_malla.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_matematicas.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_matematicas.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_musik.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_musik.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_nodo.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_nodo.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_panorama.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_panorama.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_particula.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_particula.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistema.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistema.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistemalua.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistemalua.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistemasonido.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sistemasonido.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sonido.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sonido.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sonido3d.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_sonido3d.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_terreno.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_terreno.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_textura.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_textura.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_xml.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_xml.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gdt.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gdt_m.h">
+			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

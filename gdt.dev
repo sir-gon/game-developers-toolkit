@@ -8,9 +8,9 @@ ObjFiles=
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
-Compiler=-D_GDT_DLL__@@_-D_GDT_SONIDO__@@_-D_GDT_SONIDO_OGG__@@_
-CppCompiler=-D_GDT_DLL__@@_-D_GDT_SONIDO__@@_-D_GDT_SONIDO_OGG__@@_
-Linker=--no-export-all-symbols --add-stdcall-alias_@@_-lgdt_irr_@@_-lalut_@@_-logg_@@_-lopenal_@@_-lvorbis_@@_-lvorbisenc_@@_-lvorbisfile_@@_
+Compiler=-D_GDT_DLL__@@_-D_GDT_SONIDO__@@_-D_GDT_SONIDO_OGG__@@_-D_GDT_MIDI__@@_
+CppCompiler=-D_GDT_DLL__@@_-D_GDT_SONIDO__@@_-D_GDT_SONIDO_OGG__@@_-D_GDT_MIDI__@@_
+Linker=--no-export-all-symbols --add-stdcall-alias_@@_-lgdt_irr_@@_-lalut_@@_-logg_@@_-lopenal_@@_-lvorbis_@@_-lvorbisenc_@@_-lvorbisfile_@@_-lwinmm_@@_-luuid_@@_
 IsCpp=1
 Icon=
 ExeOutput=lib/win32-mingw
@@ -26,7 +26,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000
-Includes=include/AL;include/ogg;include/vorbis;include/Irrlicht;include/lua5.1
+Includes=include/AL;include/ogg;include/vorbis;include/Irrlicht;include/lua5.1;include
 Libs=lib/win32;lib/win32-mingw
 
 [VersionInfo]
