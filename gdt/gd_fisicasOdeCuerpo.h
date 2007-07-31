@@ -37,7 +37,7 @@
 	   #define _GDT_EXPORT_ __declspec(dllimport)
 	#endif /* Not _GDT_DLL_ */
   #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
     #define _GDT_EXPORT_ /* Definido nulo */
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
@@ -57,7 +57,7 @@ class GD_FisicasOdeCuerpo
     dMass*           Masa;
 
     //Funciones
-    dBodyID Crear(dWorldID MundoODE);
+    _GDT_EXPORT_ dBodyID Crear(dWorldID MundoODE);
     _GDT_EXPORT_ void Destruir();
 
     _GDT_EXPORT_ vector3df Posicion();

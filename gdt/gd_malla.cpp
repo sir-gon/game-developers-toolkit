@@ -96,8 +96,8 @@ void GD_Malla::Cargar(char *filename)
      coloralphaD = 100;
      coloralphaEm = 100;
      coloralphaE = 100;
-
-    for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+    
+    for(u32 i=0; i< nodon->getMaterialCount(); ++i)
     {
             nodon->getMaterial(i).EmissiveColor.set(100,80,80,80);
             nodon->getMaterial(i).DiffuseColor.set(100,100,100,100);
@@ -637,10 +637,10 @@ IMesh* GD_Malla::DibujarPlano(int gridX, int gridY)
   for (int x = 0; x < gridX; x++)
       for (int y = 0; y < gridY; y++)
        {
-           f32 xx   = (0.5-(float)x/(gridX-1))*2;
-           f32 yy   = (0.5-(float)y/(gridY-1))*2;
-           f32 xcord = 1-(float)x/(gridX-1);
-           f32 ycord = (float)y/(gridY-1)-1;
+           f32 xx   = (f32) (0.5-(f32)x/(gridX-1))*2;
+           f32 yy   = (f32) (0.5-(f32)y/(gridY-1))*2;
+           f32 xcord = (f32) 1-(f32)x/(gridX-1);
+           f32 ycord = (f32) y/(gridY-1)-1;
            mb->Vertices.push_back(S3DVertex(xx,yy,0, 0,0,0,SColor(255,255,255,255),xcord,ycord));
 
            if (x < gridX - 1 && y < gridY - 1)
@@ -662,16 +662,16 @@ IMesh* GD_Malla::DibujarCilindro(int gridX, int gridY,f32 ridus)
           SMesh* msh = new SMesh();
           SMeshBuffer* mb = new SMeshBuffer();
           msh->addMeshBuffer(mb);
-          f32 Tstp = 2*3.14/(float)(gridX-1);
+          f32 Tstp = (f32) (2*3.14/(gridX-1));
           int vertCnt = 0;
           for (int x = 0; x < gridX; x++)
               for (int y = 0; y < gridY; y++)
                {
-                   f32 yy   = (0.5-(float)y/(gridY-1))*2;
+                   f32 yy   = (f32) (0.5-(f32)y/(gridY-1))*2;
                    f32 xx   = sin((f32)x*Tstp)*ridus;
                    f32 zz   = cos((f32)x*Tstp)*ridus;
-                   f32 xcord = 1-(float)x/(gridX-1);
-                   f32 ycord = (float)y/(gridY-1)-1;
+                   f32 xcord = 1-(f32)x/(gridX-1);
+                   f32 ycord = (f32)y/(gridY-1)-1;
                    if (x < gridX-1)
                     {
                        mb->Vertices.push_back(S3DVertex(xx,yy,zz, 0,0,0,SColor(255,255,255,255),xcord,ycord));
@@ -679,9 +679,9 @@ IMesh* GD_Malla::DibujarCilindro(int gridX, int gridY,f32 ridus)
                     }
                    else
                     {
-                       f32 yy   = (0.5-(float)y/(gridY-1))*2;
-                       f32 xx   = sin(0.0)*ridus;
-                       f32 zz   = cos(0.0)*ridus;
+                       f32 yy   = (f32)(0.5-(f32)y/(gridY-1))*2;
+                       f32 xx   = (f32) sin(0.0)*ridus;
+                       f32 zz   = (f32) cos(0.0)*ridus;
                        mb->Vertices.push_back(S3DVertex(xx,yy,zz, 0,0,0,SColor(255,255,255,255),xcord,ycord));
 
                     }
@@ -705,17 +705,17 @@ IMesh* GD_Malla::DibujarCono(int gridX, int gridY,f32 ridus)
   SMesh* msh = new SMesh();
   SMeshBuffer* mb = new SMeshBuffer();
   msh->addMeshBuffer(mb);
-  f32 vstp = ridus/(float)(gridY-1);
-  f32 Tstp = 2*3.14/(float)(gridX-1);
+  f32 vstp = ridus/(f32)(gridY-1);
+  f32 Tstp = (f32) (2*3.14/(gridX-1));
   int vertCnt = 0;
   for (int x = 0; x < gridX; x++)
       for (int y = 0; y < gridY; y++)
        {
-           f32 yy   = (0.5-(float)y/(gridY-1))*2;
-           f32 xx   = sin((f32)x*Tstp)*((f32)y*vstp);
-           f32 zz   = cos((f32)x*Tstp)*((f32)y*vstp);
-           f32 xcord = 1-(float)x/(gridX-1);
-           f32 ycord = (float)y/(gridY-1)-1;
+           f32 yy   = (f32) (0.5-(f32)y/(gridY-1))*2;
+           f32 xx   = (f32) sin(x*Tstp)*(y*vstp);
+           f32 zz   = (f32) cos(x*Tstp)*(y*vstp);
+           f32 xcord = 1-(f32)x/(gridX-1);
+           f32 ycord = (f32)y/(gridY-1)-1;
            if (x < gridX-1)
             {
                mb->Vertices.push_back(S3DVertex(xx,yy,zz, 0,0,0,SColor(255,255,255,255),xcord,ycord));
@@ -723,9 +723,9 @@ IMesh* GD_Malla::DibujarCono(int gridX, int gridY,f32 ridus)
             }
            else
             {
-               f32 yy   = (0.5-(float)y/(gridY-1))*2;
-               f32 xx   = sin((f32)x*Tstp)*((f32)y*vstp);
-               f32 zz   = cos((f32)x*Tstp)*((f32)y*vstp);
+               f32 yy   = (f32) (0.5-(f32)y/(gridY-1))*2;
+               f32 xx   = (f32) sin(x*Tstp)*(y*vstp);
+               f32 zz   = (f32) cos(x*Tstp)*(y*vstp);
                mb->Vertices.push_back(S3DVertex(xx,yy,zz, 0,0,0,SColor(255,255,255,255),xcord,ycord));
 
             }

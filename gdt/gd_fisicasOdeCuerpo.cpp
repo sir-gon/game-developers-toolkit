@@ -37,7 +37,7 @@
 
 dBodyID GD_FisicasOdeCuerpo::Crear(dWorldID MundoODE)
 {
-    Body=dBodyCreate(MundoODE);
+    return Body=dBodyCreate(MundoODE);
 }
 void GD_FisicasOdeCuerpo::Destruir()
 {
@@ -355,7 +355,12 @@ void GD_FisicasOdeCuerpo::Desactivar()
 }
 bool GD_FisicasOdeCuerpo::Activo()
 {
-    return (bool)dBodyIsEnabled(Body);
+    //return (bool)dBodyIsEnabled(Body);
+	if(dBodyIsEnabled(Body) == 0)
+		return false;
+	else {
+		return true;
+	}
 }
 
 
@@ -365,7 +370,12 @@ void GD_FisicasOdeCuerpo::ModoAutodesactivar(bool bDeshabilitable)
 }
 bool GD_FisicasOdeCuerpo::ValorModoAutodesactivar()
 {
-    return (bool)dBodyGetAutoDisableFlag(Body);
+    //return (bool)dBodyGetAutoDisableFlag(Body);
+		if(dBodyGetAutoDisableFlag(Body) == 0) {
+		return false;
+	} else {
+		return true;
+	}
 }
 void GD_FisicasOdeCuerpo::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
 {
@@ -419,7 +429,11 @@ void GD_FisicasOdeCuerpo::ModoDeRotacionFinita(bool activo)
 }
 bool GD_FisicasOdeCuerpo::RotacionFinitaActivada()
 {
-    return dBodyGetFiniteRotationMode(Body);
+	//return dBodyGetFiniteRotationMode(Body);
+	if(!dBodyGetFiniteRotationMode(Body))
+		return false;
+	else
+		return true;
 }
 void GD_FisicasOdeCuerpo::EjeDeRotacionFinita(dReal x, dReal y, dReal z)
 {
@@ -445,7 +459,12 @@ void GD_FisicasOdeCuerpo::ActivarGravedad(bool activo)
 }
 bool GD_FisicasOdeCuerpo::GravedadActiva()
 {
-    return (bool) dBodyGetGravityMode(Body);
+	// return (bool) dBodyGetGravityMode(Body);
+    if(!dBodyGetGravityMode(Body))
+		return false;
+	else 
+		return true;
+	
 }
 
 /* ///Funciones escritas en la documentacion de ODG pero que no son operativas

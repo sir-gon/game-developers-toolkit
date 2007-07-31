@@ -52,10 +52,9 @@ GD_ControlesPrediseniados::GD_ControlesPrediseniados(GD_Sistema sistemaGeneral)
       Teclado.iShift=16;
 }
 
-void GD_ControlesPrediseniados::ActivarSistema(GD_Sistema sistem,GD_Matematicas Matematicas)
+void GD_ControlesPrediseniados::ActivarSistema(GD_Sistema sistem)
 {
    sistema=sistem;
-   Mat=Matematicas;
 }
 
 void GD_ControlesPrediseniados::TeclasActivas(int iUp,int iDown,int iRight,int iLeft,int iControl=17,int iShift=16)
@@ -101,23 +100,23 @@ void GD_ControlesPrediseniados::TecladoUDRL(GD_Malla Malla)
 
    //Moviendo
    if ((sistema.TeclaAbajo(38))||(sistema.TeclaAbajo(87))){
-      fPosX=(float)Mat.NewXValue(fPosX,fAngY,-2.0);
-      fPosZ=(float)Mat.NewZValue(fPosZ,fAngY,-2.0);
+      fPosX=(float)GD_Matematicas::NewXValue(fPosX,fAngY,-2.0);
+      fPosZ=(float)GD_Matematicas::NewZValue(fPosZ,fAngY,-2.0);
    }
    if ((sistema.TeclaAbajo(T_FLECHA_ABAJO))||(sistema.TeclaAbajo(T_TECLA_S))){
-      fPosX=(float)Mat.NewXValue(fPosX,fAngY,2.0);
-      fPosZ=(float)Mat.NewZValue(fPosZ,fAngY,2.0);
+      fPosX=(float)GD_Matematicas::NewXValue(fPosX,fAngY,2.0);
+      fPosZ=(float)GD_Matematicas::NewZValue(fPosZ,fAngY,2.0);
    }
    if ((sistema.TeclaAbajo(T_FLECHA_IZQUIERDA))||(sistema.TeclaAbajo(T_TECLA_Q))){fPosY-=3.0;}
    if ((sistema.TeclaAbajo(T_FLECHA_DERECHA))||(sistema.TeclaAbajo(T_TECLA_E))){fPosY+=3.0;}
 
    if ((sistema.TeclaAbajo(T_CONTROL))||(sistema.TeclaAbajo(T_TECLA_D))){
-      fPosX=(float)Mat.NewXValue(fPosX,Mat.WrapValue(fAngY+90),-2.0);
-      fPosZ=(float)Mat.NewZValue(fPosZ,Mat.WrapValue(fAngY+90),-2.0);
+      fPosX=(float)GD_Matematicas::NewXValue(fPosX,GD_Matematicas::WrapValue(fAngY+90),-2.0);
+      fPosZ=(float)GD_Matematicas::NewZValue(fPosZ,GD_Matematicas::WrapValue(fAngY+90),-2.0);
    }
    if ((sistema.TeclaAbajo(T_SHIFT))||(sistema.TeclaAbajo(T_TECLA_A))){
-      fPosX=(float)Mat.NewXValue(fPosX,Mat.WrapValue(fAngY+90),2.0);
-      fPosZ=(float)Mat.NewZValue(fPosZ,Mat.WrapValue(fAngY+90),2.0);
+      fPosX=(float)GD_Matematicas::NewXValue(fPosX,GD_Matematicas::WrapValue(fAngY+90),2.0);
+      fPosZ=(float)GD_Matematicas::NewZValue(fPosZ,GD_Matematicas::WrapValue(fAngY+90),2.0);
    }
 
    if(sistema.TeclaAbajo(T_TECLA_M))
@@ -126,10 +125,10 @@ void GD_ControlesPrediseniados::TecladoUDRL(GD_Malla Malla)
 
    MousePsX=sistema.MouseMovimientoX(1);
    if (MousePsX<0)
-   {fAngY=(float)Mat.WrapValue(fAngY-2.5);}
+   {fAngY=(float)GD_Matematicas::WrapValue(fAngY-2.5);}
    else
    {
-      if (MousePsX>0){fAngY=(float)Mat.WrapValue(fAngY+2.5);}
+      if (MousePsX>0){fAngY=(float)GD_Matematicas::WrapValue(fAngY+2.5);}
    }
 
    Malla.Posicionar(fPosX,fPosY,fPosZ);

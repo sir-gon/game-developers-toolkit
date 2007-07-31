@@ -44,11 +44,7 @@ GD_Musik::~GD_Musik()
   Destruir();
 }
 
-#ifdef _MSC_VER
-bool GD_Musik::Iniciar(LPWSTR ArchivoMIDI)
-#else
-bool GD_Musik::Iniciar(LPSTR ArchivoMIDI)
-#endif
+bool GD_Musik::Iniciar(MUSIK_STRING ArchivoMIDI)
 {
 
     lpszArchivoMIDI=ArchivoMIDI;
@@ -62,10 +58,11 @@ bool GD_Musik::Iniciar(LPSTR ArchivoMIDI)
     // Open the device by specifying the device and filename.
     // MCI will attempt to choose the MIDI mapper as the output port.
 	#ifdef _MSC_VER
-	mciOpenParms.lpstrDeviceType = L"sequencer";
+	//mciOpenParms.lpstrDeviceType = L"sequencer";
 	#else
-    mciOpenParms.lpstrDeviceType = "sequencer";
+    //mciOpenParms.lpstrDeviceType = "sequencer";
 	#endif
+	mciOpenParms.lpstrDeviceType = (MUSIK_STRING)"sequencer";
     mciOpenParms.lpstrElementName = ArchivoMIDI;
 	if (dwReturn = mciSendCommand(wDeviceID , MCI_OPEN,
         MCI_OPEN_TYPE | MCI_OPEN_ELEMENT ,
@@ -100,11 +97,7 @@ bool GD_Musik::Iniciar(LPSTR ArchivoMIDI)
    return true;
 }
 
-#ifdef _MSC_VER
-bool GD_Musik::Cargar(LPWSTR ArchivoMIDI)
-#else
-bool GD_Musik::Cargar(LPSTR ArchivoMIDI)
-#endif
+bool GD_Musik::Cargar(MUSIK_STRING ArchivoMIDI)
 {
    return Iniciar(ArchivoMIDI);
 }

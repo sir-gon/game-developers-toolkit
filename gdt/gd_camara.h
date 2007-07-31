@@ -58,8 +58,6 @@ class GD_Camara : public GD_Nodo
 		
 		int miID;
 		
-		GD_Matematicas SisMat;
-
 		ICameraSceneNode* nodc;
 		//! Crea una C&aacute;mara
 		_GDT_EXPORT_ void Crear(int tipo=Tipo_Normal);

@@ -109,7 +109,7 @@ char GD_Sonido3D::CargarOGG(char *archivo)
   alGenBuffers(1, &SBuffer);
   alGenSources(1, &SSource);
 
-
+  
   int endian = 0;             // 0 for Little-Endian, 1 for Big-Endian
   int bitStream;
   long bytes;
@@ -117,11 +117,12 @@ char GD_Sonido3D::CargarOGG(char *archivo)
   FILE *f;
   // Open for binary reading
   f = fopen(archivo, "rb");
-
+  
   vorbis_info *pInfo;
   OggVorbis_File oggFile;
 
   ov_open(f, &oggFile, NULL, 0);
+return 'a';
   // Get some information about the OGG file
   pInfo = ov_info(&oggFile, -1);
 

@@ -61,146 +61,141 @@ class GD_Matematicas
 {
 public:
 	//! Inicializa el Sistema de matem&aacute;ticas
-	_GDT_EXPORT_ GD_Matematicas();
+	//_GDT_EXPORT_ GD_Matematicas();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Matematicas();
+	//_GDT_EXPORT_ GD_Matematicas();
 	
 	
-	double FastCos[361];
-	double FastSin[361];
-	double FastTan[361];
-	
-	//void Inicializar();
-	_GDT_EXPORT_ int Capar(int);
-	_GDT_EXPORT_ double Capar(double);
-	
+	_GDT_EXPORT_ static double FastCos[361];
+	_GDT_EXPORT_ static double FastSin[361];
+	_GDT_EXPORT_ static double FastTan[361];
+
+	//! Inicializa los c&aacute;lculos trigonom&eacute;tricos y de n&uacute; pseudo-aleatorios
+	_GDT_EXPORT_ static bool Inicializar();
+
+	_GDT_EXPORT_ static int Capar(int);
+	_GDT_EXPORT_ static double Capar(double);
+
+	_GDT_EXPORT_ static int Grados(int);
+	_GDT_EXPORT_ static double Grados(double);
+
 	// CONSTANTES UNIVERSALES
 	//! Retorna la constante "Pi"
-	_GDT_EXPORT_ double PI();
+	_GDT_EXPORT_ static double PI();
 	//! Retorna la constante "e" (o base del logaritmo natural)
-	_GDT_EXPORT_ double E();
+	_GDT_EXPORT_ static double E();
 	
 	// FUNCIONES TRIGONOMETRICAS
 	//! Calcula el Seno del &aacute;ngulo entero dado
-	_GDT_EXPORT_ double Seno(int);
+	_GDT_EXPORT_ static double Seno(int);
 	//! Calcula el Seno del &aacute;ngulo dado
-	_GDT_EXPORT_ double Seno(double);
+	_GDT_EXPORT_ static double Seno(double);
 	//! Calcula el Coseno del &aacute;ngulo entero dado
-	_GDT_EXPORT_ double Coseno(int);
+	_GDT_EXPORT_ static double Coseno(int);
 	//! Calcula el Coseno del &aacute;ngulo dado
-	_GDT_EXPORT_ double Coseno(double);
+	_GDT_EXPORT_ static double Coseno(double);
 	//! Calcula la Tangente del &aacute;ngulo entero dado
-	_GDT_EXPORT_ double Tangente(int);
+	_GDT_EXPORT_ static double Tangente(int);
 	//! Calcula la Tangente del &aacute;ngulo dado
-	_GDT_EXPORT_ double Tangente(double);
+	_GDT_EXPORT_ static double Tangente(double);
 	
 	// FUNCIONES BASICAS
 	//! Retorna el m&iacute;nimo entre 2 valores
-	_GDT_EXPORT_ int Minimo(int, int);
+	_GDT_EXPORT_ static int Minimo(int, int);
 	//! Retorna el m&iacute;nimo entre 2 valores
-	_GDT_EXPORT_ double Minimo(double, double);
+	_GDT_EXPORT_ static double Minimo(double, double);
 	//! Retorna el m&aacute;ximo entre 2 valores
-	_GDT_EXPORT_ int Maximo(int, int);
+	_GDT_EXPORT_ static int Maximo(int, int);
 	//! Retorna el m&aacute;ximo entre 2 valores
-	_GDT_EXPORT_ double Maximo(double, double);
+	_GDT_EXPORT_ static double Maximo(double, double);
 	//! Redondea hacia arriba un n&uacute;mero
-	_GDT_EXPORT_ int RedondearArriba(double);
+	_GDT_EXPORT_ static int RedondearArriba(double);
 	//! Redondea hacia abajo un n&uacute;mero
-	_GDT_EXPORT_ int RedondearAbajo(double);
+	_GDT_EXPORT_ static int RedondearAbajo(double);
 	//! Redondea aplicando la regla habitual de redondeo.
-	_GDT_EXPORT_ int Redondear(double);
+	_GDT_EXPORT_ static int Redondear(double);
 	//! Convierte un n&uacute;mero real a entero
-	_GDT_EXPORT_ int Entero(double);
+	_GDT_EXPORT_ static int Entero(double);
 	//! Retorna el Valor Absoluto de un n&uacute;mero entero
-	_GDT_EXPORT_ int Absoluto(int);
+	_GDT_EXPORT_ static int Absoluto(int);
 	//! Retorna el Valor Absoluto de un n&uacute;mero real
-	_GDT_EXPORT_ double Absoluto(double);
+	_GDT_EXPORT_ static double Absoluto(double);
 	
 	// PROBABILIDAD
 	//! Retorna un n&uacute;mero entero pseudoaleatorio en el intervalo entre el m&iacute;nimo y m&aacute;ximo dado
-	_GDT_EXPORT_ int Azar(int,int);
+	_GDT_EXPORT_ static int Azar(int,int);
 	//! Retorna un n&uacute;mero decimal pseudoaleatorio en el intervalo entre el m&iacute;nimo y m&aacute;ximo dado
-	_GDT_EXPORT_ double Azar(double, double);
+	_GDT_EXPORT_ static double Azar(double, double);
 	
 	// RECTAS
 	//! Calcula el &aacute; que forma la recta que une 2 puntos con el eje X
-	_GDT_EXPORT_ double Angulo(double, double, double, double);
+	_GDT_EXPORT_ static double Angulo(double, double, double, double);
 	//! Calcula la distancia entre 2 puntos en un plano (2 dimensiones)
-	_GDT_EXPORT_ double Distancia(double, double, double, double);
+	_GDT_EXPORT_ static double Distancia(double, double, double, double);
 	//! Calcula la distancia entre 2 puntos en el espacio (3 dimensiones)
-	_GDT_EXPORT_ double Distancia3d(double, double, double, double, double, double);
-	_GDT_EXPORT_ double GiroAngulo(double, double);
+	_GDT_EXPORT_ static double Distancia3d(double, double, double, double, double, double);
+	_GDT_EXPORT_ static double GiroAngulo(double, double);
 	
 	// POTENCIAS Y RAICES
 	//! Retorna la ra&iacute;z cuadrada de un n&uacute;mero
-	_GDT_EXPORT_ double Raiz(double);
+	_GDT_EXPORT_ static double Raiz(double);
 	//! Calcula la potencia de x elevado a y.
-	_GDT_EXPORT_ double Potencia(double, double);
+	_GDT_EXPORT_ static double Potencia(double, double);
 	
 	// FUNCIONES EXPONENCIALES Y LOGARITMICAS
 	//! Calcula la Exponencial de x. La base es "e".
-	_GDT_EXPORT_ double Exponencial(double);
+	_GDT_EXPORT_ static double Exponencial(double);
 	//! Calcula el valor de la funci&oacute;n logaritmo natural de un n&uacute;mero.
-	_GDT_EXPORT_ double Logaritmo(double);
+	_GDT_EXPORT_ static double Logaritmo(double);
 	//! Calcula el valor de la funci&oacute;n logaritmo base 10 de un n&uacute;mero.
-	_GDT_EXPORT_ double Logaritmo10(double);
+	_GDT_EXPORT_ static double Logaritmo10(double);
 	
 	// FUNCIONES HIPERBOLICAS
 	//! Calcula el Seno Hiperb&oacute;lico de un n&uacute;mero.
-	_GDT_EXPORT_ double SenoHyperbolico(double);
+	_GDT_EXPORT_ static double SenoHyperbolico(double);
 	//! Calcula el Coseno Hiperb&oacute;lico de un n&uacute;mero: f(x) = ( e^x + e^(-x) ) / 2
-	_GDT_EXPORT_ double CosenoHyperbolico(double);
-	_GDT_EXPORT_ double TangenteHyperbolica(double);
+	_GDT_EXPORT_ static double CosenoHyperbolico(double);
+	_GDT_EXPORT_ static double TangenteHyperbolica(double);
 	
 	// FUNCIONES TRIGONOMETRICAS INVERSAS
 	//! Funci&oacute;n inversa del Seno(). ArcoSeno( Seno (x) ) = x;
-	_GDT_EXPORT_ double ArcoSeno(double);
+	_GDT_EXPORT_ static double ArcoSeno(double);
 	//! Funci&oacute;n inversa del Coseno(). ArcoCoseno( Coseno (x) ) = x;
-	_GDT_EXPORT_ double ArcoCoseno(double);
+	_GDT_EXPORT_ static double ArcoCoseno(double);
 	//! Funci&oacute;n inversa de la Tangente(). ArcoTangente( Tangente (x) ) = x;
-	_GDT_EXPORT_ double ArcoTangente(double);
+	_GDT_EXPORT_ static double ArcoTangente(double);
 	//! Calcula el valor de la funci&oacute;n exponencial de un n&uacute;mero. f(x) = e^x
 	
-	_GDT_EXPORT_ float CurvarValor(float, float, float);
-	_GDT_EXPORT_ double CurvarAngulo(double, double, double);
-	_GDT_EXPORT_ double MueveX(double, double, double);
-	_GDT_EXPORT_ double MueveY(double, double, double);
-	_GDT_EXPORT_ double MueveZ(double z, double angulo, double velocidad);
+	_GDT_EXPORT_ static float CurvarValor(float, float, float);
+	_GDT_EXPORT_ static double CurvarAngulo(double, double, double);
+	_GDT_EXPORT_ static double MueveX(double, double, double);
+	_GDT_EXPORT_ static double MueveY(double, double, double);
+	_GDT_EXPORT_ static double MueveZ(double z, double angulo, double velocidad);
 	
 	// INTERVALO
 	//! Comprueba si un número pertecene al Intervalo.
-	_GDT_EXPORT_ char Rango(double, double, double,char);
+	_GDT_EXPORT_ static char Rango(double, double, double,char);
 	//! Comprueba si un número pertecene al Intervalo Abierto.
-	_GDT_EXPORT_ char RangoAbierto(double, double, double);
+	_GDT_EXPORT_ static char RangoAbierto(double, double, double);
 	//! Comprueba si un número pertecene al Intervalo Cerrado.
-	_GDT_EXPORT_ char RangoCerrado(double, double, double);
+	_GDT_EXPORT_ static char RangoCerrado(double, double, double);
 	
-	_GDT_EXPORT_ double BuscarNormal(double, double, double);
+	_GDT_EXPORT_ static double BuscarNormal(double, double, double);
 	vector3df Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo, float dureza);
 	
 	//! Convierte grados sexagesimales a radianes.
-	_GDT_EXPORT_ double Rad(double);
+	_GDT_EXPORT_ static double Rad(double);
 
 	// POSICION ********************************************************
-	_GDT_EXPORT_ double WrapValue(double Angulo);
+	_GDT_EXPORT_ static double WrapValue(double Angulo);
 	//Regresa el nuevo valor del valor de la ordenadas X,Y,Z (segun el caso)
 	//segun un angulo y una distancia dadas.
-	_GDT_EXPORT_ double NewXValue(double dXActual,double dAngulo,double dDistancia);
-	_GDT_EXPORT_ double NewYValue(double dYActual,double dAngulo,double dDistancia);
-	_GDT_EXPORT_ double NewZValue(double dZActual,double dAngulo,double dDistancia);
+	_GDT_EXPORT_ static double NewXValue(double dXActual,double dAngulo,double dDistancia);
+	_GDT_EXPORT_ static double NewYValue(double dYActual,double dAngulo,double dDistancia);
+	_GDT_EXPORT_ static double NewZValue(double dZActual,double dAngulo,double dDistancia);
 	//******************************************************************
 
 };
 
-//! Use GD_Matematicas
-/**
-* \deprecated en favor de GD_Matematicas cuyo nombre es mas corto
-*/
-class GD_SistemaMatematicas : public GD_Matematicas
-{
-public:
-	_GDT_EXPORT_ GD_SistemaMatematicas();
-	_GDT_EXPORT_ ~GD_SistemaMatematicas();
-};
 
 #endif // GD_MATEMATICAS_H

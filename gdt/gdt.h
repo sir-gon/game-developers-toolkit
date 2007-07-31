@@ -18,6 +18,17 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
+// CAPA DE AUDIO
+#ifdef _GDT_SONIDO_
+  //Sonido
+  #include "gd_sistemasonido.h"
+  #include "gd_sonido3d.h"
+  #include "gd_sonido.h"
+  //Musica
+  #ifdef WIN32
+     #include "gd_musik.h"
+  #endif
+#endif
 
 // Sistema
 #include "gd_sistema.h"
@@ -55,31 +66,19 @@
 //Otros
 #include "gd_fundido.h"
 
-// CAPA DE AUDIO
-#if defined(_GDT_SONIDO_)
-  //Sonido
-  #include "gd_sistemasonido.h"
-  #include "gd_sonido3d.h"
-  #include "gd_sonido.h"
-  //Musica
-  #if defined(WIN32)
-     #include "gd_musik.h"
-  #endif
-#endif
-
 //Lenguaje de Scripting LUA
-#if defined(_GDT_SCRIPTING_)
-  #include "gd_sistemalua.h"
+#ifdef _GDT_SCRIPTING_
+  #include "gd_scriptlua.h"
 #endif
 
 //Fisicas ODE
-#if defined(_GDT_FISICAS_ODE_)
+#ifdef _GDT_FISICAS_ODE_
   #include "gd_fisicasOdeSistema.h"
   #include "gd_fisicasOdeCuerpo.h"
 #endif
 
 //Fisicas NEWTON DYNAMICS
-#if defined(_GDT_FISICAS_NEWTON_)
+#ifdef _GDT_FISICAS_NEWTON_
   #include "gd_fisicasNwtMundo.h"
   #include "gd_fisicasNwtMaterial.h"
   #include "gd_fisicasNwtCuerpo.h"

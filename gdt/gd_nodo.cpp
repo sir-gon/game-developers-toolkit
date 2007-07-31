@@ -706,7 +706,7 @@ void GD_Nodo::Texturizar(char* filename, int capa)
      //nodon->setMaterialTexture(capa, midevice->getVideoDriver()->getTexture(filename));
      if(capa == -1) // agregado por Habatar
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->setMaterialTexture(i, midevice->getVideoDriver()->getTexture(filename));
          }
@@ -737,7 +737,7 @@ void GD_Nodo::Texturizar(GD_Textura textu, int capa)
      //nodon->setMaterialTexture(capa, textu);
      if(capa == -1) // agregado por Habatar
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->setMaterialTexture(i, textu.tex);
          }
@@ -855,7 +855,7 @@ void GD_Nodo::ColorAmbiente(s32 r,s32 g,s32 b, int capa )
 {
      if(capa == -1)
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->getMaterial(i).AmbientColor.set(coloralphaA,r,g,b);
          }
@@ -879,7 +879,7 @@ void GD_Nodo::ColorDifuso(s32 r,s32 g,s32 b,  int capa)
 {
      if(capa == -1)
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->getMaterial(i).DiffuseColor.set(coloralphaD,r,g,b);
          }
@@ -903,7 +903,7 @@ void GD_Nodo::ColorEmisivo(s32 r,s32 g,s32 b,  int capa)
 {
      if(capa == -1)
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->getMaterial(i).EmissiveColor.set(coloralphaEm,r,g,b);
          }
@@ -927,7 +927,7 @@ void GD_Nodo::ColorEspecular(s32 r,s32 g,s32 b,  int capa)
 {
      if(capa == -1)
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->getMaterial(i).SpecularColor.set(coloralphaE,r,g,b);
          }

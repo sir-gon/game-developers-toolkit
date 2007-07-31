@@ -117,14 +117,14 @@ vector3df GD_Camara::Seguir(vector3df PosicionEntrada1, float anguloY,vector3df 
 	double px = PosicionEntrada1.X;
 	double py = PosicionEntrada1.Y;
 	double pz = PosicionEntrada1.Z;
-	double pa = SisMat.Capar(anguloY+angulo);
+	double pa = GD_Matematicas::Capar(anguloY+angulo);
 	double cx = PosicionEntrada2.X;
 	double cy = PosicionEntrada2.Y;
 	double cz = PosicionEntrada2.Z;
-	cx = SisMat.CurvarValor(cx,SisMat.MueveX(px ,pa ,distancia),durezaX);
-	cy = SisMat.CurvarValor(cy,py+altura,durezaY);
- 	cz = SisMat.CurvarValor(cz,SisMat.MueveZ(pz ,pa ,distancia),durezaZ);
-    Salida.set(cx,cy,cz);
+	cx = GD_Matematicas::CurvarValor((float)cx,(float)GD_Matematicas::MueveX(px ,pa ,distancia),durezaX);
+	cy = GD_Matematicas::CurvarValor((float)cy,(float)py+altura,durezaY);
+ 	cz = GD_Matematicas::CurvarValor((float)cz,(float)GD_Matematicas::MueveZ(pz ,pa ,distancia),durezaZ);
+    Salida.set((float)cx,(float)cy,(float)cz);
     return Salida;
 }
 
@@ -140,7 +140,18 @@ Cabe resaltar que lo hace con suavizado ajustable.
 void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ)
 {
     vector3df PosicionEntrada2 = nodc->getPosition();
-    Posicionar(Seguir(PosicionEntrada1, anguloY, PosicionEntrada2,distancia,altura,angulo,durezaX,durezaY,durezaZ));
+    Posicionar(
+		Seguir(PosicionEntrada1,
+			anguloY,
+			PosicionEntrada2,
+			(float)distancia,
+			(float)altura,
+			(float)angulo,
+			durezaX,
+			durezaY,
+			durezaZ
+		)
+	);
     Orientar(PosicionEntrada1);
 }
 
@@ -155,8 +166,19 @@ Cabe resaltar que lo hace con suavizado ajustable.
 void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo, float durezaX, float durezaY, float durezaZ)
 {
 	vector3df PosicionEntrada2 = nodc->getPosition();
-	Posicionar(Seguir(nodoncio.Posicion(), nodoncio.RotacionY(),
-		PosicionEntrada2,distancia,altura,angulo,durezaX,durezaY,durezaZ));
+	Posicionar(
+		Seguir(
+			nodoncio.Posicion(),
+			nodoncio.RotacionY(),
+			PosicionEntrada2,
+			(float)distancia,
+			(float)altura,
+			(float)angulo,
+			durezaX,
+			durezaY,
+			durezaZ
+		)
+	);
 	Orientar(nodoncio.Posicion());
 }
 
@@ -170,9 +192,17 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double
 void GD_Camara::Perseguir(GD_Nodo nodoncio, double distancia, double altura, double angulo, double dureza)
 {
 	vector3df PosicionEntrada2 = nodc->getPosition();
-	Posicionar( Seguir(nodoncio.Posicion(),
-		nodoncio.RotacionY(),
-		PosicionEntrada2, distancia, altura, angulo, dureza));
+	Posicionar(
+		Seguir(
+			nodoncio.Posicion(),
+			nodoncio.RotacionY(),
+			PosicionEntrada2,
+			(float)distancia,
+			(float)altura,
+			(float)angulo,
+			(float)dureza
+		)
+	);
 	Orientar(nodoncio.Posicion());
 }
 
@@ -182,12 +212,22 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio, double distancia, double altura, dou
 */
 void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo, double dureza)
 {
-         //printf("tipo = %d\n", tipo);
-         vector3df PosicionEntrada2 = nodc->getPosition();
+	//printf("tipo = %d\n", tipo);
+	vector3df PosicionEntrada2 = nodc->getPosition();
 
-         Posicionar(Seguir(PosicionEntrada1, anguloY, PosicionEntrada2,distancia,altura,angulo,dureza));
+	Posicionar(
+		Seguir(
+			PosicionEntrada1,
+			(float)anguloY,
+			PosicionEntrada2,
+			(float)distancia,
+			(float)altura,
+			(float)angulo,
+			(float)dureza
+		)
+	);
 
-	 Orientar(PosicionEntrada1);
+	Orientar(PosicionEntrada1);
 
 }
 
@@ -197,10 +237,14 @@ void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double dista
 void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo)
 {
 	Posicionar(nodoncio.Posicion());
-	MoverY(altura);
-	Mover(	cos((nodoncio.RotacionY()+angulo)*3.14159265359/180)*distancia,
+	MoverY((float)altura);
+	Mover(
+		(float) cos( (float) (nodoncio.RotacionY()+angulo)*3.14159265359/180)
+				* (float) distancia,
 		0,
-		-sin((nodoncio.RotacionY()+angulo)*3.14159265359/180)*distancia);
+		(float) -sin( (float) (nodoncio.RotacionY()+angulo)*3.14159265359/180)
+				* (float) distancia
+	);
 	Orientar(nodoncio.Posicion());
 }
 //Fin compatibilidad hacia atr&aacute;s

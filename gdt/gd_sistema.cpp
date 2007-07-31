@@ -103,17 +103,17 @@
 *     - _GDT_SONIDO_ // Incluye soporte para tocar sonido usando Openal + Alut
 *     - _GDT_SONIDO_OGG_ // Incluye soporte para decodificar OGG + Vorbis. NO
 *  sirve de nada si no se define _GDT_SONIDO_.
-*     - _GDT_MIDI_ // Incluye soporte para tocar sonidos Midi. Este m&oacutelo
+*     - _GDT_MIDI_ // Incluye soporte para tocar sonidos Midi. Este m&oacute;dulo
 *  requiere la WINAPI. Viene desactivado en Linux (por razones obvias) y en MS
 *  Visual C++ 2005 Express. En este &uacute;ltimo porque necesita tener instalado
 *  el Platform SDK previamente. Si desea usar Midi en MSVC, entonces asegurese de
 *  tener el PSDK instalado, y luego agregar esta definici&oacute;n en su proyecto.
 *     - _GDT_SCRIPTING_ // LUA
-*     - _GDT_FISICAS_NEWTON_ // Newton Dynamics, desactivado en forma
-*  predeterminada
-*     - _GDT_FISICAS_ODE_ // NO implementado aun, pero irá a futuro.
+*     - _GDT_FISICAS_ODE_ // F&iacute;sicas Open Dynamics Engine.
+*     - _GDT_FISICAS_NEWTON_ // F&iacute;sicas Newton Dynamics, desactivado en forma
+*  predeterminada. Se deja como opcional para el usuario por temas de licencia.
 * 
-* \section evitar Lo que debe evitar:
+* \section evitar Lo que debe evitar
 * 
 * Por favor, para no tener problemas, no intente:
 * 
@@ -121,8 +121,8 @@
 * GDT, ya que provee el motor gr&aacute;fico y la base de muchas otras cosas
 *  necesarias. Para mayor informaci&oacute;n lea el siguiente punto.
 * 
-* - Compilar GDT con m&oacute;dulos opcionales si sus dependencias no est&aacute;
-*  instaladas, o no est&aacute; disponibles. Aseg&uacute;rese que las cabeceras
+* - Compilar GDT con m&oacute;dulos opcionales si sus dependencias no est&aacute;n
+*  instaladas, o no est&aacute;n disponibles. Aseg&uacute;rese que las cabeceras
 *  (.h) de las dependencias est&eacute;n disponibles en algun directorio de
 *  inclusi&oacute;n o agregar rutas adicionales, donde se tienen instaladas, al
 *  proyecto del IDE escogido.
@@ -150,7 +150,7 @@
 *  _GDT_DOXYGEN_IGNORAR_ el compilador ignorar&aacute; partes que SI SON
 *  NECESARIAS PARA COMPILAR.
 * 
-* - Definir _GDT_DLL_ si no est&aacute; compilando GDT como librer&iacutea
+* - Definir _GDT_DLL_ si no est&aacute; compilando GDT como librer&iacute;a
 *  din&aacute;mica DLL en Windows. Tampoco defina esta constante en su propio
 *  proyecto. Esta constante se usa para definir _GDT_EXPORT_ con el valor que
 *  corresponde en caso de compilar GDT como DLL en Windows.
@@ -212,37 +212,37 @@ GD_Sistema::~GD_Sistema()
 }
 
 /*!
-Parametros:
-
-\param ancho,alto resolucion de
-\param prof de color (16, 24, 32 bits)
-\param full true para Pantalla completa o false para ventana
-\param VideoDriver Modo de dibujado
-\param StencilBuffer Activa o desactiva el Stencil Buffer, requerido para hacer sombras.
-\param Vsync Activa o desactiva Vsync.
-
-VideoDriver puede ser:
- - OPENGL (predeterminado)
- - DIRECTX8
- - DIRECTX9
- - SOFTWARE
- - NULO
-
-Ejemplo 1:
-\code
-// Ventana 640x480 a 16 bits, sin especificar driver (por defecto OPENGL)
-Sistema.Inicializar(640,480,16);
-\endcode
-Ejemplo 2:
-\code
-// Ventana 640x480 a 16 bits, renderizado por SOFTWARE
-Sistema.Inicializar(640,480,16, SOFTWARE);
-\endcode
-Ejemplo 3:
-\code
-// Ventana 640x480 a 16 bits, renderizado por OpenGL, con stencil buffer y vsync activado
-Sistema.Inicializar(640,480,16, OPENGL, true, true);
-\endcode
+*Parametros:
+*
+* \param ancho,alto resolucion de
+* \param prof de color (16, 24, 32 bits)
+* \param full true para Pantalla completa o false para ventana
+* \param VideoDriver Modo de dibujado
+* \param StencilBuffer Activa o desactiva el Stencil Buffer, requerido para hacer sombras.
+* \param Vsync Activa o desactiva Vsync.
+*
+* VideoDriver puede ser:
+* - OPENGL (predeterminado)
+* - DIRECTX8
+* - DIRECTX9
+* - SOFTWARE
+* - NULO
+*
+* Ejemplo 1:
+* \code
+* // Ventana 640x480 a 16 bits, sin especificar driver (por defecto OPENGL)
+* Sistema.Inicializar(640,480,16);
+* \endcode
+* Ejemplo 2:
+* \code
+* // Ventana 640x480 a 16 bits, renderizado por SOFTWARE
+* Sistema.Inicializar(640,480,16, SOFTWARE);
+* \endcode
+* Ejemplo 3:
+* \code
+* // Ventana 640x480 a 16 bits, renderizado por OpenGL, con stencil buffer y vsync activado
+* Sistema.Inicializar(640,480,16, OPENGL, true, true);
+* \endcode
 */
 void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
 	{
@@ -299,12 +299,12 @@ void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_
 }
 
 /*!
-\return True si el sistema est&aacute; en ejecuci&oacute;n, en otro caso false.
-
-Ejemplo:
-\code
-Sistema.EnEjecucion();
-\endcode
+* \return True si el sistema est&aacute; en ejecuci&oacute;n, en otro caso false.
+* 
+* Ejemplo:
+* \code
+* Sistema.EnEjecucion();
+* \endcode
 */
 bool GD_Sistema::EnEjecucion()
 {
@@ -312,10 +312,10 @@ bool GD_Sistema::EnEjecucion()
 }
 
 /*!
-Ejemplo:
-\code
-ancho = Sistema.AnchoVentana();
-\endcode
+* Ejemplo:
+* \code
+* ancho = Sistema.AnchoVentana();
+* \endcode
 */
 int GD_Sistema::AnchoVentana()
 {
@@ -325,10 +325,10 @@ int GD_Sistema::AnchoVentana()
 }
 
 /*!
-Ejemplo:
-\code
-ancho = Sistema.AnchoVentana();
-\endcode
+* Ejemplo:
+* \code
+* vancho = Sistema.AnchoVentana();
+* \endcode
 */
 
 int GD_Sistema::AltoVentana()
@@ -340,21 +340,19 @@ int GD_Sistema::AltoVentana()
 
 
 /*!
-\param filename la ruta de la fuente.
-
-Ejemplo:
-\code
-Sistema.Fuente("media/letras.bmp");
-\endcode
+* \param filename la ruta de la fuente.
+* 
+* Ejemplo:
+* \code
+* Sistema.Fuente("media/letras.bmp");
+* \endcode
 */
 void GD_Sistema::Fuente(char* filename)
 {
  skin->setFont(guienv->getFont(filename));
 }
 
-/**
-Maneja los eventos
-
+/*!
 */
 // lifetree -- to use multi-key and mouse-button
 bool GD_Sistema::OnEvent(SEvent event)
@@ -431,14 +429,14 @@ bool GD_Sistema::ClickBoton(int id2)
 }
 
 /*!
-\param id2 GD_GuiBarra
-
-Ejemplo:
-\code
-if( Sistema.BarraMovida ( miBarra ) ) {
-    // Aqu&iacute; lo que haga
-}
-\endcode
+* \param id2 GD_GuiBarra
+* 
+* Ejemplo:
+* \code
+* if( Sistema.BarraMovida ( miBarra ) ) {
+*     // Aqu&iacute; lo que haga
+* }
+* \endcode
 */
 bool GD_Sistema::BarraMovida(int id2)
 {
@@ -462,109 +460,107 @@ const wchar_t* GD_Sistema::ArchivoSeleccionado(void)
 }
 
 /*!
-\param index Tecla a determinar si est&aacute; presionada.
-
-Las teclas son:
-    - T_ESC
-    - T_FLECHA_IZQUIERDA
-    - T_FLECHA_ARRIBA
-    - T_FLECHA_DERECHA
-    - T_FLECHA_ABAJO
-    - T_TECLA_A
-    - T_TECLA_B
-    - T_TECLA_C
-    - T_TECLA_D
-    - T_TECLA_E
-    - T_TECLA_F
-    - T_TECLA_G
-    - T_TECLA_H
-    - T_TECLA_I
-    - T_TECLA_J
-    - T_TECLA_K
-    - T_TECLA_L
-    - T_TECLA_M
-    - T_TECLA_N
-    - T_TECLA_O
-    - T_TECLA_P
-    - T_TECLA_Q
-    - T_TECLA_R
-    - T_TECLA_S
-    - T_TECLA_T
-    - T_TECLA_U
-    - T_TECLA_V
-    - T_TECLA_W
-    - T_TECLA_X
-    - T_TECLA_Y
-    - T_TECLA_Z
-    - T_F1
-    - T_F2
-    - T_F3
-    - T_F4
-    - T_F5
-    - T_F6
-    - T_F7
-    - T_F8
-    - T_F9
-    - T_F10
-    - T_F11
-    - T_F12
-    - T_TECLA_0
-    - T_TECLA_1
-    - T_TECLA_2
-    - T_TECLA_3
-    - T_TECLA_4
-    - T_TECLA_5
-    - T_TECLA_6
-    - T_TECLA_7
-    - T_TECLA_8
-    - T_TECLA_9
-    - T_BACKSPACE
-    - T_TAB
-    - T_ENTER
-    - T_SHIFT
-    - T_CONTROL
-    - T_ALT
-    - T_PAUSE
-    - T_CAPSLOCK
-    - T_ESPACIO
-    - T_PAGE_UP
-    - T_PAGE_DOWN
-    - T_END
-    - T_HOME
-    - T_NUMPAD_0
-    - T_NUMPAD_1
-    - T_NUMPAD_2
-    - T_NUMPAD_3
-    - T_NUMPAD_4
-    - T_NUMPAD_5
-    - T_NUMPAD_6
-    - T_NUMPAD_7
-    - T_NUMPAD_8
-    - T_NUMPAD_9
-
-Ejemplo:
-\code
-if( Sistema.TeclaAbajo( T_ESC ) ) {
-    // Ac&aacute; lo que haga
-}
-\endcode
+* \param index Tecla a determinar si est&aacute; presionada.
+* \return true si se est&aacute; presionando la tecla, sino retorna false.
+* 
+* Las teclas son:
+*     - T_ESC
+*     - T_FLECHA_IZQUIERDA
+*     - T_FLECHA_ARRIBA
+*     - T_FLECHA_DERECHA
+*     - T_FLECHA_ABAJO
+*     - T_TECLA_A
+*     - T_TECLA_B
+*     - T_TECLA_C
+*     - T_TECLA_D
+*     - T_TECLA_E
+*     - T_TECLA_F
+*     - T_TECLA_G
+*     - T_TECLA_H
+*     - T_TECLA_I
+*     - T_TECLA_J
+*     - T_TECLA_K
+*     - T_TECLA_L
+*     - T_TECLA_M
+*     - T_TECLA_N
+*     - T_TECLA_O
+*     - T_TECLA_P
+*     - T_TECLA_Q
+*     - T_TECLA_R
+*     - T_TECLA_S
+*     - T_TECLA_T
+*     - T_TECLA_U
+*     - T_TECLA_V
+*     - T_TECLA_W
+*     - T_TECLA_X
+*     - T_TECLA_Y
+*     - T_TECLA_Z
+*     - T_F1
+*     - T_F2
+*     - T_F3
+*     - T_F4
+*     - T_F5
+*     - T_F6
+*     - T_F7
+*     - T_F8
+*     - T_F9
+*     - T_F10
+*     - T_F11
+*     - T_F12
+*     - T_TECLA_0
+*     - T_TECLA_1
+*     - T_TECLA_2
+*     - T_TECLA_3
+*     - T_TECLA_4
+*     - T_TECLA_5
+*     - T_TECLA_6
+*     - T_TECLA_7
+*     - T_TECLA_8
+*     - T_TECLA_9
+*     - T_BACKSPACE
+*     - T_TAB
+*     - T_ENTER
+*     - T_SHIFT
+*     - T_CONTROL
+*     - T_ALT
+*     - T_PAUSE
+*     - T_CAPSLOCK
+*     - T_ESPACIO
+*     - T_PAGE_UP
+*     - T_PAGE_DOWN
+*     - T_END
+*     - T_HOME
+*     - T_NUMPAD_0
+*     - T_NUMPAD_1
+*     - T_NUMPAD_2
+*     - T_NUMPAD_3
+*     - T_NUMPAD_4
+*     - T_NUMPAD_5
+*     - T_NUMPAD_6
+*     - T_NUMPAD_7
+*     - T_NUMPAD_8
+*     - T_NUMPAD_9
+* 
+* Ejemplo:
+* \code
+* if( Sistema.TeclaAbajo( T_ESC ) ) {
+*     // Ac&aacute; lo que haga
+* }
+* \endcode
 */
 bool GD_Sistema::TeclaAbajo(int index)
 {
-return m_key_buf[index];
+     return m_key_buf[index];
 }
 
-
+/*!
+*/
 bool GD_Sistema::TeclaPulsada(int index)
-{  
-    
-   
-     if(m_key_buf[index] && m_key_buf_old[index] != m_key_buf[index])
-          return true;
-     else
-          return false;
-          
-
+{
+  if(m_key_buf[index] && m_key_buf_old[index] != m_key_buf[index])
+       return true;
+  else
+       return false;
 }
 
 bool GD_Sistema::MouseBotonAbajo(int index)
@@ -583,8 +579,12 @@ return (!m_mouse_button_buf[index] && m_mouse_button_buf_old[index]);
 }
 
 
-/**
-Renderiza todo el sistema
+/*!
+* Para generar la animaci&oacute;n este m&eacute;todo debe ser llamado
+* tan seguido como sea posible.
+*
+* Es por esto que suele usarse dentro de un ciclo principal, de tal modo
+* que los cambios que ocurran de un cuadro a otro sean visibles.
 */
 void GD_Sistema::Render()
 {
@@ -652,12 +652,12 @@ void GD_Sistema::Render()
 
 
 /*!
-Se usa cuando se quiere terminar la aplicaci&oacute;n
-
-Ejemplo:
-\code
-Sistema.Matarme();
-\endcode
+* Se usa cuando se quiere terminar la aplicaci&oacute;n.
+*
+* Ejemplo:
+* \code
+* Sistema.Matarme();
+* \endcode
 */
 void GD_Sistema::Matarme()
 {
@@ -665,10 +665,10 @@ device->closeDevice();
 }
 
 /*!
-Ejemplo:
-\code
-Sistema.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
-\endcode
+* Ejemplo:
+* \code
+* Sistema.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
+* \endcode
 */
 void GD_Sistema::TituloVentana(wchar_t* textoso)
 {
@@ -681,10 +681,10 @@ IrrlichtDevice* GD_Sistema::RetornarDevice()
 }
 
 /*!
-Ejemplo:
-\code
-FPS = Sistema.RetornarCPS();
-\endcode
+* Ejemplo:
+* \code
+* FPS = Sistema.RetornarCPS();
+* \endcode
 */
 int GD_Sistema::RetornarCPS()
 {
@@ -692,10 +692,10 @@ int GD_Sistema::RetornarCPS()
 }
 
 /*!
-Ejemplo:
-\code
-NumPoly = Sistema.RetornarTriangulos();
-\endcode
+* Ejemplo:
+* \code
+* NumPoly = Sistema.RetornarTriangulos();
+* \endcode
 */
 int GD_Sistema::RetornarTriangulos()
 {
@@ -714,10 +714,10 @@ void GD_Sistema::VentanaEscalable(bool escalable)
 }
 
 /*!
-Ejemplo:
-\code
-Sistema.ColorFondo(200,255,0):
-\endcode
+* Ejemplo:
+* \code
+* Sistema.ColorFondo(200,255,0):
+* \endcode
 */
 void GD_Sistema::ColorFondo(int r,int g,int b)
 {
@@ -732,7 +732,8 @@ void GD_Sistema::LimiteCPS(int lcps)
     cps_deseados=lcps;
 }
 
-
+/*!
+*/
 void GD_Sistema::Dormir(int milisecs)
 {
        u32 curTime = device->getTimer()->getTime();
@@ -742,7 +743,13 @@ void GD_Sistema::Dormir(int milisecs)
        }
 }
 
-int GD_Sistema::TeclaPrecionada() //A?dido por Astucia 13-04-2006
+/*!
+* \return el n&uacute;mero de la &uacute;ltima tecla precionada.
+*
+* \author Astucia
+* \since 13-04-2006
+*/
+int GD_Sistema::TeclaPrecionada()
 {
    int iTecla;
    for(iTecla=0;iTecla<=256;iTecla++)
@@ -827,9 +834,10 @@ void GD_Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inici
 }
 
 /*!
-Depende de varios otros hechos, como por ejemplo haber detenido el tiempo del sistema en algun punto, o cambiar la rapidez del Reloj.
-
-Para Obtener el tiempo completo, ocupe Milisegundos()
+* Depende de varios otros hechos, como por ejemplo haber detenido el tiempo 
+* del sistema en algun punto, o cambiar la rapidez del Reloj.
+* 
+* Para Obtener el tiempo completo, ocupe Milisegundos()
 */
 int GD_Sistema::MilisegundosSistema()
 {
@@ -838,7 +846,8 @@ int GD_Sistema::MilisegundosSistema()
 }
 
 /*!
-Esta funcion es independiente de cualquier interrupci&oacute;n del Timer, excepto al reiniciar el Reloj con ReiniciarReloj()
+* Esta funcion es independiente de cualquier interrupci&oacute;n del Timer, excepto
+* al reiniciar el Reloj con ReiniciarReloj()
 */
 int GD_Sistema::Milisegundos()
 {
@@ -847,7 +856,7 @@ int GD_Sistema::Milisegundos()
 }
 
 /*!
-As&iacute; la diferencia el tiempo de ejecuci&oacute;n se reinicia a 0 en adelante.
+* As&iacute; la diferencia el tiempo de ejecuci&oacute;n se reinicia a 0 en adelante.
 */
 void GD_Sistema::ReiniciarReloj()
 {
@@ -855,18 +864,23 @@ void GD_Sistema::ReiniciarReloj()
 }
 
 /*!
-
 */
 void GD_Sistema::CambiarDirectorio(const char *strDir)
 {
      device->getFileSystem()->changeWorkingDirectoryTo(strDir);
 }
 
+/*!
+*
+*/
 const char *GD_Sistema::Directorio(void)
 {
       return device->getFileSystem()->getWorkingDirectory();
 }
 
+/*!
+* 
+*/
 bool GD_Sistema::ArchivoExiste(const char *strArchivo)
 {
      return device->getFileSystem()->existFile(strArchivo);

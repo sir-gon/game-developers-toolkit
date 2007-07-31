@@ -30,6 +30,7 @@
 #include <mmsystem.h>
 #include <stdio.h>
 #include <string.h>
+#include "gd_sistema.h"
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
@@ -53,6 +54,11 @@
 #define MUSIK_RECORD    MCI_MODE_RECORD
 #define MUSIK_SEEK      MCI_MODE_SEEK
 
+#ifdef _MSC_VER
+	#define MUSIK_STRING	LPWSTR
+#else
+	#define MUSIK_STRING	LPSTR
+#endif
 
 //!  Permite tocar musica desde archivos MIDI
 class GD_Musik
@@ -79,24 +85,15 @@ class GD_Musik
 	int beats, beat;
 	int paused;
 	int done;
-	
-	
-	
+
 	HWND hwReturn;
-#ifdef _MSC_VER
-	LPWSTR lpszArchivoMIDI;
-#else
-	LPSTR lpszArchivoMIDI;
-#endif
+	MUSIK_STRING lpszArchivoMIDI;
+
 	_GDT_EXPORT_ GD_Musik();
 	_GDT_EXPORT_ ~GD_Musik();
-#ifdef _MSC_VER
-	_GDT_EXPORT_ bool Iniciar(LPWSTR ArchivoMIDI);
-	_GDT_EXPORT_ bool Cargar(LPWSTR ArchivoMIDI);
-#else
-	_GDT_EXPORT_ bool Iniciar(LPSTR ArchivoMIDI);
-	_GDT_EXPORT_ bool Cargar(LPSTR ArchivoMIDI);
-#endif
+
+	_GDT_EXPORT_ bool Iniciar(MUSIK_STRING ArchivoMIDI);
+	_GDT_EXPORT_ bool Cargar(MUSIK_STRING ArchivoMIDI);
 	_GDT_EXPORT_ void Destruir();
 	_GDT_EXPORT_ void Inicio_Fin(int Inicio,int Fin);
 	_GDT_EXPORT_ void InicioEn(int Inicio);

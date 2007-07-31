@@ -63,8 +63,6 @@ class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
 {
    private:
       GD_Sistema sistema;
-      GD_Matematicas Mat;
-      //GD_Malla Malla;
    public:
    //protected:
       stTeclado Teclado;
@@ -79,7 +77,7 @@ class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
       _GDT_EXPORT_ void ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift);
 
       //Plantilla de tipos de dato que usan la clase nodo
-      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem,GD_Matematicas Matematicas);
+      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem);
       _GDT_EXPORT_ void TecladoUDRL(GD_Malla Malla);
       _GDT_EXPORT_ void TecladoUDRLCtrlShift();
       _GDT_EXPORT_ void TecladoURLDMouseMove();
@@ -89,8 +87,6 @@ class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
       _GDT_EXPORT_ void TecladoUDRLCtrlShift(stTeclado *pTeclado);
       _GDT_EXPORT_ void TecladoURLDMouseMove(stTeclado *pTeclado,stMouse *pMouse);
       _GDT_EXPORT_ void TecladoUDRLCtrlShiftMouseMove(stTeclado *pTeclado,stMouse *pMouse);
-
-
 
 };
 #endif //CONTROLESPREDISENIADOS_H

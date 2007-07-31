@@ -68,7 +68,8 @@ class GD_FisicasOdeSistema
 
 
     //funciones
-    GD_FisicasOdeSistema();
+    //! Crea autom&aacute;ticamente un Mundo predeterminado para la instancia.
+    _GDT_EXPORT_ GD_FisicasOdeSistema();
     //! Crea un Mundo y retorna su ID.
     _GDT_EXPORT_ dWorldID CrearMundoODE();
     //! Destruye el Mundo actual
@@ -77,36 +78,62 @@ class GD_FisicasOdeSistema
     _GDT_EXPORT_ vector3df Gravedad(dReal x, dReal y, dReal z);
     //! Establece la gravedad del mundo en cada coordenada usando un vector.
     _GDT_EXPORT_ vector3df Gravedad(vector3df grav);
-    //!
+    //! Obtiene un vector con la gravedad en cada eje.
     _GDT_EXPORT_ vector3df Gravedad();
 
     //! Establece el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
     _GDT_EXPORT_ void AsignarERP(dReal erp);
-    //! Establece el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
+    //! Obtiene el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
     _GDT_EXPORT_ dReal ObtenerERP();
-    //! 
+    //! Establece el Constraint Force Mixing (CFM)
     _GDT_EXPORT_ void AsignarCFM(dReal cfm);
+    //! Obtiene el Constraint Force Mixing (CFM)
     _GDT_EXPORT_ dReal ObtenerCFM();
 
+
+    //AUTODESACTIVAR CUERPOS GLOBALMENTE
+    //! Auto-desactiva globalmente los cuerpos que han estado quietos mucho tiempo.
     _GDT_EXPORT_ void ModoAutodesactivar(bool bDeshabilitable);
+    //! Comprueba si esta permitido autodesactivar los cuerpos.
     _GDT_EXPORT_ bool ValorModoAutodesactivar();
+    //! Auto-desactiva globalmente los cuerpos con menor velocidad lineal a la establecida.
     _GDT_EXPORT_ void Autodesactivacion_por_UmbralLinear(dReal UmbralLinear);
+    //! Obtiene la velocidad lineal m&iacute;nima a la que se auto-desactivan los Cuerpos.
     _GDT_EXPORT_ dReal ValorAutodesactivacion_por_UmbralLinear();
+    //! Auto-desactiva globalmente los cuerpos con menor velocidad angular a la establecida.
     _GDT_EXPORT_ void AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular);
+    //! Obtiene la velocidad angular m&iacute;nima a la que se auto-desactivan los Cuerpos.
     _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_UmbralAngular();
+    //! Auto-desactiva globalmente los cuerpos que pasen quietos por m&aacute;s del n&uacute;mero de Iteraciones (pasos o Steps) establecido.
     _GDT_EXPORT_ void AutoDesactivacion_por_Iteraciones(int Iteraciones);
+    //! Obtiene la cantidad de pasos en que se auto-desactivan los Cuerpos.
     _GDT_EXPORT_ int ValorAutoDesactivacion_por_Iteraciones();
+    //! Auto-desactiva globalmente los cuerpos que pasen quietos por m&aacute;s del n&uacute;mero del tiempo establecido.
     _GDT_EXPORT_ void AutoDesactivacion_por_Tiempo(dReal Tiempo);
+    //! Obtiene la cantidad de tiempo en que se auto-desactivan los Cuerpos.
     _GDT_EXPORT_ dReal ValorAutoDesactivacion_por_Tiempo();
 
+    //!
     _GDT_EXPORT_ vector3df Impulso_a_Fuerza(dReal Incremento,vector3df Impulso);
-    _GDT_EXPORT_ void CerrarODE(){dCloseODE();};
+    //! Libera la memoria ocupada por ODE que no puede limpiarse con otras funciones
+    _GDT_EXPORT_ void CerrarODE();
 
+    //! Realiza un paso de la simulaci&oacute;n
     _GDT_EXPORT_ void Actualizar(dReal VelIteracion);
+    //! Realiza r&aacute;pidamente un paso de la simulaci&oacute;n
     _GDT_EXPORT_ void Actualzar_Modo_QS(dReal VelIteracion);
+    //! Alias de Actualzar_Modo_QS()
+    _GDT_EXPORT_ void Actualizar_Rapido(dReal VelIteracion);
+    //! Establece la cantidad de iteraciones que se har&aacute;n en Actualizar_Rapido()
     _GDT_EXPORT_ void NumIteraciones_modo_QS(int Iteraciones);
+    //! Alias de NumIteraciones_modo_QS()
+    _GDT_EXPORT_ void NumIteraciones_Rapidas(int Iteraciones);
+    //! Obtiene la cantidad de iteraciones que se har&aacute;n en Actualizar_Rapido()
     _GDT_EXPORT_ int ValorNumIteraciones_modo_QS();
+    //! Alias de ValorNumIteraciones_modo_QS()
+    _GDT_EXPORT_ int ValorNumIteraciones_Rapidas();
 
+    //!
     _GDT_EXPORT_ void VelocidadMaximaDeCorreccion_por_Contacto(dReal vel);
     _GDT_EXPORT_ dReal ValorVelocidadMaximaDeCorreccion_por_Contacto();
 

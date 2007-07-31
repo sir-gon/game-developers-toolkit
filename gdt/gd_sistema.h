@@ -246,9 +246,11 @@ public:
 	_GDT_EXPORT_ void ColorSombra(int R, int G, int B);
 	_GDT_EXPORT_ void TranslucidezSombra(int T); 
 	
-	_GDT_EXPORT_ int TeclaPrecionada(); // A&ntilde;adido por Astucia 13-04-2006
-	//! Retonar true si se esta presionando esta tecla sino retorna false
+	//! Obtiene el valor de la &uacute;ltima tecla precionada.
+	_GDT_EXPORT_ int TeclaPrecionada();
+	//! Comprueba si se esta presionando la esta tecla.
 	_GDT_EXPORT_ bool TeclaAbajo(int index);
+	//! 
 	_GDT_EXPORT_ bool TeclaPulsada(int index);
 	_GDT_EXPORT_ bool MouseBotonAbajo(int index);
 	_GDT_EXPORT_ bool MouseBotonArribaAbajo(int index);
@@ -308,7 +310,7 @@ public:
 	_GDT_EXPORT_ void TituloVentana(wchar_t* textoso);
 	//! Cambia la fuente del sistema basado en Bitmap
 	_GDT_EXPORT_ void Fuente(char* filename);
-	
+	//! 
 	_GDT_EXPORT_ virtual bool OnEvent(SEvent event);
 	//! Comprueba si el Sistema aun est&aacute; en ejecuci&oacute;n
 	_GDT_EXPORT_ bool EnEjecucion();
@@ -367,7 +369,9 @@ public:
 	//Archivos
 	//! Cambia la ruta actual del directorio de ejecuci&oacute;n
 	_GDT_EXPORT_ void CambiarDirectorio(const char *strDir);
+	//! Obtiene la ruta del directorio de ejecuci&oacute;n actual
 	_GDT_EXPORT_ const char *Directorio(void);
+	//! Comprueba la existencia del archivo
 	_GDT_EXPORT_ bool ArchivoExiste(const char *strArchivo);
 	
 	// Escenas en formato Irr , XML, hechas con irrEdit o guardas en tiemporeal

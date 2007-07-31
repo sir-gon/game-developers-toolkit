@@ -43,22 +43,29 @@
 
 #include "gd_matematicas.h" // class's header file
 
+double GD_Matematicas::FastCos[361];
+double GD_Matematicas::FastSin[361];
+double GD_Matematicas::FastTan[361];
+bool init = GD_Matematicas::Inicializar();
 
-GD_SistemaMatematicas::GD_SistemaMatematicas()
+
+/*
+GD_Matematicas::GD_Matematicas()
 {
- GD_Matematicas();
+
 }
 
-GD_SistemaMatematicas::~GD_SistemaMatematicas()
+// class destructor
+GD_Matematicas::~GD_Matematicas()
 {
- //~GD_Matematicas();
+	// insert your code here
 }
-
+*/
 
 /*!
 Inicializa el sistema de generaci&oacute;n de n&uacute;meros pseudo-aletatorios, y calcula las funciones trigonom&eacute;tricas de los 360 &aacute;ngulos enteros, para obtenerlos r&aacute;pido posteriormente.
 */
-GD_Matematicas::GD_Matematicas()
+bool GD_Matematicas::Inicializar()
 {
     //inicio los cosenos y senos rapidos
     for(int i=0; i<361; i++)
@@ -67,14 +74,10 @@ GD_Matematicas::GD_Matematicas()
         FastSin[i]=sin((int)i*M_PI/180.0);
         FastTan[i]=tan((int)i*M_PI/180.0);
     }
-    srand(time(0));
+    srand((u32) time(0));
+    return true;
 }
 
-// class destructor
-GD_Matematicas::~GD_Matematicas()
-{
-	// insert your code here
-}
 
 /*!
 \return el valor de la constante \f$\pi\f$. Es el mismo valor que se puede acceder por la constante M_PI.
@@ -126,6 +129,32 @@ double GD_Matematicas::Capar(double ang)
     return ang;
 }
 
+/////////////////////////////
+// REEMPLAZO DE "CAPAR"
+/*!
+\param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+*/
+int GD_Matematicas::Grados(int ang)
+{
+    while(ang>360.0)
+        ang-=360;
+    while(ang<0)
+        ang+=360;
+    return ang;
+}
+
+/*!
+\param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+*/
+double GD_Matematicas::Grados(double ang)
+{
+    while(ang>360.0)
+        ang=ang-360.0;
+    while(ang<0)
+        ang=ang+360.0;
+    return ang;
+}
+/////////////////////////////
 /*!
 \param ang es un &aacute;ngulo medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 
@@ -796,9 +825,9 @@ vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vect
 	f32 cx = PosicionEntrada2.X;
 	f32 cy = PosicionEntrada2.Y;
 	f32 cz = PosicionEntrada2.Z;
-	cx = CurvarValor(cx,MueveX(px ,(float) pa ,distancia),dureza);
+	cx = CurvarValor(cx,(float) MueveX(px ,(float) pa ,distancia),dureza);
 	cy = CurvarValor(cy,py+altura,dureza/2);
-	cz = CurvarValor(cz,MueveZ(pz ,(float) pa ,distancia),dureza);
+	cz = CurvarValor(cz,(float) MueveZ(pz ,(float) pa ,distancia),dureza);
 	//printf("X: %f, Y: %f, Z: %f\n",cx,cy,cz);
 	Salida.set(cx,cy,cz);
 	return Salida;

@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *   GDT (GAME DEVELOPERS TOOLKIT)                                         *
  *   Copyright (C) 2006 GDT STAFF                                          *
@@ -47,7 +46,6 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 {
 	NewtonCollision* collision;
 
-	GD_Matematicas MT;
 	irr::core::aabbox3d<f32> boundingBox;
 	vector3df centro;
 	dFloat Largo,Ancho,Alto;
@@ -68,9 +66,9 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 0:
 		{
 			//Caja
-			Largo= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-boundingBox.MinEdge.X );
-			Alto= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
-			Ancho= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Z-boundingBox.MinEdge.Z );
+			Largo= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-boundingBox.MinEdge.X );
+			Alto= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Ancho= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-boundingBox.MinEdge.Z );
 
 			printf ( "Largo: %f, Alto: %f, Ancho: %f\n",Largo,Alto,Ancho );
 
@@ -83,9 +81,9 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 1:
 		{
 			//Esfera
-			RadioX= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			RadioY= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-centro.Y );
-			RadioZ= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Z-centro.Z );
+			RadioX= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			RadioY= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-centro.Y );
+			RadioZ= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-centro.Z );
 
 			printf ( "RadioX: %f, RadioY: %f, RadioZ: %f\n",RadioX,RadioY,RadioZ );
 
@@ -97,8 +95,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 2:
 		{
 			//Cono
-			Radio= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCone ( nMundo,Radio,Altura,NULL );
@@ -108,8 +106,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 3:
 		{
 			//Capsula
-			Radio= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCapsule ( nMundo,Radio,Altura,NULL );
@@ -119,8 +117,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 4:
 		{
 			//Cilindro
-			Radio= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCylinder ( nMundo,Radio,Altura,NULL );
@@ -130,8 +128,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 5:
 		{
 			//SemiCilindro
-			Radio= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) MT.Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateChamferCylinder ( nMundo,Radio,Altura,NULL/*(dFloat*)&matrix.M[0]*/ );
@@ -342,8 +340,8 @@ void GD_FisicasNwtMundo::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,i
 {
 	GD_Matematicas SMT;
 
-	velmov=SMT.Potencia ( velmov,2.0 );
-	velgiro=SMT.Potencia ( velgiro,2.0 );
+	velmov=GD_Matematicas::Potencia ( velmov,2.0 );
+	velgiro=GD_Matematicas::Potencia ( velgiro,2.0 );
 	NewtonBodySetFreezeTreshold ( pCuerpoNwtn,velmov,velgiro,maxFPS );
 }
 
