@@ -171,7 +171,7 @@ void GD_FisicasNwtMundo::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,IScen
 {
 
 	vector3df e0, e1, area;
-	float mag = 0.0f;
+	//float mag = 0.0f;
 	s32 vercnt,triTot=0;
 	int Tri;
 	static matrix4* mat4;
@@ -290,6 +290,8 @@ vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
 	giro.X=X;
 	giro.Y=Y;
 	giro.Z=Z;
+	// Linea agregada
+	return vector3df(X,Y,Z);
 }
 
 void GD_FisicasNwtMundo::AplicarFuerza_Torcion()
@@ -338,7 +340,7 @@ ISceneNode* GD_FisicasNwtMundo::Actualizar()
 
 void GD_FisicasNwtMundo::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
 {
-	GD_Matematicas SMT;
+	//GD_Matematicas SMT;
 
 	velmov=GD_Matematicas::Potencia ( velmov,2.0 );
 	velgiro=GD_Matematicas::Potencia ( velgiro,2.0 );

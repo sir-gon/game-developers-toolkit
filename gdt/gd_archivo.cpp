@@ -37,6 +37,7 @@
 
 #include "gd_archivo.h" // class's header file
 
+
 // class constructor
 GD_Archivo::GD_Archivo()
 {
@@ -50,13 +51,14 @@ GD_Archivo::~GD_Archivo()
 }
 
 /*!
-\param strArchivo la ruta al archivo.
-\param bContinuar opcional. Hace que el archivo no se sobrescriba, sino que se escriba a continuaciï¿½n de lo que ya hay.
-
-Ejemplo:
-\code
-Archivo.AbrirParaEscribir("datos.txt");
-\endcode
+* \param strArchivo la ruta al archivo.
+* \param bContinuar opcional. Hace que el archivo no se sobrescriba, sino 
+* que se escriba a continuaci&oacute;n de lo que ya hay.
+* 
+* Ejemplo:
+* \code
+* Archivo.AbrirParaEscribir("datos.txt");
+* \endcode
 */
 void GD_Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 {
@@ -68,10 +70,10 @@ void GD_Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 }
 
 /*!
-Ejemplo:
-\code
-Archivo.AbrirParaLeer("datos.txt");
-\endcode
+* Ejemplo:
+* \code
+* Archivo.AbrirParaLeer("datos.txt");
+* \endcode
 */
 void GD_Archivo::AbrirParaLeer(const char *strArchivo)
 {
@@ -83,10 +85,10 @@ void GD_Archivo::AbrirParaLeer(const char *strArchivo)
 }
 
 /*!
-Ejemplo:
-\code
-Archivo.Cerrar();
-\endcode
+* Ejemplo:
+* \code
+* Archivo.Cerrar();
+* \endcode
 */
 void GD_Archivo::Cerrar(void)
 {
@@ -97,21 +99,60 @@ void GD_Archivo::Cerrar(void)
 }
 
 /*!
-\param strCadena el texto a escribir en el archivo
-\param bytes el nï¿½mero de bytes que se escribirï¿½n
-
-Escribe el nï¿½mero de bytes indicados de la cadena.
-
-Ejemplo:
-\code
-Archivo.Escribir("Hola", 4);
-\endcode
+* \param strCadena el texto a escribir en el archivo
+* \param bytes el n&uacute;mero de bytes que se escribir&aacute;n
+* 
+* Escribe el nï&uacute;mero de bytes indicados de la cadena.
+* 
+* \note Se deja este m&eacute;todo con los dos p&aacute;rametros para evitar 
+* conflictos con versiones anteriores y para casos especiales donde se necesite
+* limitar la salida.
+* 
+* Ejemplo:
+* \code
+* Archivo.Escribir("Hola", 4);
+* \endcode
 */
 void GD_Archivo::Escribir(const char *strCadena, int bytes)
 {
      if(bEscribir)
      {
          writeFile->write(strCadena, bytes);
+     }
+}
+
+/*!
+* \param strCadena el texto a escribir en el archivo
+*
+* La longitud del texto se obtiene de forma autom&aacute;tica.
+*
+* Ejemplo:
+* \code
+* Archivo.Escribir("Hola");
+* \endcode
+*/
+void GD_Archivo::Escribir(const char *strCadena)
+{
+     int bytes;
+     GD_Cadena Cadenin;
+
+     bytes = Cadenin.TamanoChar(strCadena);
+
+     if(bEscribir)
+     {
+         writeFile->write(strCadena, bytes);
+     }
+}
+
+void GD_Archivo::Escribir(int numero)
+{
+     GD_Cadena Cadenin;
+     int bytes;
+     bytes = Cadenin.TamanoInt(numero);
+
+     if(bEscribir)
+     {
+         writeFile->write((int*)numero, bytes);
      }
 }
 
@@ -160,7 +201,7 @@ bool GD_Archivo::CambiarPosicion(int posicion, bool bRelativo)
      else
      {
          return readFile->seek(posicion, bRelativo);
-     }        
+     }
 }
 
 int GD_Archivo::Posicion(void)
@@ -172,7 +213,7 @@ int GD_Archivo::Posicion(void)
     else
     {
         return readFile->getPos();
-    }  
+    }
 }
 
 const char *GD_Archivo::NombreArchivo(void)
@@ -184,5 +225,5 @@ const char *GD_Archivo::NombreArchivo(void)
     else
     {
         return readFile->getFileName();
-    }       
+    }
 }

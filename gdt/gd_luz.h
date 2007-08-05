@@ -65,9 +65,9 @@ class GD_Luz : public GD_Nodo
         _GDT_EXPORT_ void Crear(int r, int g ,int b, float radio, int tipmo);
         //! Crea una luz
         _GDT_EXPORT_ void Crear(float x, float y, float z, float radio);
-        //! Crea una luz
+        //! Crea una luz simple de un cierto radio y la posiciona en las coordenadas dadas
         _GDT_EXPORT_ void Crear(float x, float y, float z, float radio, int tipo);
-        //! Crea una luz
+        //! Crea una luz de un color (RGB) de un cierto radio y la posiciona en las coordenadas dadas
         _GDT_EXPORT_ void Crear(float x, float y, float z, float r, float g ,float b, float radio);
         //! Crea una luz	
         _GDT_EXPORT_ void Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo);
@@ -83,8 +83,20 @@ class GD_Luz : public GD_Nodo
         _GDT_EXPORT_ void Radio(float rad);
 
         _GDT_EXPORT_ void ColorAmbiente(s32 r,s32 g,s32 b);
-        _GDT_EXPORT_ void ColorDifuso( s32 r,s32 g,s32 b);
+        _GDT_EXPORT_ void ColorDifuso(s32 r,s32 g,s32 b);
         _GDT_EXPORT_ void ColorEspecular(s32 r,s32 g,s32 b);
+
+        // no son los mismos que heredan de GD_Nodo, con las luces funciona diferente
+        // asi que tenemos que implementar nuevos metodos
+        _GDT_EXPORT_ int RetornarColorAmbienteR();
+        _GDT_EXPORT_ int RetornarColorAmbienteG();
+        _GDT_EXPORT_ int RetornarColorAmbienteB();
+        _GDT_EXPORT_ int RetornarColorDifusoR();
+        _GDT_EXPORT_ int RetornarColorDifusoG();
+        _GDT_EXPORT_ int RetornarColorDifusoB();
+        _GDT_EXPORT_ int RetornarColorEspecularR();
+        _GDT_EXPORT_ int RetornarColorEspecularG();
+        _GDT_EXPORT_ int RetornarColorEspecularB();
 
         _GDT_EXPORT_ void AumentarColorAmbiente(float val);
         _GDT_EXPORT_ void AumentarColorDifuso(float val);

@@ -272,8 +272,9 @@ public:
 	_GDT_EXPORT_ int AltoVentana();
 	
 	//! Destruye el sistema
-	_GDT_EXPORT_ void Matarme();
-	
+	void Finalizar();
+	void Matarme();
+
 	int _CPS;
 	//! Retorna los Cuadros Por Segundo, conocido mundialmente como FPS.
 	_GDT_EXPORT_ int RetornarCPS();
@@ -327,7 +328,7 @@ public:
 	int ultimaIdBarraMovida;
 	int ultimaBarraPosicion;
 	//! Retorna true si se mueve la barra
-	bool BarraMovida(int id2);
+	_GDT_EXPORT_ bool BarraMovida(int id2);
 	
 	// DialogoAbrirArchivo
 	bool dialogoArchivoSeleccionado;
@@ -353,7 +354,7 @@ public:
 	_GDT_EXPORT_ void LimiteCPS(int lcps);
 	
 	//funciones de Raton
-	//! //Coloca el cursor en un punto de la pantalla
+	//! Coloca el cursor en un punto de la pantalla
 	_GDT_EXPORT_ void MousePosicionar(int X,int Y); 
 	//! Devuelve la posicion en X del curso
 	_GDT_EXPORT_ int MousePosicionX();
@@ -379,6 +380,13 @@ public:
 	_GDT_EXPORT_ void CargarEscena(char* file);
 	_GDT_EXPORT_ void GuardarEscena(char* file);
 
+	void ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn);
+	
+	IGUIFileOpenDialog* UltimoDialogoSeleccionado;
+	c8 RutaArchivoSeleccionado[1024];
+	
+	//! Establece la transparencia de los elementos gui creados hasta el momento.
+	void TransparenciaGUI(int valor);
 };
 
 

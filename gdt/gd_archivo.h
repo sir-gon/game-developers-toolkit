@@ -23,6 +23,7 @@
 #define GD_ARCHIVO_H
 
 #include "gd_sistema.h"
+#include "gd_cadena.h"
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
@@ -61,6 +62,10 @@ class GD_Archivo
 		_GDT_EXPORT_ void Cerrar(void);
 		//! Escribe la cadena en un archivo
 		_GDT_EXPORT_ void Escribir(const char *strCadena, int bytes);
+		//! Escribe la cadena en un archivo
+		_GDT_EXPORT_ void Escribir(const char *strCadena);
+		//! Escribe un entero en un archivo
+		_GDT_EXPORT_ void Escribir(int numero);
 		//! Lee el texto de un archivo y lo guarda en buffer
 		_GDT_EXPORT_ void Leer(char *buffer, int bytes);
 		
@@ -73,7 +78,6 @@ class GD_Archivo
 
 		_GDT_EXPORT_ bool CambiarPosicion(int posicion, bool bRelativo = false);
 		_GDT_EXPORT_ int Posicion(void);
-			
 		_GDT_EXPORT_ const char *NombreArchivo(void);
 };
 

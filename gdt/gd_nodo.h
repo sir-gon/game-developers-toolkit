@@ -27,6 +27,7 @@
 #include "gd_sistema.h"
 #include "gd_matematicas.h"
 #include "gd_textura.h"
+#include "gd_animador.h"
 
 /* No documentar */
 #ifndef _GDT_DOXYGEN_IGNORAR_
@@ -74,6 +75,11 @@ public:
 	ISceneNode* intersec_coli_d;
 	ISceneNode* intersec_coli_e;
 	ISceneNode* intersec_coli_f;
+
+        // para arreglar bug en gd_luz 
+        float  mi_posicion_x;
+        float  mi_posicion_y;
+        float  mi_posicion_z; 
 	
 	_GDT_EXPORT_ void RegistrarDevice(	IrrlichtDevice *device );
 	//! Le asigna una posici&oacute;n en el espacio 3D
@@ -177,12 +183,14 @@ public:
 	_GDT_EXPORT_ void ColorEmisivo(s32 r,s32 g,s32 b, int capa = -1);
 	//! Establece la forma como refleja el color especular o brillo
 	_GDT_EXPORT_ void ColorEspecular( s32 r,s32 g,s32 b, int capa = -1); 
-	
+	//! Establece cuanta region de la malla se ve afectada con brillo
+        _GDT_EXPORT_ void Brillo(float intensidad);
+
 	//! Destruye el nodo
 	_GDT_EXPORT_ void Destruir(void);
 	
 	//!Ajusta el nivel transparencia de un nodo.
-	_GDT_EXPORT_ void NivelTransparencia(s32 v);
+	_GDT_EXPORT_ void NivelTransparencia(s32 v, int capa = -1);
 	
 	//! Establece la visibilidad del nodo
 	_GDT_EXPORT_ void Visible(bool estado);
@@ -196,7 +204,26 @@ public:
 	
 	//! Crea una respuesta de colisi&oacute;n.
 	_GDT_EXPORT_ void CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
-
+	
+	//! Devuelve los valores de los colores
+	// para las luces no funcionan estos metodos asi que las luces
+	// tienen sus propios metodos con el mismo nombre
+	_GDT_EXPORT_ int RetornarColorAmbienteR();
+	_GDT_EXPORT_ int RetornarColorAmbienteG();
+	_GDT_EXPORT_ int RetornarColorAmbienteB(); 
+	_GDT_EXPORT_ int RetornarColorEmisivoR();
+	_GDT_EXPORT_ int RetornarColorEmisivoG();
+	_GDT_EXPORT_ int RetornarColorEmisivoB();
+	_GDT_EXPORT_ int RetornarColorDifusoR();
+	_GDT_EXPORT_ int RetornarColorDifusoG();
+	_GDT_EXPORT_ int RetornarColorDifusoB();                
+	_GDT_EXPORT_ int RetornarColorEspecularR();
+	_GDT_EXPORT_ int RetornarColorEspecularG();
+	_GDT_EXPORT_ int RetornarColorEspecularB();    
+	
+	_GDT_EXPORT_ int RetornarBrillo();
+	
+	_GDT_EXPORT_ void AgregarAnimador(GD_Animador Animate);
 };
 
 #endif // GD_NODO_H

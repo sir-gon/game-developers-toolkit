@@ -149,7 +149,7 @@ int GD_ScriptLua::EjecutarCadena(char* strCadenaLua)
 {
     int iError;
     // Cargamos la cadena y la ejecutamos en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
-    if ( iError = luaL_loadstring(this->LuaMV, strCadenaLua) || lua_pcall(this->LuaMV, 0, 0, 0) )
+    if ( (iError = luaL_loadstring(this->LuaMV, strCadenaLua)) || lua_pcall(this->LuaMV, 0, 0, 0) )
     {
          if(this->bAutoErrores)
              this->MostrarError();
@@ -170,7 +170,7 @@ int GD_ScriptLua::EjecutarArchivo(char* strArchivo)
 {
     int iError;
     // Cargamos el archivo y lo ejecutamos en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
-    if ( iError = luaL_loadfile(this->LuaMV, strArchivo) || lua_pcall(this->LuaMV, 0, 0, 0) )
+    if ( (iError = luaL_loadfile(this->LuaMV, strArchivo)) || lua_pcall(this->LuaMV, 0, 0, 0) )
     {
          if(this->bAutoErrores)
              this->MostrarError();
@@ -449,7 +449,7 @@ int GD_ScriptLua::LlamarFuncion(int nArgumentos, int nResultados)
 {
     int iError;
     // Llamamos a la funciï¿½ en modo seguro en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
-    if ( iError = lua_pcall(this->LuaMV, nArgumentos, nResultados, 0) )
+    if ( (iError = lua_pcall(this->LuaMV, nArgumentos, nResultados, 0)) )
     {
          if(this->bAutoErrores)
              this->MostrarError();
@@ -533,7 +533,7 @@ parametros = Lua.NumeroParametros();
 */
 int GD_ScriptLua::NumeroParametros(void)
 {
-    lua_gettop(this->LuaMV);
+    return lua_gettop(this->LuaMV);
 }
 
 /*!

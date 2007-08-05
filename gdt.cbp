@@ -3,7 +3,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="1"/>
 	<Project>
-		<Option title="GDT v1.3.4 BETA2"/>
+		<Option title="GDT v2.0-ALPHA1"/>
 		<Option makefile="Makefile"/>
 		<Option makefile_is_custom="0"/>
 		<Option default_target="-1"/>
@@ -20,6 +20,7 @@
 				<Option createStaticLib="1"/>
 				<Compiler>
 					<Add option="-O2"/>
+					<Add option="-W"/>
 					<Add directory="include\AL"/>
 					<Add directory="include\Irrlicht"/>
 					<Add directory="include\ode"/>
@@ -58,7 +59,6 @@
 			<Add library="vorbisfile"/>
 			<Add library="winmm"/>
 			<Add library="uuid"/>
-			<Add directory="lib\win32"/>
 			<Add directory="lib\win32-mingw"/>
 		</Linker>
 		<Unit filename="gdt\gd_agua.cpp">
@@ -71,12 +71,32 @@
 			<Option link="0"/>
 			<Option target="gdt"/>
 		</Unit>
+		<Unit filename="gdt\gd_animador.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_animador.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
 		<Unit filename="gdt\gd_archivo.cpp">
 			<Option compilerVar="CPP"/>
 			<Option target="gdt"/>
 		</Unit>
 		<Unit filename="gdt\gd_archivo.h">
 			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cadena.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cadena.h">
+			<Option compilerVar=""/>
 			<Option compile="0"/>
 			<Option link="0"/>
 			<Option target="gdt"/>
@@ -117,6 +137,16 @@
 		</Unit>
 		<Unit filename="gdt\gd_controlesprediseniados.h">
 			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cronometro.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_cronometro.h">
+			<Option compilerVar=""/>
 			<Option compile="0"/>
 			<Option link="0"/>
 			<Option target="gdt"/>
@@ -361,21 +391,21 @@
 			<Option link="0"/>
 			<Option target="gdt"/>
 		</Unit>
+		<Unit filename="gdt\gd_scriptlua.cpp">
+			<Option compilerVar="CPP"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gd_scriptlua.h">
+			<Option compilerVar=""/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
 		<Unit filename="gdt\gd_sistema.cpp">
 			<Option compilerVar="CPP"/>
 			<Option target="gdt"/>
 		</Unit>
 		<Unit filename="gdt\gd_sistema.h">
-			<Option compilerVar="CPP"/>
-			<Option compile="0"/>
-			<Option link="0"/>
-			<Option target="gdt"/>
-		</Unit>
-		<Unit filename="gdt\gd_sistemalua.cpp">
-			<Option compilerVar="CPP"/>
-			<Option target="gdt"/>
-		</Unit>
-		<Unit filename="gdt\gd_sistemalua.h">
 			<Option compilerVar="CPP"/>
 			<Option compile="0"/>
 			<Option link="0"/>

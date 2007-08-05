@@ -185,9 +185,11 @@ void GD_Musik::Volumen(DWORD dwVolumen)
    if(dwVolumen > 65535)
       dwVolumen=65535;
 
+/*
+//siempre es falso
    if(dwVolumen < 0)
       dwVolumen=0;
-
+*/
    midiOutSetVolume(hmidiout,dwVolumen);
 }
 

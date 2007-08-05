@@ -19,44 +19,42 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_GUIIMAGEN_H
-#define GD_GUIIMAGEN_H
+#ifndef GD_CRONOMETRO_H
+#define GD_CRONOMETRO_H
 
-#include "gd_gui.h" // inheriting class's header file
+
 #include "gd_sistema.h"
-
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
-#ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
-  #else
-    #define _GDT_EXPORT_
-  #endif
-#endif
-
-
-//! Control GUI "Imagen" (Image)
-class GD_GuiImagen : public GD_gui
+/*
+ * No description
+ */
+class GD_Cronometro
 {
-public:
-	IVideoDriver* driver;
-	ITexture* textura;
-	dimension2d< s32 > tam;
-
-	// class constructor
-	_GDT_EXPORT_ GD_GuiImagen();
-	// class destructor
-	_GDT_EXPORT_ ~GD_GuiImagen();
-
-	IGUIImage* img;
-
-	//! Carga la imagen del control
-	_GDT_EXPORT_ void Cargar(char *filename);
-        _GDT_EXPORT_ void Cargar(char *filename, IGUIElement* padre);
-	//! Activa o desactiva que la imagen use el canal alpha.
-	_GDT_EXPORT_ void UsarCanalAlpha(bool uso);
-
-        //_GDT_EXPORT_ void Visible(bool estado);
+	public:
+		// class constructor
+		GD_Cronometro();
+		// class destructor
+		~GD_Cronometro();
+		
+		u32 TiempoDeFinalizar;
+		u32 TiempoDePulso;
+		u32 TiempoDelSistemaAlIniciar;
+		u32 Estado; //1 contando   0 termino de contar
+		u32 EstadoPulso;
+		u32 ContadorPulsos;
+		u32 TiempoDelUltimoPulso;
+		u32 TDestino;
+		bool usandoPulsos;
+		
+		void Activar(int tiempo);
+		void ActivarPulso(int tiempo);
+		bool Pulso();
+		bool Terminado();
+        bool Contando();
+        u32 TiempoRestante();
+        u32 TiempoActivado();
+        
+       
+		
 };
 
-#endif // GD_GUIIMAGEN_H
+#endif // GD_CRONOMETRO_H

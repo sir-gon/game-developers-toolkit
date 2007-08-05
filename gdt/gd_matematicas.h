@@ -27,7 +27,6 @@
 #include <time.h>
 #include <stdlib.h>
 #include <irrlicht.h>
-#include <stdlib.h>
 #include <string.h>
 #include "gd_sistema.h"
 
@@ -60,23 +59,18 @@ using namespace gui;
 class GD_Matematicas
 {
 public:
-	//! Inicializa el Sistema de matem&aacute;ticas
-	//_GDT_EXPORT_ GD_Matematicas();
-	// class destructor
-	//_GDT_EXPORT_ GD_Matematicas();
-	
-	
-	_GDT_EXPORT_ static double FastCos[361];
-	_GDT_EXPORT_ static double FastSin[361];
-	_GDT_EXPORT_ static double FastTan[361];
+	//! Arreglo con los cosenos de los 360 &aacute;ngulos
+	_GDT_EXPORT_ static double FastCos[360];
+	//! Arreglo con los senos de los 360 &aacute;ngulos
+	_GDT_EXPORT_ static double FastSin[360];
+	//! Arreglo con las tangentes de los 360 &aacute;ngulos
+	_GDT_EXPORT_ static double FastTan[360];
 
 	//! Inicializa los c&aacute;lculos trigonom&eacute;tricos y de n&uacute; pseudo-aleatorios
 	_GDT_EXPORT_ static bool Inicializar();
-
-	_GDT_EXPORT_ static int Capar(int);
-	_GDT_EXPORT_ static double Capar(double);
-
+	//! Convierte el n&uacute;mero entero de grados a uno perteneciente al rango [0-359]
 	_GDT_EXPORT_ static int Grados(int);
+	//! Convierte el n&uacute;mero real de grados a uno perteneciente al rango [0-359]
 	_GDT_EXPORT_ static double Grados(double);
 
 	// CONSTANTES UNIVERSALES
@@ -158,11 +152,11 @@ public:
 	_GDT_EXPORT_ static double TangenteHyperbolica(double);
 	
 	// FUNCIONES TRIGONOMETRICAS INVERSAS
-	//! Funci&oacute;n inversa del Seno(). ArcoSeno( Seno (x) ) = x;
+	//! Funci&oacute;n inversa del Seno().
 	_GDT_EXPORT_ static double ArcoSeno(double);
-	//! Funci&oacute;n inversa del Coseno(). ArcoCoseno( Coseno (x) ) = x;
+	//! Funci&oacute;n inversa del Coseno().
 	_GDT_EXPORT_ static double ArcoCoseno(double);
-	//! Funci&oacute;n inversa de la Tangente(). ArcoTangente( Tangente (x) ) = x;
+	//! Funci&oacute;n inversa de la Tangente().
 	_GDT_EXPORT_ static double ArcoTangente(double);
 	//! Calcula el valor de la funci&oacute;n exponencial de un n&uacute;mero. f(x) = e^x
 	
@@ -179,19 +173,30 @@ public:
 	_GDT_EXPORT_ static char RangoAbierto(double, double, double);
 	//! Comprueba si un número pertecene al Intervalo Cerrado.
 	_GDT_EXPORT_ static char RangoCerrado(double, double, double);
-	
+	//!
 	_GDT_EXPORT_ static double BuscarNormal(double, double, double);
-	vector3df Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo, float dureza);
+	//!
+	_GDT_EXPORT_ static vector3df Seguir( 
+		vector3df PosicionEntrada1,
+		float anguloY,
+		vector3df PosicionEntrada2,
+		float distancia,
+		float altura,
+		float angulo,
+		float dureza
+	);
 	
 	//! Convierte grados sexagesimales a radianes.
 	_GDT_EXPORT_ static double Rad(double);
 
 	// POSICION ********************************************************
+	//!
 	_GDT_EXPORT_ static double WrapValue(double Angulo);
-	//Regresa el nuevo valor del valor de la ordenadas X,Y,Z (segun el caso)
-	//segun un angulo y una distancia dadas.
+	//! Regresa el nuevo valor del valor de la ordenadas X,Y,Z (segun el caso) segun un angulo y una distancia dadas.
 	_GDT_EXPORT_ static double NewXValue(double dXActual,double dAngulo,double dDistancia);
+	//!
 	_GDT_EXPORT_ static double NewYValue(double dYActual,double dAngulo,double dDistancia);
+	//!
 	_GDT_EXPORT_ static double NewZValue(double dZActual,double dAngulo,double dDistancia);
 	//******************************************************************
 

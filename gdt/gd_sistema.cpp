@@ -398,8 +398,9 @@ bool GD_Sistema::OnEvent(SEvent event)
                     case EGET_FILE_SELECTED:
                     {
                          dialogoArchivoSeleccionado = true;
-                         NombreArchivoSeleccionado = ((IGUIFileOpenDialog*)event.GUIEvent.Caller)->getFilename();
-                         break;
+       					UltimoDialogoSeleccionado = (IGUIFileOpenDialog*)event.GUIEvent.Caller;
+    					ActualizarArchivoSeleccionadoDialogoAbrir(core::stringc(UltimoDialogoSeleccionado->getFilename()).c_str());
+                        break;
                     }
                     // Selecci? en Menu
                     case EGET_MENU_ITEM_SELECTED:
@@ -649,19 +650,25 @@ void GD_Sistema::Render()
 
 }
 
+/*!
+Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba Sistema.Matarme()
 
+Ejemplo:
+\code
+Sistema.Finalizar();
+\endcode
+*/
+void GD_Sistema::Finalizar()
+{
+     device->closeDevice();
+}
 
 /*!
-* Se usa cuando se quiere terminar la aplicaci&oacute;n.
-*
-* Ejemplo:
-* \code
-* Sistema.Matarme();
-* \endcode
+\deprecated Use Finalizar() en su lugar
 */
 void GD_Sistema::Matarme()
 {
-device->closeDevice();
+     Finalizar();
 }
 
 /*!
@@ -761,7 +768,8 @@ int GD_Sistema::TeclaPrecionada()
 }
 
 // MOUSE ***********************************************************
-// Posiciona el cursor en algun punto de la pantalla.
+/*!
+*/
 void GD_Sistema::MousePosicionar(int X,int Y)
 {
    //Estructura de tipo coordenada.
@@ -772,6 +780,8 @@ void GD_Sistema::MousePosicionar(int X,int Y)
    device->getCursorControl()->setPosition(Pos);
 }
 
+/*!
+*/
 int GD_Sistema::MousePosicionX(){
    //Crea la estructura MousePosX y obtiene el valor del tipo coordenada
    position2d<s32> MousePosX = device->getCursorControl()->getPosition();
@@ -779,6 +789,8 @@ int GD_Sistema::MousePosicionX(){
    return MousePosX.X;
 }
 
+/*!
+*/
 int GD_Sistema::MousePosicionY(){
    //Crea la estructura MousePosY y obtiene el valor del tipo coordenada
    position2d<s32> MousePosY = device->getCursorControl()->getPosition();
@@ -786,6 +798,8 @@ int GD_Sistema::MousePosicionY(){
    return MousePosY.Y;
 }
 
+/*!
+*/
 f32 GD_Sistema::MouseMovimientoX(f32 sensibilidad){
 
    f32 posY;
@@ -797,6 +811,8 @@ f32 GD_Sistema::MouseMovimientoX(f32 sensibilidad){
 
 }
 
+/*!
+*/
 f32 GD_Sistema::MouseMovimientoY(f32 sensibilidad){
     f32 posX;
    //Obtiene la posicion relativa acutal del mouse X
@@ -807,11 +823,15 @@ f32 GD_Sistema::MouseMovimientoY(f32 sensibilidad){
 
 }
 
+/*!
+*/
 void GD_Sistema::OcultarPuntero()
 {
    device->getCursorControl()->setVisible(false);
 }
 
+/*!
+*/
 void GD_Sistema::ColorSombra(int R, int G, int B)
 {
      sR = R;
@@ -821,13 +841,16 @@ void GD_Sistema::ColorSombra(int R, int G, int B)
    smgr->setShadowColor(video::SColor(sT,R,G,B));
 }
 
+/*!
+*/
 void GD_Sistema::TranslucidezSombra(int T)
 {
    sT = T;
    smgr->setShadowColor(video::SColor(T,sR,sG,sB));
 }
 
-
+/*!
+*/
 void GD_Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inicio, float fin,float densidad)
 {
      driver->setFog(SColor(0, r, g, b), lineal, inicio, fin, densidad, false, false);
@@ -871,7 +894,6 @@ void GD_Sistema::CambiarDirectorio(const char *strDir)
 }
 
 /*!
-*
 */
 const char *GD_Sistema::Directorio(void)
 {
@@ -879,34 +901,63 @@ const char *GD_Sistema::Directorio(void)
 }
 
 /*!
-* 
 */
 bool GD_Sistema::ArchivoExiste(const char *strArchivo)
 {
      return device->getFileSystem()->existFile(strArchivo);
 }
 
+/*!
+*/
 void GD_Sistema::CargarEscena(char* file)
 {
      smgr->loadScene(file);
 }
 
+/*!
+*/
 void GD_Sistema::GuardarEscena(char* file)
 {
      smgr->saveScene(file);
 }
 
+/*!
+*/
 void GD_Sistema::ActivarCamara(  ICameraSceneNode* cam )//GD_Camara cam )
 {
      smgr->setActiveCamera( cam );
 }
 
+/*!
+*/
 void GD_Sistema::AreaRenderizado(int x1, int y1, int x2, int y2)
 {
      driver->setViewPort(rect<s32>(x1,y1,x2,y2));
 }
 
+/*!
+*/
 void GD_Sistema::Limpiar()
 {
      smgr->clear();
+}
+
+/*!
+*/
+void GD_Sistema::ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn)
+{
+	strcpy(RutaArchivoSeleccionado, fn);
+}
+
+/*!
+*/
+void GD_Sistema::TransparenciaGUI(int valor)
+{     
+    for (s32 i=0; i<EGDC_COUNT ; ++i)
+    {
+        SColor col = guienv->getSkin()->getColor((EGUI_DEFAULT_COLOR)i);
+        col.setAlpha(valor);
+        guienv->getSkin()->setColor((EGUI_DEFAULT_COLOR)i, col);
+
+    }
 }

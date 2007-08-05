@@ -19,6 +19,10 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+// Ultima modificacion, Joropo, 04 07 07, para la version 1.3.5
+// * Corregido problema de que las imagenes quedaban de diferente tamanio
+//   al pasar a la ver sion 1.3.1 de Irrlicht.
+
 /*!
 * \class GD_GuiImagen
 *
@@ -70,18 +74,51 @@ void GD_GuiImagen::Cargar(char *filename)
 
     textura=driver->getTexture(filename);
 
-    tam = textura->getOriginalSize();
+    tam = textura->getSize();
 
-    // printf("TAMX = %d, TAMY = %d",tam.Width, tam.Height);
+    printf("TAMX = %d, TAMY = %d",tam.Width, tam.Height);
 
   //  int tamx = tam.Width+40;
   //  int tamy = tam.Height+2;
   //
-//	img = guienv->addImage(rect<s32>(0,0,tam.Width,tam.Height));
-//	img->setImage(textura);
+	img = guienv->addImage(rect<s32>(0,0,tam.Width,tam.Height));
+	img->setImage(textura);
 
-	img = guienv->addImage(driver->getTexture(filename),core::position2d<s32>(5,5));
 
+//	img = guienv->addImage(driver->getTexture(filename),
+	// position2d<int>(10,10));
+img->setScaleImage(  true );  
+
+    guiele=img;
+}
+
+void GD_GuiImagen::Cargar(char *filename, IGUIElement* padre)
+{
+
+    RegistrarDevice(GD_Sistema::device);
+
+    driver = midevice->getVideoDriver();
+    guienv = midevice->getGUIEnvironment();
+
+    //irr::core::dimension2d< s32 > tam;
+    //irr::video::ITexture* textura;
+
+    textura=driver->getTexture(filename);
+
+    tam = textura->getSize();
+
+    printf("TAMX = %d, TAMY = %d",tam.Width, tam.Height);
+
+  //  int tamx = tam.Width+40;
+  //  int tamy = tam.Height+2;
+  //
+	img = guienv->addImage(rect<s32>(0,0,tam.Width,tam.Height), padre);
+	img->setImage(textura);
+
+
+//	img = guienv->addImage(driver->getTexture(filename),
+	// position2d<int>(10,10));
+img->setScaleImage(  true );  
 
     guiele=img;
 }
@@ -98,4 +135,3 @@ void GD_GuiImagen::UsarCanalAlpha(bool uso)
 {
     img->setUseAlphaChannel(uso);
 }
-

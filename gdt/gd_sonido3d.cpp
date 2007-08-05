@@ -39,7 +39,7 @@ GD_Sonido3D::~GD_Sonido3D()
 /*!
 Ejemplo:
 \code
-Musica.CargarOGG("media/musica.ogg");
+Musica.Cargar("media/musica.wav");
 Musica.Bucle ( true );
 Musica.Reproducir();
 \endcode
@@ -122,7 +122,7 @@ char GD_Sonido3D::CargarOGG(char *archivo)
   OggVorbis_File oggFile;
 
   ov_open(f, &oggFile, NULL, 0);
-return 'a';
+
   // Get some information about the OGG file
   pInfo = ov_info(&oggFile, -1);
 

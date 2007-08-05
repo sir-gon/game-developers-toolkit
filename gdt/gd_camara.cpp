@@ -117,7 +117,7 @@ vector3df GD_Camara::Seguir(vector3df PosicionEntrada1, float anguloY,vector3df 
 	double px = PosicionEntrada1.X;
 	double py = PosicionEntrada1.Y;
 	double pz = PosicionEntrada1.Z;
-	double pa = GD_Matematicas::Capar(anguloY+angulo);
+	double pa = GD_Matematicas::Grados(anguloY+angulo);
 	double cx = PosicionEntrada2.X;
 	double cy = PosicionEntrada2.Y;
 	double cz = PosicionEntrada2.Z;

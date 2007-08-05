@@ -25,54 +25,43 @@
  * Ac&aacute; podr&aacute;s encontrar las funciones 
  * matem&aacute;ticas m&aacute;s necesarias.
  *
- * Para todos los ejemplos, se asume que GD_Matematicas está
- * instanciado en una variable llamada Calcular, es decir:
- * \code
- *     #include <gdt.h>
- *
- *     GD_Sistema Sistema;
- *     GD_Matematicas Calcular;
- *
- *     main {
- *         ////.....
- *     }
- * \endcode
+ * Todos los m&eacute;todos de esta clase han sido declarados est&aacute;ticos,
+ * de tal modo que ya no es necesario declarar una instancia de GD_Matematicas.
  * 
  * \since gdt-1.3.4-beta3
  */
 
 #include "gd_matematicas.h" // class's header file
 
-double GD_Matematicas::FastCos[361];
-double GD_Matematicas::FastSin[361];
-double GD_Matematicas::FastTan[361];
+double GD_Matematicas::FastCos[360];
+double GD_Matematicas::FastSin[360];
+double GD_Matematicas::FastTan[360];
 bool init = GD_Matematicas::Inicializar();
 
-
-/*
-GD_Matematicas::GD_Matematicas()
-{
-
-}
-
-// class destructor
-GD_Matematicas::~GD_Matematicas()
-{
-	// insert your code here
-}
-*/
-
 /*!
-Inicializa el sistema de generaci&oacute;n de n&uacute;meros pseudo-aletatorios, y calcula las funciones trigonom&eacute;tricas de los 360 &aacute;ngulos enteros, para obtenerlos r&aacute;pido posteriormente.
+* \return true, siempre.
+* 
+* Inicializa el sistema de generaci&oacute;n de n&uacute;meros pseudo-aletatorios, y
+* calcula las funciones trigonom&eacute;tricas de los 360 &aacute;ngulos enteros, para
+* obtenerlos r&aacute;pido posteriormente.
+* 
+* \note este m&eacute;todo es llamado autom&aacute;ticamente al iniciar, por lo tanto, 
+* no es necesario volver a llamarlo, y de hecho no se recomienda, para evitar 
+* p&eacute;rdida de rendimiento.
 */
+#include <iostream>
+using namespace std;
+
 bool GD_Matematicas::Inicializar()
 {
+using namespace std;
     //inicio los cosenos y senos rapidos
-    for(int i=0; i<361; i++)
+    for(int i=0; i<360; i++)
     {
-        FastCos[i]=cos((int)i*M_PI/180.0);
-        FastSin[i]=sin((int)i*M_PI/180.0);
-        FastTan[i]=tan((int)i*M_PI/180.0);
+        //FastCos[i]=cos((int)i*M_PI/180.0);
+	FastCos[i]=cos((float) Rad(i));
+        FastSin[i]=sin((float) Rad(i));
+        FastTan[i]=tan((float) Rad(i));
     }
     srand((u32) time(0));
     return true;
@@ -85,7 +74,7 @@ bool GD_Matematicas::Inicializar()
 Ejemplo:
 \code
 // Cacula el area de un circulo de radio "r"
-perimetro_circulo = 2 * Calcular.PI() * r;
+perimetro_circulo = 2 * GD_Matematicas::PI() * r;
 
 // Equivalente a lo anterior
 perimetro_circulo = 2 * M_PI * r;
@@ -106,33 +95,9 @@ double GD_Matematicas::E()
 }
 
 /*!
-\param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-*/
-int GD_Matematicas::Capar(int ang)
-{
-    while(ang>360.0)
-        ang-=360;
-    while(ang<0)
-        ang+=360;
-    return ang;
-}
-
-/*!
-\param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-*/
-double GD_Matematicas::Capar(double ang)
-{
-    while(ang>360.0)
-        ang=ang-360.0;
-    while(ang<0)
-        ang=ang+360.0;
-    return ang;
-}
-
-/////////////////////////////
-// REEMPLAZO DE "CAPAR"
-/*!
-\param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* \param ang es un &aacute;ngulo entero medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* \since 2.0
 */
 int GD_Matematicas::Grados(int ang)
 {
@@ -140,11 +105,15 @@ int GD_Matematicas::Grados(int ang)
         ang-=360;
     while(ang<0)
         ang+=360;
+    if (ang==360)
+	return 0;
     return ang;
 }
 
 /*!
-\param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* \param ang es un &aacute;ngulo real medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* \since 2.0
 */
 double GD_Matematicas::Grados(double ang)
 {
@@ -152,105 +121,117 @@ double GD_Matematicas::Grados(double ang)
         ang=ang-360.0;
     while(ang<0)
         ang=ang+360.0;
+    if (ang==360)
+	return 0;
     return ang;
 }
 /////////////////////////////
 /*!
-\param ang es un &aacute;ngulo medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-ComponenteY = longitud * Calcular.Seno( angulo );
-\endcode
+* \param ang es un &aacute;ngulo medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* ComponenteY = longitud * GD_Matematicas::Seno( angulo );
+* \endcode
+*
+* |note Error 0
 */
-//Error 0
 double GD_Matematicas::Seno(int ang)
 {
-    return FastSin[Capar(ang)];
+    return FastSin[Grados(ang)];
 }
 
 /*!
-\param ang es un &aacute;ngulo medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-ComponenteY = longitud * Calcular.Seno( angulo );
-\endcode
+* \param ang es un &aacute;ngulo medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* ComponenteY = longitud * GD_Matematicas::Seno( angulo );
+* \endcode
+* 
+* \note Error menor de 0.0002
 */
-//Error menor de 0.0002
 double GD_Matematicas::Seno(double ang)
 {
     int a,b;
     double c,d;
-    a=Capar((int)ang);
+    a=Grados((int)ang);
     b=a+1;
-    c=FastSin[a]-FastSin[Capar(b)];
+    c=FastSin[a]-FastSin[Grados(b)];
     d=ang-(double)a;
     return FastSin[a]-(c*d);
 }
 
 /*!
-\param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-ComponenteX = longitud * Calcular.Coseno( angulo );
-\endcode
+* \param ang es un &aacute;ngulo entero medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* ComponenteX = longitud * GD_Matematicas::Coseno( angulo );
+* \endcode
+*
+* \note Error 0
 */
-//Error 0
 double GD_Matematicas::Coseno(int ang)
 {
-    return FastCos[Capar(ang)];
+    return FastCos[Grados(ang)];
 }
 
 /*!
-\param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-ComponenteX = longitud * Calcular.Coseno( angulo );
-\endcode
+* \param ang es un &aacute;ngulo real medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* ComponenteX = longitud * GD_Matematicas::Coseno( angulo );
+* \endcode
+*
+* \note Error menor de 0.0002
 */
-//Error menor de 0.0002
 double GD_Matematicas::Coseno(double ang)
 {
     int a,b;
     double c,d;
-    a=Capar((int)ang);
+    a=Grados((int)ang);
     b=a+1;
-    c=FastCos[a]-FastCos[Capar(b)];
+    c=FastCos[a]-FastCos[Grados(b)];
     d=ang-(double)a;
     return FastCos[a]-(c*d);
 }
 
 /*!
-\param ang es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-pendiente = Calcular.Tangente( angulo );
-\endcode
+* \param ang es un &aacute;ngulo entero medido en
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* pendiente = GD_Matematicas::Tangente( angulo );
+* \endcode
 */
 double GD_Matematicas::Tangente(int ang)
 {
-    return FastTan[Capar(ang)];
+    return FastTan[Grados(ang)];
 }
 
 /*!
-\param ang es un &aacute;ngulo real medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
-
-Ejemplo:
-\code
-pendiente = Calcular.Tangente( angulo );
-\endcode
+* \param ang es un &aacute;ngulo real medido en 
+* <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
+* 
+* Ejemplo:
+* \code
+* pendiente = GD_Matematicas::Tangente( angulo );
+* \endcode
 */
 double GD_Matematicas::Tangente(double ang)
 {
     int a,b;
     double c,d;
-    a=Capar((int)ang);
+    a=Grados((int)ang);
     b=a+1;
-    c=FastTan[a]-FastTan[Capar(b)];
+    c=FastTan[a]-FastTan[Grados(b)];
     d=ang-(double)a;
     return FastTan[a]-(c*d);
 }
@@ -263,7 +244,7 @@ double GD_Matematicas::Tangente(double ang)
 Ejemplo:
 \code
 // Retorna 10
-min = Calcular.Minimo(10,20);
+min = GD_Matematicas::Minimo(10,20);
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
@@ -282,7 +263,7 @@ int GD_Matematicas::Minimo(int ValorA,int ValorB)
 
 Ejemplo:
 \code
-min = Calcular.Minimo(0, 2*Calcular.PI());
+min = GD_Matematicas::Minimo(0, 2*GD_Matematicas::PI());
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
@@ -301,7 +282,7 @@ double GD_Matematicas::Minimo(double ValorA,double ValorB)
 
 Ejemplo:
 \code
-min = Calcular.Maximo(0, 234);
+min = GD_Matematicas::Maximo(0, 234);
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
@@ -320,7 +301,7 @@ int GD_Matematicas::Maximo(int ValorA,int ValorB)
 
 Ejemplo:
 \code
-min = Calcular.Maximo(0, 2*Calcular.PI());
+min = GD_Matematicas::Maximo(0, 2*GD_Matematicas::PI());
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
@@ -341,10 +322,10 @@ Los valores m&iacute;nimo y m&aacute;ximo se incluyen en las im&aacute;genes (o 
 
 Ejemplo:
 \code
-probabilidad = Calcular.Azar(0,100); // un porcentaje entero al azar
+probabilidad = GD_Matematicas::Azar(0,100); // un porcentaje entero al azar
 \endcode
 
-Se agradece a: http://www.daniweb.com/forums/thread1769.html
+\note Se agradece a: http://www.daniweb.com/forums/thread1769.html
 */
 int GD_Matematicas::Azar(int min,int max)
 {
@@ -357,7 +338,7 @@ int GD_Matematicas::Azar(int min,int max)
 
 Ejemplo:
 \code
-probabilidad = Calcular.Azar(0,100); // un porcentaje real al azar
+probabilidad = GD_Matematicas::Azar(0,100); // un porcentaje real al azar
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
@@ -374,7 +355,7 @@ double GD_Matematicas::Azar(double min, double max)
 Ejemplo:
 \code
 // La raiz cuadrada de 4, osea 2.
-raiz = Calcular.Raiz(4)
+raiz = GD_Matematicas::Raiz(4)
 \endcode
 */
 double GD_Matematicas::Raiz(double x)
@@ -487,7 +468,7 @@ double GD_Matematicas::TangenteHyperbolica(double t)
 /*!
 \param x n&uacute;mero real.
 
-Es la inversa del Seno().
+\f$ ArcoSeno( Seno (x) ) = x; \f$
 */
 double GD_Matematicas::ArcoSeno(double x)
 {
@@ -497,7 +478,7 @@ double GD_Matematicas::ArcoSeno(double x)
 /*!
 \param x n&uacute;mero real.
 
-Es la inversa del Coseno().
+\f$ ArcoCoseno( Coseno(x) ) = x; \f$
 */
 double GD_Matematicas::ArcoCoseno(double x)
 {
@@ -507,7 +488,7 @@ double GD_Matematicas::ArcoCoseno(double x)
 /*!
 \param x n&uacute;mero real.
 
-Es la inversa de la Tangente().
+\f$ ArcoTangente( Tangente(x) ) = x; \f$
 */
 double GD_Matematicas::ArcoTangente(double x)
 {
@@ -540,7 +521,7 @@ ln(x) = \int_{0}^{x} \dfrac {dt} {t} \mbox{ ; } \forall \mbox{ } x > 0
 
 Ejemplo:
 \code
-resultado = Calcular.Logaritmo( E_() ); // Retorna 1
+resultado = GD_Matematicas::Logaritmo( E_() ); // Retorna 1
 \endcode
 
 Nota: El n&uacute;mero "e" se puede obtener usando E().
@@ -559,7 +540,7 @@ Es la inversa de la funci&oacute;n Potencia() en base 10, es decir, encuentra el
 
 Ejemplo:
 \code
-resultado = Calcular.Logaritmo( 10 ); // Retorna 1
+resultado = GD_Matematicas::Logaritmo( 10 ); // Retorna 1
 \endcode
 
 */
@@ -586,7 +567,7 @@ Por muy peque&ntilde;o que sea el decimal, se trunca al entero y se suma 1.
 
 Ejemplo:
 \code
-aproximado = Calcular.RedondearArriba(0.0000000000000001) // Retorna 1
+aproximado = GD_Matematicas::RedondearArriba(0.0000000000000001) // Retorna 1
 \endcode
 */
 int GD_Matematicas::RedondearArriba(double x)
@@ -601,7 +582,7 @@ Por muy alto que sea el decimal, se trunca al entero.
 
 Ejemplo:
 \code
-aproximado = Calcular.RedondearAbajo(10.9) // Retorna 10
+aproximado = GD_Matematicas::RedondearAbajo(10.9) // Retorna 10
 \endcode
 */
 int GD_Matematicas::RedondearAbajo(double x)
@@ -614,9 +595,9 @@ La regla es si el primer decimal es menor a 5, se redondea hacia abajo (o se tru
 
 Ejemplo:
 \code
-aproximado = Calcular.RedondearAbajo(3.9) // Retorna 4
-aproximado = Calcular.RedondearAbajo(3.5) // Retorna 4
-aproximado = Calcular.RedondearAbajo(3.4) // Retorna 3
+aproximado = GD_Matematicas::RedondearAbajo(3.9) // Retorna 4
+aproximado = GD_Matematicas::RedondearAbajo(3.5) // Retorna 4
+aproximado = GD_Matematicas::RedondearAbajo(3.4) // Retorna 3
 \endcode
 */
 int GD_Matematicas::Redondear(double x)
@@ -655,7 +636,7 @@ Ejemplo:
 
 \code
 \param x número entero.
-valor = Calcular.Absoluto( -10 ); //
+valor = GD_Matematicas::Absoluto( -10 ); //
 if(valor == 10) {
     cout << "El valor absoluto de -10 es 10" << "\n";
 }
@@ -682,7 +663,7 @@ x & \text{si } x \geq 0 \\
 Ejemplo:
 
 \code
-valor = Calcular.Absoluto( -10 ); //
+valor = GD_Matematicas::Absoluto( -10 ); //
 if(valor == 10) {
     cout << "El valor absoluto de -10 es 10" << "\n";
 }
@@ -705,15 +686,15 @@ float GD_Matematicas::CurvarValor(float actual, float destino, float velocidad)
 double GD_Matematicas::CurvarAngulo(double actual, double destino, double velocidad)
 {
     double diferencia;
-    actual=Capar(actual);
-    destino=Capar(destino);
+    actual=Grados(actual);
+    destino=Grados(destino);
     if(GiroAngulo(actual, destino)>0)
     {
         diferencia=destino-actual;
         if(velocidad==0)
             return actual;
         else
-            return Capar(actual+(diferencia*(1/velocidad)));
+            return Grados(actual+(diferencia*(1/velocidad)));
     }
     else
     {
@@ -721,7 +702,7 @@ double GD_Matematicas::CurvarAngulo(double actual, double destino, double veloci
         if(velocidad==0)
             return actual;
         else
-            return Capar(actual-(diferencia*(1/velocidad)));
+            return Grados(actual-(diferencia*(1/velocidad)));
     }
 }
 
@@ -821,7 +802,7 @@ vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vect
 	f32 px = PosicionEntrada1.X;
 	f32 py = PosicionEntrada1.Y;
 	f32 pz = PosicionEntrada1.Z;
-	double pa = Capar(anguloY+angulo);
+	double pa = Grados(anguloY+angulo);
 	f32 cx = PosicionEntrada2.X;
 	f32 cy = PosicionEntrada2.Y;
 	f32 cz = PosicionEntrada2.Z;
@@ -839,9 +820,12 @@ vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vect
 */
 double GD_Matematicas::Rad(double Deg)
 {
+/*
 Deg = (Deg/180.0f); //Divide by 180
 Deg = Deg*3.14159f; //Multuply by approximation to PI
 return (float)Deg;
+*/
+	return Deg/(double)180.0*M_PI;
 }
 
 // POSICION *************************************************************

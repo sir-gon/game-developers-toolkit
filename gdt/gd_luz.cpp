@@ -58,6 +58,8 @@ void GD_Luz::Crear(float x, float y, float z, float radio)
      
      HacerSombra(false);
      Tipo(1);
+     
+     Posicionar(x,y,z);
 	
 }
 
@@ -86,6 +88,8 @@ void GD_Luz::Crear(float x, float y, float z, float radio, int tipo)
 
     HacerSombra(false);
     Tipo(tipo);
+    
+    Posicionar(x,y,z);
 }
 
 void GD_Luz::Crear()
@@ -106,6 +110,8 @@ void GD_Luz::Crear()
 
      HacerSombra(false);
      Tipo(1);
+     // ESTO PORQUE???
+     Posicionar(200,200,200);
 }
 
 
@@ -133,6 +139,8 @@ void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float r
      
      HacerSombra(false);
      Tipo(1);
+     
+     Posicionar(x,y,z);
 	
 }
 
@@ -163,29 +171,9 @@ void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float r
      
      HacerSombra(false);
      Tipo(tipo);
-	
-}
+     
+          Posicionar(x,y,z);
 
-/*!
-\param r,g,b => color
-\param radio => radio
-*/
-void GD_Luz::Crear(int r, int g ,int b, float radio)
-{
-     Crear(100.f,100.f,100.f,(float)r,(float)g,(float)b,radio,3);
-}
-
-/*!
-\param r,g,b => color
-\param radio => radio
-\param tipom => puede ser:
-    - RADIAL
-    - DIRECCIONAL
-*/
-void GD_Luz::Crear(int r, int g ,int b, float radio, int tipom)
-{
-      Crear(100.f,100.f,100.f,(float)r,(float)g,(float)b,radio,tipom);
-      Tipo(tipom);
 }
 
 /*!
@@ -197,6 +185,9 @@ Luz.HacerSombra(true);
 void GD_Luz::HacerSombra(bool hacer)
 {
      sluz.CastShadows = hacer;
+     nodl->setLightData (sluz);
+    //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -210,6 +201,9 @@ Luz.Direccion( 102,85,54) ;
 void GD_Luz::Direccion(float x, float y, float z)
 {
       sluz.Position.set(x,y,z);
+           nodl->setLightData (sluz);
+               //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -223,6 +217,9 @@ Luz.Direccion( Protagonista ) ;
 void GD_Luz::Direccion( vector3df vect)
 {
       sluz.Position = vect;
+           nodl->setLightData (sluz);
+               //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -238,28 +235,44 @@ Luz.Tipo( RADIAL );
 void GD_Luz::Tipo(int tipo)
 {
      if(tipo==1) sluz.Type = ELT_POINT;
-     if(tipo==2) sluz.Type = ELT_DIRECTIONAL;     
+     if(tipo==2) sluz.Type = ELT_DIRECTIONAL;
+
+          nodl->setLightData (sluz); 
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::Radio( float rad )
 {
      sluz.Radius = rad;
+     
+          nodl->setLightData (sluz);
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::ColorAmbiente(s32 r,s32 g,s32 b)
 {
      sluz.AmbientColor.set((f32)r,(f32)g,(f32)b);
+          nodl->setLightData (sluz);
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::ColorDifuso(s32 r,s32 g,s32 b)
 {
      sluz.DiffuseColor.set((f32)r,(f32)g,(f32)b);
-     printf("cambiando valor de la luz R a %d\n",r);
+          nodl->setLightData (sluz);
+         //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::ColorEspecular(s32 r,s32 g,s32 b)
 {
      sluz.SpecularColor.set((f32)r,(f32)g,(f32)b);
+          nodl->setLightData (sluz);
+    //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::AumentarColorAmbiente(float val)
@@ -273,6 +286,10 @@ void GD_Luz::AumentarColorAmbiente(float val)
      bb+=val;
 
      sluz.AmbientColor.set(rr,gg,bb);
+     
+          nodl->setLightData (sluz);
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::AumentarColorDifuso(float val)
@@ -286,6 +303,10 @@ void GD_Luz::AumentarColorDifuso(float val)
      bb+=val;          
      
      sluz.DiffuseColor.set(rr,gg,bb);
+     
+          nodl->setLightData (sluz);
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::AumentarColorEspecular(float val)
@@ -299,6 +320,10 @@ void GD_Luz::AumentarColorEspecular(float val)
      bb+=val;          
      
      sluz.SpecularColor.set(rr,gg,bb);
+     
+          nodl->setLightData (sluz);
+              //  reestablece la posicion (bug)
+    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 void GD_Luz::CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
@@ -316,3 +341,84 @@ void GD_Luz::CrearColision( GD_Escenario scen,float radiox, float radioy,float r
 	//anim->drop();
 }
 
+int GD_Luz::RetornarColorAmbienteR()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Amb;
+       Amb = Sl.AmbientColor;
+       return int(Amb.r);
+}
+
+int GD_Luz::RetornarColorAmbienteG()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Amb;
+       Amb = Sl.AmbientColor;
+       return int(Amb.g);
+}
+
+int GD_Luz::RetornarColorAmbienteB()                
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Amb;
+       Amb = Sl.AmbientColor;
+       return int(Amb.b);
+}
+
+int GD_Luz::RetornarColorDifusoR()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.DiffuseColor;
+       return int(Dif.r);
+}
+
+int GD_Luz::RetornarColorDifusoG()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.DiffuseColor;
+       return int(Dif.g);
+}
+
+int GD_Luz::RetornarColorDifusoB()                
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.DiffuseColor;
+       return int(Dif.b);
+}
+      
+
+int GD_Luz::RetornarColorEspecularR()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.SpecularColor;
+       return int(Dif.r);
+}
+
+int GD_Luz::RetornarColorEspecularG()
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.SpecularColor;
+       return int(Dif.g);
+}
+
+int GD_Luz::RetornarColorEspecularB()        
+{
+       video::SLight Sl;
+       Sl = nodl->getLightData();    
+       SColorf Dif;
+       Dif = Sl.SpecularColor;
+       return int(Dif.b);
+}

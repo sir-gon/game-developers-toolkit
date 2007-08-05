@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="libgdt"
+	Name="gdt"
 	ProjectGUID="{96CEBA08-BA50-4686-ACBD-D8605CB8D51E}"
 	RootNamespace="pruebadll"
 	Keyword="ManagedCProj"
@@ -144,7 +144,10 @@
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;lib\win32-visualstudio&quot;;&quot;bin\win32-visualstudio&quot;"
 				GenerateManifest="true"
+				IgnoreAllDefaultLibraries="false"
+				IgnoreDefaultLibraryNames="LIBCMT"
 				GenerateDebugInformation="false"
+				ImportLibrary="bin\win32-visualstudio\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -186,7 +189,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gdt\gd_animador.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\gdt\gd_archivo.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gdt\gd_cadena.cpp"
 				>
 			</File>
 			<File
@@ -203,6 +214,10 @@
 			</File>
 			<File
 				RelativePath=".\gdt\gd_controlesprediseniados.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\gdt\gd_cronometro.cpp"
 				>
 			</File>
 			<File
@@ -344,7 +359,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\gdt\gd_animador.h"
+				>
+			</File>
+			<File
 				RelativePath=".\gdt\gd_archivo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gdt\gd_cadena.h"
 				>
 			</File>
 			<File
@@ -361,6 +384,10 @@
 			</File>
 			<File
 				RelativePath=".\gdt\gd_controlesprediseniados.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gdt\gd_cronometro.h"
 				>
 			</File>
 			<File

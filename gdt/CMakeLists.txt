@@ -1,5 +1,5 @@
 #add definitions, compiler switches, etc.
-#ADD_DEFINITIONS(-Wall -O2)
+ADD_DEFINITIONS(-Wall -O2)
 
 FILE(GLOB GDT_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 FILE(GLOB GDT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")

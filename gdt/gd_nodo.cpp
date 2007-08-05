@@ -77,7 +77,12 @@ Cubo.Posicionar( 10,0,-30 );
 void GD_Nodo::Posicionar(float x, float y, float z)
 {
      if(nodon) 
+     {
       nodon->setPosition(vector3df(x, y, z));
+      mi_posicion_x = x;
+      mi_posicion_y = y;
+      mi_posicion_z = z;
+      }
      else
       printf("ERROR: Llamada invalida a la funcion .Posicionar, verifique haber creado/cargado correctamente la entidad.\n ej. Camara.Crear(Tipo_Normal);");
 }
@@ -853,17 +858,21 @@ Cubo.ColorAmbiente(200,100,100);
 */
 void GD_Nodo::ColorAmbiente(s32 r,s32 g,s32 b, int capa )
 {
-     if(capa == -1)
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->getMaterial(i).AmbientColor.set(coloralphaA,r,g,b);
-         }
-     }
-     else
-     {
-         nodon->getMaterial(capa).AmbientColor.set(coloralphaA,r,g,b);
-     }
+	if(capa == -1)
+	{
+		for(u32 i=0; i< nodon->getMaterialCount(); ++i)
+		{
+			nodon->getMaterial(i).AmbientColor.setRed(r);
+			nodon->getMaterial(i).AmbientColor.setGreen(g);
+			nodon->getMaterial(i).AmbientColor.setBlue(b);
+		}
+	}
+	else
+	{
+			nodon->getMaterial(capa).AmbientColor.setRed(r);
+			nodon->getMaterial(capa).AmbientColor.setGreen(g);
+			nodon->getMaterial(capa).AmbientColor.setBlue(b);
+	}
 }
 
 /*!
@@ -881,12 +890,16 @@ void GD_Nodo::ColorDifuso(s32 r,s32 g,s32 b,  int capa)
      {
          for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
-                 nodon->getMaterial(i).DiffuseColor.set(coloralphaD,r,g,b);
+                 nodon->getMaterial(i).DiffuseColor.setRed(r);
+                 nodon->getMaterial(i).DiffuseColor.setGreen(g);
+                 nodon->getMaterial(i).DiffuseColor.setBlue(b);
          }
      }
      else
      {
-         nodon->getMaterial(capa).DiffuseColor.set(coloralphaD,r,g,b);
+             nodon->getMaterial(capa).DiffuseColor.setRed(r);
+             nodon->getMaterial(capa).DiffuseColor.setGreen(g);
+             nodon->getMaterial(capa).DiffuseColor.setBlue(b);
      }
 }
 
@@ -905,12 +918,16 @@ void GD_Nodo::ColorEmisivo(s32 r,s32 g,s32 b,  int capa)
      {
          for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
-                 nodon->getMaterial(i).EmissiveColor.set(coloralphaEm,r,g,b);
+                 nodon->getMaterial(i).EmissiveColor.setRed(r);
+                 nodon->getMaterial(i).EmissiveColor.setGreen(g);
+                 nodon->getMaterial(i).EmissiveColor.setBlue(b);
          }
      }
      else
      {
-         nodon->getMaterial(capa).EmissiveColor.set(coloralphaEm,r,g,b);
+                 nodon->getMaterial(capa).EmissiveColor.setRed(r);
+                 nodon->getMaterial(capa).EmissiveColor.setGreen(g);
+                 nodon->getMaterial(capa).EmissiveColor.setBlue(b);
      }
 }
 
@@ -929,12 +946,16 @@ void GD_Nodo::ColorEspecular(s32 r,s32 g,s32 b,  int capa)
      {
          for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
-                 nodon->getMaterial(i).SpecularColor.set(coloralphaE,r,g,b);
+                 nodon->getMaterial(i).SpecularColor.setRed(r);
+                 nodon->getMaterial(i).SpecularColor.setGreen(g);
+                 nodon->getMaterial(i).SpecularColor.setBlue(b);
          }
      }
      else
      {
-         nodon->getMaterial(capa).SpecularColor.set(coloralphaE,r,g,b);
+                 nodon->getMaterial(capa).SpecularColor.setRed(r);
+                 nodon->getMaterial(capa).SpecularColor.setGreen(g);
+                 nodon->getMaterial(capa).SpecularColor.setBlue(b);
      }
 }
 
@@ -945,18 +966,29 @@ Ejemplo:
 Cubo.NivelTransparencia( 155 );
 \endcode
 */
-void GD_Nodo::NivelTransparencia(s32 v)
+void GD_Nodo::NivelTransparencia(s32 v,  int capa)
 {
-    coloralphaA = 100;
-    coloralphaD = 100;
-    coloralphaEm = 100;
-    coloralphaE = 100;
+    
+    coloralphaD = v;
+    coloralphaEm = v;
+    coloralphaE = v;
 
-    /*nodon->getMaterial(0).AmbientColor.set(coloralphaA,100,100,100);
-    nodon->getMaterial(0).DiffuseColor.set(coloralphaD,100,100,100);
-    nodon->getMaterial(0).EmissiveColor.set(coloralphaEm,100,100,100);
-    nodon->getMaterial(0).SpecularColor.set(coloralphaE,100,100,100);   */
 
+     if(capa == -1)
+     {
+         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         {
+                 nodon->getMaterial(i).DiffuseColor.setAlpha (v);
+                 nodon->getMaterial(i).EmissiveColor.setAlpha(v);
+                 nodon->getMaterial(i).SpecularColor.setAlpha (v);
+         }
+     }
+     else
+     {
+                 nodon->getMaterial(capa).DiffuseColor.setAlpha (v);
+                 nodon->getMaterial(capa).EmissiveColor.setAlpha(v);
+                 nodon->getMaterial(capa).SpecularColor.setAlpha (v);
+     }
 }
 
 /*!
@@ -1017,3 +1049,92 @@ void GD_Nodo::Destruir(void)
       nodon->remove();
 }
 
+void GD_Nodo::Brillo(float intensidad)
+{
+        nodon->getMaterial(0).Shininess = intensidad;
+}
+
+
+int GD_Nodo::RetornarColorEmisivoR()
+{
+       SColor Amb = nodon->getMaterial(0).EmissiveColor;
+       return int(Amb.getRed() );
+}
+
+int GD_Nodo::RetornarColorEmisivoG()
+{
+       SColor Amb = nodon->getMaterial(0).EmissiveColor;
+       return int(Amb.getGreen());
+}
+
+int GD_Nodo::RetornarColorEmisivoB()                
+{
+       SColor Amb = nodon->getMaterial(0).EmissiveColor;
+       return int(Amb.getBlue());
+}
+
+int GD_Nodo::RetornarColorDifusoR()
+{
+       SColor Dif = nodon->getMaterial(0).DiffuseColor;
+       return int(Dif.getRed());
+}
+
+int GD_Nodo::RetornarColorDifusoG()
+{
+       SColor Dif = nodon->getMaterial(0).DiffuseColor;
+       return int(Dif.getGreen());
+}
+
+int GD_Nodo::RetornarColorDifusoB()                
+{
+       SColor Dif = nodon->getMaterial(0).DiffuseColor;
+       return int(Dif.getBlue());
+}
+      
+
+int GD_Nodo::RetornarColorEspecularR()
+{
+       SColor Dif = nodon->getMaterial(0).SpecularColor;
+       return int(Dif.getRed());
+}
+
+int GD_Nodo::RetornarColorEspecularG()
+{
+       SColor Dif = nodon->getMaterial(0).SpecularColor;
+       return int(Dif.getGreen());
+}
+
+int GD_Nodo::RetornarColorEspecularB()        
+{
+       SColor Dif = nodon->getMaterial(0).SpecularColor;
+       return int(Dif.getBlue());
+}        
+
+
+int GD_Nodo::RetornarColorAmbienteR()
+{
+       SColor Dif = nodon->getMaterial(0).AmbientColor;
+       return int(Dif.getRed());
+}
+
+int GD_Nodo::RetornarColorAmbienteG()
+{
+       SColor Dif = nodon->getMaterial(0).AmbientColor;
+       return int(Dif.getGreen());
+}
+
+int GD_Nodo::RetornarColorAmbienteB()                
+{
+       SColor Dif = nodon->getMaterial(0).AmbientColor;
+       return int(Dif.getBlue());
+}        
+
+int GD_Nodo::RetornarBrillo()                
+{        
+      return (int)nodon->getMaterial(0).Shininess;
+}
+
+void GD_Nodo::AgregarAnimador(GD_Animador Animate)
+{
+     nodon->addAnimator(Animate.Retornar());
+}
