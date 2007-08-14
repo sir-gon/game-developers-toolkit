@@ -24,7 +24,7 @@
 //   al pasar a la ver sion 1.3.1 de Irrlicht.
 
 /*!
-* \class GD_GuiImagen
+* \class GDT::Gui::Imagen
 *
 * Usa una imagen como Control GUI, lo cual nos permite desplegar
 * contenidos de imagen, logotipos, alertas, o lo que sea importante
@@ -34,34 +34,33 @@
 #include "gd_guiimagen.h" // class's header file
 
 // class constructor
-GD_GuiImagen::GD_GuiImagen()
+GDT::Gui::Imagen::Imagen()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_GuiImagen::~GD_GuiImagen()
+GDT::Gui::Imagen::~Imagen()
 {
 	// insert your code here
 }
 
 /*!
-Los formatos soportados son:
-
-    -  Adobe Photoshop (.psd)
-    - JPEG File Interchange Format (.jpg)
-    - Portable Network Graphics (.png)
-    - Truevision Targa (.tga)
-    - Windows Bitmap (.bmp)
-    - Zsoft Paintbrush (.pcx)
-    -  Adobe Photoshop (.psd)
-    - JPEG File Interchange Format (.jpg)
-    - Portable Network Graphics (.png)
-    - Truevision Targa (.tga)
-    - Windows Bitmap (.bmp)
-    - Zsoft Paintbrush (.pcx)
+* Los formatos soportados son:
+*  -  Adobe Photoshop (.psd)
+*  - JPEG File Interchange Format (.jpg)
+*  - Portable Network Graphics (.png)
+*  - Truevision Targa (.tga)
+*  - Windows Bitmap (.bmp)
+*  - Zsoft Paintbrush (.pcx)
+*  -  Adobe Photoshop (.psd)
+*  - JPEG File Interchange Format (.jpg)
+*  - Portable Network Graphics (.png)
+*  - Truevision Targa (.tga)
+*  - Windows Bitmap (.bmp)
+*  - Zsoft Paintbrush (.pcx)
 */
-void GD_GuiImagen::Cargar(char *filename)
+void GDT::Gui::Imagen::Cargar(char *filename)
 {
 
     RegistrarDevice(GD_Sistema::device);
@@ -76,7 +75,7 @@ void GD_GuiImagen::Cargar(char *filename)
 
     tam = textura->getSize();
 
-    printf("TAMX = %d, TAMY = %d",tam.Width, tam.Height);
+    printf("TAMX = %d, TAMY = %d\n",tam.Width, tam.Height);
 
   //  int tamx = tam.Width+40;
   //  int tamy = tam.Height+2;
@@ -92,7 +91,9 @@ img->setScaleImage(  true );
     guiele=img;
 }
 
-void GD_GuiImagen::Cargar(char *filename, IGUIElement* padre)
+/*!
+*/
+void GDT::Gui::Imagen::Cargar(char *filename, IGUIElement* padre)
 {
 
     RegistrarDevice(GD_Sistema::device);
@@ -107,7 +108,7 @@ void GD_GuiImagen::Cargar(char *filename, IGUIElement* padre)
 
     tam = textura->getSize();
 
-    printf("TAMX = %d, TAMY = %d",tam.Width, tam.Height);
+    printf("TAMX = %d, TAMY = %d\n",tam.Width, tam.Height);
 
   //  int tamx = tam.Width+40;
   //  int tamy = tam.Height+2;
@@ -124,14 +125,14 @@ img->setScaleImage(  true );
 }
 
 /*!
-\param uso true para activar el canal alpha, false para desactivarlo
-
-Ejemplo:
-\code
-Imagen.UsarCanalAlpha(true);
-\endcode
+* \param uso true para activar el canal alpha, false para desactivarlo
+* 
+* Ejemplo:
+* \code
+* Imagen.UsarCanalAlpha(true);
+* \endcode
 */
-void GD_GuiImagen::UsarCanalAlpha(bool uso)
+void GDT::Gui::Imagen::UsarCanalAlpha(bool uso)
 {
     img->setUseAlphaChannel(uso);
 }

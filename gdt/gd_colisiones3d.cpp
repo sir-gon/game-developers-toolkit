@@ -26,22 +26,22 @@
 *
 * De ahora en adelante, se tratar&aacute; como "el Nodo" al objeto que
 * se sea instanciado a partir de esta clase o una clase hija.
-* 
+*
 * Por ejemplo As&iacute;:
 *
-\code
-#include "gdt.h"
-
-GD_Sistema Sistema;
-GD_Malla Nodo;
-
-int main {
-
-  // el resto del programa
-
-  return 0;
-}
-\endcode
+* \code
+* #include "gdt.h"
+*
+* GD_Sistema Sistema;
+* GD_Malla Nodo;
+*
+* int main {
+*
+*   // el resto del programa
+*
+*  return 0;
+* }
+* \endcode
 *
 * A su vez, cualquier dato de tipo "ITriangleSelector" se le llamara Escenario.
 *
@@ -102,13 +102,20 @@ void GD_Colisiones3d::CrearColision(ITriangleSelector* Mundo)
 
 }
 
-/*! 
-Con este m&eacute;todo se puede hacer que el nodo al colisionar con un GD_Escenario tenga la respuesta de colisi&oacute;n autom&aacute;ticamente es decir no traspase el pol&iacute;gono, cambie la direcci&oacute;n del movimiento, etc., es un completo sistema de colisiones con su respuesta incluyendo gravedad.
-
-\param Mundo son los datos de colisi&oacute;n del GD_Escenario se obtienen con. GD_Escenario::RetornarDatos().
-\param Radio vector con los radio del elipsoide que colisiona con el GD_Escenario.
-\param Traslacion vector de la translaci&oacute;n de dicho elipse.
-\param Gravedad vector de la gravedad en cada eje, si no se desea usar gravedad simplemente se dejan en ceros.
+/*!
+* Con este m&eacute;todo se puede hacer que el nodo al colisionar con
+* un GD_Escenario tenga la respuesta de colisi&oacute;n autom&aacute;ticamente
+* es decir no traspase el pol&iacute;gono, cambie la direcci&oacute;n del
+* movimiento, etc., es un completo sistema de colisiones con su respuesta
+* incluyendo gravedad.
+*
+* \param Mundo son los datos de colisi&oacute;n del GD_Escenario se obtienen
+* con. GD_Escenario::RetornarDatos().
+* \param Radio vector con los radio del elipsoide que colisiona con
+* el GD_Escenario.
+* \param Traslacion vector de la translaci&oacute;n de dicho elipse.
+* \param Gravedad vector de la gravedad en cada eje, si no se desea
+* usar gravedad simplemente se dejan en ceros.
 */
 void GD_Colisiones3d::CrearColision(ITriangleSelector* Mundo,core::vector3df Radio, core::vector3df Gravedad,core::vector3df Traslacion)
 {
@@ -124,12 +131,19 @@ void GD_Colisiones3d::CrearColision(ITriangleSelector* Mundo,core::vector3df Rad
 }
 
 /*!
-Con este m&eacute;todo se puede hacer que el nodo al colisionar con un GD_Escenario tenga la respuesta de colisi&oacute;n autom&aacute;ticamente es decir no traspase el pol&iacute;gono, cambie la direcci&oacute;n del movimiento, etc., es un completo sistema de colisiones con su respuesta incluyendo gravedad.
-
-\param selector son los datos de colisi&oacute;n del GD_Escenario se obtienen con GD_Escenario::RetornarDatos().
-\param RadioX,RadioY,RadioZ
-\param GravedadX,GravedadY,GravedadZ fuerza de gravedad en cada componente. Si no se desea dejar en ceros.
-\param TraslacionX,TraslacionY,TraslacionZ coordenadas de la posición de la elipse con respecto al objeto.
+* Con este m&eacute;todo se puede hacer que el nodo al colisionar con un
+* GD_Escenario tenga la respuesta de colisi&oacute;n autom&aacute;ticamente
+* es decir no traspase el pol&iacute;gono, cambie la direcci&oacute;n del
+* movimiento, etc., es un completo sistema de colisiones con su respuesta
+* incluyendo gravedad.
+*
+* \param selector son los datos de colisi&oacute;n del GD_Escenario se
+* obtienen con GD_Escenario::RetornarDatos().
+* \param RadioX,RadioY,RadioZ
+* \param GravedadX,GravedadY,GravedadZ fuerza de gravedad en cada componente.
+* Si no se desea dejar en ceros.
+* \param TraslacionX,TraslacionY,TraslacionZ coordenadas de la posición de
+* la elipse con respecto al objeto.
 */
 void GD_Colisiones3d::CrearColision(ITriangleSelector* selector,
                           float RadioX, float RadioY, float RadioZ,
@@ -137,7 +151,7 @@ void GD_Colisiones3d::CrearColision(ITriangleSelector* selector,
                           float TraslacionX, float TraslacionY, float TraslacionZ)
 {
    colision = mesh_smgr->createCollisionResponseAnimator(selector, nodon ,
-	core::vector3df(RadioX,RadioY,RadioZ), 
+	core::vector3df(RadioX,RadioY,RadioZ),
 	core::vector3df(GravedadX,GravedadY,GravedadZ),
 	core::vector3df(TraslacionX,TraslacionY,TraslacionZ));
 
@@ -149,7 +163,8 @@ void GD_Colisiones3d::CrearColision(ITriangleSelector* selector,
 }
 
 /*!
-Si se han cambiado los valores de colisión, tales como: Radio, Gravedad o Traslacion, con este m&eacute;todo se recrea el valor de la animacion.
+* Si se han cambiado los valores de colisión, tales como: Radio, Gravedad
+* o Traslacion, con este m&eacute;todo se recrea el valor de la animacion.
 */
 void GD_Colisiones3d::ActualizarDatosColision()
 {
@@ -161,7 +176,7 @@ void GD_Colisiones3d::ActualizarDatosColision()
 
 //Obtencion de valores *******************************************************
 /*!
-\return un vector, cuyas componentes son los radios del elipsoide.
+* \return un vector, cuyas componentes son los radios del elipsoide.
 */
 core::vector3df GD_Colisiones3d::RetornarRadioElipsoide()
 {
@@ -169,7 +184,7 @@ core::vector3df GD_Colisiones3d::RetornarRadioElipsoide()
 }
 
 /*!
-\return un vector, cuyas componentes son las traslaciones del elipsoide.
+* \return un vector, cuyas componentes son las traslaciones del elipsoide.
 */
 core::vector3df GD_Colisiones3d::RetornarTraslacionElipsoide()
 {
@@ -177,7 +192,7 @@ core::vector3df GD_Colisiones3d::RetornarTraslacionElipsoide()
 }
 
 /*!
-\return un vector, cuyas componentes son la gravedad en cada eje
+* \return un vector, cuyas componentes son la gravedad en cada eje
 */
 core::vector3df GD_Colisiones3d::RetornarGravedad()
 {
@@ -192,7 +207,8 @@ ITriangleSelector* GD_Colisiones3d::RetornarDatosMundo()
 }
 
 /*!
-\return true si el Nodo est&aacute; cayendo (no est&aacute; apoyado sobre el escenario)
+* \return true si el Nodo est&aacute; cayendo (no est&aacute; apoyado
+* sobre el escenario)
 */
 bool GD_Colisiones3d::Callendo()
 {
@@ -202,7 +218,7 @@ bool GD_Colisiones3d::Callendo()
 
 // Asignacion de valores *****************************************************
 /*!
-\param vector_3d vector cuyas componentes son los radios del elipsoide.
+* \param vector_3d vector cuyas componentes son los radios del elipsoide.
 */
 void GD_Colisiones3d::AsignarRadioElipsoide(core::vector3df vector_3d)
 {
@@ -210,7 +226,7 @@ void GD_Colisiones3d::AsignarRadioElipsoide(core::vector3df vector_3d)
 }
 
 /*!
-\param x,y,z son los radios del elipsoide.
+* \param x,y,z son los radios del elipsoide.
 */
 void GD_Colisiones3d::AsignarRadioElipsoide(float x, float y, float z)
 {
@@ -218,7 +234,7 @@ void GD_Colisiones3d::AsignarRadioElipsoide(float x, float y, float z)
 }
 
 /*!
-\param vector_3d vector cuyas componentes son las traslaciones del elipsoide.
+* \param vector_3d vector cuyas componentes son las traslaciones del elipsoide.
 */
 void GD_Colisiones3d::AsignarTraslacionElipsoide(core::vector3df vector_3d)
 {
@@ -226,7 +242,7 @@ void GD_Colisiones3d::AsignarTraslacionElipsoide(core::vector3df vector_3d)
 }
 
 /*!
-\param x,y,z son las traslaciones del elipsoide.
+* \param x,y,z son las traslaciones del elipsoide.
 */
 void GD_Colisiones3d::AsignarTraslacionElipsoide(float x, float y, float z)
 {
@@ -234,7 +250,7 @@ void GD_Colisiones3d::AsignarTraslacionElipsoide(float x, float y, float z)
 }
 
 /*!
-\param vector_3d vector cuyas componentes son la gravedad en cada eje.
+* \param vector_3d vector cuyas componentes son la gravedad en cada eje.
 */
 void GD_Colisiones3d::AsignarGravedad(core::vector3df vector_3d)
 {
@@ -242,7 +258,7 @@ void GD_Colisiones3d::AsignarGravedad(core::vector3df vector_3d)
 }
 
 /*!
-\param x,y,z son la gravedad en cada eje.
+* \param x,y,z son la gravedad en cada eje.
 */
 void GD_Colisiones3d::AsignarGravedad(float x, float y, float z)
 {
@@ -250,7 +266,7 @@ void GD_Colisiones3d::AsignarGravedad(float x, float y, float z)
 }
 
 /*!
-\param scen es el GD_Escenario que se reemplazara.
+* \param scen es el GD_Escenario que se reemplazara.
 */
 void GD_Colisiones3d::AsignarDatosColision(GD_Escenario scen)
 {
@@ -268,14 +284,16 @@ ITriangleSelector* GD_Colisiones3d::RetornarDatosSelector()
 */
 
 /*!
-\param scen es un GD_Escenario
-
-Crea un sistema de colisiones entre una elipse y un GD_Escenario con su respuesta, es decir, evita autom&aacute;ticamente que traspase pol&iacute;gonos y dem&aacute;s respuestas. Incluye tambi&eacute;n gravedad.
-
-Ejemplo:
-\code
-Protagonista.CrearColision( Escenario );
-\endcode
+* \param scen es un GD_Escenario
+*
+* Crea un sistema de colisiones entre una elipse y un GD_Escenario con
+* su respuesta, es decir, evita autom&aacute;ticamente que traspase
+* pol&iacute;gonos y dem&aacute;s respuestas. Incluye tambi&eacute;n gravedad.
+*
+* Ejemplo:
+* \code
+* Protagonista.CrearColision( Escenario );
+* \endcode
 */
 void GD_Colisiones3d::CrearColision(GD_Escenario scen)
 {
@@ -295,17 +313,24 @@ ITriangleSelector* Mundo = scen.RetornarDatos();
 }
 
 /*!
-\param scen es el escenario.
-\param Radio los radios de la elipse.
-\param Gravedad si no se desea dejar en ceros.
-\param Traslacion la posición de la elipse con respecto al objeto
-
-Crea un sistema de colisiones entre una elipse y un GD_Escenario con su respuesta, es decir, evita autom&aacute;ticamente que traspase pol&iacute;gonos y dem&aacute;s respuestas. Incluye tambi&eacute;n gravedad.
-
-Ejemplo:
-\code
-Protagonista.CrearColision( Escenario,vectElipse, vectGravedad, vectTranslacionElipse);
-\endcode
+* \param scen es el escenario.
+* \param Radio los radios de la elipse.
+* \param Gravedad si no se desea dejar en ceros.
+* \param Traslacion la posición de la elipse con respecto al objeto
+*
+* Crea un sistema de colisiones entre una elipse y un GD_Escenario con su
+* respuesta, es decir, evita autom&aacute;ticamente que traspase
+* pol&iacute;gonos y dem&aacute;s respuestas. Incluye tambi&eacute;n gravedad.
+*
+* Ejemplo:
+* \code
+* Protagonista.CrearColision(
+*   Escenario,
+*   vectElipse,
+*   vectGravedad,
+*   vectTranslacionElipse
+* );
+* \endcode
 */
 void GD_Colisiones3d::CrearColision(GD_Escenario scen,core::vector3df Radio,
                                        core::vector3df Gravedad,core::vector3df Traslacion)
@@ -323,24 +348,26 @@ ITriangleSelector* Mundo = scen.RetornarDatos();
 }
 
 /*!
-\param scen es el escenario (un GD_Escenario)
-\param RadioX,RadioY,RadioZ
-\param GravedadX,GravedadY,GravedadZ fuerza de gravedad en cada componente. Si no se desea dejar en ceros.
-\param TraslacionX,TraslacionY,TraslacionZ coordenadas de la posición de la elipse con respecto al objeto.
-
-Ejemplo:
-\code
-Protagonista.CrearColision( Escenario,1,1,1,0,-0.1,0,0,0,0 );
-\endcode
+* \param scen es el escenario (un GD_Escenario)
+* \param RadioX,RadioY,RadioZ
+* \param GravedadX,GravedadY,GravedadZ fuerza de gravedad en cada componente.
+*  Si no se desea dejar en ceros.
+* \param TraslacionX,TraslacionY,TraslacionZ coordenadas de la posición de
+* la elipse con respecto al objeto.
+*
+* Ejemplo:
+* \code
+* Protagonista.CrearColision( Escenario,1,1,1,0,-0.1,0,0,0,0 );
+* \endcode
 */
 void GD_Colisiones3d::CrearColision(GD_Escenario scen, float RadioX,
                                                               float RadioY,
                                                               float RadioZ,
                                                               float GravedadX,
                                                               float GravedadY,
-                                                              float GravedadZ, 
-                                                              float TraslacionX, 
-                                                              float TraslacionY, 
+                                                              float GravedadZ,
+                                                              float TraslacionX,
+                                                              float TraslacionY,
                                                               float TraslacionZ)
 {
 
@@ -356,7 +383,7 @@ ITriangleSelector* Mundo = scen.RetornarDatos();
 	anim->drop();
 
 }
-      
+
 
 /*!
 */
@@ -373,11 +400,12 @@ bool GD_Colisiones3d::ColisionConCaja(aabbox3d<f32> Cajon)
 }
 
 /*!
-\return true si esta colisionando el objeto con el escenario, o false en caso contrario.
+* \return true si esta colisionando el objeto con el escenario, o false
+* en caso contrario.
 */
 bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
 {
-     
+
   /*   if(!AntiBug){
           AntiBug = 1;
           return false;
@@ -391,25 +419,25 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0.f,0.f,32448763.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_e->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_e->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_e->getPosition().X != 6456.365f && intersec_coli_e->getPosition().Y != 6456.365f && intersec_coli_e->getPosition().Z != 6456.365f){
                   return true;
-          } 
+          }
       }
       // punto A
       DummyNodo->setPosition(nodon->getPosition());
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,32448763.f,0.f,0.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_a->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_a->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_a->getPosition().X != 6456.365f && intersec_coli_a->getPosition().Y != 6456.365f && intersec_coli_a->getPosition().Z != 6456.365f){
                   return true;
           }
@@ -421,10 +449,10 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
       MoverNodo(DummyNodo,-32448763.f,0.f,0.f);
       vfin = DummyNodo->getPosition();
 
-      if(ColisionConRayo( posmiacoli, vfin, trian)){      
+      if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_b->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_b->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_b->getPosition().X != 6456.365f && intersec_coli_b->getPosition().Y != 6456.365f && intersec_coli_b->getPosition().Z != 6456.365f){
                   return true;
           }
@@ -433,13 +461,13 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
      // punto C
       vfin = posmiacoli;
       vfin.Y += 32448763;
-      
+
       intersec_coli_c->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
       coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_c->getTransformedBoundingBox());
 
       if(coli && intersec_coli_c->getPosition().X != 6456.365f && intersec_coli_c->getPosition().Y != 6456.365f && intersec_coli_c->getPosition().Z != 6456.365f){
               return true;
-      } 
+      }
 */
      // punto D
       DummyNodo->setPosition(nodon->getPosition());
@@ -447,13 +475,13 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
       MoverNodo(DummyNodo,0.f,-32448763.f,0.f);
       vfin = DummyNodo->getPosition();
 
-      if(ColisionConRayo( posmiacoli, vfin, trian)){      
+      if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_d->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_d->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_d->getPosition().X != 6456.365f && intersec_coli_d->getPosition().Y != 6456.365f && intersec_coli_d->getPosition().Z != 6456.365f){
                   return true;
-          }           
+          }
       }
 
 
@@ -463,25 +491,25 @@ bool GD_Colisiones3d::ColisionConEscenario( ITriangleSelector* trian )
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0.f,0.f,-32448763.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_f->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_f->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_f->getPosition().X != 6456.365f && intersec_coli_f->getPosition().Y != 6456.365f && intersec_coli_f->getPosition().Z != 6456.365f){
                   return true;
           }
       }
-      
-	  return false;     
+
+	  return false;
 }
 
 /*!
-\return el punto en donde se intersección.
-
-\param ini el vector del punto inicial del rayo.
-\param fin el vector del punto final del rayo.
-\param scen el escenario
+* \return el punto en donde se intersección.
+*
+* \param ini el vector del punto inicial del rayo.
+* \param fin el vector del punto final del rayo.
+* \param scen el escenario
 */
 vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fin, GD_Escenario scen )
 {
@@ -502,8 +530,8 @@ vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fi
         }
         else
 		return vector3df(6456.365f,6456.365f,6456.365f);
-      
-}	
+
+}
 
 vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* trian)
 {
@@ -516,26 +544,26 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0.f,0.f,32448763.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_e->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_e->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_e->getPosition().X != 6456.365f && intersec_coli_e->getPosition().Y != 6456.365f && intersec_coli_e->getPosition().Z != 6456.365f){
                   return intersec_coli_e->getPosition();
-          } 
+          }
       }
-      
+
       // punto A
       DummyNodo->setPosition(nodon->getPosition());
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,32448763.f,0.f,0.f);
       vfin = DummyNodo->getPosition();
 
-      if(ColisionConRayo( posmiacoli, vfin, trian)){      
+      if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_a->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_a->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_a->getPosition().X != 6456.365f && intersec_coli_a->getPosition().Y != 6456.365f && intersec_coli_a->getPosition().Z != 6456.365f){
                   return intersec_coli_a->getPosition();
           }
@@ -546,11 +574,11 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,-32448763.f,0.f,0.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_b->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_b->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_b->getPosition().X != 6456.365f && intersec_coli_b->getPosition().Y != 6456.365f && intersec_coli_b->getPosition().Z != 6456.365f){
                   return intersec_coli_a->getPosition();
           }
@@ -559,27 +587,27 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
      // punto C
       vfin = posmiacoli;
       vfin.Y += 32448763;
-      
+
       intersec_coli_c->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
       coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_c->getTransformedBoundingBox());
 
       if(coli && intersec_coli_c->getPosition().X != 6456.365f && intersec_coli_c->getPosition().Y != 6456.365f && intersec_coli_c->getPosition().Z != 6456.365f){
               return intersec_coli_c->getPosition();
-      } 
-*/      
+      }
+*/
      // punto D
       DummyNodo->setPosition(nodon->getPosition());
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0.f,-32448763.f,0.f);
       vfin = DummyNodo->getPosition();
 
-      if(ColisionConRayo( posmiacoli, vfin, trian)){      
+      if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_d->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_d->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_d->getPosition().X != 6456.365f && intersec_coli_d->getPosition().Y != 6456.365f && intersec_coli_d->getPosition().Z != 6456.365f){
                   return intersec_coli_d->getPosition();
-          }           
+          }
       }
 
 
@@ -589,14 +617,14 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
       DummyNodo->setRotation(nodon->getRotation());
       MoverNodo(DummyNodo,0.f,0.f,-32448763.f);
       vfin = DummyNodo->getPosition();
-      
+
       if(ColisionConRayo( posmiacoli, vfin, trian)){
           intersec_coli_f->setPosition(RetornarInterseccionRayo( posmiacoli, vfin, trian));
           coli = nodon->getTransformedBoundingBox().intersectsWithBox(intersec_coli_f->getTransformedBoundingBox());
-    
+
           if(coli && intersec_coli_f->getPosition().X != 6456.365f && intersec_coli_f->getPosition().Y != 6456.365f && intersec_coli_f->getPosition().Z != 6456.365f){
                   return intersec_coli_f->getPosition();
-          } 
+          }
       }
 
 	  return vector3df(6456.365f,6456.365f,6456.365f);
@@ -604,17 +632,17 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( ITriangleSelector* tria
 }
 
 /*!
-\param ini el vector del punto inicial del rayo.
-\param fin el vector del punto final del rayo.
-\param trian el escenario.
-
-\return el punto en donde se intersección.
+* \param ini el vector del punto inicial del rayo.
+* \param fin el vector del punto final del rayo.
+* \param trian el escenario.
+*
+* \return el punto en donde se intersección.
 */
 vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fin, ITriangleSelector* trian )
 {
 
     	core::line3d<f32> line;
-    	
+
 		line.start = ini;
 		line.end = fin; //line.start +  (poso2 - line.start).normalize() * 1000.0f;
 
@@ -628,21 +656,21 @@ vector3df GD_Colisiones3d::RetornarInterseccionRayo( vector3df ini, vector3df fi
         }
         else
             return vector3df(6456.365f,6456.365f,6456.365f);
-      
-}	
+
+}
 
 /*!
-\param ini el vector del punto inicial del rayo.
-\param fin el vector del punto final del rayo.
-\param trian el escenario.
-
-\return true si esta colisionando el objeto con el rayo, o false en caso contrario.
+* \param ini el vector del punto inicial del rayo.
+* \param fin el vector del punto final del rayo.
+* \param trian el escenario.
+*
+* \return true si esta colisionando el objeto con el rayo, o false en caso contrario.
 */
 bool GD_Colisiones3d::ColisionConRayo( vector3df ini, vector3df fin, ITriangleSelector* trian )
 {
 
     	core::line3d<f32> line;
-    	
+
 		line.start = ini;
 		line.end = fin; //line.start +  (poso2 - line.start).normalize() * 1000.0f;
 
@@ -656,17 +684,18 @@ bool GD_Colisiones3d::ColisionConRayo( vector3df ini, vector3df fin, ITriangleSe
         }
         else
             return false;
-      
+
 }
 
 /*!
-\param scen es el GD_Escenario
-\return true si esta colisionando el objeto con el escenario, o false en caso contrario.
-
-Ejemplo:
-\code
-Colision = Protagonista.ColisionConEscenario( Escenario ):
-\endcode
+* \param scen es el GD_Escenario
+* \return true si esta colisionando el objeto con el escenario, o false en
+* caso contrario.
+*
+* Ejemplo:
+* \code
+* Colision = Protagonista.ColisionConEscenario( Escenario ):
+* \endcode
 */
 bool GD_Colisiones3d::ColisionConEscenario( GD_Escenario scen )
 {
@@ -674,13 +703,13 @@ bool GD_Colisiones3d::ColisionConEscenario( GD_Escenario scen )
 }
 
 /*!
-\param scen es el GD_Escenario
-\return la posición en donde esta colisionando el objeto con el escenario.
-
-Ejemplo:
-\code
-PosColision = Protagonista. PosicionColisionConEscenario ( Escenario ):
-\endcode
+* \param scen es el GD_Escenario
+* \return la posición en donde esta colisionando el objeto con el escenario.
+*
+* Ejemplo:
+* \code
+* PosColision = Protagonista. PosicionColisionConEscenario ( Escenario ):
+* \endcode
 */
 vector3df GD_Colisiones3d::PosicionColisionConEscenario( GD_Escenario scen )
 {
@@ -688,15 +717,15 @@ vector3df GD_Colisiones3d::PosicionColisionConEscenario( GD_Escenario scen )
 }
 
 /*!
-\param nodocoli es el GD_Nodo con el que estamos comparando la colisión.
-\return true si esta colisionando con otro objeto.
-
-Esta colisión se calcula mediante boundingboxes.
-
-Ejemplo:
-\code
-Colision = Protagonista.Colisiona( Enemigo );
-\endcode
+* \param nodocoli es el GD_Nodo con el que estamos comparando la colisión.
+* \return true si esta colisionando con otro objeto.
+*
+* Esta colisión se calcula mediante boundingboxes.
+*
+* Ejemplo:
+* \code
+* Colision = Protagonista.Colisiona( Enemigo );
+* \endcode
 */
 bool GD_Colisiones3d::Colisiona(GD_Nodo nodocoli)
 {

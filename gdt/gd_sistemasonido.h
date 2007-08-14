@@ -22,8 +22,8 @@
 //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
 #ifdef _GDT_SONIDO_
 
-#ifndef GD_SISTEMASONIDO_H
-#define GD_SISTEMASONIDO_H
+#ifndef SISTEMASONIDO_H
+#define SISTEMASONIDO_H
 
 //INCLUDES para la libreria
 #include <stdio.h>
@@ -54,16 +54,21 @@ using namespace std;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
 
-class GD_SistemaSonido
+namespace Sonido
+{
+
+class SistemaSonido
 {
 
     public:
 
 		// class constructor
-		_GDT_EXPORT_ GD_SistemaSonido();
+		_GDT_EXPORT_ SistemaSonido();
 		// class destructor
-		_GDT_EXPORT_ ~GD_SistemaSonido();
+		_GDT_EXPORT_ ~SistemaSonido();
 
         //Posicion, velocidad y orientacion del oyente. (no tocar directamente, usar las funciones...)
         ALfloat SListenerPos[2];
@@ -75,11 +80,11 @@ class GD_SistemaSonido
         //variable para saber si esta iniciado o no el openal (0 no, 1 si)
         char SGDsoundIniciado;
 
-        //funcion para iniciar el GD_Sonido con el dispositivo m&aacute;s compatible que encuentre
+        //funcion para iniciar el Sonido con el dispositivo m&aacute;s compatible que encuentre
         _GDT_EXPORT_ void Inicializar();
         //igual pero indicandole que dispositivo tiene que usar
         _GDT_EXPORT_ void Inicializar(char *);
-        //finaliza el GD_Sonido y desbloquea el dispositivo
+        //finaliza el Sonido y desbloquea el dispositivo
         _GDT_EXPORT_ void FinGDsonido();
         //Ajusta la posicion en 3d del oyente
         _GDT_EXPORT_ void PosicionOyente(float,float,float);
@@ -91,6 +96,9 @@ class GD_SistemaSonido
         _GDT_EXPORT_ void OrientacionOyente(float, float, float, float, float, float);
 };
 
-#endif // GD_SISTEMASONIDO_H
+} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GDT
+
+#endif // SISTEMASONIDO_H
 
 #endif // _GDT_SONIDO_

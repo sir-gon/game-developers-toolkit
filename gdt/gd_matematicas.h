@@ -167,11 +167,11 @@ public:
 	_GDT_EXPORT_ static double MueveZ(double z, double angulo, double velocidad);
 	
 	// INTERVALO
-	//! Comprueba si un número pertecene al Intervalo.
+	//! Comprueba si un nï¿½mero pertecene al Intervalo.
 	_GDT_EXPORT_ static char Rango(double, double, double,char);
-	//! Comprueba si un número pertecene al Intervalo Abierto.
+	//! Comprueba si un nï¿½mero pertecene al Intervalo Abierto.
 	_GDT_EXPORT_ static char RangoAbierto(double, double, double);
-	//! Comprueba si un número pertecene al Intervalo Cerrado.
+	//! Comprueba si un nï¿½mero pertecene al Intervalo Cerrado.
 	_GDT_EXPORT_ static char RangoCerrado(double, double, double);
 	//!
 	_GDT_EXPORT_ static double BuscarNormal(double, double, double);

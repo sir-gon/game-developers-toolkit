@@ -21,17 +21,25 @@
 
 #ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
 
+/*!
+*  Permite tocar sonidos, y hacer cosas interesantes con ellos, como por ejemplo dejar
+* tocando un sonido en forma indefinida (conocido como loop o bucle de audio),
+* detener/pausar a gusto la reproducci&oacute;n, etc.
+*
+* Lo m&aacute;s importante, es que soporta formato Wav (onda plana), y OGG (comprimida).
+*/
+
 #include "gd_sonido3d.h" // class's header file
 
 // class constructor
-GD_Sonido3D::GD_Sonido3D()
+GDT::Sonido::Sonido3D::Sonido3D()
 {
 	// insert your code here
      SCargado=0;	
 }
 
 // class destructor
-GD_Sonido3D::~GD_Sonido3D()
+GDT::Sonido::Sonido3D::~Sonido3D()
 {
 	// insert your code here
 }
@@ -44,7 +52,7 @@ Musica.Bucle ( true );
 Musica.Reproducir();
 \endcode
 */
-char GD_Sonido3D::Cargar(char *archivo)
+char GDT::Sonido::Sonido3D::Cargar(char *archivo)
 {
 	// Create 1 source
 	alGenSources(1, &SSource);
@@ -100,7 +108,7 @@ Musica.Reproducir();
 
 \note Se agradece al siguiente <A HREF="http://www.gamedev.net/reference/articles/article2031.asp">art&iacute;culo de GameDev:</A>
 */
-char GD_Sonido3D::CargarOGG(char *archivo)
+char GDT::Sonido::Sonido3D::CargarOGG(char *archivo)
 {
 
   ALsizei freq;               // The frequency of the sound data
@@ -155,52 +163,52 @@ char GD_Sonido3D::CargarOGG(char *archivo)
 }
 #endif // _GDT_SONIDO_OGG_
 
-void GD_Sonido3D::Descargar()
+void GDT::Sonido::Sonido3D::Descargar()
 {
 //    alDeleteBuffers(1, &SBuffer);
 	alDeleteSources(1, &SSource);
 }
-void GD_Sonido3D::Reproducir()
+void GDT::Sonido::Sonido3D::Reproducir()
 {
     alSourcePlay(SSource);
 }
-void GD_Sonido3D::Pausa()
+void GDT::Sonido::Sonido3D::Pausa()
 {
     alSourcePause(SSource);
 }
-void GD_Sonido3D::Detener()
+void GDT::Sonido::Sonido3D::Detener()
 {
     alSourceStop(SSource);
 }
-void GD_Sonido3D::Rebobinar()
+void GDT::Sonido::Sonido3D::Rebobinar()
 {
     alSourceRewind(SSource);
 }
-void GD_Sonido3D::Play()
+void GDT::Sonido::Sonido3D::Play()
 {
     alSourcePlay(SSource);
 }
-void GD_Sonido3D::Pause()
+void GDT::Sonido::Sonido3D::Pause()
 {
     alSourcePause(SSource);
 }
-void GD_Sonido3D::Stop()
+void GDT::Sonido::Sonido3D::Stop()
 {
     alSourceStop(SSource);
 }
-void GD_Sonido3D::Rewind()
+void GDT::Sonido::Sonido3D::Rewind()
 {
     alSourceRewind(SSource);
 }
-void GD_Sonido3D::Bucle(char loop)
+void GDT::Sonido::Sonido3D::Bucle(char loop)
 {
     alSourcei(SSource, AL_LOOPING,  loop  );
 }
-void GD_Sonido3D::RelativoOyente(char rel)
+void GDT::Sonido::Sonido3D::RelativoOyente(char rel)
 {
     alSourcei(SSource, AL_SOURCE_RELATIVE, rel);
 }
-void GD_Sonido3D::VolumenMaximo(float max)
+void GDT::Sonido::Sonido3D::VolumenMaximo(float max)
 {
     if(max>1.0)
         max=1.0;
@@ -208,7 +216,7 @@ void GD_Sonido3D::VolumenMaximo(float max)
         max=0.0;
     alSourcef(SSource,AL_MAX_GAIN,max);
 }
-void GD_Sonido3D::VolumenMinimo(float min)
+void GDT::Sonido::Sonido3D::VolumenMinimo(float min)
 {
     if(min>1.0)
         min=1.0;
@@ -216,23 +224,23 @@ void GD_Sonido3D::VolumenMinimo(float min)
         min=0.0;
     alSourcef(SSource,AL_MIN_GAIN,min);
 }
-void GD_Sonido3D::ReferenciaDistancia(float ref)
+void GDT::Sonido::Sonido3D::ReferenciaDistancia(float ref)
 {
     alSourcef(SSource,AL_REFERENCE_DISTANCE, ref);
 }
-void GD_Sonido3D::FactorRolloff(float rol)
+void GDT::Sonido::Sonido3D::FactorRolloff(float rol)
 {
     alSourcef(SSource, AL_ROLLOFF_FACTOR, rol);
 }
-void GD_Sonido3D::DistanciaMaxima(float dis)
+void GDT::Sonido::Sonido3D::DistanciaMaxima(float dis)
 {
     alSourcef(SSource, AL_MAX_DISTANCE, dis);
 }
-void GD_Sonido3D::Tono(float ton)
+void GDT::Sonido::Sonido3D::Tono(float ton)
 {
     alSourcef(SSource, AL_PITCH, ton);
 }
-int GD_Sonido3D::Estado()
+int GDT::Sonido::Sonido3D::Estado()
 {
     //4114 sonando , 4115 pausa , 4116 sin sonar
     //0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
@@ -240,12 +248,12 @@ int GD_Sonido3D::Estado()
     alGetSourcei(SSource, AL_SOURCE_STATE, &state);
     return state-4114;
 }
-void GD_Sonido3D::Posicionar(float x, float y, float z)
+void GDT::Sonido::Sonido3D::Posicionar(float x, float y, float z)
 {
     SSourcePos[0]=x; SSourcePos[1]=y; SSourcePos[2]=z;
     alSourcefv(SSource, AL_POSITION, SSourcePos);
 }
-void GD_Sonido3D::Velocidad(float x, float y, float z)
+void GDT::Sonido::Sonido3D::Velocidad(float x, float y, float z)
 {
     SSourceVel[0]=x; SSourceVel[1]=y; SSourceVel[2]=z;
     alSourcefv(SSource, AL_VELOCITY, SSourceVel);

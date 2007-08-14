@@ -19,8 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_XML_H
-#define GD_XML_H
+#ifndef XML_H
+#define XML_H
 
 #include "gd_sistema.h"
 
@@ -44,33 +44,17 @@
 #define XML_LEIDO_TEXTO        EXN_TEXT
 #define XML_LEIDO_COMENTARIO   EXN_COMMENT
 
+namespace GDT
+{
+
 //! Escribir y Leer Archivos XML
-/*!
-Esta Clase nos permite manejar informaci&oacute;n, guardandola y leyendola en archivos XML.
-Algunas ideas de porque puede ser &uacute;til trabajar con XML puede ser:
-
-- Guardar/Leer la configuraci&oacute;n de nestro juego, las opciones que tome el usuario.
-
-- Guardar/Leer el avance en un jugeo, para luego restaurarlo y continuar jugando desde el punto guardado.
-
-- Guardar ac&aacute; el di&aacute;logo de los personajes, descripciones de objetos, etc. As&iacute; tambi&eacute;n es posible traducir nuestro juego a varios idiomas.
-
-El formato del archivo es texto plano, codificado como UTF16, y estructurado como XML.
-Es decir, de esta manera:
-
-\code
-<?xml version="1.0"?>
-<!--Se admiten Comentarios-->
-<elemento atributo1="Valor1" atributo2="Valor2">Este es un texto que contiene la etiqueta elemento.</elemento>
-\endcode
-*/
-class GD_XML
+class XML
 {
 	public:
 		// class constructor
-		GD_XML();
+		_GDT_EXPORT_ XML();
 		// class destructor
-		~GD_XML();
+		_GDT_EXPORT_ ~XML();
 		
 		IFileSystem* FileSystem;
 		
@@ -81,11 +65,11 @@ class GD_XML
 		
 		// Escribir
 		//! Abre un archivo XML para escribir sobre &eacute;l.
-		void AbrirParaEscribir(const char *strArchivo);
+		_GDT_EXPORT_ void AbrirParaEscribir(const char *strArchivo);
 		//! Escribe la cabecera XML en un archivo
-		void EscribirCabeceraXML(void);
+		_GDT_EXPORT_ void EscribirCabeceraXML(void);
 		//! Escribe un elemento en el archivo XML
-		void EscribirElemento(const wchar_t* nombre, bool vacio = false,
+		_GDT_EXPORT_ void EscribirElemento(const wchar_t* nombre, bool vacio = false,
 		          const wchar_t* attr1Nombre = 0, const wchar_t* attr1Valor = 0,
 			      const wchar_t* attr2Nombre = 0, const wchar_t* attr2Valor = 0,
 			      const wchar_t* attr3Nombre = 0, const wchar_t* attr3Valor = 0,
@@ -93,38 +77,40 @@ class GD_XML
 			      const wchar_t* attr5Nombre = 0, const wchar_t* attr5Valor = 0
 			      );
 		//! Escribe un comentario en el archivo XML.
-		void EscribirComentario(const wchar_t* comentario);
+		_GDT_EXPORT_ void EscribirComentario(const wchar_t* comentario);
 		//! Escribe el cierre de una etiqueta XML.
-		void EscribirCierreEtiqueta(const wchar_t* nombre);
+		_GDT_EXPORT_ void EscribirCierreEtiqueta(const wchar_t* nombre);
 		//! Escribe un texto en el archivo XML.
-		void EscribirTexto(const wchar_t* texto);
+		_GDT_EXPORT_ void EscribirTexto(const wchar_t* texto);
 		//! Escribe un salto de l&iacute;nea
-		void EscribirRupturaLinea(void);
+		_GDT_EXPORT_ void EscribirRupturaLinea(void);
 
 		// Leer
 		//! Abre un archivo XML para leer de &eacute;l.
-		void AbrirParaLeer(const char *strArchivo);
+		_GDT_EXPORT_ void AbrirParaLeer(const char *strArchivo);
 		//! Devuelve true si se est&aacute; leyendo del archivo.
-		bool Leyendo();
+		_GDT_EXPORT_ bool Leyendo();
 		//! Devuelve el tipo de nodo que se ha le&iacute;do.
-		EXML_NODE TipoNodo(void);
+		_GDT_EXPORT_ EXML_NODE TipoNodo(void);
 		//! Cuando se ha le&iacute;do un elemento, retorna el n&uacute;mero de atributos que tiene este.
-		int NumeroAtributos(void);
+		_GDT_EXPORT_ int NumeroAtributos(void);
 		//! Devuelve el nombre del atributo que est&aacute; en la posici&oacute;n indicada.
-		const wchar_t* NombreAtributo(int id);
+		_GDT_EXPORT_ const wchar_t* NombreAtributo(int id);
 		//! Devuelve el valor del atributo indicado.
-		const wchar_t* ValorAtributo(int id);
+		_GDT_EXPORT_ const wchar_t* ValorAtributo(int id);
 		//! Devuelve el valor del atributo nombrado.
-		const wchar_t* ValorAtributo(const wchar_t* atributo);
+		_GDT_EXPORT_ const wchar_t* ValorAtributo(const wchar_t* atributo);
 		//! Devuelve el nombre del nodo que se ha le&iacute;do.
-		const wchar_t* NombreNodo(void);
+		_GDT_EXPORT_ const wchar_t* NombreNodo(void);
 		//! Devuelve los datos del nodo que se ha le&iacute;do.
-		const wchar_t* DatosNodo(void);
+		_GDT_EXPORT_ const wchar_t* DatosNodo(void);
 		//! Devuelve true si el elemento le&iacute;do est&aacute; vac&iacute;o.
-		bool ElementoVacio(void);
+		_GDT_EXPORT_ bool ElementoVacio(void);
 		//! Cierra un archivo XML abierto.
-		void Cerrar();
+		_GDT_EXPORT_ void Cerrar();
 	
 };
 
-#endif // GD_XML_H
+} // FIN NAMESPACE
+
+#endif // XML_H

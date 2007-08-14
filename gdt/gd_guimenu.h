@@ -39,15 +39,21 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Menu" y "SubMenu"
-class GD_GuiMenu : public GD_gui
+class Menu : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiMenu();
-	_GDT_EXPORT_ GD_GuiMenu(IGUIContextMenu* SubMenu);
+	_GDT_EXPORT_ Menu();
+	_GDT_EXPORT_ Menu(IGUIContextMenu* SubMenu);
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiMenu();
+	_GDT_EXPORT_ ~Menu();
 
 	int MenuID;
 
@@ -78,5 +84,9 @@ public:
 	_GDT_EXPORT_ int Seleccionado();
 
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIMENU_H

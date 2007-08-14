@@ -22,14 +22,14 @@
 #include "gd_listaarchivos.h" // class's header file
 
 /*!
-* \class GD_ListaArchivos
+* \class GDT::ListaArchivos
 *
-* Implementa métodos de acceso a Directorios del sistema de archivos.
+* Implementa mï¿½odos de acceso a Directorios del sistema de archivos.
 * Con esto podemos examinar el contenido de un directorio, sus archivos,
 * otros directorios, la cantidad de elementos, etc. 
 */
 // class constructor
-GD_ListaArchivos::GD_ListaArchivos()
+GDT::ListaArchivos::ListaArchivos()
 {
      FileSystem = GD_Sistema::device->getFileSystem(); 
 
@@ -37,15 +37,15 @@ GD_ListaArchivos::GD_ListaArchivos()
 }
 
 // class destructor
-GD_ListaArchivos::~GD_ListaArchivos()
+GDT::ListaArchivos::~ListaArchivos()
 {
 	// insert your code here
 }
 
 /*!
-\deprecated El constructor inicializa todo, no hace falta volver a repetirlo.
+* \deprecated El constructor inicializa todo, no hace falta volver a repetirlo.
 */
-void GD_ListaArchivos::Crear(void)
+void GDT::ListaArchivos::Crear(void)
 {
      FileSystem = GD_Sistema::device->getFileSystem(); 
      
@@ -53,39 +53,39 @@ void GD_ListaArchivos::Crear(void)
 }
 
 /*!
-Ejemplo:
-\code
-int archivos = Lista.Numero();
-\endcode
+* Ejemplo:
+* \code
+* int archivos = Lista.Numero();
+* \endcode
 */
-int GD_ListaArchivos::Numero(void)
+int GDT::ListaArchivos::Numero(void)
 {
     return FileList->getFileCount();
 }
 
 /*!
 */
-const c8* GD_ListaArchivos::Nombre(int id)
+const c8* GDT::ListaArchivos::Nombre(int id)
 {
       return FileList->getFileName(id);
 }
 
 /*!
 */
-const c8* GD_ListaArchivos::NombreCompleto(int id)
+const c8* GDT::ListaArchivos::NombreCompleto(int id)
 {
       return FileList->getFullFileName(id);
 }
 
 /*!
-\return true si es directorio, en caso contrario es retorna false.
-
-Ejemplo:
-\code
-bool directorio = Lista.EsDirectorio(6);
-\endcode
+* \return true si es directorio, en caso contrario es retorna false.
+* 
+* Ejemplo:
+* \code
+* bool directorio = Lista.EsDirectorio(6);
+* \endcode
 */
-bool GD_ListaArchivos::EsDirectorio(int id)
+bool GDT::ListaArchivos::EsDirectorio(int id)
 {
       return FileList->isDirectory(id);
 }

@@ -19,16 +19,21 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GDT::Gui::Boton
+*
+*/
+
 #include "gd_guiboton.h" // class's header file
 
 // class constructor
-GD_GuiBoton::GD_GuiBoton()
+GDT::Gui::Boton::Boton()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_GuiBoton::~GD_GuiBoton()
+GDT::Gui::Boton::~Boton()
 {
 	// insert your code here
 }
@@ -43,7 +48,7 @@ Ejemplo:
 Boton.Crear(5,5, 35,25);
 \endcode
 */
-void GD_GuiBoton::Crear(int x1, int y1, int x2, int y2,IGUIElement* padre)
+void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2,IGUIElement* padre)
 {
 	RegistrarDevice(GD_Sistema::device);
 	
@@ -67,7 +72,7 @@ Ejemplo:
 Boton.Texto(5,5, 35,25,L"Pulsame");
 \endcode
 */
-void GD_GuiBoton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre)
+void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre)
 {
 	RegistrarDevice(GD_Sistema::device);
 	
@@ -88,7 +93,7 @@ void GD_GuiBoton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIEle
 \param filename_boton_presionado ruta a la imagen del bot&oacute;n cuando se pulsa.
 \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
 */
-void GD_GuiBoton::CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre)
+void GDT::Gui::Boton::CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre)
 {
 
 	RegistrarDevice(GD_Sistema::device);

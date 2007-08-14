@@ -19,8 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_ARCHIVO_H
-#define GD_ARCHIVO_H
+#ifndef Archivo_H
+#define Archivo_H
 
 #include "gd_sistema.h"
 #include "gd_cadena.h"
@@ -39,14 +39,17 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
 //! Permite Leer y escribir en archivos de texto o estructuras.
-class GD_Archivo
+class Archivo
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Archivo();
+		_GDT_EXPORT_ Archivo();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Archivo();
+		_GDT_EXPORT_ ~Archivo();
 		
 		IFileSystem* FileSystem;
 		
@@ -81,4 +84,6 @@ class GD_Archivo
 		_GDT_EXPORT_ const char *NombreArchivo(void);
 };
 
-#endif // GD_ARCHIVO_H
+} // FIN NAMESPACE GDT
+
+#endif // Archivo_H

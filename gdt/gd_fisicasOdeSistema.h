@@ -51,6 +51,12 @@ using namespace gui;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace fisica
+{
+
 void QuaternionToEuler(const dQuaternion quaternion,irr::core::vector3df &euler);
 void EulerToQuaternion(const irr::core::vector3df &euler, dQuaternion quaternion);
 
@@ -58,7 +64,7 @@ vector3df RealAVector3d(const dReal* Val);
 dReal* Vector3dAReal(const vector3df Val);
 
 //! Soporte de F&iacute;sicas Open Dynamics Engine (ODE)
-class GD_FisicasOdeSistema
+class Mundo
 {
     public:
     //variables
@@ -69,7 +75,7 @@ class GD_FisicasOdeSistema
 
     //funciones
     //! Crea autom&aacute;ticamente un Mundo predeterminado para la instancia.
-    _GDT_EXPORT_ GD_FisicasOdeSistema();
+    _GDT_EXPORT_ Mundo();
     //! Crea un Mundo y retorna su ID.
     _GDT_EXPORT_ dWorldID CrearMundoODE();
     //! Destruye el Mundo actual
@@ -145,6 +151,10 @@ class GD_FisicasOdeSistema
     _GDT_EXPORT_ void ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion);
     _GDT_EXPORT_ int ValorProfundidadDeAutoactivacionSF1();
 };
+
+} // FIN NAMESPACE FISICAS
+
+} // FIN NAMESPACE GDT
 
 #endif //GD_FISICASODESISTEMA_H
 

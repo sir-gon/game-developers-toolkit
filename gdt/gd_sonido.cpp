@@ -19,25 +19,29 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#ifdef _GDT_SONIDO_ 
 
 #include "gd_sonido.h" // class's header file
 
+/*!
+* \class GDT::Sonido::Sonido
+*/
+
 // class constructor
-GD_Sonido::GD_Sonido()
+GDT::Sonido::Sonido::Sonido()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Sonido::~GD_Sonido()
+GDT::Sonido::Sonido::~Sonido()
 {
 	// insert your code here
 }
 
 
 
-char GD_Sonido::Cargar(char *archivo)
+char GDT::Sonido::Sonido::Cargar(char *archivo)
 {
 	/**
     Cargar(archivo);
@@ -47,72 +51,72 @@ char GD_Sonido::Cargar(char *archivo)
     return 0;
 }
 
-void GD_Sonido::Descargar()
+void GDT::Sonido::Sonido::Descargar()
 {
     //Descargar();
 }
 
-void GD_Sonido::Reproducir()
+void GDT::Sonido::Sonido::Reproducir()
 {
     //Reproducir();
 }
 
-void GD_Sonido::Pausa()
+void GDT::Sonido::Sonido::Pausa()
 {
     //Pausa();
 }
 
-void GD_Sonido::Detener()
+void GDT::Sonido::Sonido::Detener()
 {
     //Detener();
 }
 
-void GD_Sonido::Rebobinar()
+void GDT::Sonido::Sonido::Rebobinar()
 {
     //Rebobinar();
 }
 
-void GD_Sonido::Play()
+void GDT::Sonido::Sonido::Play()
 {
     //Play();
 }
 
-void GD_Sonido::Pause()
+void GDT::Sonido::Sonido::Pause()
 {
     //Pause();
 }
 
-void GD_Sonido::Stop()
+void GDT::Sonido::Sonido::Stop()
 {
     //Stop();
 }
 
-void GD_Sonido::Rewind()
+void GDT::Sonido::Sonido::Rewind()
 {
     //Rewind();
 }
-void GD_Sonido::Bucle(char loop)
+void GDT::Sonido::Sonido::Bucle(char loop)
 {
     //Bucle(loop);
 }
 
-void GD_Sonido::Pan(float p)
+void GDT::Sonido::Sonido::Pan(float p)
 {
-    Posicionar(p , 0.0f , 0.1f);
+    GDT::Sonido::Sonido::Posicionar(p , 0.0f , 0.1f);
 }
 
-void GD_Sonido::Tono(float t)
+void GDT::Sonido::Sonido::Tono(float t)
 {
    //Tono(t);
 }
 
-int GD_Sonido::Estado()
+int GDT::Sonido::Sonido::Estado()
 {
    //0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
    //return Estado();
    return 0;
 }
-void GD_Sonido::Volumen(int vol)
+void GDT::Sonido::Sonido::Volumen(int vol)
 {
    float rvol;
    if(vol<0)
@@ -122,7 +126,7 @@ void GD_Sonido::Volumen(int vol)
    rvol=(float)vol/100.0f;
    //Posicion(0.0,0.0,0.0-rvol);
    //ReferenciaDistancia(rvol);
-   VolumenMaximo(rvol);
+   GDT::Sonido::Sonido::VolumenMaximo(rvol);
 }
 
 #endif // _GDT_SONIDO_

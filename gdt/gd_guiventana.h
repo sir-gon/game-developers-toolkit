@@ -39,18 +39,28 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Ventana" (Window)
-class GD_GuiVentana : public GD_gui
+class Ventana : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiVentana();
+	_GDT_EXPORT_ Ventana();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiVentana();
+	_GDT_EXPORT_ ~Ventana();
 	
 	IGUIWindow* ventana;
 	//! Crea un Control GUI del tipo Ventana
 	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIVENTANA_H

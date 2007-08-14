@@ -39,14 +39,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Boton" (Button)
-class GD_GuiBoton : public GD_gui
+class Boton : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiBoton();
+	_GDT_EXPORT_ Boton();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiBoton();
+	_GDT_EXPORT_ ~Boton();
 
 	IGUIButton* boton;
 
@@ -57,5 +63,9 @@ public:
 	//! Crea un control Gui del tipo Bot&oacute;n, con una imagen.
 	_GDT_EXPORT_ void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIBOTON_H

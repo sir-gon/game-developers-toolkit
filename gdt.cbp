@@ -10,12 +10,13 @@
 		<Option compiler="0"/>
 		<Build>
 			<Target title="gdt">
-				<Option output="lib\win32-mingw\gdt.dll"/>
+				<Option output="bin\win32-mingw\gdt.dll"/>
 				<Option working_dir="."/>
 				<Option object_output="OBJS\win32-mingw"/>
 				<Option deps_output=".deps"/>
 				<Option type="3"/>
 				<Option compiler="0"/>
+				<Option host_application="bin\win32-mingw\GDT_Experimentos"/>
 				<Option createDefFile="1"/>
 				<Option createStaticLib="1"/>
 				<Compiler>
@@ -29,8 +30,6 @@
 					<Add directory="include"/>
 				</Compiler>
 				<Linker>
-					<Add library="lib\win32-mingw\libIrrlicht.a"/>
-					<Add library="lib\win32-mingw\liblua5.1.a"/>
 					<Add directory="lib\win32-mingw"/>
 				</Linker>
 			</Target>
@@ -479,6 +478,12 @@
 		</Unit>
 		<Unit filename="gdt\gdt_m.h">
 			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\plataforma.h">
+			<Option compilerVar=""/>
 			<Option compile="0"/>
 			<Option link="0"/>
 			<Option target="gdt"/>

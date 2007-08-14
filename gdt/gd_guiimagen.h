@@ -25,7 +25,7 @@
 #include "gd_gui.h" // inheriting class's header file
 #include "gd_sistema.h"
 
-// HACK PARA EXPORTAR SIMBOLOS EN DLL COMPILADOS CON VISUAL C++ 2005
+//EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
   #ifdef _GDT_VC_STUDIO_2005_
    #define _GDT_EXPORT_ __declspec(dllexport)
@@ -34,9 +34,14 @@
   #endif
 #endif
 
+namespace GDT
+{
+
+namespace Gui
+{
 
 //! Control GUI "Imagen" (Image)
-class GD_GuiImagen : public GD_gui
+class Imagen : public GD_gui
 {
 public:
 	IVideoDriver* driver;
@@ -44,9 +49,9 @@ public:
 	dimension2d< s32 > tam;
 
 	// class constructor
-	_GDT_EXPORT_ GD_GuiImagen();
+	_GDT_EXPORT_ Imagen();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiImagen();
+	_GDT_EXPORT_ ~Imagen();
 
 	IGUIImage* img;
 
@@ -58,5 +63,9 @@ public:
 
         //_GDT_EXPORT_ void Visible(bool estado);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIIMAGEN_H

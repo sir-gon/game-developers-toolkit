@@ -283,6 +283,8 @@ vector3df GD_FisicasNwtMundo::AsignarFuerza ( float X,float Y,float Z )
 	fuerza.X=X;
 	fuerza.Y=Y;
 	fuerza.Z=Z;
+	// Linea agregada
+	return fuerza;
 }
 
 vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
@@ -291,7 +293,7 @@ vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
 	giro.Y=Y;
 	giro.Z=Z;
 	// Linea agregada
-	return vector3df(X,Y,Z);
+	return giro;
 }
 
 void GD_FisicasNwtMundo::AplicarFuerza_Torcion()

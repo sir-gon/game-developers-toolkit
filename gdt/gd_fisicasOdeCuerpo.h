@@ -42,8 +42,14 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace fisica
+{
+
 //! Crea un Cuerpo para f&iacute;sicas Open Dynamics Engine (ODE)
-class GD_FisicasOdeCuerpo
+class Cuerpo
 {
     public:
 
@@ -175,6 +181,10 @@ class GD_FisicasOdeCuerpo
     bool ValorModoSF1_AutoDesactivacion();*/
 
 };
+
+} // FIN NAMESPACE FISICAS
+
+} // FIN NAMESPACE GDT
 
 #endif //GD_FISICASODECUERPO_H
 

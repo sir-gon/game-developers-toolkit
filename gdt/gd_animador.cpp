@@ -21,6 +21,15 @@
 
 #include "gd_animador.h" // class's header file
 
+/*!
+* \class GD_Animador
+* \since 2.0
+*
+*
+*
+* \author Joropo
+* \warning Esta clase es Experimental
+*/
 
 // class constructor
 GD_Animador::GD_Animador()

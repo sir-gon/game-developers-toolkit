@@ -63,7 +63,7 @@
 *                 Sistema.Render();
 *         }
 * 
-*         Sistema.Matarme();
+*         Sistema.Finalizar();
 * 
 *         return 0;
 * }
@@ -246,21 +246,25 @@ GD_Sistema::~GD_Sistema()
 */
 void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
 	{
-	printf("\n+-----------------+------------+");
-	printf("\n|GDT v1.3.4-BETA3 | 10.10.2007 |");
-	printf("\n+-----------------+------------+\n");
+	printf("\n+----------+------------+");
+	printf("\n| GDT v2.0 | 10.08.2007 |");
+	printf("\n+----------+------------+\n");
 	// Init the Irrlicht engine
 
 	device = createDevice(VideoDriver, dimension2d<s32>(ancho,alto), prof, full, StencilBuffer,Vsync, this);
 	
-	if(device==NULL) printf("No se Pudo crear el Sistema\n");
+	if (device==NULL)
+    {
+       printf("No se Pudo crear el Sistema\n");
+       exit(-1);
+    };
 	
 		driver = device->getVideoDriver();
 		smgr = device->getSceneManager();
 		guienv = device->getGUIEnvironment();
 		colin = smgr->getSceneCollisionManager();
 	
-	device->setWindowCaption(L"GDT Game Developers Toolkit v1.3.4-BETA3");
+	device->setWindowCaption(L"GDT Game Developers Toolkit v2.0");
 	
 	skin = guienv->getSkin();
 	//skin->setFont(guienv->getFont("fuente_default.bmp"));

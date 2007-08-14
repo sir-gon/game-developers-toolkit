@@ -31,7 +31,15 @@
  * \since gdt-1.3.4-beta3
  */
 
+
+
 #include "gd_matematicas.h" // class's header file
+#include <iostream>
+
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
+using namespace std;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 double GD_Matematicas::FastCos[360];
 double GD_Matematicas::FastSin[360];
@@ -49,12 +57,10 @@ bool init = GD_Matematicas::Inicializar();
 * no es necesario volver a llamarlo, y de hecho no se recomienda, para evitar 
 * p&eacute;rdida de rendimiento.
 */
-#include <iostream>
-using namespace std;
 
 bool GD_Matematicas::Inicializar()
 {
-using namespace std;
+
     //inicio los cosenos y senos rapidos
     for(int i=0; i<360; i++)
     {

@@ -41,16 +41,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
-/*
- * No description
- */
-class GD_Sonido : public GD_Sonido3D
+namespace GDT
+{
+
+namespace Sonido
+{
+
+//!
+class Sonido : public Sonido3D
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Sonido();
+		_GDT_EXPORT_ Sonido();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Sonido();
+		_GDT_EXPORT_ ~Sonido();
 		
 		_GDT_EXPORT_ char Cargar(char *);
         _GDT_EXPORT_ void Descargar();
@@ -69,6 +73,10 @@ class GD_Sonido : public GD_Sonido3D
         _GDT_EXPORT_ void Tono(float);
         _GDT_EXPORT_ int Estado();
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_SONIDO_H
 

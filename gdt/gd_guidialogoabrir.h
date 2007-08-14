@@ -39,14 +39,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Dialogo de Abrir" para archivos
-class GD_GuiDialogoAbrir : public GD_gui
+class DialogoAbrir : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiDialogoAbrir();
+	_GDT_EXPORT_ DialogoAbrir();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiDialogoAbrir();
+	_GDT_EXPORT_ ~DialogoAbrir();
 	
 	IGUIFileOpenDialog* opendlg;
 
@@ -54,5 +60,9 @@ public:
 	_GDT_EXPORT_ void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
 	
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIDIALOGOABRIR_H

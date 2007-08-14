@@ -96,11 +96,11 @@ public:
 	
 	
 	//Retornos
-	//! Obtiene la posición del Control GUI
+	//! Obtiene la posiciï¿½ del Control GUI
 	_GDT_EXPORT_ position2d<s32> Posicion();
 	_GDT_EXPORT_ int PosicionX();
 	_GDT_EXPORT_ int PosicionY();
-	//! Obtiene la posición del centro del Control GUI
+	//! Obtiene la posiciï¿½ del centro del Control GUI
 	_GDT_EXPORT_ position2d<s32> Centro();
 	_GDT_EXPORT_ int CentroX();
 	_GDT_EXPORT_ int CentroY();
@@ -110,21 +110,21 @@ public:
 	_GDT_EXPORT_ int Ancho();
 	//! Obtiene el alto del Control GUI
 	_GDT_EXPORT_ int Alto();
-	//! Obtiene la posición de la esquina Superior Izquierda
+	//! Obtiene la posiciï¿½ de la esquina Superior Izquierda
 	_GDT_EXPORT_ position2d<s32> EsquinaSuperiorIzquierda();
-	//! Obtiene la coordenada X de la posición de la esquina Superior Izquierda
+	//! Obtiene la coordenada X de la posiciï¿½ de la esquina Superior Izquierda
 	_GDT_EXPORT_ int EsquinaSuperiorIzquierdaX();
-	//! Obtiene la coordenada Y de la posición de la esquina Superior Izquierda
+	//! Obtiene la coordenada Y de la posiciï¿½ de la esquina Superior Izquierda
 	_GDT_EXPORT_ int EsquinaSuperiorIzquierdaY();
-	//! Obtiene la posición de la esquina Inferior Derecha
+	//! Obtiene la posiciï¿½ de la esquina Inferior Derecha
 	_GDT_EXPORT_ position2d<s32> EsquinaInferiorDerecha();
-	//! Obtiene la coordenada X de la posición de la esquina Inferior Derecha
+	//! Obtiene la coordenada X de la posiciï¿½ de la esquina Inferior Derecha
 	_GDT_EXPORT_ int EsquinaInferiorDerechaX();
-	//! Obtiene la coordenada Y de la posición de la esquina Inferior Derecha
+	//! Obtiene la coordenada Y de la posiciï¿½ de la esquina Inferior Derecha
 	_GDT_EXPORT_ int EsquinaInferiorDerechaY();
-	//! Comprueba si un punto está al interior del Control GUI
+	//! Comprueba si un punto estï¿½al interior del Control GUI
 	_GDT_EXPORT_ bool EsPuntoInterno(position2d<s32> punto);
-	//! Comprueba si un las coordenadas están dentro del Control GUI
+	//! Comprueba si un las coordenadas estï¿½ dentro del Control GUI
 	_GDT_EXPORT_ bool EsPuntoInterno(int x,int y);
 	//!
 	_GDT_EXPORT_ bool Colision(rect<s32> Rectangulo);

@@ -19,42 +19,56 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_CRONOMETRO_H
-#define GD_CRONOMETRO_H
-
+#ifndef CRONOMETRO_H
+#define CRONOMETRO_H
 
 #include "gd_sistema.h"
-/*
- * No description
- */
-class GD_Cronometro
+
+//EXPORTAR SIMBOLOS AL CREAR DLL
+#ifndef _GDT_EXPORT_
+  #ifdef WIN32
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* No _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Fin No _GDT_DLL_ */
+  #else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
+
+namespace GDT
+{
+
+//! Contador de tiempo
+class Cronometro
 {
 	public:
-		// class constructor
-		GD_Cronometro();
-		// class destructor
-		~GD_Cronometro();
-		
-		u32 TiempoDeFinalizar;
-		u32 TiempoDePulso;
-		u32 TiempoDelSistemaAlIniciar;
-		u32 Estado; //1 contando   0 termino de contar
-		u32 EstadoPulso;
-		u32 ContadorPulsos;
-		u32 TiempoDelUltimoPulso;
-		u32 TDestino;
-		bool usandoPulsos;
-		
-		void Activar(int tiempo);
-		void ActivarPulso(int tiempo);
-		bool Pulso();
-		bool Terminado();
-        bool Contando();
-        u32 TiempoRestante();
-        u32 TiempoActivado();
-        
-       
-		
+	// class constructor
+	_GDT_EXPORT_ Cronometro();
+	// class destructor
+	_GDT_EXPORT_ ~Cronometro();
+	
+	u32 TiempoDeFinalizar;
+	u32 TiempoDePulso;
+	u32 TiempoDelSistemaAlIniciar;
+	u32 Estado; //1 contando   0 termino de contar
+	u32 EstadoPulso;
+	u32 ContadorPulsos;
+	u32 TiempoDelUltimoPulso;
+	u32 TDestino;
+	bool usandoPulsos;
+	
+	_GDT_EXPORT_ void Activar(int tiempo);
+	_GDT_EXPORT_ void ActivarPulso(int tiempo);
+	_GDT_EXPORT_ bool Pulso();
+	_GDT_EXPORT_ bool Terminado();
+	_GDT_EXPORT_ bool Contando();
+	_GDT_EXPORT_ u32 TiempoRestante();
+	_GDT_EXPORT_ u32 TiempoActivado();
 };
 
-#endif // GD_CRONOMETRO_H
+} // FIN NAMESPACE GDT
+
+#endif // CRONOMETRO_H

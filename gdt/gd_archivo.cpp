@@ -20,53 +20,52 @@
  ***************************************************************************/
 
 /*!
- * \class GD_Archivo
+ * \class GDT::Archivo
  *
  * Con esta clase se puede manejar informaci&oacute;n en archivos f&aacute;cilmente.
  *
  * Se puede trabajar con archivos de texto, o con archivos de estructuras.
  *
- * Siempre y cuando el usuario tenga permiso de acceso, el programa podrá
- * leer/escribir en la ruta que necesitemos.
+ * Siempre y cuando el usuario tenga permiso de acceso, el programa podrï¿½ * leer/escribir en la ruta que necesitemos.
  *
  * Trabajar con archivos nos permite (por ejemplo), salvar el estado actual
- * del juego, puntajes, internacionalizar la interfaz 
- * (ofreciendola en varios idiomas), en fin, todo lo que requiera 
- * leer/guardar información.
+ * del juego, puntajes, internacionalizar la interfaz
+ * (ofreciendola en varios idiomas), en fin, todo lo que requiera
+ * leer/guardar informaciï¿½.
  */
 
 #include "gd_archivo.h" // class's header file
 
 
 // class constructor
-GD_Archivo::GD_Archivo()
+GDT::Archivo::Archivo()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Archivo::~GD_Archivo()
+GDT::Archivo::~Archivo()
 {
 	// insert your code here
 }
 
 /*!
 * \param strArchivo la ruta al archivo.
-* \param bContinuar opcional. Hace que el archivo no se sobrescriba, sino 
+* \param bContinuar opcional. Hace que el archivo no se sobrescriba, sino
 * que se escriba a continuaci&oacute;n de lo que ya hay.
-* 
+*
 * Ejemplo:
 * \code
 * Archivo.AbrirParaEscribir("datos.txt");
 * \endcode
 */
-void GD_Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
+void GDT::Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
-     
-     writeFile = FileSystem->createAndWriteFile(strArchivo, bContinuar);  
-     
-     bEscribir = true;  
+     FileSystem = GD_Sistema::device->getFileSystem();
+
+     writeFile = FileSystem->createAndWriteFile(strArchivo, bContinuar);
+
+     bEscribir = true;
 }
 
 /*!
@@ -75,13 +74,13 @@ void GD_Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 * Archivo.AbrirParaLeer("datos.txt");
 * \endcode
 */
-void GD_Archivo::AbrirParaLeer(const char *strArchivo)
+void GDT::Archivo::AbrirParaLeer(const char *strArchivo)
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
-     
-     readFile = FileSystem->createAndOpenFile(strArchivo);   
-     
-     bEscribir = false; 
+     FileSystem = GD_Sistema::device->getFileSystem();
+
+     readFile = FileSystem->createAndOpenFile(strArchivo);
+
+     bEscribir = false;
 }
 
 /*!
@@ -90,7 +89,7 @@ void GD_Archivo::AbrirParaLeer(const char *strArchivo)
 * Archivo.Cerrar();
 * \endcode
 */
-void GD_Archivo::Cerrar(void)
+void GDT::Archivo::Cerrar(void)
 {
      if(bEscribir)
          writeFile->drop();
@@ -101,19 +100,19 @@ void GD_Archivo::Cerrar(void)
 /*!
 * \param strCadena el texto a escribir en el archivo
 * \param bytes el n&uacute;mero de bytes que se escribir&aacute;n
-* 
-* Escribe el nï&uacute;mero de bytes indicados de la cadena.
-* 
-* \note Se deja este m&eacute;todo con los dos p&aacute;rametros para evitar 
+*
+* Escribe el nï¿½uacute;mero de bytes indicados de la cadena.
+*
+* \note Se deja este m&eacute;todo con los dos p&aacute;rametros para evitar
 * conflictos con versiones anteriores y para casos especiales donde se necesite
 * limitar la salida.
-* 
+*
 * Ejemplo:
 * \code
 * Archivo.Escribir("Hola", 4);
 * \endcode
 */
-void GD_Archivo::Escribir(const char *strCadena, int bytes)
+void GDT::Archivo::Escribir(const char *strCadena, int bytes)
 {
      if(bEscribir)
      {
@@ -131,12 +130,12 @@ void GD_Archivo::Escribir(const char *strCadena, int bytes)
 * Archivo.Escribir("Hola");
 * \endcode
 */
-void GD_Archivo::Escribir(const char *strCadena)
+void GDT::Archivo::Escribir(const char *strCadena)
 {
      int bytes;
-     GD_Cadena Cadenin;
+     Cadena Cadenin;
 
-     bytes = Cadenin.TamanoChar(strCadena);
+     bytes = Cadenin.Longitud(strCadena);
 
      if(bEscribir)
      {
@@ -144,11 +143,11 @@ void GD_Archivo::Escribir(const char *strCadena)
      }
 }
 
-void GD_Archivo::Escribir(int numero)
+void GDT::Archivo::Escribir(int numero)
 {
-     GD_Cadena Cadenin;
+     Cadena Cadenin;
      int bytes;
-     bytes = Cadenin.TamanoInt(numero);
+     bytes = Cadenin.Longitud(numero);
 
      if(bEscribir)
      {
@@ -165,7 +164,7 @@ char Texto[4];
 Archivo.Leer(Texto, 4);
 \endcode
 */
-void GD_Archivo::Leer( char * buffer, int bytes)
+void GDT::Archivo::Leer( char * buffer, int bytes)
 {
      if(!bEscribir)
      {
@@ -182,7 +181,7 @@ Archivo.Leer(Texto, 4);
 \endcode
 
 */
-int GD_Archivo::Bytes(void)
+int GDT::Archivo::Bytes(void)
 {
      if(!bEscribir)
      {
@@ -192,7 +191,7 @@ int GD_Archivo::Bytes(void)
 	 return false;
 }
 
-bool GD_Archivo::CambiarPosicion(int posicion, bool bRelativo)
+bool GDT::Archivo::CambiarPosicion(int posicion, bool bRelativo)
 {
      if(bEscribir)
      {
@@ -204,7 +203,7 @@ bool GD_Archivo::CambiarPosicion(int posicion, bool bRelativo)
      }
 }
 
-int GD_Archivo::Posicion(void)
+int GDT::Archivo::Posicion(void)
 {
     if(bEscribir)
     {
@@ -216,7 +215,7 @@ int GD_Archivo::Posicion(void)
     }
 }
 
-const char *GD_Archivo::NombreArchivo(void)
+const char *GDT::Archivo::NombreArchivo(void)
 {
     if(bEscribir)
     {

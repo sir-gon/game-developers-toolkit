@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiMenu
+* \class GDT::Gui::Menu
 *
 * Este Control GUI permite darle a escoger al usuario una de varias opciones.
 *
@@ -33,18 +33,18 @@
 #include "gd_guimenu.h" // class's header file
 
 // class constructor
-GD_GuiMenu::GD_GuiMenu()
+GDT::Gui::Menu::Menu()
 {
 	// insert your code here
 }
 
-GD_GuiMenu::GD_GuiMenu(IGUIContextMenu* SubMenu)
+GDT::Gui::Menu::Menu(IGUIContextMenu* SubMenu)
 {
 	menu = SubMenu;
 }
 
 // class destructor
-GD_GuiMenu::~GD_GuiMenu()
+GDT::Gui::Menu::~Menu()
 {
 	// insert your code here
 }
@@ -55,7 +55,7 @@ Ejemplo:
 Menu.Crear();
 \endcode
 */
-void GD_GuiMenu::Crear(IGUIElement* padre)
+void GDT::Gui::Menu::Crear(IGUIElement* padre)
 {
     RegistrarDevice(GD_Sistema::device);
 
@@ -81,7 +81,7 @@ Menu.InsertarOpcion("Archivo",0, true);
 Menu.InsertarOpcion("Nuevo", 1001);
 \endcode
 */
-void GD_GuiMenu::InsertarOpcion(wchar_t * texto, int nID, bool bsubmenu, bool activado)
+void GDT::Gui::Menu::InsertarOpcion(wchar_t * texto, int nID, bool bsubmenu, bool activado)
 {
    menu->addItem(texto,nID,activado,bsubmenu);
 }
@@ -92,7 +92,7 @@ Ejemplo:
 Menu.InsertarSeparador();
 \endcode
 */
-void GD_GuiMenu::InsertarSeparador(void)
+void GDT::Gui::Menu::InsertarSeparador(void)
 {
     menu->addSeparator();
 }
@@ -103,12 +103,12 @@ Ejemplo:
 GD_GuiMenu MenuArchivo( Menu.SubMenu(0) );
 \endcode
 */
-IGUIContextMenu* GD_GuiMenu::SubMenu(int  nID)
+IGUIContextMenu* GDT::Gui::Menu::SubMenu(int  nID)
 {
     return menu->getSubMenu(nID);
 }
 
-void GD_GuiMenu::AbrirSubMenu(int iNivel,bool bPadre_es_Menu=true)// NUEVO //
+void GDT::Gui::Menu::AbrirSubMenu(int iNivel,bool bPadre_es_Menu=true)// NUEVO //
 {
    if(bPadre_es_Menu==true)
    {
@@ -123,7 +123,7 @@ void GD_GuiMenu::AbrirSubMenu(int iNivel,bool bPadre_es_Menu=true)// NUEVO //
 /*!
 \bug Provoca un Segmentation Fault
 */
-void GD_GuiMenu::InsertarSubMenu(wchar_t * texto, int nID,bool activado, bool bsubmenu)// NUEVO //
+void GDT::Gui::Menu::InsertarSubMenu(wchar_t * texto, int nID,bool activado, bool bsubmenu)// NUEVO //
 {
 
    submenu->addItem(texto,nID,activado,bsubmenu);
@@ -132,7 +132,7 @@ void GD_GuiMenu::InsertarSubMenu(wchar_t * texto, int nID,bool activado, bool bs
 
 /*!
 */
-void GD_GuiMenu::CambiarTextoOpcion(int nID, const wchar_t* texto, bool bPadre_es_Menu)
+void GDT::Gui::Menu::CambiarTextoOpcion(int nID, const wchar_t* texto, bool bPadre_es_Menu)
 {
    if(bPadre_es_Menu=true)
    {
@@ -147,28 +147,28 @@ void GD_GuiMenu::CambiarTextoOpcion(int nID, const wchar_t* texto, bool bPadre_e
 
 /*!
 */
-const wchar_t* GD_GuiMenu::RetornarTextoOpcion(int nID)
+const wchar_t* GDT::Gui::Menu::RetornarTextoOpcion(int nID)
 {
       return menu->getItemText(nID);
 }
 
 /*!
 */
-void GD_GuiMenu::OpcionActivada(int nID, bool activado)
+void GDT::Gui::Menu::OpcionActivada(int nID, bool activado)
 {
      menu->setItemEnabled(nID, activado);
 }
 
 /*!
 */
-bool GD_GuiMenu::OpcionEstaActivada(int nID)
+bool GDT::Gui::Menu::OpcionEstaActivada(int nID)
 {
      return menu->isItemEnabled(nID);
 }
 
 /*!
 */
-int GD_GuiMenu::Seleccionado()
+int GDT::Gui::Menu::Seleccionado()
 {
    return 0;
 }

@@ -19,23 +19,24 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifdef _GDT_SONIDO_ //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+//SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
+#ifdef _GDT_SONIDO_ 
 
 #include "gd_sistemasonido.h" // class's header file
 
 // class constructor
-GD_SistemaSonido::GD_SistemaSonido()
+GDT::Sonido::SistemaSonido::SistemaSonido()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_SistemaSonido::~GD_SistemaSonido()
+GDT::Sonido::SistemaSonido::~SistemaSonido()
 {
 	// insert your code here
 }
 
-void GD_SistemaSonido::Inicializar()
+void GDT::Sonido::SistemaSonido::Inicializar()
 {
      SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
      SListenerVel[0] = SListenerVel[1] = SListenerVel[2] = 0.0;
@@ -55,7 +56,7 @@ void GD_SistemaSonido::Inicializar()
 
 }
 
-void GD_SistemaSonido::Inicializar(char *tipo)
+void GDT::Sonido::SistemaSonido::Inicializar(char *tipo)
 {
 
     SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
@@ -97,29 +98,29 @@ void GD_SistemaSonido::Inicializar(char *tipo)
 
 
 
-void GD_SistemaSonido::FinGDsonido()
+void GDT::Sonido::SistemaSonido::FinGDsonido()
 {
     alutExit();
     SGDsoundIniciado=0;
 }
 
-void GD_SistemaSonido::PosicionOyente(float x, float y, float z)
+void GDT::Sonido::SistemaSonido::PosicionOyente(float x, float y, float z)
 {
     SListenerPos[0]=(ALfloat)x; SListenerPos[1]=(ALfloat)y; SListenerPos[2]=(ALfloat)z;
     alListenerfv(AL_POSITION, SListenerPos);
 }
-void GD_SistemaSonido::VelocidadOyente(float x, float y, float z)
+void GDT::Sonido::SistemaSonido::VelocidadOyente(float x, float y, float z)
 {
     SListenerVel[0]=x; SListenerVel[1]=y; SListenerVel[2]=z;
     alListenerfv(AL_VELOCITY, SListenerVel);
 }
-void GD_SistemaSonido::OrientacionOyente(float x1, float y1, float z1, float x2, float y2, float z2)
+void GDT::Sonido::SistemaSonido::OrientacionOyente(float x1, float y1, float z1, float x2, float y2, float z2)
 {
     SListenerOri[0]=x1; SListenerOri[1]=y1; SListenerOri[2]=z1;
     SListenerOri[3]=x2; SListenerOri[4]=y2; SListenerOri[5]=z2;
     alListenerfv(AL_ORIENTATION, SListenerOri);
 }
-void GD_SistemaSonido::OrientacionOyente(float x1, float y1, float z1)
+void GDT::Sonido::SistemaSonido::OrientacionOyente(float x1, float y1, float z1)
 {
     SListenerOri[0]=x1; SListenerOri[1]=y1; SListenerOri[2]=z1;
     SListenerOri[3]=0; SListenerOri[4]=1.0; SListenerOri[5]=0;

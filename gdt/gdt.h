@@ -18,6 +18,9 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
+
+#include "plataforma.h"
+
 // CAPA DE AUDIO
 #ifdef _GDT_SONIDO_
   //Sonido
@@ -32,7 +35,10 @@
 
 // Sistema
 #include "gd_sistema.h"
+#include "gd_cadena.h"
+#include "gd_cronometro.h"
 // 3D
+#include "gd_animador.h"
 #include "gd_escenario.h"
 #include "gd_luz.h"
 #include "gd_camara.h"
@@ -93,8 +99,12 @@
 	   #define _GDT_EXPORT_ __declspec(dllimport)
 	#endif /* Not _GDT_DLL_ */
   #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
     #define _GDT_EXPORT_ /* Definido nulo */
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+// CARGA AUTOMATICA DE NOMBRES DE ESPACIO
+using namespace GDT;
+using namespace Gui;
+using namespace Sonido;

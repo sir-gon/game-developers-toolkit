@@ -39,14 +39,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Cuadro de Edición" (EditBox)
-class GD_GuiEdicion : public GD_gui
+class Edicion : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiEdicion();
+	_GDT_EXPORT_ Edicion();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiEdicion();
+	_GDT_EXPORT_ ~Edicion();
 	
 	IGUIEditBox* editbox;
 
@@ -57,5 +63,9 @@ public:
 	//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
 	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIEDICION_H

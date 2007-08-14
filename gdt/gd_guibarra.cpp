@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiBarra
+* \class GDT::Gui::Barra
 *
 * 
 */
@@ -28,19 +28,19 @@
 #include "gd_guibarra.h" // class's header file
 
 // class constructor
-GD_GuiBarra::GD_GuiBarra()
+GDT::Gui::Barra::Barra()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_GuiBarra::~GD_GuiBarra()
+GDT::Gui::Barra::~Barra()
 {
 	// insert your code here
 }
 
 /*!
-\param x1,y1 posición de la barra.
+\param x1,y1 posici&oacute;n de la barra.
 \param x2,y2 hasta donde llega la barra.
 \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
 
@@ -49,7 +49,7 @@ Ejemplo:
 Barra.CrearHorizontal(5,5, 30,15);
 \endcode
 */
-void GD_GuiBarra::CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre)
+void GDT::Gui::Barra::CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre)
 {
 
     RegistrarDevice(GD_Sistema::device); 
@@ -63,7 +63,7 @@ void GD_GuiBarra::CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* p
 }
 
 /*!
-\param x1,y1 posición de la barra.
+\param x1,y1 posici&oacute;n de la barra.
 \param x2,y2 hasta donde llega la barra.
 \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
 
@@ -72,7 +72,7 @@ Ejemplo:
 Barra.CrearVerticall(5,5, 15,30);
 \endcode
 */
-void GD_GuiBarra::CrearVertical(int x1, int y1, int x2, int y2,IGUIElement* padre)
+void GDT::Gui::Barra::CrearVertical(int x1, int y1, int x2, int y2,IGUIElement* padre)
 {
 
     RegistrarDevice(GD_Sistema::device); 
@@ -86,7 +86,7 @@ void GD_GuiBarra::CrearVertical(int x1, int y1, int x2, int y2,IGUIElement* padr
 }
 
 /*!
-El máximo no puede sobrepasar de 255.
+El mï¿½imo no puede sobrepasar de 255.
 
 \param maximo el valor m&aacute;
 
@@ -95,7 +95,7 @@ Ejemplo:
 Barra.MaximoValor(157);
 \endcode
 */
-void GD_GuiBarra::MaximoValor(int maximo)
+void GDT::Gui::Barra::MaximoValor(int maximo)
 {
      barra->setMax(maximo);
 }
@@ -106,7 +106,7 @@ Ejemplo:
 int pos = Barra.Posicion();
 \endcode
 */
-int GD_GuiBarra::Posicion(void)
+int GDT::Gui::Barra::Posicion(void)
 {
      return barra->getPos();
 }
@@ -117,7 +117,7 @@ Ejemplo:
 Barra.Posicionar(50);
 \endcode
 */
-void GD_GuiBarra::Posicionar(int posicion)
+void GDT::Gui::Barra::Posicionar(int posicion)
 {
      barra->setPos(posicion);
 }

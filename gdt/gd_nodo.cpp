@@ -961,6 +961,7 @@ void GD_Nodo::ColorEspecular(s32 r,s32 g,s32 b,  int capa)
 
 /*!
 \param v Visivilidad, entre 0 y 255
+\param capa
 Ejemplo:
 \code
 Cubo.NivelTransparencia( 155 );
@@ -976,7 +977,7 @@ void GD_Nodo::NivelTransparencia(s32 v,  int capa)
 
      if(capa == -1)
      {
-         for(s32 i=0; i< nodon->getMaterialCount(); ++i)
+         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
          {
                  nodon->getMaterial(i).DiffuseColor.setAlpha (v);
                  nodon->getMaterial(i).EmissiveColor.setAlpha(v);

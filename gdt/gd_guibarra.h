@@ -39,26 +39,36 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Barra de Desplazamiento" (ScrollBar)
-class GD_GuiBarra : public GD_gui
+class Barra : public GD_gui
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiBarra();
+	_GDT_EXPORT_ Barra();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiBarra();
+	_GDT_EXPORT_ ~Barra();
 
 	IGUIScrollBar* barra;
-	//! Crea un control Gui del tipo Barra. La Barra será horizontal.
+	//! Crea un control Gui del tipo Barra. La Barra serï¿½horizontal.
 	_GDT_EXPORT_ void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
-	//! Crea un control Gui del tipo Barra. La Barra será vertical.
+	//! Crea un control Gui del tipo Barra. La Barra serï¿½vertical.
 	_GDT_EXPORT_ void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
-	//! Especifica el máximo valor que puede tener la barra
+	//! Especifica el m&aacute;ximo valor que puede tener la barra
 	_GDT_EXPORT_ void MaximoValor(int maximo);
 	//! Obtiene la posici&oacute;n de la barra
 	_GDT_EXPORT_ int Posicion(void);
 	//! Cambia la posici&oacute;n de la barra.
 	_GDT_EXPORT_ void Posicionar(int posicion);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUIBARRA_H

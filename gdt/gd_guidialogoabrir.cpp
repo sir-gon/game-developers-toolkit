@@ -19,7 +19,7 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-/**
+/*!
 * \class GD_GuiDialogoAbrir
 *
 * Este Control GUI nos permite interactuar con el sistema de archivos,
@@ -32,28 +32,28 @@
 #include "gd_guidialogoabrir.h" // class's header file
 
 // class constructor
-GD_GuiDialogoAbrir::GD_GuiDialogoAbrir()
+GDT::Gui::DialogoAbrir::DialogoAbrir()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_GuiDialogoAbrir::~GD_GuiDialogoAbrir()
+GDT::Gui::DialogoAbrir::~DialogoAbrir()
 {
 	// insert your code here
 }
 
 /*!
-\param titulo es el titulo del cuadro.
-\param modal true si queremo que el control sea modal.
-\param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
-
-Ejemplo:
-\code
-DAbrir.Crear(L"Elige un archivo para cargar", true);
-\endcode
+* \param titulo es el titulo del cuadro.
+* \param modal true si queremo que el control sea modal.
+* \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
+* 
+* Ejemplo:
+* \code
+* DAbrir.Crear(L"Elige un archivo para cargar", true);
+* \endcode
 */
-void GD_GuiDialogoAbrir::Crear(wchar_t * titulo, bool modal, IGUIElement* padre)
+void GDT::Gui::DialogoAbrir::Crear(wchar_t * titulo, bool modal, IGUIElement* padre)
 {
 	RegistrarDevice(GD_Sistema::device);
 	

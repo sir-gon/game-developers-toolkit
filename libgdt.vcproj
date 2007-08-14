@@ -64,6 +64,7 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=".\lib\win32-visualstudio;.\bin\win32-visualstudio"
 				GenerateManifest="true"
+				IgnoreDefaultLibraryNames="LIBCMT"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
 				TargetMachine="1"
@@ -98,6 +99,7 @@
 			OutputDirectory="bin\win32-visualstudio"
 			IntermediateDirectory="OBJS\win32-visualstudio\$(TargetName)\$(ConfigurationName)"
 			ConfigurationType="2"
+			ATLMinimizesCRunTimeLibraryUsage="true"
 			CharacterSet="1"
 			ManagedExtensions="0"
 			WholeProgramOptimization="1"
@@ -123,7 +125,7 @@
 				AdditionalIncludeDirectories="gdt;include;include\ode\;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_GDT_DLL_;_GDT_MIDI_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 				ExceptionHandling="1"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="0"
@@ -145,7 +147,7 @@
 				AdditionalLibraryDirectories="&quot;lib\win32-visualstudio&quot;;&quot;bin\win32-visualstudio&quot;"
 				GenerateManifest="true"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="LIBCMT"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				ImportLibrary="bin\win32-visualstudio\$(TargetName).lib"
 				TargetMachine="1"
@@ -528,6 +530,10 @@
 			</File>
 			<File
 				RelativePath=".\gdt\gdt_m.h"
+				>
+			</File>
+			<File
+				RelativePath=".\gdt\plataforma.h"
 				>
 			</File>
 		</Filter>

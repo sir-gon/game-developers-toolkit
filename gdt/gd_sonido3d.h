@@ -56,17 +56,18 @@ using namespace std;
 #endif /* _GDT_EXPORT_ */
 
 
-//! Manejador de Sonido
-/*!
-Permite tocar sonidos, y hacer cosas interesantes con ellos, como por ejemplo dejar tocando un sonido en forma indefinida (conocido como loop o bucle de audio), detener/pausar a gusto la reproducci&oacute;n, etc.
+namespace GDT
+{
 
-Lo m&aacute;s importante, es que soporta formato Wav (onda plana), y OGG (comprimida).
-*/
-class GD_Sonido3D
+namespace Sonido
+{
+
+//! Manejador de Sonido
+class Sonido3D
 {
     public:
-	_GDT_EXPORT_ GD_Sonido3D();
-	_GDT_EXPORT_ ~GD_Sonido3D();
+	_GDT_EXPORT_ Sonido3D();
+	_GDT_EXPORT_ ~Sonido3D();
     private:
 	ALuint SBuffer;
 	ALuint SSource;
@@ -128,6 +129,9 @@ class GD_Sonido3D
 	#endif
 };
 
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_SONIDO3D_H
 

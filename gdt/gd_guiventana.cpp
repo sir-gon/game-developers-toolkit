@@ -20,19 +20,19 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiVentana
+* \class GDT::Gui::Ventana
 */
 
 #include "gd_guiventana.h" // class's header file
 
 // class constructor
-GD_GuiVentana::GD_GuiVentana()
+GDT::Gui::Ventana::Ventana()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_GuiVentana::~GD_GuiVentana()
+GDT::Gui::Ventana::~Ventana()
 {
 	// insert your code here
 }
@@ -46,7 +46,7 @@ En &eacute;l se podr&aacute;n insertar otros controles.
 \param modal si queremos que la ventana sea modal.
 \param padre
 */
-void GD_GuiVentana::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal, IGUIElement* padre)
+void GDT::Gui::Ventana::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal, IGUIElement* padre)
 {
 
 	RegistrarDevice(GD_Sistema::device);

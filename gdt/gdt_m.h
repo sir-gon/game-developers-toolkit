@@ -18,14 +18,28 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
- 
-//Musica
-//#include "gd_musik.h"
+
+#include "plataforma.h"
+
+// CAPA DE AUDIO
+#ifdef _GDT_SONIDO_
+  //Sonido
+  #include "gd_sistemasonido.h"
+  #include "gd_sonido3d.h"
+  #include "gd_sonido.h"
+  //Musica
+  #ifdef WIN32
+     #include "gd_musik.h"
+  #endif
+#endif
+
 // Sistema
 #include "gd_sistema.h"
+#include "gd_cadena.h"
+#include "gd_cronometro.h"
 // 3D
+#include "gd_animador.h"
 #include "gd_escenario.h"
-#include "gd_malla.h"
 #include "gd_luz.h"
 #include "gd_camara.h"
 #include "gd_panorama.h"
@@ -34,8 +48,8 @@
 #include "gd_agua.h"
 #include "gd_particula.h"
 #include "gd_textura.h"
-//Colisiones
 #include "gd_colisiones3d.h"
+#include "gd_malla.h"
 // GUI
 #include "gd_guiimagen.h"
 #include "gd_guitexto.h"
@@ -47,22 +61,45 @@
 #include "gd_guimenu.h"
 // Reloj
 //#include "gd_reloj.h"
-//Sonido
-#include "gd_sistemasonido.h"
-#include "gd_sonido3d.h"
-#include "gd_sonido.h"
 //Matematicas
-#include "gd_sistemamatematicas.h"
-//Script
-//#include "gd_sistemalua.h"
-//Controles predise&ntilde;ados
-//#include "gd_controlesprediseniados.h"
-//Archivos
+#include "gd_matematicas.h"
+//Controles predise�dos
+#include "gd_controlesprediseniados.h"
+// ARCHIVOS
 #include "gd_archivo.h"
 #include "gd_xml.h"
 #include "gd_listaarchivos.h"
 //Otros
 #include "gd_fundido.h"
 
-//Fisicas
-//#include "gd_sistemafisicas.h"
+//Lenguaje de Scripting LUA
+#ifdef _GDT_SCRIPTING_
+  #include "gd_scriptlua.h"
+#endif
+
+//Fisicas ODE
+#ifdef _GDT_FISICAS_ODE_
+  #include "gd_fisicasOdeSistema.h"
+  #include "gd_fisicasOdeCuerpo.h"
+#endif
+
+//Fisicas NEWTON DYNAMICS
+#ifdef _GDT_FISICAS_NEWTON_
+  #include "gd_fisicasNwtMundo.h"
+  #include "gd_fisicasNwtMaterial.h"
+  #include "gd_fisicasNwtCuerpo.h"
+#endif
+
+//EXPORTAR SIMBOLOS AL CREAR DLL
+#ifndef _GDT_EXPORT_
+  #ifdef WIN32
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
+  #else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */

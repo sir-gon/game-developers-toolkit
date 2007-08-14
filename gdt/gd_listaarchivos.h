@@ -19,8 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_LISTAARCHIVOS_H
-#define GD_LISTAARCHIVOS_H
+#ifndef ListaArchivos_H
+#define ListaArchivos_H
 
 #include "gd_sistema.h"
 
@@ -38,14 +38,17 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
 //! Representa una Lista de Archivos de un directorio /
-class GD_ListaArchivos
+class ListaArchivos
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_ListaArchivos();
+	_GDT_EXPORT_ ListaArchivos();
 	// class destructor
-	_GDT_EXPORT_ ~GD_ListaArchivos();
+	_GDT_EXPORT_ ~ListaArchivos();
 	
 	IFileSystem* FileSystem;
 	IFileList* FileList;
@@ -61,4 +64,6 @@ public:
 	_GDT_EXPORT_ bool EsDirectorio(int id);
 };
 
-#endif // GD_LISTAARCHIVOS_H
+} // FIN NAMESPACE GDT
+
+#endif // ListaArchivos_H

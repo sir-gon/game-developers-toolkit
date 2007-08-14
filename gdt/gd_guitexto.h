@@ -39,17 +39,23 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Control GUI "Texto" (Text)
-class GD_GuiTexto : public GD_gui
+class Texto : public GD_gui
 {
 private:
 	int iX,iY,iAlto,iAncho;
 
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_GuiTexto();
+	_GDT_EXPORT_ Texto();
 	// class destructor
-	_GDT_EXPORT_ ~GD_GuiTexto();
+	_GDT_EXPORT_ ~Texto();
 
 	IGUIStaticText* guitexto;
 
@@ -67,8 +73,8 @@ public:
 	//! Obtiene el nombre del archivo de fuentes usado.
 	_GDT_EXPORT_ wchar_t* FuenteEnUso();
 							//
-	_GDT_EXPORT_ void Texto(const wchar_t *text,int x, int y,int ancho, int alto);
-	_GDT_EXPORT_ void Texto(const wchar_t *text,int x, int y);
+	_GDT_EXPORT_ void Establecer(const wchar_t *text,int x, int y,int ancho, int alto);
+	_GDT_EXPORT_ void Establecer(const wchar_t *text,int x, int y);
 	_GDT_EXPORT_ void TextoCentrado(const wchar_t *text,int x,int y,int ancho, int alto);
 	_GDT_EXPORT_ void TextoCentrado(const wchar_t *text,int x,int y);
 	_GDT_EXPORT_ int PosicionX();
@@ -81,5 +87,9 @@ public:
 	_GDT_EXPORT_ void Visible(bool visible);
 	_GDT_EXPORT_ bool EsVisible();
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUITEXTO_H

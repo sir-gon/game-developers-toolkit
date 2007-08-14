@@ -194,18 +194,6 @@ using namespace gui;
 #define T_NUMPAD_DIV    111   // /
 #define T_NUMPAD_POW    106   // *
 
-
-#define TCadena wchar_t
-#define TCadenaC stringc
-#define TCadenaL stringw
-
-// HACK PARA FUNCIONES DE TEXTO ENTRE WINDOWS Y LINUX
-#if defined(WIN32) && defined(__MINGW32__)
-	#define SumarCadenas snwprintf
-#else
-	#define SumarCadenas swprintf
-#endif
-
 //=====================================================================================//
 
 //! Clase Maestra de GDT
@@ -272,8 +260,8 @@ public:
 	_GDT_EXPORT_ int AltoVentana();
 	
 	//! Destruye el sistema
-	void Finalizar();
-	void Matarme();
+	_GDT_EXPORT_ void Finalizar();
+	_GDT_EXPORT_ void Matarme();
 
 	int _CPS;
 	//! Retorna los Cuadros Por Segundo, conocido mundialmente como FPS.
@@ -380,13 +368,13 @@ public:
 	_GDT_EXPORT_ void CargarEscena(char* file);
 	_GDT_EXPORT_ void GuardarEscena(char* file);
 
-	void ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn);
+	_GDT_EXPORT_ void ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn);
 	
 	IGUIFileOpenDialog* UltimoDialogoSeleccionado;
 	c8 RutaArchivoSeleccionado[1024];
 	
 	//! Establece la transparencia de los elementos gui creados hasta el momento.
-	void TransparenciaGUI(int valor);
+	_GDT_EXPORT_ void TransparenciaGUI(int valor);
 };
 
 

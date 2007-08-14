@@ -19,111 +19,184 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifndef GD_CADENA_H
-#define GD_CADENA_H
+#ifndef Cadena_H
+#define Cadena_H
 
-/*
- * No description
- */
-
+#include <iostream>
 #include "gd_sistema.h"
- 
-class GD_Cadena// : public core::stringc
+#include "gd_matematicas.h"
+
+/* No documentar */
+#ifndef _GDT_DOXYGEN_IGNORAR_
+using namespace std;
+#endif /* _GDT_DOXYGEN_IGNORAR_ */
+
+//EXPORTAR SIMBOLOS AL CREAR DLL
+#ifndef _GDT_EXPORT_
+  #ifdef WIN32
+	#ifdef _GDT_DLL_
+	   #define _GDT_EXPORT_ __declspec(dllexport)
+	#else /* Not _GDT_DLL_ */
+	   #define _GDT_EXPORT_ __declspec(dllimport)
+	#endif /* Not _GDT_DLL_ */
+  #else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+    #define _GDT_EXPORT_ /* Definido nulo */
+  #endif  /* WIN32 */
+#endif /* _GDT_EXPORT_ */
+
+#define PRECISION   8
+
+namespace GDT
 {
+
+//! Manejo y conversi&oacute;n de cadenas de Texto.
+class Cadena// : public core::stringc
+{
+	private:
+	//! Representaci&oacute;n interna de la cadena
+	core::stringc mStringC;
+	//core::stringw mStringW;
+
 	public:
-		// class constructor
-		GD_Cadena();
-		// class destructor
-		~GD_Cadena();
-		
-		
-		core::stringc mStringC;
-//		core::stringw mStringW;
+	//! Inicializa una Cadena vac�
+	_GDT_EXPORT_ Cadena();
+	//! Inicializa la Cadena con una dada
+	_GDT_EXPORT_ Cadena(char* cadena);
+	//! Inicializa la Cadena con una dada
+	_GDT_EXPORT_ Cadena(const char* cadena);
+	//! Inicializa la Cadena con una dada
+	_GDT_EXPORT_ Cadena(wchar_t* cadena);
+	//! Inicializa la Cadena con una dada
+	_GDT_EXPORT_ Cadena(const wchar_t* cadena);
+	//! Destruye el objeto
+	_GDT_EXPORT_ ~Cadena();
+
+	// Retorna en diferentes tipos
+	// int
+	// float
+	// char*
+	// c8*
+	// wchar_t*
+
+	//! Devuelve el contenido como un n�mero Entero.
+	_GDT_EXPORT_ u32 RetornarInt();
+	//! Devuelve el contenido como un n�mero Float.
+	_GDT_EXPORT_ float RetornarFloat();
+	//! Devuelve la cadena como un n�mero Entero.
+	_GDT_EXPORT_ char* RetornarChar();
+	_GDT_EXPORT_ const char* RetornarConstChar();
+	_GDT_EXPORT_ c8* RetornarC8();
+	_GDT_EXPORT_ const c8* RetornarConstC8();
+	_GDT_EXPORT_ wchar_t* RetornarWChar_t(); // parece que tiene un bug que no reconoce los dos primeros caracteres
+	_GDT_EXPORT_ const wchar_t* RetornarConstWChar_t();
 
 
-        // Operadores asignacion
-        // =
-        // +
-        
-        void operator = (GD_Cadena Cade);
-        void operator = (char* CharIgual);
-        void operator = (const char* CharIgual);        
-        void operator = (int IntIgual);
-        //! En caso de que salga un error de compilacion como este: 1503 main.cpp ambiguous overload for 'operator=' in ' ... .Debemos ponerle una f al final del numero para que el compilador lo diferencie de un int ej. 14.235f 
-        void operator = (float FloatIgual);
-        void operator = (wchar_t* WCharIgual);
-        void operator = (const wchar_t* WCharIgual);        
-        
 
-/*     //No funciona, sale error de compilacion cuando se llama asi:
-       // GD_Cadena Cade;
-       // Cade = "Hola" + "Mundo";
-       
-       por ahora hay que usar el metodo Sumar.
-   
-    
-    GD_Cadena operator + (char* CharIgual);
-        void operator + (int IntIgual);
-        //! En caso de que salga un error de compilacion como este: 1503 main.cpp ambiguous overload for 'operator=' in ' ... .Debemos ponerle una f al final del numero para que el compilador lo diferencie de un int ej. 14.235f 
-        void operator + (float FloatIgual);
-        void operator + (wchar_t* WCharIgual); 
-        void operator + (GD_Cadena Cade);      
-        
-GD_Cadena operator + (GD_Cadena Cadena) const
-{
-          GD_Cadena TempC;
-          TempC.Sumar(Cadena);
-          return TempC;
-}
-        
-        
-*/
+	_GDT_EXPORT_ void Sumar(Cadena cadena);
+	_GDT_EXPORT_ void Sumar(wchar_t* cadena);
+	_GDT_EXPORT_ void Sumar(char* cadena);
+	_GDT_EXPORT_ void Sumar(const char* cadena);
+	//_GDT_EXPORT_ void Sumar(const char* Charc);
+	_GDT_EXPORT_ void Sumar(float numero);
+	_GDT_EXPORT_ void Sumar(int numero);
+
+	//! Crea espacio en memoria y asigna el valor de char*.
+	_GDT_EXPORT_ char* CopiarCharEnNuevaMemoria(char* Original);
+	
+	//! Devuelve la cantidad de caracteres de la Cadena.
+	_GDT_EXPORT_ u32 Longitud();
+
+	// UTILIDADS ESTATICAS 
+	//! Devuelve la cantidad de caracteres de una cadena char* dada.
+	_GDT_EXPORT_ static u32 Longitud(char* cadena);
+	//! Devuelve la cantidad de caracteres de una cadena const char* dada.
+	_GDT_EXPORT_ static u32 Longitud(const char* cadena);
+	//! Devuelve la cantidad de caracteres de una cadena const char* dada.
+	//_GDT_EXPORT_ static int Longitud(wchar_t* cadena);
+	//! Devuelve el tamano del arreglo char*
+	_GDT_EXPORT_ static u32 Longitud(int cadena);
+
+	// CONVERSORES ESTATICOS
+	//! Convierte un n&uacute;mero entero en una cadena char*
+	_GDT_EXPORT_ static char* ConvertirNumeroEnChar(int numero);
+	//! Convierte un n&uacute;mero real en cadena char*
+	_GDT_EXPORT_ static char* ConvertirNumeroEnChar(double numero);
+	//! Convierte un n&uacute;mero entero en una cadena wchar_t*
+	_GDT_EXPORT_ static wchar_t* ConvertirNumeroEnWchart(int numero);
+	//! Convierte un n&uacute;mero real en cadena wchar_t*
+	_GDT_EXPORT_ static wchar_t* ConvertirNumeroEnWchart(double number);
+	//! Convierte una cadena wchar_t* a una cadena char*
+	_GDT_EXPORT_ static char* ConvertirWchartEnChar(wchar_t *cadena);
+	//! Convierte una cadena char* a una cadena wchar_t*
+	_GDT_EXPORT_ static wchar_t* ConvertirCharEnWchart(char *cadena);
+	
+
+	// Operadores asignacion
+	// =
+	//! Asigna a la Cadena de la izquierda la Cadena de la derecha
+	_GDT_EXPORT_ void operator = (Cadena Cade);
+	//! Asigna a la Cadena de la izquierda la cadena char* de la derecha
+	_GDT_EXPORT_ void operator = (char* CharIgual);
+	//! Asigna a la Cadena de la izquierda la cadena const char* de la derecha
+	_GDT_EXPORT_ void operator = (const char* CharIgual);
+	//! Asigna a la Cadena de la izquierda el entero de la derecha
+	_GDT_EXPORT_ void operator = (int IntIgual);
+	//! Asigna a la Cadena de la izquierda el float de la derecha
+	_GDT_EXPORT_ void operator = (float FloatIgual);
+	//! Asigna a la Cadena de la izquierda la cadena wchar_t* de la derecha
+	_GDT_EXPORT_ void operator = (wchar_t* WCharIgual);
+	//! Asigna a la Cadena de la izquierda
+	_GDT_EXPORT_ void operator = (const wchar_t* WCharIgual);
 
 
-        
-        void Sumar(GD_Cadena Cade); 
-        void Sumar(wchar_t* WChar);
-        void Sumar(char* Charc);
-        void Sumar(float Float);
-        void Sumar(int Entero);
-        
- 
-        // Operadores comparacion
-        // ==
-        // !=
-        
-        // Retorna en diferentes tipos
-        // int
-        // float
-        // char*
-        // c8*
-        // wchar_t*
-        
-        int RetornarInt();
-        float RetornarFloat();
-        char* RetornarChar();
-        const char* RetornarConstChar();
-        c8* RetornarC8();
-        const c8* RetornarConstC8();
-        const wchar_t* RetornarWChar_t(); // parece que tiene un bug que no reconoce los dos primeros caracteres
-        const wchar_t* RetornarConstWChar_t();
-        
-        
-		
-		
-        /// Otras utilidades --------------------
-		
-		//! Devuelve el tamano del arreglo char*
-		int TamanoChar(char* cade);
-		int TamanoChar(const char* cade);	
-		
-		int TamanoInt(int cade);
-        
-        //! Convierte int en char* 
-        char* ConvertirIntAChar(int numero);
-        //! Crea espacio en memoria y asigna el valor de char, con el fin de copiar enteramente el char y no un apuntador a la misma parte como se haria con Cadena1 = Cadena2, al modificar cualquiera de los dos instantaneamente el otro tambien se modifica ya que es un apuntador, lo que hace este metodo es crear un espacio real para asignar el mismo valor y que asi sean independientes.
-        char* CopiarCharEnNuevaMemoria(char* Original);
-		
-};
+	// Operadores comparacion
+	// ==
+	// Compara si las Cadenas son iguales
+	_GDT_EXPORT_ bool operator== (Cadena cadena);
+	// Compara si la Cadena es igual la cadena char*
+	_GDT_EXPORT_ bool operator== (char* cadena);
+	// Compara si la Cadena es igual la cadena char*
+	_GDT_EXPORT_ bool operator== (wchar_t* cadena);
 
-#endif // GD_CADENA_H
+	// !=
+	// Compara si las Cadenas son distintas
+	_GDT_EXPORT_ bool operator!= (Cadena cadena);
+	// Compara si la Cadena es distinta de la cadena char*
+	_GDT_EXPORT_ bool operator!= (char* cadena);
+	// Compara si la Cadena es distinta de la cadena wchar_t*
+	_GDT_EXPORT_ bool operator!= (wchar_t* cadena);
+
+	// Operador Suma Binaria +
+	//! Concatenar Cadena con un n&uacute;mero entero
+	_GDT_EXPORT_ Cadena operator+ (int numero);
+	//! Concatenar Cadena con un n&uacute;mero float
+	_GDT_EXPORT_ Cadena operator+ (float numero);
+	//! Concatenar Cadena con un n&uacute;mero double
+	_GDT_EXPORT_ Cadena operator+ (double numero);
+	//! Concatenar Cadena con una cadena "char"
+	_GDT_EXPORT_ Cadena operator+ (const char* cadena);
+	//! Concatenar Cadena con cadena "w_chart"
+	_GDT_EXPORT_ Cadena operator+ (const wchar_t* cadena);
+	//! Concatenar Cadena con otra Cadena
+	_GDT_EXPORT_ Cadena operator+ (Cadena cadena);
+
+	// Operador Suma-Asignaci� +=
+	//! Concatena el numero entero de la derecha en la Cadena izquierda
+	_GDT_EXPORT_ void operator+= (int numero);
+	//! Concatena el numero float de la derecha en la Cadena izquierda
+	_GDT_EXPORT_ void operator+= (float numero);
+	//! Concatena el numero real de la derecha en la Cadena izquierda
+	//_GDT_EXPORT_ void operator+= (double numero);
+	//! Concatena la una cadena "char*" de la derecha en la Cadena izquierda
+	_GDT_EXPORT_ void operator+= (const char* cadena);
+	//! Concatena la una cadena "w_chart*" de la derecha en la Cadena izquierda	
+	_GDT_EXPORT_ void operator+= (const wchar_t* cadena);
+	//! Concatena la Cadena de la derecha en la Cadena izquierda
+	_GDT_EXPORT_ void operator+= (Cadena cadena);
+
+}; // FIN CLASE
+
+} // FIN NAMESPACE
+
+#endif // Cadena_H

@@ -54,6 +54,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				AdditionalLibraryDirectories="..\..\lib\win32-visualstudio;..\..\bin\win32-visualstudio"
+				IgnoreDefaultLibraryNames="LIBCMT"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -121,6 +122,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
 				AdditionalLibraryDirectories="..\..\lib\win32-visualstudio;..\..\bin\win32-visualstudio"
+				IgnoreDefaultLibraryNames=""
 			/>
 			<Tool
 				Name="VCALinkTool"

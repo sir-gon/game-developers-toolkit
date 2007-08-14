@@ -21,28 +21,38 @@
 
 #include "gd_cronometro.h" // class's header file
 
+/*!
+* \class GDT::Cronometro
+* \since 2.0
+*
+*
+*
+* \author Joropo
+* \warning Esta clase es Experimental
+*/
+
 // class constructor
-GD_Cronometro::GD_Cronometro()
+GDT::Cronometro::Cronometro()
 {
 	// insert your code here
 	Estado = 0;
 }
 
 // class destructor
-GD_Cronometro::~GD_Cronometro()
+GDT::Cronometro::~Cronometro()
 {
 	// insert your code here
 }
 
 
-void GD_Cronometro::Activar(int tiempo)
+void GDT::Cronometro::Activar(int tiempo)
 {
      TiempoDeFinalizar = tiempo;
      TiempoDelSistemaAlIniciar = GD_Sistema::device->getTimer()->getTime();
      Estado = 1;
 }
 
-void GD_Cronometro::ActivarPulso(int tiempo)
+void GDT::Cronometro::ActivarPulso(int tiempo)
 {
      TiempoDePulso = tiempo;
      TiempoDelSistemaAlIniciar = GD_Sistema::device->getTimer()->getTime();
@@ -51,7 +61,7 @@ void GD_Cronometro::ActivarPulso(int tiempo)
      TiempoDelUltimoPulso = TiempoActivado();
 }
 
-bool GD_Cronometro::Terminado()
+bool GDT::Cronometro::Terminado()
 {
 
    TDestino = TiempoDelSistemaAlIniciar + TiempoDeFinalizar;
@@ -68,7 +78,7 @@ bool GD_Cronometro::Terminado()
    }
 }
 
-bool GD_Cronometro::Contando()
+bool GDT::Cronometro::Contando()
 {
      
      Terminado(); // actualiza
@@ -81,22 +91,22 @@ bool GD_Cronometro::Contando()
 
 
 
-u32 GD_Cronometro::TiempoRestante()
+u32 GDT::Cronometro::TiempoRestante()
 {
     return TDestino - GD_Sistema::device->getTimer()->getTime();
 }
 
-u32 GD_Cronometro::TiempoActivado()
+u32 GDT::Cronometro::TiempoActivado()
 {
     return GD_Sistema::device->getTimer()->getTime() - TiempoDelSistemaAlIniciar;
 }
 
-bool GD_Cronometro::Pulso()
+bool GDT::Cronometro::Pulso()
 {
     //printf("DEBUG: TiempoActivado() = %d, TiempoDelUltimoPulso = %d, TiempoDePulso = %d\n", TiempoActivado(), TiempoDelUltimoPulso, TiempoDePulso);
      if(TiempoActivado() >= (TiempoDelUltimoPulso + TiempoDePulso))
      {
-           TiempoDelUltimoPulso = TiempoActivado();              
+           TiempoDelUltimoPulso = TiempoActivado();
            ContadorPulsos++;
           // printf("PULSO\n");
            return true;

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiTexto
+* \class GDT::Gui::Texto
 *
 * Este Control GUI permite desplegar Texto por la pantalla.
 * Usese para mostrar alertas, mensajes, o para lo que sea conveniente.
@@ -28,19 +28,29 @@
 
 #include "gd_guitexto.h" // class's header file
 
-// class constructor
-GD_GuiTexto::GD_GuiTexto()
+/*!
+*/
+GDT::Gui::Texto::Texto()
 {
 	// insert your code here
 }
 
-// class destructor
-GD_GuiTexto::~GD_GuiTexto()
+/*!
+*/
+GDT::Gui::Texto::~Texto()
 {
 	// insert your code here
 }
 
-void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, bool wordWrap,	IGUIElement *padre)
+/*!
+*/
+void GDT::Gui::Texto::Crear(
+	int x1, int y1, 
+	int x2, int y2, 
+	wchar_t * texto, 
+	bool borde, bool wordWrap,
+	IGUIElement *padre
+	)
 {
 
     RegistrarDevice(GD_Sistema::device);
@@ -59,17 +69,21 @@ void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool bo
 
 }
 
-
 /*!
-\param x1,y1 posici&oacute;n del texto.
-\param x2,y2 posici&oacute;n hasta la que llega el texto.
-\param texto es el texto del Control GUI.
-\param padre
-
-Ejemplo:
-Texto.Crear( 10, 5 , 40, 15, L"Leeme");
+* \param x1,y1 posici&oacute;n del texto.
+* \param x2,y2 posici&oacute;n hasta la que llega el texto.
+* \param texto es el texto del Control GUI.
+* \param padre
+* 
+* Ejemplo:
+* Texto.Crear( 10, 5 , 40, 15, L"Leeme");
 */
-void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement *padre)
+void GDT::Gui::Texto::Crear(
+	int x1, int y1,
+	int x2, int y2,
+	wchar_t * texto,
+	IGUIElement *padre
+	)
 {
 
     RegistrarDevice(GD_Sistema::device);
@@ -84,24 +98,24 @@ void GD_GuiTexto::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIEle
 }
 
 /*!
-\param r,g,b colores Azul, Verde y Rojo, de 0 a 255.
-\param a Transparencia alpha, de 0 a 255.
-
-Ejemplo:
-Texto.Color(255,0,0,255);
+* \param r,g,b colores Azul, Verde y Rojo, de 0 a 255.
+* \param a Transparencia alpha, de 0 a 255.
+* 
+* Ejemplo:
+* Texto.Color(255,0,0,255);
 */
-void GD_GuiTexto::Color(int r, int g, int b,int a)
+void GDT::Gui::Texto::Color(int r, int g, int b,int a)
 {
 	guitexto->setOverrideColor(SColor( a, r, g, b));
 }
 
 /*!
-\param fontname ruta al archivo de la fuente. Debe ser un bitmap de caracteres.
-
-\since 13-04-2006
-\author Astucia 
+* \param fontname ruta al archivo de la fuente. Debe ser un bitmap de caracteres.
+* 
+* \since 13-04-2006
+* \author Astucia 
 */
-void GD_GuiTexto::AsignarFuente(const char fontname[1024])
+void GDT::Gui::Texto::AsignarFuente(const char fontname[1024])
 {
 
    guienv=midevice->getGUIEnvironment();  //Obtiene el entorno del GUI
@@ -117,7 +131,9 @@ void GD_GuiTexto::AsignarFuente(const char fontname[1024])
       fuente=guienv->getBuiltInFont();
 }
 
-void GD_GuiTexto::AsignarFuente(wchar_t * fontname) ///NUEVO
+/*!
+*/
+void GDT::Gui::Texto::AsignarFuente(wchar_t * fontname) ///NUEVO
 {
 
    guienv=midevice->getGUIEnvironment();  //Obtiene el entorno del GUI
@@ -136,14 +152,14 @@ void GD_GuiTexto::AsignarFuente(wchar_t * fontname) ///NUEVO
 /*!
 \note Tambi&eacute;n se puede obtener el nombre mediante la propiedad wchar_t* szfuente
 */
-wchar_t* GD_GuiTexto::FuenteEnUso()
+wchar_t* GDT::Gui::Texto::FuenteEnUso()
 {
    return szfuente;
 }
 
 /*!
 */
-void GD_GuiTexto::Texto(const wchar_t *text,int x, int y,int ancho,int alto)
+void GDT::Gui::Texto::Establecer(const wchar_t *text,int x, int y,int ancho,int alto)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
    core::dimension2d<s32> dimencionXY; //estructura de dimenciones Alto-Ancho
@@ -161,7 +177,7 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y,int ancho,int alto)
 
 /*!
 */
-void GD_GuiTexto::Texto(const wchar_t *text,int x, int y)
+void GDT::Gui::Texto::Establecer(const wchar_t *text,int x, int y)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
    core::dimension2d<s32> dimencionXY; //estructura de dimenciones Alto-Ancho
@@ -179,7 +195,7 @@ void GD_GuiTexto::Texto(const wchar_t *text,int x, int y)
 
 /*!
 */
-void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int alto)
+void GDT::Gui::Texto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int alto)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
    core::dimension2d<s32> dimencionXY; //estructura de dimenciones Alto-Ancho
@@ -198,7 +214,7 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y,int ancho,int al
 
 /*!
 */
-void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y)
+void GDT::Gui::Texto::TextoCentrado(const wchar_t *text,int x,int y)
 {
    core::position2d<s32> posicionXY;   //estructura de coordenadas XY
    core::dimension2d<s32> dimencionXY; //estructura de dimenciones Alto-Ancho
@@ -217,7 +233,7 @@ void GD_GuiTexto::TextoCentrado(const wchar_t *text,int x,int y)
 
 /*!
 */
-int GD_GuiTexto::PosicionX()
+int GDT::Gui::Texto::PosicionX()
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
@@ -227,7 +243,7 @@ int GD_GuiTexto::PosicionX()
 
 /*!
 */
-int GD_GuiTexto::PosicionY()
+int GDT::Gui::Texto::PosicionY()
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
@@ -237,7 +253,7 @@ int GD_GuiTexto::PosicionY()
 
 /*!
 */
-void GD_GuiTexto::Posicionar(position2d<s32> pos)
+void GDT::Gui::Texto::Posicionar(position2d<s32> pos)
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
@@ -247,7 +263,7 @@ void GD_GuiTexto::Posicionar(position2d<s32> pos)
 
 /*!
 */
-void GD_GuiTexto::Posicionar(int x,int y)
+void GDT::Gui::Texto::Posicionar(int x,int y)
 {
    core::rect<s32> caja;
    caja = guitexto->getRelativePosition();
@@ -258,7 +274,7 @@ void GD_GuiTexto::Posicionar(int x,int y)
 
 /*!
 */
-int GD_GuiTexto::AnchoDelTexto()
+int GDT::Gui::Texto::AnchoDelTexto()
 {
    int Ancho=0;
    core::rect<s32> caja;
@@ -270,7 +286,7 @@ int GD_GuiTexto::AnchoDelTexto()
 
 /*!
 */
-int GD_GuiTexto::AltoDelTexto()
+int GDT::Gui::Texto::AltoDelTexto()
 {
    int Alto=0;
    core::rect<s32> caja;
@@ -281,19 +297,21 @@ int GD_GuiTexto::AltoDelTexto()
 
 /*!
 */
-void GD_GuiTexto::Multilinea(bool activar)
+void GDT::Gui::Texto::Multilinea(bool activar)
 {
    guitexto->setWordWrap(activar);
 }
 
-
-void GD_GuiTexto::Visible(bool visible)
+/*!
+*/
+void GDT::Gui::Texto::Visible(bool visible)
 {
       guitexto->setVisible(visible);
 }
 
-
-bool GD_GuiTexto::EsVisible()
+/*!
+*/
+bool GDT::Gui::Texto::EsVisible()
 {
       return guitexto->isVisible();
 }
