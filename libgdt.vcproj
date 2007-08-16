@@ -122,7 +122,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				UseUnicodeResponseFiles="false"
-				AdditionalIncludeDirectories="gdt;include;include\ode\;include\Irrlicht;include\AL;include\ogg;include\vorbis;"
+				AdditionalIncludeDirectories="gdt;include;include\ode;include\Irrlicht;include\AL;include\ogg;include\vorbis;include\lua5.1"
 				PreprocessorDefinitions="WIN32;NDEBUG;_GDT_DLL_;_GDT_MIDI_;_GDT_SONIDO_;_GDT_SONIDO_OGG_;_GDT_FISICAS_ODE_"
 				ExceptionHandling="1"
 				RuntimeLibrary="0"
@@ -142,7 +142,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				UseLibraryDependencyInputs="true"
-				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib winmm.lib uuid.lib $(NOINHERIT) "
+				AdditionalDependencies="Irrlicht.lib ode.lib OpenAL32.lib alut.lib ogg.lib vorbis.lib vorbisfile.lib lua5.1.lib winmm.lib uuid.lib $(NOINHERIT)"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;lib\win32-visualstudio&quot;;&quot;bin\win32-visualstudio&quot;"
 				GenerateManifest="true"
