@@ -48,14 +48,14 @@ GDT::Cronometro::~Cronometro()
 void GDT::Cronometro::Activar(int tiempo)
 {
      TiempoDeFinalizar = tiempo;
-     TiempoDelSistemaAlIniciar = GD_Sistema::device->getTimer()->getTime();
+     TiempoDelSistemaAlIniciar = Sistema::device->getTimer()->getTime();
      Estado = 1;
 }
 
 void GDT::Cronometro::ActivarPulso(int tiempo)
 {
      TiempoDePulso = tiempo;
-     TiempoDelSistemaAlIniciar = GD_Sistema::device->getTimer()->getTime();
+     TiempoDelSistemaAlIniciar = Sistema::device->getTimer()->getTime();
      EstadoPulso = 0;
      usandoPulsos = true;
      TiempoDelUltimoPulso = TiempoActivado();
@@ -66,7 +66,7 @@ bool GDT::Cronometro::Terminado()
 
    TDestino = TiempoDelSistemaAlIniciar + TiempoDeFinalizar;
         
-   if( TDestino  <  GD_Sistema::device->getTimer()->getTime())
+   if( TDestino  <  Sistema::device->getTimer()->getTime())
    {
        Estado = 0;
        return true;       
@@ -93,12 +93,12 @@ bool GDT::Cronometro::Contando()
 
 u32 GDT::Cronometro::TiempoRestante()
 {
-    return TDestino - GD_Sistema::device->getTimer()->getTime();
+    return TDestino - Sistema::device->getTimer()->getTime();
 }
 
 u32 GDT::Cronometro::TiempoActivado()
 {
-    return GD_Sistema::device->getTimer()->getTime() - TiempoDelSistemaAlIniciar;
+    return Sistema::device->getTimer()->getTime() - TiempoDelSistemaAlIniciar;
 }
 
 bool GDT::Cronometro::Pulso()

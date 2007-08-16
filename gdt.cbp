@@ -52,7 +52,7 @@
 			<Add library="ode"/>
 			<Add library="alut"/>
 			<Add library="ogg"/>
-			<Add library="openal"/>
+			<Add library="OpenAL32"/>
 			<Add library="vorbis"/>
 			<Add library="vorbisenc"/>
 			<Add library="vorbisfile"/>

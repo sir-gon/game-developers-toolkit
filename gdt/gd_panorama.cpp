@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_Panorama
+* \class GDT::Nodo::Panorama
 *
 * Un Panorama es la cubierta que podemos darle al escenario, para reemplazar
 * el color plano que presenta por defecto.
@@ -30,13 +30,13 @@
 #include "gd_panorama.h" // class's header file
 
 // class constructor
-GD_Panorama::GD_Panorama()
+GDT::Nodo::Panorama::Panorama()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Panorama::~GD_Panorama()
+GDT::Nodo::Panorama::~Panorama()
 {
 	// insert your code here
 }
@@ -60,11 +60,11 @@ CieloCubo.CrearCubico(
 	"media/cara_trasera.jpg");
 \endcode
 */
-void GD_Panorama::CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back)
+void GDT::Nodo::Panorama::CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back)
 {
     
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
 
 
@@ -97,10 +97,10 @@ Ejemplo:
 CieloDomo.CrearDomo("../media/panorama/domin.jpg",13,13,100,100);
 \endcode
 */
-void GD_Panorama::CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc)
+void GDT::Nodo::Panorama::CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc)
 {
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
     float texpor = (float)texporc/100;
     float esfpor = (float)esfporc/50;    

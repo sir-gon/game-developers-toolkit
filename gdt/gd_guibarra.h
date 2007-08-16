@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Barra de Desplazamiento" (ScrollBar)
-class Barra : public GD_gui
+class Barra : public GuiBase
 {
 public:
 	// class constructor
@@ -67,7 +67,7 @@ public:
 	_GDT_EXPORT_ void Posicionar(int posicion);
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

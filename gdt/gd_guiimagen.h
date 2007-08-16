@@ -41,7 +41,7 @@ namespace Gui
 {
 
 //! Control GUI "Imagen" (Image)
-class Imagen : public GD_gui
+class Imagen : public GuiBase
 {
 public:
 	IVideoDriver* driver;
@@ -64,7 +64,7 @@ public:
         //_GDT_EXPORT_ void Visible(bool estado);
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

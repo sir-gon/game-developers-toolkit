@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Boton" (Button)
-class Boton : public GD_gui
+class Boton : public GuiBase
 {
 public:
 	// class constructor
@@ -64,7 +64,7 @@ public:
 	_GDT_EXPORT_ void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

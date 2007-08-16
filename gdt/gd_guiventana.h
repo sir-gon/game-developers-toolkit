@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Ventana" (Window)
-class Ventana : public GD_gui
+class Ventana : public GuiBase
 {
 public:
 	// class constructor
@@ -59,7 +59,7 @@ public:
 	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0);
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

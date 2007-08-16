@@ -61,7 +61,7 @@ GDT::XML::~XML()
 */
 void GDT::XML::AbrirParaEscribir(const char *strArchivo)
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
+     FileSystem = Sistema::device->getFileSystem(); 
      
      writeXML = FileSystem->createXMLWriter(strArchivo);  
      
@@ -171,7 +171,7 @@ xml.AbrirParaLeer("datos.xml");
 */
 void GDT::XML::AbrirParaLeer(const char *strArchivo)
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
+     FileSystem = Sistema::device->getFileSystem(); 
      
      readXML = FileSystem->createXMLReader(strArchivo);   
      

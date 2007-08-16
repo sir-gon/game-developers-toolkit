@@ -54,7 +54,7 @@ using namespace gui;
 namespace GDT
 {
 
-namespace fisica
+namespace Fisica
 {
 
 void QuaternionToEuler(const dQuaternion quaternion,irr::core::vector3df &euler);

@@ -48,14 +48,21 @@ using namespace gui;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Base de los Controles de la Interfaz Gr&aacute;fica de Usuario (GUI)
-class GD_gui
+class GuiBase
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_gui();
+	_GDT_EXPORT_ GuiBase();
 	// class destructor
-	_GDT_EXPORT_ ~GD_gui();
+	_GDT_EXPORT_ ~GuiBase();
 	
 	IrrlichtDevice *midevice;
 	
@@ -131,5 +138,9 @@ public:
 	//!
 	_GDT_EXPORT_ bool Colision(IGUIElement* guiElemento);
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_GUI_H

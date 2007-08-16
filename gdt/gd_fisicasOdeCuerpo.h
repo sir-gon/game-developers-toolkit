@@ -45,7 +45,7 @@
 namespace GDT
 {
 
-namespace fisica
+namespace Fisica
 {
 
 //! Crea un Cuerpo para f&iacute;sicas Open Dynamics Engine (ODE)

@@ -196,8 +196,11 @@ using namespace gui;
 
 //=====================================================================================//
 
+namespace GDT
+{
+
 //! Clase Maestra de GDT
-class GD_Sistema : public IEventReceiver {
+class Sistema : public IEventReceiver {
 protected:
 	// misc
 	int lastFPS;
@@ -205,9 +208,9 @@ protected:
 
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Sistema();
+	_GDT_EXPORT_ Sistema();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Sistema();
+	_GDT_EXPORT_ ~Sistema();
 	
 	// Irrlicht  vars
 	IVideoDriver* driver;
@@ -331,7 +334,7 @@ public:
 	_GDT_EXPORT_ void Dormir(int milisecs);
 	
 	// camaras
-	_GDT_EXPORT_ void ActivarCamara( ICameraSceneNode* cam ); //GD_Camara cam );
+	_GDT_EXPORT_ void ActivarCamara( ICameraSceneNode* cam ); //Camara cam );
 	_GDT_EXPORT_ void AreaRenderizado(int x1, int y1, int x2, int y2);
 	
 	_GDT_EXPORT_ void Limpiar();
@@ -377,6 +380,6 @@ public:
 	_GDT_EXPORT_ void TransparenciaGUI(int valor);
 };
 
-
+} // FIN NAMESPACE GDT
 
 #endif // GD_SISTEMA_H

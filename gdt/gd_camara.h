@@ -40,21 +40,22 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
-//! Controlador de C&aacute;mara
-/*!
-Crea y maneja las c&aacute;maras. Permite manejarlas por teclado o mouse, orientarlas a gusto y darles el comportamiento que la aplicaci&oacute;n requiera.
+namespace GDT
+{
 
-Por ejemplo, nos permite dejar la c&aacute;mara detr&aacute;s de un personaje para juegos de tercera persona, o puede ser de primera persona.
-*/
-class GD_Camara : public GD_Nodo
+namespace Nodo
+{
+
+//! Controlador de C&aacute;mara
+class Camara : public NodoBase
 {
    private:
 		double distancia;
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Camara();
+		_GDT_EXPORT_ Camara();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Camara();
+		_GDT_EXPORT_ ~Camara();
 		
 		int miID;
 		
@@ -94,19 +95,23 @@ class GD_Camara : public GD_Nodo
 		//! Posiciona la c&aacute;mara para que "persiga" a un punto
 		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo,  float durezaX, float durezaY, float durezaZ);
 		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
-		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ);
+		_GDT_EXPORT_ void Perseguir(NodoBase nodoncio,double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ);
 		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
-		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio,double distancia, double altura, double angulo, double dureza);
+		_GDT_EXPORT_ void Perseguir(NodoBase nodoncio,double distancia, double altura, double angulo, double dureza);
 
 		// COMPATIBILIDAD HACIA ATRAS
 		//! Posiciona la c&aacute;mara para que "persiga" a un punto
 		_GDT_EXPORT_ void Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, double dureza);	
 		//! Posiciona la c&aacute;mara para que "persiga" a un objeto
-		_GDT_EXPORT_ void Perseguir(GD_Nodo nodoncio, double distancia, double altura, double angulo);
+		_GDT_EXPORT_ void Perseguir(NodoBase nodoncio, double distancia, double altura, double angulo);
 		// FIN COMPATIBILIDAD HACIA ATRAS
 
-		_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+		_GDT_EXPORT_ void CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_CAMARA_H

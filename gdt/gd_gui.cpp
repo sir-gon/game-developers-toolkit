@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_gui
+* \class GDT::Gui::GuiBase
 *
 * Esta Clase es una plantilla com&uacute;n para todo los objetos GUI
 * (sigla en ingl&eacute;s, Graphical User Interface).
@@ -35,18 +35,18 @@
 #include "gd_gui.h" // class's header file
 
 // class constructor
-GD_gui::GD_gui()
+GDT::Gui::GuiBase::GuiBase()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_gui::~GD_gui()
+GDT::Gui::GuiBase::~GuiBase()
 {
 	// insert your code here
 }
 
-void GD_gui::RegistrarDevice(	IrrlichtDevice *device )
+void GDT::Gui::GuiBase::RegistrarDevice(	IrrlichtDevice *device )
 {
 	midevice = device;
 }
@@ -60,7 +60,7 @@ if( Boton.EstaActivado() )
 }
 \endcode
 */
-bool GD_gui::EstaActivado()
+bool GDT::Gui::GuiBase::EstaActivado()
 {
       return guiele->isEnabled();
 }
@@ -73,7 +73,7 @@ if( Boton.EstaVisible() )
 }
 \endcode
 */
-bool GD_gui::EstaVisible()
+bool GDT::Gui::GuiBase::EstaVisible()
 {
       return guiele->isVisible();
 }
@@ -86,7 +86,7 @@ Ejemplo:
 Boton.Posicionar(50, 20);
 \endcode
 */
-void GD_gui::Posicionar(int x, int y)
+void GDT::Gui::GuiBase::Posicionar(int x, int y)
 {
     //guiele->move(core::position2d< s32 >( x,  y));
     position2d<s32> NewPos;
@@ -105,7 +105,7 @@ Ejemplo:
 Boton.Posicionar(50, 20);
 \endcode
 */
-void GD_gui::Posicionar(position2d<s32> pos)
+void GDT::Gui::GuiBase::Posicionar(position2d<s32> pos)
 {
    rect<s32> cua(pos,guiele->getRelativePosition().getSize());
    guiele->setRelativePosition(cua);
@@ -118,7 +118,7 @@ void GD_gui::Posicionar(position2d<s32> pos)
 Boton.Activar(false);
 \endcode
 */
-void GD_gui::Activado(bool estado)
+void GDT::Gui::GuiBase::Activado(bool estado)
 {
     guiele->setEnabled(estado);
 }
@@ -131,7 +131,7 @@ Ejemplo:
 Boton.Texto(L"Pulsame");
 \endcode
 */
-void GD_gui::Texto(const wchar_t *text)
+void GDT::Gui::GuiBase::Texto(const wchar_t *text)
 {
     guiele->setText(text);
 }
@@ -139,7 +139,7 @@ void GD_gui::Texto(const wchar_t *text)
 /*!
 \return El texto actual del Control GUI
 */
-const wchar_t* GD_gui::RetornarTexto(void )
+const wchar_t* GDT::Gui::GuiBase::RetornarTexto(void )
 {
     return guiele->getText();
 }
@@ -150,7 +150,7 @@ Ejemplo:
 Boton.Visible(false);
 \endcode
 */
-void GD_gui::Visible(bool estado)
+void GDT::Gui::GuiBase::Visible(bool estado)
 {
     guiele->setVisible(estado);
 }
@@ -160,7 +160,7 @@ void GD_gui::Visible(bool estado)
 int id = Boton.ID();
 \endcode
 */
-int GD_gui::ID()
+int GDT::Gui::GuiBase::ID()
 {
     return guiele->getID();
 }
@@ -171,7 +171,7 @@ Ejemplo:
 Ventana.AdoptarHijo(Boton1.Elemento() );
 \endcode
 */
-IGUIElement* GD_gui::Elemento(void)
+IGUIElement* GDT::Gui::GuiBase::Elemento(void)
 {
     return guiele;
 }
@@ -182,7 +182,7 @@ Ejemplo:
 Ventana.AdoptarHijo(Boton1.Elemento() );
 \endcode
 */
-void GD_gui::AdoptarHijo(IGUIElement* hijo)
+void GDT::Gui::GuiBase::AdoptarHijo(IGUIElement* hijo)
 {
     guiele->addChild(hijo);
 }
@@ -193,7 +193,7 @@ Ejemplo:
 Boton.Destruir();
 \endcode
 */
-void GD_gui::Destruir(void)
+void GDT::Gui::GuiBase::Destruir(void)
 {
     guiele->remove();
 }
@@ -201,79 +201,79 @@ void GD_gui::Destruir(void)
 //Retornos *****************************************************
 //**************************************************************
 
-position2d<s32> GD_gui::Posicion()
+position2d<s32> GDT::Gui::GuiBase::Posicion()
 {
    return guiele->getRelativePosition().UpperLeftCorner;
 }
-int GD_gui::PosicionX()
+int GDT::Gui::GuiBase::PosicionX()
 {
    return (int)Posicion().X;
 }
-int GD_gui::PosicionY()
+int GDT::Gui::GuiBase::PosicionY()
 {
    return (int)Posicion().Y;
 }
-position2d<s32> GD_gui::Centro()
+position2d<s32> GDT::Gui::GuiBase::Centro()
 {
    return guiele->getRelativePosition().getCenter();
 }
-int GD_gui::CentroX()
+int GDT::Gui::GuiBase::CentroX()
 {
    return (int)Centro().X;
 }
-int GD_gui::CentroY()
+int GDT::Gui::GuiBase::CentroY()
 {
    return (int)Centro().Y;
 }
-dimension2d<s32> GD_gui::Tamanio()
+dimension2d<s32> GDT::Gui::GuiBase::Tamanio()
 {
    return guiele->getRelativePosition().getSize();
 }
-int GD_gui::Ancho()
+int GDT::Gui::GuiBase::Ancho()
 {
    return (int) guiele->getRelativePosition().getWidth();
 }
-int GD_gui::Alto()
+int GDT::Gui::GuiBase::Alto()
 {
    return (int) guiele->getRelativePosition().getHeight();
 }
-position2d<s32> GD_gui::EsquinaSuperiorIzquierda()
+position2d<s32> GDT::Gui::GuiBase::EsquinaSuperiorIzquierda()
 {
    return guiele->getRelativePosition().UpperLeftCorner;
 }
-int GD_gui::EsquinaSuperiorIzquierdaX()
+int GDT::Gui::GuiBase::EsquinaSuperiorIzquierdaX()
 {
    return (int)EsquinaSuperiorIzquierda().X;
 }
-int GD_gui::EsquinaSuperiorIzquierdaY()
+int GDT::Gui::GuiBase::EsquinaSuperiorIzquierdaY()
 {
    return (int)EsquinaSuperiorIzquierda().Y;
 }
-position2d<s32> GD_gui::EsquinaInferiorDerecha()
+position2d<s32> GDT::Gui::GuiBase::EsquinaInferiorDerecha()
 {
    return guiele->getRelativePosition().LowerRightCorner;
 }
-int GD_gui::EsquinaInferiorDerechaX()
+int GDT::Gui::GuiBase::EsquinaInferiorDerechaX()
 {
    return (int)EsquinaInferiorDerecha().X;
 }
-int GD_gui::EsquinaInferiorDerechaY()
+int GDT::Gui::GuiBase::EsquinaInferiorDerechaY()
 {
    return (int)EsquinaInferiorDerecha().Y;
 }
-bool GD_gui::EsPuntoInterno(position2d<s32> punto)
+bool GDT::Gui::GuiBase::EsPuntoInterno(position2d<s32> punto)
 {
    return guiele->getRelativePosition().isPointInside(punto);
 }
-bool GD_gui::EsPuntoInterno(int x,int y)
+bool GDT::Gui::GuiBase::EsPuntoInterno(int x,int y)
 {
    return EsPuntoInterno(position2d<s32>(x,y));
 }
-bool GD_gui::Colision(rect<s32> Rectangulo)
+bool GDT::Gui::GuiBase::Colision(rect<s32> Rectangulo)
 {
    return guiele->getRelativePosition().isRectCollided(Rectangulo);
 }
-bool GD_gui::Colision(IGUIElement* guiElemento)
+bool GDT::Gui::GuiBase::Colision(IGUIElement* guiElemento)
 {
    return Colision(guiElemento->getRelativePosition());
 }

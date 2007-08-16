@@ -19,151 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-/*!\mainpage
-* 
-* \image html logoGDT.png
-* 
-* \section intro Manual de Referencia
-* Bienvenido a la documentaci&oacute;n de GDT.
-* 
-* Ac&aacute; encontrar&aacute; los detalles de todas las Clases, Propiedades,
-* M&eacute;todos y Definiciones. En la mayor&iacute;a encontrar&aacute;s las
-* definiciones de los par&aacute;metros, el prop&oacute;sito de cada m&eacute;todo
-* y en ocaciones un ejemplos de su uso.
-* 
-* 
-* <A HREF="refman.pdf">Ac&aacute; puede encontrar una copia descargable en formato
-*  PDF</A>
-* 
-* \section comenzando Comenzando con un esqueleto GDT
-* Para comenzar, los novatos pueden preferir ocupar una versi&oacute;n 
-* precompilada de GDT.
-* 
-* Luego, para probar la instalaci&oacute;n, puede ocupar el siguiente programa
-* esqueleto:
-* 
-* \code
-* #include <gdt.h>
-* 
-* GD_Sistema Sistema;
-* 
-* int main()
-* {
-*         Sistema.Inicializar(640,480,16,false,OPENGL);
-* 
-*         GD_Camara Camara;
-*         Camara.Crear(Tipo_Modelador );
-* 
-*         while(Sistema.EnEjecucion())
-*         {
-*                 // Cerrar programa con tecla ESC
-*                 if(Sistema.TeclaAbajo(T_ESC)) Sistema.Matarme();
-* 
-*                 //Dibujar contenido de la ventana 
-*                 Sistema.Render();
-*         }
-* 
-*         Sistema.Finalizar();
-* 
-*         return 0;
-* }
-* \endcode
-* 
-* Para enlazar correctamente con las librer&iacute;as externas, recuerda que se
-* necesitan:
-* 
-* - gdt
-* - Irrlicht
-* 
-* Y opcionalmente:
-* - openal
-* - alut
-* - ogg
-* - vorvis
-* - vorbisenc
-* - vorbisfile
-* - lua5.1
-* - ode
-* - Newton // No inclu&iacute;do con GDT en ninguna versi&oacute;n.
-* 
-* Dependiendo del compilador y plataforma, el enlazado se configura de diferentes
-* maneras.
-* 
-* \section important Si desea compilar GDT, concidere que...
-* 
-* Antes, era necesario instalar toda las dependencias. Ahora se pueden ocupar
-* las mismas, pero ya no son todas obligatorias.
-* 
-* En el caso de que no se requiera, o aparezcan problemas, tal vez desee compilar
-* GDT con menos caracter&iacute;sticas.
-* 
-* Para esto, se han establecido algunas definiciones para el preprocesador que
-* permiten compilar con las caracter&iacute;sticas opcionales:
-* 
-*     - _GDT_SONIDO_ // Incluye soporte para tocar sonido usando Openal + Alut
-*     - _GDT_SONIDO_OGG_ // Incluye soporte para decodificar OGG + Vorbis. NO
-*  sirve de nada si no se define _GDT_SONIDO_.
-*     - _GDT_MIDI_ // Incluye soporte para tocar sonidos Midi. Este m&oacute;dulo
-*  requiere la WINAPI. Viene desactivado en Linux (por razones obvias) y en MS
-*  Visual C++ 2005 Express. En este &uacute;ltimo porque necesita tener instalado
-*  el Platform SDK previamente. Si desea usar Midi en MSVC, entonces asegurese de
-*  tener el PSDK instalado, y luego agregar esta definici&oacute;n en su proyecto.
-*     - _GDT_SCRIPTING_ // LUA
-*     - _GDT_FISICAS_ODE_ // F&iacute;sicas Open Dynamics Engine.
-*     - _GDT_FISICAS_NEWTON_ // F&iacute;sicas Newton Dynamics, desactivado en forma
-*  predeterminada. Se deja como opcional para el usuario por temas de licencia.
-* 
-* \section evitar Lo que debe evitar
-* 
-* Por favor, para no tener problemas, no intente:
-* 
-* - Compilar GDT sin haber instalado Irrlicht. Es la principal dependencia de 
-* GDT, ya que provee el motor gr&aacute;fico y la base de muchas otras cosas
-*  necesarias. Para mayor informaci&oacute;n lea el siguiente punto.
-* 
-* - Compilar GDT con m&oacute;dulos opcionales si sus dependencias no est&aacute;n
-*  instaladas, o no est&aacute;n disponibles. Aseg&uacute;rese que las cabeceras
-*  (.h) de las dependencias est&eacute;n disponibles en algun directorio de
-*  inclusi&oacute;n o agregar rutas adicionales, donde se tienen instaladas, al
-*  proyecto del IDE escogido.
-* 
-* - Usar una caracter&iacute;stica de GDT en un proyecto propio si GDT no fue
-*  compilado con ese soporte. En el mejor de los casos provocar&aacute;
-*  inevitablemente una caida del ejecutable. De echo es m&aacute;s probable que ni
-*  siquiera deje compilar/enlazar correctamente el proyecto.
-* 
-* - Usar una caracter&iacute;stica de GDT opcional en su proyecto, sin definir 
-*  las constantes que activan tal caracter&iacute;stica. Por ejemplo, es 
-*  incorrecto ocupar GD_Sonido sin haber definido _GDT_SONIDO_. Estas constantes 
-*  se pueden definir en el proyecto de su IDE, as&iacute; como manualmente en su
-*  propio c&odigo, pero asegurese de hacerlo antes incluir GDT,
-*  por ejemplo as&iacute;:
-* 
-* \code
-* #define _GDT_SONIDO_
-* #include <gdt.h>
-* \endcode
-* 
-* - Definir _GDT_DOXYGEN_IGNORAR_. Se ha puesto en ciertas partes del
-*  c&oacute;digo fuente, para evitar que aparezca en la documentaci&oacute;n
-*  algunas cosas que no son necesarias mostrar. Cuando se define
-*  _GDT_DOXYGEN_IGNORAR_ el compilador ignorar&aacute; partes que SI SON
-*  NECESARIAS PARA COMPILAR.
-* 
-* - Definir _GDT_DLL_ si no est&aacute; compilando GDT como librer&iacute;a
-*  din&aacute;mica DLL en Windows. Tampoco defina esta constante en su propio
-*  proyecto. Esta constante se usa para definir _GDT_EXPORT_ con el valor que
-*  corresponde en caso de compilar GDT como DLL en Windows.
-* 
-* - Definir _GDT_EXPORT_. Esta constante se define autom&aacute;ticamente 
-*  en tiempo de compilaci&oacute;n. Se usa para saber si un s&iacute;mbolo
-*  se est&aacute; exportando o importanto, cuando se ocupan las mismas
-*  cabeceras tanto para la propia librer&iacute;a GDT como para proyectos 
-*  que enlazan con GDT.
-*/
-
 /*!
-* \class GD_Sistema
+* \class GDT::Sistema
 *
 * Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada
 * y salida hasta el control de los nodos y dibujado, incluyendo los 
@@ -191,22 +48,22 @@
 
 #include "gd_sistema.h" // class's header file
 
-IrrlichtDevice *GD_Sistema::device=NULL;
-int GD_Sistema::ContadorElementosGui;
+IrrlichtDevice *GDT::Sistema::device=NULL;
+int GDT::Sistema::ContadorElementosGui;
 
 //    ICameraSceneNode *camaras_n[3];
 //	bool camaras_a[3];
 //    irr::core::rect< s32 >  camaras_v[3];
 
 // class constructor
-GD_Sistema::GD_Sistema()
+GDT::Sistema::Sistema()
 {
 	// insert your code here
 
 } 
 
 // class destructor
-GD_Sistema::~GD_Sistema()
+GDT::Sistema::~Sistema()
 {
 	// insert your code here
 }
@@ -231,27 +88,33 @@ GD_Sistema::~GD_Sistema()
 * Ejemplo 1:
 * \code
 * // Ventana 640x480 a 16 bits, sin especificar driver (por defecto OPENGL)
-* Sistema.Inicializar(640,480,16);
+* System.Inicializar(640,480,16);
 * \endcode
 * Ejemplo 2:
 * \code
 * // Ventana 640x480 a 16 bits, renderizado por SOFTWARE
-* Sistema.Inicializar(640,480,16, SOFTWARE);
+* System.Inicializar(640,480,16, SOFTWARE);
 * \endcode
 * Ejemplo 3:
 * \code
 * // Ventana 640x480 a 16 bits, renderizado por OpenGL, con stencil buffer y vsync activado
-* Sistema.Inicializar(640,480,16, OPENGL, true, true);
+* System.Inicializar(640,480,16, OPENGL, true, true);
 * \endcode
 */
-void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
+void GDT::Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
 	{
-	printf("\n+----------+------------+");
-	printf("\n| GDT v2.0 | 10.08.2007 |");
-	printf("\n+----------+------------+\n");
+	printf("\n+----------+");
+	printf("\n| GDT v2.0 |");
+	printf("\n+----------+\n");
 	// Init the Irrlicht engine
 
-	device = createDevice(VideoDriver, dimension2d<s32>(ancho,alto), prof, full, StencilBuffer,Vsync, this);
+	device = createDevice(VideoDriver, 
+           dimension2d<s32>(ancho,alto), 
+           prof, 
+           full, 
+           StencilBuffer, 
+           Vsync, 
+           this);
 	
 	if (device==NULL)
     {
@@ -307,10 +170,10 @@ void GD_Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_
 * 
 * Ejemplo:
 * \code
-* Sistema.EnEjecucion();
+* System.EnEjecucion();
 * \endcode
 */
-bool GD_Sistema::EnEjecucion()
+bool GDT::Sistema::EnEjecucion()
 {
 	return device->run();
 }
@@ -318,10 +181,10 @@ bool GD_Sistema::EnEjecucion()
 /*!
 * Ejemplo:
 * \code
-* ancho = Sistema.AnchoVentana();
+* ancho = System.AnchoVentana();
 * \endcode
 */
-int GD_Sistema::AnchoVentana()
+int GDT::Sistema::AnchoVentana()
 {
     int tempX;
     tempX = driver->getScreenSize().Width;
@@ -331,11 +194,11 @@ int GD_Sistema::AnchoVentana()
 /*!
 * Ejemplo:
 * \code
-* vancho = Sistema.AnchoVentana();
+* vancho = System.AnchoVentana();
 * \endcode
 */
 
-int GD_Sistema::AltoVentana()
+int GDT::Sistema::AltoVentana()
 {
     int tempY;
     tempY = driver->getScreenSize().Height;
@@ -348,10 +211,10 @@ int GD_Sistema::AltoVentana()
 * 
 * Ejemplo:
 * \code
-* Sistema.Fuente("media/letras.bmp");
+* System.Fuente("media/letras.bmp");
 * \endcode
 */
-void GD_Sistema::Fuente(char* filename)
+void GDT::Sistema::Fuente(char* filename)
 {
  skin->setFont(guienv->getFont(filename));
 }
@@ -359,7 +222,7 @@ void GD_Sistema::Fuente(char* filename)
 /*!
 */
 // lifetree -- to use multi-key and mouse-button
-bool GD_Sistema::OnEvent(SEvent event)
+bool GDT::Sistema::OnEvent(SEvent event)
 {
 
      switch(event.EventType)
@@ -406,7 +269,7 @@ bool GD_Sistema::OnEvent(SEvent event)
     					ActualizarArchivoSeleccionadoDialogoAbrir(core::stringc(UltimoDialogoSeleccionado->getFilename()).c_str());
                         break;
                     }
-                    // Selecci? en Menu
+                    // Seleccion en Menu
                     case EGET_MENU_ITEM_SELECTED:
                     {
                          IGUIContextMenu* menu = (IGUIContextMenu*)event.GUIEvent.Caller;
@@ -425,7 +288,7 @@ return false;
 }
 
 
-bool GD_Sistema::ClickBoton(int id2)
+bool GDT::Sistema::ClickBoton(int id2)
 {
      if(id2 == ultimoIdBotonClick)
         return true;
@@ -438,12 +301,12 @@ bool GD_Sistema::ClickBoton(int id2)
 * 
 * Ejemplo:
 * \code
-* if( Sistema.BarraMovida ( miBarra ) ) {
+* if( System.BarraMovida ( miBarra ) ) {
 *     // Aqu&iacute; lo que haga
 * }
 * \endcode
 */
-bool GD_Sistema::BarraMovida(int id2)
+bool GDT::Sistema::BarraMovida(int id2)
 {
      if(id2 == ultimaIdBarraMovida)
      return true;
@@ -452,7 +315,7 @@ bool GD_Sistema::BarraMovida(int id2)
 }
 
 
-const wchar_t* GD_Sistema::ArchivoSeleccionado(void)
+const wchar_t* GDT::Sistema::ArchivoSeleccionado(void)
 {
       if(dialogoArchivoSeleccionado == true)
       { 
@@ -548,19 +411,19 @@ const wchar_t* GD_Sistema::ArchivoSeleccionado(void)
 * 
 * Ejemplo:
 * \code
-* if( Sistema.TeclaAbajo( T_ESC ) ) {
+* if( System.TeclaAbajo( T_ESC ) ) {
 *     // Ac&aacute; lo que haga
 * }
 * \endcode
 */
-bool GD_Sistema::TeclaAbajo(int index)
+bool GDT::Sistema::TeclaAbajo(int index)
 {
      return m_key_buf[index];
 }
 
 /*!
 */
-bool GD_Sistema::TeclaPulsada(int index)
+bool GDT::Sistema::TeclaPulsada(int index)
 {
   if(m_key_buf[index] && m_key_buf_old[index] != m_key_buf[index])
        return true;
@@ -568,17 +431,17 @@ bool GD_Sistema::TeclaPulsada(int index)
        return false;
 }
 
-bool GD_Sistema::MouseBotonAbajo(int index)
+bool GDT::Sistema::MouseBotonAbajo(int index)
 {
 return m_mouse_button_buf[index];
 }
 
-bool GD_Sistema::MouseBotonArribaAbajo(int index)
+bool GDT::Sistema::MouseBotonArribaAbajo(int index)
 {
 return (m_mouse_button_buf[index] && !m_mouse_button_buf_old[index]);
 }
 
-bool GD_Sistema::MouseBotonAbajoArriba(int index)
+bool GDT::Sistema::MouseBotonAbajoArriba(int index)
 {
 return (!m_mouse_button_buf[index] && m_mouse_button_buf_old[index]);
 }
@@ -591,7 +454,7 @@ return (!m_mouse_button_buf[index] && m_mouse_button_buf_old[index]);
 * Es por esto que suele usarse dentro de un ciclo principal, de tal modo
 * que los cambios que ocurran de un cuadro a otro sean visibles.
 */
-void GD_Sistema::Render()
+void GDT::Sistema::Render()
 {
 
 
@@ -655,14 +518,14 @@ void GD_Sistema::Render()
 }
 
 /*!
-Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba Sistema.Matarme()
+Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba System.Matarme()
 
 Ejemplo:
 \code
-Sistema.Finalizar();
+System.Finalizar();
 \endcode
 */
-void GD_Sistema::Finalizar()
+void GDT::Sistema::Finalizar()
 {
      device->closeDevice();
 }
@@ -670,7 +533,7 @@ void GD_Sistema::Finalizar()
 /*!
 \deprecated Use Finalizar() en su lugar
 */
-void GD_Sistema::Matarme()
+void GDT::Sistema::Matarme()
 {
      Finalizar();
 }
@@ -678,15 +541,15 @@ void GD_Sistema::Matarme()
 /*!
 * Ejemplo:
 * \code
-* Sistema.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
+* System.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
 * \endcode
 */
-void GD_Sistema::TituloVentana(wchar_t* textoso)
+void GDT::Sistema::TituloVentana(wchar_t* textoso)
 {
      device->setWindowCaption(textoso);
 }
 
-IrrlichtDevice* GD_Sistema::RetornarDevice()
+IrrlichtDevice* GDT::Sistema::RetornarDevice()
 {
     return device;
 }
@@ -694,10 +557,10 @@ IrrlichtDevice* GD_Sistema::RetornarDevice()
 /*!
 * Ejemplo:
 * \code
-* FPS = Sistema.RetornarCPS();
+* FPS = System.RetornarCPS();
 * \endcode
 */
-int GD_Sistema::RetornarCPS()
+int GDT::Sistema::RetornarCPS()
 {
     return _CPS;
 }
@@ -705,20 +568,20 @@ int GD_Sistema::RetornarCPS()
 /*!
 * Ejemplo:
 * \code
-* NumPoly = Sistema.RetornarTriangulos();
+* NumPoly = System.RetornarTriangulos();
 * \endcode
 */
-int GD_Sistema::RetornarTriangulos()
+int GDT::Sistema::RetornarTriangulos()
 {
     return Triangulos;
 }
 
-void GD_Sistema::RenderizarSoloConVentanaActiva(bool activa)
+void GDT::Sistema::RenderizarSoloConVentanaActiva(bool activa)
 {
     _RenderVentana = activa;
 }
 
-void GD_Sistema::VentanaEscalable(bool escalable)
+void GDT::Sistema::VentanaEscalable(bool escalable)
 {
     _VentanaEscalable = escalable;
     device->setResizeAble(escalable);
@@ -727,10 +590,10 @@ void GD_Sistema::VentanaEscalable(bool escalable)
 /*!
 * Ejemplo:
 * \code
-* Sistema.ColorFondo(200,255,0):
+* System.ColorFondo(200,255,0):
 * \endcode
 */
-void GD_Sistema::ColorFondo(int r,int g,int b)
+void GDT::Sistema::ColorFondo(int r,int g,int b)
 {
     cfa = 0;
     cfr = r;
@@ -738,14 +601,14 @@ void GD_Sistema::ColorFondo(int r,int g,int b)
     cfb = b;
 }
 
-void GD_Sistema::LimiteCPS(int lcps)
+void GDT::Sistema::LimiteCPS(int lcps)
 {
     cps_deseados=lcps;
 }
 
 /*!
 */
-void GD_Sistema::Dormir(int milisecs)
+void GDT::Sistema::Dormir(int milisecs)
 {
        u32 curTime = device->getTimer()->getTime();
 
@@ -760,7 +623,7 @@ void GD_Sistema::Dormir(int milisecs)
 * \author Astucia
 * \since 13-04-2006
 */
-int GD_Sistema::TeclaPrecionada()
+int GDT::Sistema::TeclaPrecionada()
 {
    int iTecla;
    for(iTecla=0;iTecla<=256;iTecla++)
@@ -774,7 +637,7 @@ int GD_Sistema::TeclaPrecionada()
 // MOUSE ***********************************************************
 /*!
 */
-void GD_Sistema::MousePosicionar(int X,int Y)
+void GDT::Sistema::MousePosicionar(int X,int Y)
 {
    //Estructura de tipo coordenada.
    position2d<s32> Pos;
@@ -786,7 +649,7 @@ void GD_Sistema::MousePosicionar(int X,int Y)
 
 /*!
 */
-int GD_Sistema::MousePosicionX(){
+int GDT::Sistema::MousePosicionX(){
    //Crea la estructura MousePosX y obtiene el valor del tipo coordenada
    position2d<s32> MousePosX = device->getCursorControl()->getPosition();
    //Asigna el valor de la coordenada X
@@ -795,7 +658,7 @@ int GD_Sistema::MousePosicionX(){
 
 /*!
 */
-int GD_Sistema::MousePosicionY(){
+int GDT::Sistema::MousePosicionY(){
    //Crea la estructura MousePosY y obtiene el valor del tipo coordenada
    position2d<s32> MousePosY = device->getCursorControl()->getPosition();
    //Asigna el valor de la coordenada Y
@@ -804,7 +667,7 @@ int GD_Sistema::MousePosicionY(){
 
 /*!
 */
-f32 GD_Sistema::MouseMovimientoX(f32 sensibilidad){
+f32 GDT::Sistema::MouseMovimientoX(f32 sensibilidad){
 
    f32 posY;
    //Obtiene la posicion relativa acutal del mouse X
@@ -817,7 +680,7 @@ f32 GD_Sistema::MouseMovimientoX(f32 sensibilidad){
 
 /*!
 */
-f32 GD_Sistema::MouseMovimientoY(f32 sensibilidad){
+f32 GDT::Sistema::MouseMovimientoY(f32 sensibilidad){
     f32 posX;
    //Obtiene la posicion relativa acutal del mouse X
    position2d<f32> MousePos = device->getCursorControl()->getRelativePosition();
@@ -829,14 +692,14 @@ f32 GD_Sistema::MouseMovimientoY(f32 sensibilidad){
 
 /*!
 */
-void GD_Sistema::OcultarPuntero()
+void GDT::Sistema::OcultarPuntero()
 {
    device->getCursorControl()->setVisible(false);
 }
 
 /*!
 */
-void GD_Sistema::ColorSombra(int R, int G, int B)
+void GDT::Sistema::ColorSombra(int R, int G, int B)
 {
      sR = R;
      sG = G;
@@ -847,7 +710,7 @@ void GD_Sistema::ColorSombra(int R, int G, int B)
 
 /*!
 */
-void GD_Sistema::TranslucidezSombra(int T)
+void GDT::Sistema::TranslucidezSombra(int T)
 {
    sT = T;
    smgr->setShadowColor(video::SColor(T,sR,sG,sB));
@@ -855,7 +718,7 @@ void GD_Sistema::TranslucidezSombra(int T)
 
 /*!
 */
-void GD_Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inicio, float fin,float densidad)
+void GDT::Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inicio, float fin,float densidad)
 {
      driver->setFog(SColor(0, r, g, b), lineal, inicio, fin, densidad, false, false);
 }
@@ -866,7 +729,7 @@ void GD_Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inici
 * 
 * Para Obtener el tiempo completo, ocupe Milisegundos()
 */
-int GD_Sistema::MilisegundosSistema()
+int GDT::Sistema::MilisegundosSistema()
 {
    int milsc = device->getTimer()->getTime();
    return milsc;
@@ -876,7 +739,7 @@ int GD_Sistema::MilisegundosSistema()
 * Esta funcion es independiente de cualquier interrupci&oacute;n del Timer, excepto
 * al reiniciar el Reloj con ReiniciarReloj()
 */
-int GD_Sistema::Milisegundos()
+int GDT::Sistema::Milisegundos()
 {
     milsc_act = device->getTimer()->getRealTime() - milsc_ini;
     return milsc_act;
@@ -885,77 +748,77 @@ int GD_Sistema::Milisegundos()
 /*!
 * As&iacute; la diferencia el tiempo de ejecuci&oacute;n se reinicia a 0 en adelante.
 */
-void GD_Sistema::ReiniciarReloj()
+void GDT::Sistema::ReiniciarReloj()
 {
    milsc_ini = device->getTimer()->getRealTime();
 }
 
 /*!
 */
-void GD_Sistema::CambiarDirectorio(const char *strDir)
+void GDT::Sistema::CambiarDirectorio(const char *strDir)
 {
      device->getFileSystem()->changeWorkingDirectoryTo(strDir);
 }
 
 /*!
 */
-const char *GD_Sistema::Directorio(void)
+const char *GDT::Sistema::Directorio(void)
 {
       return device->getFileSystem()->getWorkingDirectory();
 }
 
 /*!
 */
-bool GD_Sistema::ArchivoExiste(const char *strArchivo)
+bool GDT::Sistema::ArchivoExiste(const char *strArchivo)
 {
      return device->getFileSystem()->existFile(strArchivo);
 }
 
 /*!
 */
-void GD_Sistema::CargarEscena(char* file)
+void GDT::Sistema::CargarEscena(char* file)
 {
      smgr->loadScene(file);
 }
 
 /*!
 */
-void GD_Sistema::GuardarEscena(char* file)
+void GDT::Sistema::GuardarEscena(char* file)
 {
      smgr->saveScene(file);
 }
 
 /*!
 */
-void GD_Sistema::ActivarCamara(  ICameraSceneNode* cam )//GD_Camara cam )
+void GDT::Sistema::ActivarCamara(  ICameraSceneNode* cam )//Camara cam )
 {
      smgr->setActiveCamera( cam );
 }
 
 /*!
 */
-void GD_Sistema::AreaRenderizado(int x1, int y1, int x2, int y2)
+void GDT::Sistema::AreaRenderizado(int x1, int y1, int x2, int y2)
 {
      driver->setViewPort(rect<s32>(x1,y1,x2,y2));
 }
 
 /*!
 */
-void GD_Sistema::Limpiar()
+void GDT::Sistema::Limpiar()
 {
      smgr->clear();
 }
 
 /*!
 */
-void GD_Sistema::ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn)
+void GDT::Sistema::ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn)
 {
 	strcpy(RutaArchivoSeleccionado, fn);
 }
 
 /*!
 */
-void GD_Sistema::TransparenciaGUI(int valor)
+void GDT::Sistema::TransparenciaGUI(int valor)
 {     
     for (s32 i=0; i<EGDC_COUNT ; ++i)
     {

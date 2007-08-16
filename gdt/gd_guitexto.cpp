@@ -52,20 +52,20 @@ void GDT::Gui::Texto::Crear(
 	IGUIElement *padre
 	)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-
+	
+	RegistrarDevice(Sistema::device);
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
 	guitexto = guienv->addStaticText(texto, rect<s32>(x1,y1,x2,y2), borde,wordWrap, padre);
-
+	
 	Multilinea(true);
-
+	
 	guiele=guitexto;
-
+	
 	iX=x1; iY=y1; iAlto=x2; iAncho=y2; // Dimenciones del recuadro
-
+	
 
 }
 
@@ -85,15 +85,15 @@ void GDT::Gui::Texto::Crear(
 	IGUIElement *padre
 	)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-
+	
+	RegistrarDevice(Sistema::device);
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
 	guitexto = guienv->addStaticText(texto, rect<s32>(x1,y1,x2,y2), false,true, padre);
 	Multilinea(true);
-
+	
 	iX=x1; iY=y1; iAlto=x2; iAncho=y2; // Dimenciones del recuadro
 }
 

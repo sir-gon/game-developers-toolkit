@@ -19,38 +19,43 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GDT::Gui::Fundido
+*
+*
+*/
+
 #include "gd_fundido.h" // class's header file
 
 // class constructor
-GD_Fundido::GD_Fundido()
+GDT::Gui::Fundido::Fundido()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Fundido::~GD_Fundido()
+GDT::Gui::Fundido::~Fundido()
 {
 	// insert your code here
 }
 
-void GD_Fundido::Crear()
+void GDT::Gui::Fundido::Crear()
 {
-
-    RegistrarDevice(GD_Sistema::device);
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     //fundido=guienv->addInOutFader(rect<s32>(0,0,TamPantalla.Width, TamPantalla.Height), 0, -1);
-     fundido=guienv->addInOutFader();
-     
-      guiele = fundido;
+	RegistrarDevice(Sistema::device);
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	//fundido=guienv->addInOutFader(rect<s32>(0,0,TamPantalla.Width, TamPantalla.Height), 0, -1);
+	fundido=guienv->addInOutFader();
+	
+	guiele = fundido;
 }
 /*
-void GD_Fundido::Crear( int x1, int y1, int x2, int y2)
+void GDT::Gui::Fundido::Crear( int x1, int y1, int x2, int y2)
 {
 
-    RegistrarDevice(GD_Sistema::device);
+    RegistrarDevice(Sistema::device);
     
     IVideoDriver* driver = midevice->getVideoDriver();
     IGUIEnvironment* guienv = midevice->getGUIEnvironment();
@@ -63,22 +68,22 @@ void GD_Fundido::Crear( int x1, int y1, int x2, int y2)
 }
 */
 
-void GD_Fundido::Color( int r, int g, int b)
+void GDT::Gui::Fundido::Color( int r, int g, int b)
 {
      fundido->setColor(video::SColor(0, r, g, b) );
 }
 
-void GD_Fundido::FundirHaciaDentro(int tiempo)
+void GDT::Gui::Fundido::FundirHaciaDentro(int tiempo)
 {
      fundido->fadeIn(tiempo);
 }
 
-void GD_Fundido::FundirHaciaFuera(int tiempo)
+void GDT::Gui::Fundido::FundirHaciaFuera(int tiempo)
 {
      fundido->fadeOut(tiempo);
 }
 
-bool GD_Fundido::Terminado(void)
+bool GDT::Gui::Fundido::Terminado(void)
 {
      return fundido->isReady();
 }

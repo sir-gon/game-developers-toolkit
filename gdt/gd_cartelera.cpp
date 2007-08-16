@@ -20,46 +20,47 @@
  ***************************************************************************/
 
 /*!
-\class GD_Cartelera
-Las Carteleras son imágenes 2D que no importando desde donde las apunte la 
-cámara (en el espacio 3D), siempre se ven de la misma forma.
-
-Si la cámara rota, la imágen se seguirá viendo de frente.
-
-Son útiles para agregar elementos en el escenario como árboles o resplandores.
-
-\image html cartelera.png
+* \class GDT::Nodo::Cartelera
+* Las Carteleras son im&aacute;genes 2D que no importando desde donde las
+* apunte la c&aacute;mara (en el espacio 3D), siempre se ven de la misma forma.
+* 
+* Si la c&aacute;mara rota, la imagen se seguir&aacute; viendo de frente.
+* 
+* Son &uacute;tiles para agregar elementos en el escenario como 
+* &aacute;rboles o resplandores.
+* 
+* \image html cartelera.png
 */
 #include "gd_cartelera.h" // class's header file
 
 // class constructor
-GD_Cartelera::GD_Cartelera()
+GDT::Nodo::Cartelera::Cartelera()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Cartelera::~GD_Cartelera()
+GDT::Nodo::Cartelera::~Cartelera()
 {
 	// insert your code here
 }
 
 /*!
-\param tamx,tamy son el tamaño de la imágen.
-\param filename la ruta al archivo imágen para la textura.
-
-\image html cartelera.png
-
-Ejemplo:
-\code
-Resplandor.Crear( 10, 10, "lampara.bmp" );
-\endcode
+* \param tamx,tamy son el tamaï¿½ de la imï¿½en.
+* \param filename la ruta al archivo imï¿½en para la textura.
+* 
+* \image html cartelera.png
+* 
+* Ejemplo:
+* \code
+* Resplandor.Crear( 10, 10, "lampara.bmp" );
+* \endcode
 */
-void GD_Cartelera::Crear(float tamx, float tamy, char* filename)
+void GDT::Nodo::Cartelera::Crear(float tamx, float tamy, char* filename)
 {
     
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
 
     
@@ -75,7 +76,7 @@ void GD_Cartelera::Crear(float tamx, float tamy, char* filename)
 	 Texturizar(filename);	 
 }
 
-void GD_Cartelera::CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Cartelera::CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
 {
 
     ITriangleSelector* selector = scen.RetornarDatos();

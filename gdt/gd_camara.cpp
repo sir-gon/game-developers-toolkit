@@ -19,17 +19,26 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* \class GDT::Nodo::Camara
+*
+* Crea y maneja las c&aacute;maras. Permite manejarlas por teclado o mouse,
+* orientarlas a * gusto y darles el comportamiento que la aplicaci&oacute;n requiera.
+* 
+* Por ejemplo, nos permite dejar la c&aacute;mara detr&aacute;s de un personaje 
+* para juegos de tercera persona, o puede ser de primera persona.
+*/
+
 #include "gd_camara.h" // class's header file
 
-
 // class constructor
-GD_Camara::GD_Camara()
+GDT::Nodo::Camara::Camara()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Camara::~GD_Camara()
+GDT::Nodo::Camara::~Camara()
 {
 	// insert your code here
 }
@@ -51,10 +60,10 @@ c&aacute;mara.Crear( Tipo_FPS );
 \endcode
 */
 
-void GD_Camara::Crear(int tipo)
+void GDT::Nodo::Camara::Crear(int tipo)
 {
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
      if(tipo == 3)
 	    nodc = mismgr->addCameraSceneNodeFPS(0,70.0f,50.0f);
@@ -69,41 +78,41 @@ void GD_Camara::Crear(int tipo)
 
     nodon = nodc;
     
-    if(!nodon) printf("ERROR: No se pudo Crear La cámara.\n");    
+    if(!nodon) printf("ERROR: No se pudo Crear La cï¿½ara.\n");    
 }
 
 /*!
-\param x,y,z son las coordenadas de la posición donde debe mirar la c&aacute;mara
+\param x,y,z son las coordenadas de la posiciï¿½ donde debe mirar la c&aacute;mara
 */
-void GD_Camara::Orientar(float x, float y, float z)
+void GDT::Nodo::Camara::Orientar(float x, float y, float z)
 {
      nodc->setTarget(vector3df(x,y,z));
 }
 /*!
-\param destino es un vector posición al cual la c&aacute;mara debe apuntar.
+\param destino es un vector posiciï¿½ al cual la c&aacute;mara debe apuntar.
 */
-void GD_Camara::Orientar(vector3df destino)
+void GDT::Nodo::Camara::Orientar(vector3df destino)
 {
      nodc->setTarget(destino);
 }
 
 /*! */
-double GD_Camara::Profundidad()
+double GDT::Nodo::Camara::Profundidad()
 {
    return distancia;
 }
 
 /*! */
-void GD_Camara::Profundidad(float rango)
+void GDT::Nodo::Camara::Profundidad(float rango)
 {
    distancia=(double)rango;
    nodc->setFarValue((f32)distancia);
 }
  
 /*!
-\return el vector posición hacia donde está mirando la c&aacute;mara.
+\return el vector posiciï¿½ hacia donde estï¿½mirando la c&aacute;mara.
 */
-vector3df GD_Camara::RetornarObjetivo()
+vector3df GDT::Nodo::Camara::RetornarObjetivo()
 {
     return nodc->getTarget();
 }
@@ -111,19 +120,19 @@ vector3df GD_Camara::RetornarObjetivo()
 /*!
 
 */
-vector3df GD_Camara::Seguir(vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo, float durezaX, float durezaY, float durezaZ)
+vector3df GDT::Nodo::Camara::Seguir(vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo, float durezaX, float durezaY, float durezaZ)
 {
     vector3df Salida;
 	double px = PosicionEntrada1.X;
 	double py = PosicionEntrada1.Y;
 	double pz = PosicionEntrada1.Z;
-	double pa = GD_Matematicas::Grados(anguloY+angulo);
+	double pa = GDT::Matematicas::Grados(anguloY+angulo);
 	double cx = PosicionEntrada2.X;
 	double cy = PosicionEntrada2.Y;
 	double cz = PosicionEntrada2.Z;
-	cx = GD_Matematicas::CurvarValor((float)cx,(float)GD_Matematicas::MueveX(px ,pa ,distancia),durezaX);
-	cy = GD_Matematicas::CurvarValor((float)cy,(float)py+altura,durezaY);
- 	cz = GD_Matematicas::CurvarValor((float)cz,(float)GD_Matematicas::MueveZ(pz ,pa ,distancia),durezaZ);
+	cx = GDT::Matematicas::CurvarValor((float)cx,(float)GDT::Matematicas::MueveX(px ,pa ,distancia),durezaX);
+	cy = GDT::Matematicas::CurvarValor((float)cy,(float)py+altura,durezaY);
+ 	cz = GDT::Matematicas::CurvarValor((float)cz,(float)GDT::Matematicas::MueveZ(pz ,pa ,distancia),durezaZ);
     Salida.set((float)cx,(float)cy,(float)cz);
     return Salida;
 }
@@ -134,10 +143,10 @@ Cabe resaltar que lo hace con suavizado ajustable.
 \param anguloY
 \param distancia es la distancia entre la c&aacute;mara y el objeto.
 \param altura es la altura entre la c&aacute;mara y el objeto.
-\param angulo es el ángulo a que esta la c&aacute;mara, es decir 270 esta atrás del objeto 90 a un lado del objeto etc.
-\param durezaX,durezaY,durezaZ la dureza con la que se mueve la c&aacute;mara. Un valor bajo da mayor suavizado, un valor alto da una c&aacute;mara mas rígida.
+\param angulo es el ï¿½gulo a que esta la c&aacute;mara, es decir 270 esta atrï¿½ del objeto 90 a un lado del objeto etc.
+\param durezaX,durezaY,durezaZ la dureza con la que se mueve la c&aacute;mara. Un valor bajo da mayor suavizado, un valor alto da una c&aacute;mara mas rï¿½ida.
 */
-void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ)
+void GDT::Nodo::Camara::Perseguir(vector3df PosicionEntrada1, float anguloY, double distancia, double altura, double angulo, float durezaX, float durezaY, float durezaZ)
 {
     vector3df PosicionEntrada2 = nodc->getPosition();
     Posicionar(
@@ -160,10 +169,10 @@ Cabe resaltar que lo hace con suavizado ajustable.
 \param nodoncio es el punto a seguir.
 \param distancia es la distancia entre la c&aacute;mara y el objeto.
 \param altura es la altura entre la c&aacute;mara y el objeto.
-\param angulo es el ángulo a que esta la c&aacute;mara, es decir 270 esta atrás del objeto 90 a un lado del objeto etc.
-\param durezaX,durezaY,durezaZ la dureza con la que se mueve la c&aacute;mara. Un valor bajo da mayor suavizado, un valor alto da una c&aacute;mara mas rígida.
+\param angulo es el ï¿½gulo a que esta la c&aacute;mara, es decir 270 esta atrï¿½ del objeto 90 a un lado del objeto etc.
+\param durezaX,durezaY,durezaZ la dureza con la que se mueve la c&aacute;mara. Un valor bajo da mayor suavizado, un valor alto da una c&aacute;mara mas rï¿½ida.
 */
-void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo, float durezaX, float durezaY, float durezaZ)
+void GDT::Nodo::Camara::Perseguir(NodoBase nodoncio,double distancia,double altura,double angulo, float durezaX, float durezaY, float durezaZ)
 {
 	vector3df PosicionEntrada2 = nodc->getPosition();
 	Posicionar(
@@ -186,10 +195,10 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double
 \param nodoncio es el punto a seguir.
 \param distancia es la distancia entre la c&aacute;mara y el objeto.
 \param altura es la altura entre la c&aacute;mara y el objeto.
-\param angulo es el ángulo a que esta la c&aacute;mara, es decir 270 esta atrás del objeto 90 a un lado del objeto etc.
+\param angulo es el ï¿½gulo a que esta la c&aacute;mara, es decir 270 esta atrï¿½ del objeto 90 a un lado del objeto etc.
 \param dureza
 */
-void GD_Camara::Perseguir(GD_Nodo nodoncio, double distancia, double altura, double angulo, double dureza)
+void GDT::Nodo::Camara::Perseguir(NodoBase nodoncio, double distancia, double altura, double angulo, double dureza)
 {
 	vector3df PosicionEntrada2 = nodc->getPosition();
 	Posicionar(
@@ -210,7 +219,7 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio, double distancia, double altura, dou
 /*!
 \deprecated
 */
-void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo, double dureza)
+void GDT::Nodo::Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double distancia,double altura,double angulo, double dureza)
 {
 	//printf("tipo = %d\n", tipo);
 	vector3df PosicionEntrada2 = nodc->getPosition();
@@ -234,7 +243,7 @@ void GD_Camara::Perseguir(vector3df PosicionEntrada1, float anguloY,double dista
 /*!
 \deprecated
 */
-void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double angulo)
+void GDT::Nodo::Camara::Perseguir(NodoBase nodoncio,double distancia,double altura,double angulo)
 {
 	Posicionar(nodoncio.Posicion());
 	MoverY((float)altura);
@@ -251,7 +260,7 @@ void GD_Camara::Perseguir(GD_Nodo nodoncio,double distancia,double altura,double
 
 /*!
 */
-void GD_Camara::CrearColision( GD_Escenario scen, float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Camara::CrearColision( Escenario scen, float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
 {
     ITriangleSelector* selector = scen.RetornarDatos();
 

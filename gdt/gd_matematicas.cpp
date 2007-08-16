@@ -20,13 +20,13 @@
  ***************************************************************************/
 
 /*!
- * \class GD_Matematicas
+ * \class GDT::Matematicas
  *
  * Ac&aacute; podr&aacute;s encontrar las funciones 
  * matem&aacute;ticas m&aacute;s necesarias.
  *
  * Todos los m&eacute;todos de esta clase han sido declarados est&aacute;ticos,
- * de tal modo que ya no es necesario declarar una instancia de GD_Matematicas.
+ * de tal modo que ya no es necesario declarar una instancia de GDT::Matematicas.
  * 
  * \since gdt-1.3.4-beta3
  */
@@ -41,10 +41,10 @@
 using namespace std;
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
-double GD_Matematicas::FastCos[360];
-double GD_Matematicas::FastSin[360];
-double GD_Matematicas::FastTan[360];
-bool init = GD_Matematicas::Inicializar();
+double GDT::Matematicas::FastCos[360];
+double GDT::Matematicas::FastSin[360];
+double GDT::Matematicas::FastTan[360];
+bool GDT::Matematicas::init = GDT::Matematicas::Inicializar();
 
 /*!
 * \return true, siempre.
@@ -58,7 +58,7 @@ bool init = GD_Matematicas::Inicializar();
 * p&eacute;rdida de rendimiento.
 */
 
-bool GD_Matematicas::Inicializar()
+bool GDT::Matematicas::Inicializar()
 {
 
     //inicio los cosenos y senos rapidos
@@ -80,13 +80,13 @@ bool GD_Matematicas::Inicializar()
 Ejemplo:
 \code
 // Cacula el area de un circulo de radio "r"
-perimetro_circulo = 2 * GD_Matematicas::PI() * r;
+perimetro_circulo = 2 * GDT::Matematicas::PI() * r;
 
 // Equivalente a lo anterior
 perimetro_circulo = 2 * M_PI * r;
 \endcode
 */
-double GD_Matematicas::PI()
+double GDT::Matematicas::PI()
 {
     return M_PI;
 
@@ -95,7 +95,7 @@ double GD_Matematicas::PI()
 /*!
 \return el valor de la constante "e". Es el mismo valor que se puede acceder por la constante M_E.
 */
-double GD_Matematicas::E()
+double GDT::Matematicas::E()
 {
     return M_E;
 }
@@ -105,7 +105,7 @@ double GD_Matematicas::E()
 * <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 * \since 2.0
 */
-int GD_Matematicas::Grados(int ang)
+int GDT::Matematicas::Grados(int ang)
 {
     while(ang>360.0)
         ang-=360;
@@ -121,7 +121,7 @@ int GD_Matematicas::Grados(int ang)
 * <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 * \since 2.0
 */
-double GD_Matematicas::Grados(double ang)
+double GDT::Matematicas::Grados(double ang)
 {
     while(ang>360.0)
         ang=ang-360.0;
@@ -138,12 +138,12 @@ double GD_Matematicas::Grados(double ang)
 * 
 * Ejemplo:
 * \code
-* ComponenteY = longitud * GD_Matematicas::Seno( angulo );
+* ComponenteY = longitud * GDT::Matematicas::Seno( angulo );
 * \endcode
 *
 * |note Error 0
 */
-double GD_Matematicas::Seno(int ang)
+double GDT::Matematicas::Seno(int ang)
 {
     return FastSin[Grados(ang)];
 }
@@ -154,12 +154,12 @@ double GD_Matematicas::Seno(int ang)
 * 
 * Ejemplo:
 * \code
-* ComponenteY = longitud * GD_Matematicas::Seno( angulo );
+* ComponenteY = longitud * GDT::Matematicas::Seno( angulo );
 * \endcode
 * 
 * \note Error menor de 0.0002
 */
-double GD_Matematicas::Seno(double ang)
+double GDT::Matematicas::Seno(double ang)
 {
     int a,b;
     double c,d;
@@ -176,12 +176,12 @@ double GD_Matematicas::Seno(double ang)
 * 
 * Ejemplo:
 * \code
-* ComponenteX = longitud * GD_Matematicas::Coseno( angulo );
+* ComponenteX = longitud * GDT::Matematicas::Coseno( angulo );
 * \endcode
 *
 * \note Error 0
 */
-double GD_Matematicas::Coseno(int ang)
+double GDT::Matematicas::Coseno(int ang)
 {
     return FastCos[Grados(ang)];
 }
@@ -192,12 +192,12 @@ double GD_Matematicas::Coseno(int ang)
 * 
 * Ejemplo:
 * \code
-* ComponenteX = longitud * GD_Matematicas::Coseno( angulo );
+* ComponenteX = longitud * GDT::Matematicas::Coseno( angulo );
 * \endcode
 *
 * \note Error menor de 0.0002
 */
-double GD_Matematicas::Coseno(double ang)
+double GDT::Matematicas::Coseno(double ang)
 {
     int a,b;
     double c,d;
@@ -214,10 +214,10 @@ double GD_Matematicas::Coseno(double ang)
 * 
 * Ejemplo:
 * \code
-* pendiente = GD_Matematicas::Tangente( angulo );
+* pendiente = GDT::Matematicas::Tangente( angulo );
 * \endcode
 */
-double GD_Matematicas::Tangente(int ang)
+double GDT::Matematicas::Tangente(int ang)
 {
     return FastTan[Grados(ang)];
 }
@@ -228,10 +228,10 @@ double GD_Matematicas::Tangente(int ang)
 * 
 * Ejemplo:
 * \code
-* pendiente = GD_Matematicas::Tangente( angulo );
+* pendiente = GDT::Matematicas::Tangente( angulo );
 * \endcode
 */
-double GD_Matematicas::Tangente(double ang)
+double GDT::Matematicas::Tangente(double ang)
 {
     int a,b;
     double c,d;
@@ -250,12 +250,12 @@ double GD_Matematicas::Tangente(double ang)
 Ejemplo:
 \code
 // Retorna 10
-min = GD_Matematicas::Minimo(10,20);
+min = GDT::Matematicas::Minimo(10,20);
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-int GD_Matematicas::Minimo(int ValorA,int ValorB)
+int GDT::Matematicas::Minimo(int ValorA,int ValorB)
 {
     if(ValorA > ValorB)
 	return ValorB;
@@ -269,12 +269,12 @@ int GD_Matematicas::Minimo(int ValorA,int ValorB)
 
 Ejemplo:
 \code
-min = GD_Matematicas::Minimo(0, 2*GD_Matematicas::PI());
+min = GDT::Matematicas::Minimo(0, 2*GDT::Matematicas::PI());
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_Matematicas::Minimo(double ValorA,double ValorB)
+double GDT::Matematicas::Minimo(double ValorA,double ValorB)
 {
     if(ValorA > ValorB)
 	return ValorB;
@@ -288,12 +288,12 @@ double GD_Matematicas::Minimo(double ValorA,double ValorB)
 
 Ejemplo:
 \code
-min = GD_Matematicas::Maximo(0, 234);
+min = GDT::Matematicas::Maximo(0, 234);
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-int GD_Matematicas::Maximo(int ValorA,int ValorB)
+int GDT::Matematicas::Maximo(int ValorA,int ValorB)
 {
     if(ValorA < ValorB)
 	return ValorB;
@@ -307,12 +307,12 @@ int GD_Matematicas::Maximo(int ValorA,int ValorB)
 
 Ejemplo:
 \code
-min = GD_Matematicas::Maximo(0, 2*GD_Matematicas::PI());
+min = GDT::Matematicas::Maximo(0, 2*GDT::Matematicas::PI());
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_Matematicas::Maximo(double ValorA,double ValorB)
+double GDT::Matematicas::Maximo(double ValorA,double ValorB)
 {
     if(ValorA < ValorB)
 	return ValorB;
@@ -328,12 +328,12 @@ Los valores m&iacute;nimo y m&aacute;ximo se incluyen en las im&aacute;genes (o 
 
 Ejemplo:
 \code
-probabilidad = GD_Matematicas::Azar(0,100); // un porcentaje entero al azar
+probabilidad = GDT::Matematicas::Azar(0,100); // un porcentaje entero al azar
 \endcode
 
 \note Se agradece a: http://www.daniweb.com/forums/thread1769.html
 */
-int GD_Matematicas::Azar(int min,int max)
+int GDT::Matematicas::Azar(int min,int max)
 {
     return (rand()%Absoluto(max-min+1)) + Minimo(min, max);
 }
@@ -344,12 +344,12 @@ int GD_Matematicas::Azar(int min,int max)
 
 Ejemplo:
 \code
-probabilidad = GD_Matematicas::Azar(0,100); // un porcentaje real al azar
+probabilidad = GDT::Matematicas::Azar(0,100); // un porcentaje real al azar
 \endcode
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-double GD_Matematicas::Azar(double min, double max)
+double GDT::Matematicas::Azar(double min, double max)
 {
     return rand()/(double(RAND_MAX)+1) * Absoluto(min-max) + Minimo(min, max);
 }
@@ -361,10 +361,10 @@ double GD_Matematicas::Azar(double min, double max)
 Ejemplo:
 \code
 // La raiz cuadrada de 4, osea 2.
-raiz = GD_Matematicas::Raiz(4)
+raiz = GDT::Matematicas::Raiz(4)
 \endcode
 */
-double GD_Matematicas::Raiz(double x)
+double GDT::Matematicas::Raiz(double x)
 {
     return sqrt(x);
 }
@@ -381,7 +381,7 @@ La fórmula es la siguiente:
 
 Para mayor información sobre el origen de la fórmula, lea <A HREF="http://es.wikipedia.org/wiki/Pendiente_de_una_recta">este artículo</A>.
 */
-double GD_Matematicas::Angulo(double x1, double y1, double x2, double y2)
+double GDT::Matematicas::Angulo(double x1, double y1, double x2, double y2)
 {
     return atan2(y2-y1,x2-x1) * 180.0 / M_PI;
 }
@@ -393,7 +393,7 @@ La formula es:
    \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 \f]
 */
-double GD_Matematicas::Distancia(double x1, double y1, double x2, double y2)
+double GDT::Matematicas::Distancia(double x1, double y1, double x2, double y2)
 {
     return sqrt(pow((x1-x2),2) + pow((y1-y2),2));
 }
@@ -405,12 +405,12 @@ La formula es:
    \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}
 \f]
 */
-double GD_Matematicas::Distancia3d(double x1, double y1, double z1, double x2, double y2, double z2)
+double GDT::Matematicas::Distancia3d(double x1, double y1, double z1, double x2, double y2, double z2)
 {
     return sqrt(pow((x1-x2),2) + pow((y1-y2),2) + pow((z1-z2),2));
 }
 
-double GD_Matematicas::GiroAngulo(double mirando, double meta)
+double GDT::Matematicas::GiroAngulo(double mirando, double meta)
 {
     double diff;
     diff=mirando-meta;
@@ -436,7 +436,7 @@ f(x) = \frac{e^x - e^{-x}}{2}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Seno_hiperb%C3%B3lico">lea este art&iacute;culo</A>.
 */
-double GD_Matematicas::SenoHyperbolico(double x)
+double GDT::Matematicas::SenoHyperbolico(double x)
 {
     return sinh(x);
 }
@@ -451,7 +451,7 @@ f(x) = \frac{e^x + e^{-x}}{2}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Coseno_hiperb%C3%B3lico">lea este art&iacute;culo</A>.
 */
-double GD_Matematicas::CosenoHyperbolico(double x)
+double GDT::Matematicas::CosenoHyperbolico(double x)
 {
     return cosh(x);
 }
@@ -466,7 +466,7 @@ f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
 
 Para m&aacute;s informaci&oacute;n sobre esta funci&oacute;n matem&aacute;tica, <A href="http://es.wikipedia.org/wiki/Tangente_hiperb%C3%B3lica">lea este art&iacute;culo</A>.
 */
-double GD_Matematicas::TangenteHyperbolica(double t)
+double GDT::Matematicas::TangenteHyperbolica(double t)
 {
     return tanh(t);
 }
@@ -476,7 +476,7 @@ double GD_Matematicas::TangenteHyperbolica(double t)
 
 \f$ ArcoSeno( Seno (x) ) = x; \f$
 */
-double GD_Matematicas::ArcoSeno(double x)
+double GDT::Matematicas::ArcoSeno(double x)
 {
     return asin(x);
 }
@@ -486,7 +486,7 @@ double GD_Matematicas::ArcoSeno(double x)
 
 \f$ ArcoCoseno( Coseno(x) ) = x; \f$
 */
-double GD_Matematicas::ArcoCoseno(double x)
+double GDT::Matematicas::ArcoCoseno(double x)
 {
     return acos(x);
 }
@@ -496,7 +496,7 @@ double GD_Matematicas::ArcoCoseno(double x)
 
 \f$ ArcoTangente( Tangente(x) ) = x; \f$
 */
-double GD_Matematicas::ArcoTangente(double x)
+double GDT::Matematicas::ArcoTangente(double x)
 {
     return atan(x);
 }
@@ -506,7 +506,7 @@ double GD_Matematicas::ArcoTangente(double x)
 
 Es la inversa del Logaritmo Natural (Logaritmo()).
 */
-double GD_Matematicas::Exponencial(double x)
+double GDT::Matematicas::Exponencial(double x)
 {
     return exp(x);
 }
@@ -527,12 +527,12 @@ ln(x) = \int_{0}^{x} \dfrac {dt} {t} \mbox{ ; } \forall \mbox{ } x > 0
 
 Ejemplo:
 \code
-resultado = GD_Matematicas::Logaritmo( E_() ); // Retorna 1
+resultado = GDT::Matematicas::Logaritmo( E_() ); // Retorna 1
 \endcode
 
 Nota: El n&uacute;mero "e" se puede obtener usando E().
 */
-double GD_Matematicas::Logaritmo(double x)
+double GDT::Matematicas::Logaritmo(double x)
 {
     return log(x);
 }
@@ -546,11 +546,11 @@ Es la inversa de la funci&oacute;n Potencia() en base 10, es decir, encuentra el
 
 Ejemplo:
 \code
-resultado = GD_Matematicas::Logaritmo( 10 ); // Retorna 1
+resultado = GDT::Matematicas::Logaritmo( 10 ); // Retorna 1
 \endcode
 
 */
-double GD_Matematicas::Logaritmo10(double x)
+double GDT::Matematicas::Logaritmo10(double x)
 {
     return log10(x);
 }
@@ -561,7 +561,7 @@ Definici&oacute;n:
 Potencia(x, y) = x^y
 \f]
 */
-double GD_Matematicas::Potencia(double x, double y)
+double GDT::Matematicas::Potencia(double x, double y)
 {
     return pow(x,y);
 }
@@ -573,10 +573,10 @@ Por muy peque&ntilde;o que sea el decimal, se trunca al entero y se suma 1.
 
 Ejemplo:
 \code
-aproximado = GD_Matematicas::RedondearArriba(0.0000000000000001) // Retorna 1
+aproximado = GDT::Matematicas::RedondearArriba(0.0000000000000001) // Retorna 1
 \endcode
 */
-int GD_Matematicas::RedondearArriba(double x)
+int GDT::Matematicas::RedondearArriba(double x)
 {
     return (int)ceil(x);
 }
@@ -588,10 +588,10 @@ Por muy alto que sea el decimal, se trunca al entero.
 
 Ejemplo:
 \code
-aproximado = GD_Matematicas::RedondearAbajo(10.9) // Retorna 10
+aproximado = GDT::Matematicas::RedondearAbajo(10.9) // Retorna 10
 \endcode
 */
-int GD_Matematicas::RedondearAbajo(double x)
+int GDT::Matematicas::RedondearAbajo(double x)
 {
     return (int)floor(x);
 }
@@ -601,12 +601,12 @@ La regla es si el primer decimal es menor a 5, se redondea hacia abajo (o se tru
 
 Ejemplo:
 \code
-aproximado = GD_Matematicas::RedondearAbajo(3.9) // Retorna 4
-aproximado = GD_Matematicas::RedondearAbajo(3.5) // Retorna 4
-aproximado = GD_Matematicas::RedondearAbajo(3.4) // Retorna 3
+aproximado = GDT::Matematicas::RedondearAbajo(3.9) // Retorna 4
+aproximado = GDT::Matematicas::RedondearAbajo(3.5) // Retorna 4
+aproximado = GDT::Matematicas::RedondearAbajo(3.4) // Retorna 3
 \endcode
 */
-int GD_Matematicas::Redondear(double x)
+int GDT::Matematicas::Redondear(double x)
 {
     int y;
     double z;
@@ -621,7 +621,7 @@ int GD_Matematicas::Redondear(double x)
 /*!
 
 */
-int GD_Matematicas::Entero(double x)
+int GDT::Matematicas::Entero(double x)
 {
     return (int)x;
 }
@@ -642,13 +642,13 @@ Ejemplo:
 
 \code
 \param x número entero.
-valor = GD_Matematicas::Absoluto( -10 ); //
+valor = GDT::Matematicas::Absoluto( -10 ); //
 if(valor == 10) {
     cout << "El valor absoluto de -10 es 10" << "\n";
 }
 \endcode
 */
-int GD_Matematicas::Absoluto(int x)
+int GDT::Matematicas::Absoluto(int x)
 {
     return abs(x);
 }
@@ -669,18 +669,18 @@ x & \text{si } x \geq 0 \\
 Ejemplo:
 
 \code
-valor = GD_Matematicas::Absoluto( -10 ); //
+valor = GDT::Matematicas::Absoluto( -10 ); //
 if(valor == 10) {
     cout << "El valor absoluto de -10 es 10" << "\n";
 }
 \endcode
 */
-double GD_Matematicas::Absoluto(double x)
+double GDT::Matematicas::Absoluto(double x)
 {
     return fabs(x);
 }
 
-float GD_Matematicas::CurvarValor(float actual, float destino, float velocidad)
+float GDT::Matematicas::CurvarValor(float actual, float destino, float velocidad)
 {
     float diferencia=destino-actual;
     if(velocidad==0)
@@ -689,7 +689,7 @@ float GD_Matematicas::CurvarValor(float actual, float destino, float velocidad)
         return actual+(diferencia*(1/velocidad));
 }
 
-double GD_Matematicas::CurvarAngulo(double actual, double destino, double velocidad)
+double GDT::Matematicas::CurvarAngulo(double actual, double destino, double velocidad)
 {
     double diferencia;
     actual=Grados(actual);
@@ -712,7 +712,7 @@ double GD_Matematicas::CurvarAngulo(double actual, double destino, double veloci
     }
 }
 
-double GD_Matematicas::MueveX(double x, double angulo, double velocidad)
+double GDT::Matematicas::MueveX(double x, double angulo, double velocidad)
 {
      /*double angulop = Rad(angulo);
      double xf;
@@ -722,13 +722,13 @@ double GD_Matematicas::MueveX(double x, double angulo, double velocidad)
      return x+velocidad*sin(Rad(angulo));
 }
 
-double GD_Matematicas::MueveY(double y, double angulo, double velocidad)
+double GDT::Matematicas::MueveY(double y, double angulo, double velocidad)
 {
     return y+velocidad*tan(Rad(angulo));
 
 }
 
-double GD_Matematicas::MueveZ(double z, double angulo, double velocidad)
+double GDT::Matematicas::MueveZ(double z, double angulo, double velocidad)
 {
      return z+velocidad*cos(Rad(angulo));
 }
@@ -739,7 +739,7 @@ double GD_Matematicas::MueveZ(double z, double angulo, double velocidad)
 \param incluir Si es True se incluyen los extremos, en caso contrario se excluyen.
 \return True si el número x se encuentra en el interior del intervalo.
 */
-char GD_Matematicas::Rango(double x, double min, double max, char incluir)
+char GDT::Matematicas::Rango(double x, double min, double max, char incluir)
 {
 /*
     if(incluir)
@@ -771,7 +771,7 @@ char GD_Matematicas::Rango(double x, double min, double max, char incluir)
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-char GD_Matematicas::RangoAbierto(double x, double min, double max)
+char GDT::Matematicas::RangoAbierto(double x, double min, double max)
 {
     if(min < x && x < max)
         return 1;
@@ -786,7 +786,7 @@ char GD_Matematicas::RangoAbierto(double x, double min, double max)
 
 \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-char GD_Matematicas::RangoCerrado(double x, double min, double max)
+char GDT::Matematicas::RangoCerrado(double x, double min, double max)
 {
     if(min <= x && x <= max)
         return 1;
@@ -797,12 +797,12 @@ char GD_Matematicas::RangoCerrado(double x, double min, double max)
 /*!
 \bug Esta implementación siempre retorna 0.
 */
-double GD_Matematicas::BuscarNormal(double x, double y, double z)
+double GDT::Matematicas::BuscarNormal(double x, double y, double z)
 {
     return 0;
 }
 
-vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180, float dureza=15)
+vector3df GDT::Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vector3df PosicionEntrada2, float distancia,float altura,float angulo=180, float dureza=15)
 {
 	vector3df Salida;
 	f32 px = PosicionEntrada1.X;
@@ -824,7 +824,7 @@ vector3df GD_Matematicas::Seguir( vector3df PosicionEntrada1, float anguloY,vect
 \param Deg es un &aacute;ngulo entero medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A>.
 \return el valor del &aacute;ngulo en radianes.
 */
-double GD_Matematicas::Rad(double Deg)
+double GDT::Matematicas::Rad(double Deg)
 {
 /*
 Deg = (Deg/180.0f); //Divide by 180
@@ -836,7 +836,7 @@ return (float)Deg;
 
 // POSICION *************************************************************
 // Evita que el angulo sea mayor de 360 o menor a 0
-double GD_Matematicas::WrapValue(double Angulo)
+double GDT::Matematicas::WrapValue(double Angulo)
 {
    while (Angulo>=360){Angulo-=360;}
    while (Angulo<0){Angulo+=360;}
@@ -844,17 +844,17 @@ double GD_Matematicas::WrapValue(double Angulo)
 }
 //Regresa el nuevo valor del valor de la ordenadas X,Y,Z (segun el caso)
 //segun un angulo y una distancia dadas.
-double GD_Matematicas::NewXValue(double dXActual,double dAngulo,double dDistancia)
+double GDT::Matematicas::NewXValue(double dXActual,double dAngulo,double dDistancia)
 {
    return ((Seno(dAngulo)*dDistancia)+dXActual);
 }
 
-double GD_Matematicas::NewYValue(double dYActual,double dAngulo,double dDistancia)
+double GDT::Matematicas::NewYValue(double dYActual,double dAngulo,double dDistancia)
 {
    return  -1*((Seno(dAngulo)*dDistancia)+dYActual);
 }
 
-double GD_Matematicas::NewZValue(double dZActual,double dAngulo,double dDistancia)
+double GDT::Matematicas::NewZValue(double dZActual,double dAngulo,double dDistancia)
 {
       return ((Coseno(dAngulo)*dDistancia)+dZActual);
 }

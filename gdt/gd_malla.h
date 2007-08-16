@@ -62,12 +62,14 @@
 #define EMAT_BOOM BOOM
 
 
+namespace GDT
+{
+
+namespace Nodo
+{
 
 //!Carga y manipula una Malla (Mesh)
-/*!
-
-*/
-class GD_Malla :  public GD_Colisiones3d  //public GD_Nodo,
+class Malla :  public Colisiones3D //public NodoBase,
 {
    private:
 
@@ -83,9 +85,9 @@ class GD_Malla :  public GD_Colisiones3d  //public GD_Nodo,
 	public:
 	
 	// class constructor
-	_GDT_EXPORT_ GD_Malla();
+	_GDT_EXPORT_ Malla();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Malla();
+	_GDT_EXPORT_ ~Malla();
 	
 	IAnimatedMesh* mesh;
 	IMesh* static_mesh;
@@ -120,7 +122,7 @@ class GD_Malla :  public GD_Colisiones3d  //public GD_Nodo,
 	//! Crea una Esfera
 	_GDT_EXPORT_ void CrearEsfera( float radio, int polynum = 16 );
 	
-	//! Remplaza el nodo de una clase que hereda de GD_Nodo
+	//! Remplaza el nodo de una clase que hereda de NodoBase
 	_GDT_EXPORT_ void Reemplazar(ISceneNode* nod_R);
 	//! Retorna el nodo de un hueso especifico
 	_GDT_EXPORT_ ISceneNode* RetornarNodoHuesoX(c8* Nombre );
@@ -151,5 +153,9 @@ class GD_Malla :  public GD_Colisiones3d  //public GD_Nodo,
 	
 
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_MALLA_H

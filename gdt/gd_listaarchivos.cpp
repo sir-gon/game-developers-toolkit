@@ -31,7 +31,7 @@
 // class constructor
 GDT::ListaArchivos::ListaArchivos()
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
+     FileSystem = Sistema::device->getFileSystem(); 
 
      FileList= FileSystem->createFileList();
 }
@@ -47,7 +47,7 @@ GDT::ListaArchivos::~ListaArchivos()
 */
 void GDT::ListaArchivos::Crear(void)
 {
-     FileSystem = GD_Sistema::device->getFileSystem(); 
+     FileSystem = Sistema::device->getFileSystem(); 
      
      FileList= FileSystem->createFileList();
 }

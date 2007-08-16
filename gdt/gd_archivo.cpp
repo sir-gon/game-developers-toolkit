@@ -61,7 +61,7 @@ GDT::Archivo::~Archivo()
 */
 void GDT::Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 {
-     FileSystem = GD_Sistema::device->getFileSystem();
+     FileSystem = Sistema::device->getFileSystem();
 
      writeFile = FileSystem->createAndWriteFile(strArchivo, bContinuar);
 
@@ -76,7 +76,7 @@ void GDT::Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 */
 void GDT::Archivo::AbrirParaLeer(const char *strArchivo)
 {
-     FileSystem = GD_Sistema::device->getFileSystem();
+     FileSystem = Sistema::device->getFileSystem();
 
      readFile = FileSystem->createAndOpenFile(strArchivo);
 

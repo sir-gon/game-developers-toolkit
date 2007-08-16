@@ -19,17 +19,20 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
+/*!
+* Las luces permiten iluminar las mallas, con el color que sea establecida la luz, incluso * se pueden proyectar sombras din&aacute;micas en las mallas ocupando luces.
+*/
  
 #include "gd_luz.h" // class's header file
 
 // class constructor
-GD_Luz::GD_Luz()
+GDT::Nodo::Luz::Luz()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Luz::~GD_Luz()
+GDT::Nodo::Luz::~Luz()
 {
 	// insert your code here
 }
@@ -38,29 +41,27 @@ GD_Luz::~GD_Luz()
 \param x,y,z => posicion
 \param radio => radio
 */
-void GD_Luz::Crear(float x, float y, float z, float radio)
+void GDT::Nodo::Luz::Crear(float x, float y, float z, float radio)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
-
-
-	nodl = mismgr->addLightSceneNode(0, 
-     core::vector3df(x,y,z),
-	video::SColorf( 200, 200, 200), 
-     radio);
-     
-     nodon = nodl;
-     
-     if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");
-     
-     sluz = nodl->getLightData();
-     
-     HacerSombra(false);
-     Tipo(1);
-     
-     Posicionar(x,y,z);
+	RegistrarDevice(Sistema::device);
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
 	
+	
+	nodl = mismgr->addLightSceneNode(0, 
+	core::vector3df(x,y,z),
+	video::SColorf( 200, 200, 200), 
+	radio);
+	
+	nodon = nodl;
+	
+	if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");
+	
+	sluz = nodl->getLightData();
+	
+	HacerSombra(false);
+	Tipo(1);
+	
+	Posicionar(x,y,z);
 }
 
 /*!
@@ -68,11 +69,11 @@ void GD_Luz::Crear(float x, float y, float z, float radio)
 \param radio => radio
 \param tipo => tipo
 */
-void GD_Luz::Crear(float x, float y, float z, float radio, int tipo)
+void GDT::Nodo::Luz::Crear(float x, float y, float z, float radio, int tipo)
 {
 
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
 
     nodl = mismgr->addLightSceneNode(0, 
@@ -92,10 +93,10 @@ void GD_Luz::Crear(float x, float y, float z, float radio, int tipo)
     Posicionar(x,y,z);
 }
 
-void GD_Luz::Crear()
+void GDT::Nodo::Luz::Crear()
 {
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
+    RegistrarDevice(Sistema::device);
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
 
      nodl = mismgr->addLightSceneNode(0, 
        core::vector3df(200,200,200),
@@ -120,28 +121,26 @@ void GD_Luz::Crear()
 \param r,g,b => color
 \param radio => radio
 */
-void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float radio)
+void GDT::Nodo::Luz::Crear(float x, float y, float z, float r, float g ,float b, float radio)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
-
-
-	nodl = mismgr->addLightSceneNode(0, 
-     core::vector3df(x,y,z),
-	video::SColorf( r, g, b), 
-     radio);
-     
-     nodon = nodl;
-     if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");     
-     
-     sluz = nodl->getLightData();
-     
-     HacerSombra(false);
-     Tipo(1);
-     
-     Posicionar(x,y,z);
+	RegistrarDevice(Sistema::device);
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
 	
+	
+	nodl = mismgr->addLightSceneNode(0, 
+	core::vector3df(x,y,z),
+	video::SColorf( r, g, b), 
+	radio);
+	
+	nodon = nodl;
+	if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");     
+	
+	sluz = nodl->getLightData();
+	
+	HacerSombra(false);
+	Tipo(1);
+	
+	Posicionar(x,y,z);
 }
 
 /*!
@@ -152,28 +151,26 @@ void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float r
     - RADIAL
     - DIRECCIONAL
 */
-void GD_Luz::Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo)
+void GDT::Nodo::Luz::Crear(float x, float y, float z, float r, float g ,float b, float radio, int tipo)
 {
-
-    RegistrarDevice(GD_Sistema::device);
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
-
-
+	RegistrarDevice(Sistema::device);
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
+	
+	
 	nodl = mismgr->addLightSceneNode(0, 
-     core::vector3df(x,y,z),
+	core::vector3df(x,y,z),
 	video::SColorf( r, g, b), 
-     radio);
-     
-     nodon = nodl;
-     if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");     
-     
-     sluz = nodl->getLightData();
-     
-     HacerSombra(false);
-     Tipo(tipo);
-     
-          Posicionar(x,y,z);
-
+	radio);
+	
+	nodon = nodl;
+	if(!nodon) printf("ERROR: No se pudo Crear La Luz.\n");     
+	
+	sluz = nodl->getLightData();
+	
+	HacerSombra(false);
+	Tipo(tipo);
+	
+	Posicionar(x,y,z);
 }
 
 /*!
@@ -182,12 +179,12 @@ Ejemplo:
 Luz.HacerSombra(true);
 \endcode
 */
-void GD_Luz::HacerSombra(bool hacer)
+void GDT::Nodo::Luz::HacerSombra(bool hacer)
 {
-     sluz.CastShadows = hacer;
-     nodl->setLightData (sluz);
-    //  reestablece la posicion (bug)
-    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
+	sluz.CastShadows = hacer;
+	nodl->setLightData (sluz);
+	//  reestablece la posicion (bug)
+	Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -198,12 +195,12 @@ Ejemplo:
 Luz.Direccion( 102,85,54) ;
 \endcode
 */
-void GD_Luz::Direccion(float x, float y, float z)
+void GDT::Nodo::Luz::Direccion(float x, float y, float z)
 {
-      sluz.Position.set(x,y,z);
-           nodl->setLightData (sluz);
-               //  reestablece la posicion (bug)
-    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
+	sluz.Position.set(x,y,z);
+	nodl->setLightData (sluz);
+	//  reestablece la posicion (bug)
+	Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -214,12 +211,12 @@ Ejemplo:
 Luz.Direccion( Protagonista ) ;
 \endcode
 */
-void GD_Luz::Direccion( vector3df vect)
+void GDT::Nodo::Luz::Direccion( vector3df vect)
 {
-      sluz.Position = vect;
-           nodl->setLightData (sluz);
-               //  reestablece la posicion (bug)
-    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
+	sluz.Position = vect;
+	nodl->setLightData (sluz);
+	//  reestablece la posicion (bug)
+	Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
 /*!
@@ -232,17 +229,17 @@ Ejemplo:
 Luz.Tipo( RADIAL );
 \endcode
 */
-void GD_Luz::Tipo(int tipo)
+void GDT::Nodo::Luz::Tipo(int tipo)
 {
-     if(tipo==1) sluz.Type = ELT_POINT;
-     if(tipo==2) sluz.Type = ELT_DIRECTIONAL;
+	if(tipo==1) sluz.Type = ELT_POINT;
+	if(tipo==2) sluz.Type = ELT_DIRECTIONAL;
 
-          nodl->setLightData (sluz); 
-              //  reestablece la posicion (bug)
-    Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
+	nodl->setLightData (sluz); 
+	//  reestablece la posicion (bug)
+	Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::Radio( float rad )
+void GDT::Nodo::Luz::Radio( float rad )
 {
      sluz.Radius = rad;
      
@@ -251,7 +248,7 @@ void GD_Luz::Radio( float rad )
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::ColorAmbiente(s32 r,s32 g,s32 b)
+void GDT::Nodo::Luz::ColorAmbiente(s32 r,s32 g,s32 b)
 {
      sluz.AmbientColor.set((f32)r,(f32)g,(f32)b);
           nodl->setLightData (sluz);
@@ -259,7 +256,7 @@ void GD_Luz::ColorAmbiente(s32 r,s32 g,s32 b)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::ColorDifuso(s32 r,s32 g,s32 b)
+void GDT::Nodo::Luz::ColorDifuso(s32 r,s32 g,s32 b)
 {
      sluz.DiffuseColor.set((f32)r,(f32)g,(f32)b);
           nodl->setLightData (sluz);
@@ -267,7 +264,7 @@ void GD_Luz::ColorDifuso(s32 r,s32 g,s32 b)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::ColorEspecular(s32 r,s32 g,s32 b)
+void GDT::Nodo::Luz::ColorEspecular(s32 r,s32 g,s32 b)
 {
      sluz.SpecularColor.set((f32)r,(f32)g,(f32)b);
           nodl->setLightData (sluz);
@@ -275,7 +272,7 @@ void GD_Luz::ColorEspecular(s32 r,s32 g,s32 b)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::AumentarColorAmbiente(float val)
+void GDT::Nodo::Luz::AumentarColorAmbiente(float val)
 {
      float rr = sluz.AmbientColor.r;
      float gg = sluz.AmbientColor.g;
@@ -292,7 +289,7 @@ void GD_Luz::AumentarColorAmbiente(float val)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::AumentarColorDifuso(float val)
+void GDT::Nodo::Luz::AumentarColorDifuso(float val)
 {
      float rr = sluz.DiffuseColor.r;
      float gg = sluz.DiffuseColor.g;
@@ -309,7 +306,7 @@ void GD_Luz::AumentarColorDifuso(float val)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::AumentarColorEspecular(float val)
+void GDT::Nodo::Luz::AumentarColorEspecular(float val)
 {
      float rr = sluz.SpecularColor.r;
      float gg = sluz.SpecularColor.g;
@@ -326,7 +323,7 @@ void GD_Luz::AumentarColorEspecular(float val)
     Posicionar(mi_posicion_x,mi_posicion_y,mi_posicion_z);
 }
 
-void GD_Luz::CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Luz::CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
 {
 
     ITriangleSelector* selector = scen.RetornarDatos();
@@ -341,7 +338,7 @@ void GD_Luz::CrearColision( GD_Escenario scen,float radiox, float radioy,float r
 	//anim->drop();
 }
 
-int GD_Luz::RetornarColorAmbienteR()
+int GDT::Nodo::Luz::RetornarColorAmbienteR()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -350,7 +347,7 @@ int GD_Luz::RetornarColorAmbienteR()
        return int(Amb.r);
 }
 
-int GD_Luz::RetornarColorAmbienteG()
+int GDT::Nodo::Luz::RetornarColorAmbienteG()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -359,7 +356,7 @@ int GD_Luz::RetornarColorAmbienteG()
        return int(Amb.g);
 }
 
-int GD_Luz::RetornarColorAmbienteB()                
+int GDT::Nodo::Luz::RetornarColorAmbienteB()                
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -368,7 +365,7 @@ int GD_Luz::RetornarColorAmbienteB()
        return int(Amb.b);
 }
 
-int GD_Luz::RetornarColorDifusoR()
+int GDT::Nodo::Luz::RetornarColorDifusoR()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -377,7 +374,7 @@ int GD_Luz::RetornarColorDifusoR()
        return int(Dif.r);
 }
 
-int GD_Luz::RetornarColorDifusoG()
+int GDT::Nodo::Luz::RetornarColorDifusoG()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -386,7 +383,7 @@ int GD_Luz::RetornarColorDifusoG()
        return int(Dif.g);
 }
 
-int GD_Luz::RetornarColorDifusoB()                
+int GDT::Nodo::Luz::RetornarColorDifusoB()                
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -396,7 +393,7 @@ int GD_Luz::RetornarColorDifusoB()
 }
       
 
-int GD_Luz::RetornarColorEspecularR()
+int GDT::Nodo::Luz::RetornarColorEspecularR()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -405,7 +402,7 @@ int GD_Luz::RetornarColorEspecularR()
        return int(Dif.r);
 }
 
-int GD_Luz::RetornarColorEspecularG()
+int GDT::Nodo::Luz::RetornarColorEspecularG()
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    
@@ -414,7 +411,7 @@ int GD_Luz::RetornarColorEspecularG()
        return int(Dif.g);
 }
 
-int GD_Luz::RetornarColorEspecularB()        
+int GDT::Nodo::Luz::RetornarColorEspecularB()        
 {
        video::SLight Sl;
        Sl = nodl->getLightData();    

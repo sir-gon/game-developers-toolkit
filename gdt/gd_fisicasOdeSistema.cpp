@@ -22,7 +22,7 @@
 #if defined(_GDT_FISICAS_ODE_)
 
 /*!
-* \class GDT::fisica::Mundo
+* \class GDT::Fisica::Mundo
 *
 * Crea y maneja un Mundo de F&iacute;sicas usando ODE.
 * Todos los m�odos afectan en forma global el comportamiento del Mundo.
@@ -50,7 +50,7 @@
 
 /*!
 */
-GDT::fisica::Mundo::Mundo()
+GDT::Fisica::Mundo::Mundo()
 {
    MundoODE=CrearMundoODE();
 }
@@ -59,7 +59,7 @@ GDT::fisica::Mundo::Mundo()
 * \note Este Mundo no sobreescribe el mundo definido por defecto
 * para la instancia, sino que crea otro Mundo aparte.
 */
-dWorldID GDT::fisica::Mundo::CrearMundoODE()
+dWorldID GDT::Fisica::Mundo::CrearMundoODE()
 {
    return dWorldCreate();
 }
@@ -68,7 +68,7 @@ dWorldID GDT::fisica::Mundo::CrearMundoODE()
 * Para volver a crear un Mundo para la instancia,
 * deber&aacute; llamar nuevamente al constructor Mundo()
 */
-void GDT::fisica::Mundo::DestruirMundoODE()
+void GDT::Fisica::Mundo::DestruirMundoODE()
 {
    dWorldDestroy(MundoODE);
 }
@@ -81,7 +81,7 @@ void GDT::fisica::Mundo::DestruirMundoODE()
 * Mundo.Gravedad(dReal x, dReal y, dReal z)
 * \endcode
 */
-vector3df GDT::fisica::Mundo::Gravedad(dReal x, dReal y, dReal z)
+vector3df GDT::Fisica::Mundo::Gravedad(dReal x, dReal y, dReal z)
 {
    dWorldSetGravity(MundoODE,x, y, z);
    return Gravedad();
@@ -96,7 +96,7 @@ vector3df GDT::fisica::Mundo::Gravedad(dReal x, dReal y, dReal z)
 * \endcode
 */
 
-vector3df GDT::fisica::Mundo::Gravedad(vector3df grav)
+vector3df GDT::Fisica::Mundo::Gravedad(vector3df grav)
 {
    Gravedad((dReal) grav.X, (dReal) grav.Y, (dReal) grav.Z);
    return Gravedad();
@@ -112,7 +112,7 @@ vector3df GDT::fisica::Mundo::Gravedad(vector3df grav)
 *
 * \endcode
 */
-vector3df GDT::fisica::Mundo::Gravedad()
+vector3df GDT::Fisica::Mundo::Gravedad()
 {
    vector3df gravI;
    dWorldGetGravity(MundoODE, (dReal*) &gravI);
@@ -129,7 +129,7 @@ vector3df GDT::fisica::Mundo::Gravedad()
 * Mundo.AsignarERP(0.4);
 * \endcode
 */
-void GDT::fisica::Mundo::AsignarERP(dReal erp)
+void GDT::Fisica::Mundo::AsignarERP(dReal erp)
 {
    dWorldSetERP(MundoODE,erp);
 }
@@ -137,7 +137,7 @@ void GDT::fisica::Mundo::AsignarERP(dReal erp)
 /*!
 * \return el valor del Par&aacute;metro de Reducci&oacute;n de Errores (ERP)
 */
-dReal GDT::fisica::Mundo::ObtenerERP()
+dReal GDT::Fisica::Mundo::ObtenerERP()
 {
    return dWorldGetERP(MundoODE);
 }
@@ -145,7 +145,7 @@ dReal GDT::fisica::Mundo::ObtenerERP()
 /*!
 * Valor usualmente entre \f$ 10^{-9} \f$ - 1
 */
-void GDT::fisica::Mundo::AsignarCFM(dReal cfm)
+void GDT::Fisica::Mundo::AsignarCFM(dReal cfm)
 {
    dWorldSetCFM(MundoODE,cfm);
 }
@@ -153,7 +153,7 @@ void GDT::fisica::Mundo::AsignarCFM(dReal cfm)
 /*!
 * Valor usualmente entre \f$ 10^{-9} \f$ - 1
 */
-dReal GDT::fisica::Mundo::ObtenerCFM()
+dReal GDT::Fisica::Mundo::ObtenerCFM()
 {
    return dWorldGetCFM (MundoODE);
 }
@@ -170,14 +170,14 @@ dReal GDT::fisica::Mundo::ObtenerCFM()
 *
 * \note Deshabilitado por defecto.
 */
-void GDT::fisica::Mundo::ModoAutodesactivar(bool bDeshabilitable)
+void GDT::Fisica::Mundo::ModoAutodesactivar(bool bDeshabilitable)
 {
     dWorldSetAutoDisableFlag(MundoODE, (int) bDeshabilitable);
 }
 
 /*!
 */
-bool GDT::fisica::Mundo::ValorModoAutodesactivar()
+bool GDT::Fisica::Mundo::ValorModoAutodesactivar()
 {
     //return (bool)dWorldGetAutoDisableFlag(MundoODE);
 	if(dWorldGetAutoDisableFlag(MundoODE) == 0) {
@@ -189,56 +189,56 @@ bool GDT::fisica::Mundo::ValorModoAutodesactivar()
 
 /*!
 */
-void GDT::fisica::Mundo::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
+void GDT::Fisica::Mundo::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
 {
     dWorldSetAutoDisableLinearThreshold(MundoODE, UmbralLinear);
 }
 
 /*!
 */
-dReal GDT::fisica::Mundo::ValorAutodesactivacion_por_UmbralLinear()
+dReal GDT::Fisica::Mundo::ValorAutodesactivacion_por_UmbralLinear()
 {
     return dWorldGetAutoDisableLinearThreshold(MundoODE);
 }
 
 /*!
 */
-void GDT::fisica::Mundo::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
+void GDT::Fisica::Mundo::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
 {
     dWorldSetAutoDisableAngularThreshold(MundoODE, UmbralAngular);
 }
 
 /*!
 */
-dReal GDT::fisica::Mundo::ValorAutoDesactivacion_por_UmbralAngular()
+dReal GDT::Fisica::Mundo::ValorAutoDesactivacion_por_UmbralAngular()
 {
     return dWorldGetAutoDisableAngularThreshold(MundoODE);
 }
 
 /*!
 */
-void GDT::fisica::Mundo::AutoDesactivacion_por_Iteraciones(int Iteraciones)
+void GDT::Fisica::Mundo::AutoDesactivacion_por_Iteraciones(int Iteraciones)
 {
     dWorldSetAutoDisableSteps(MundoODE, Iteraciones);
 }
 
 /*!
 */
-int GDT::fisica::Mundo::ValorAutoDesactivacion_por_Iteraciones()
+int GDT::Fisica::Mundo::ValorAutoDesactivacion_por_Iteraciones()
 {
     return dWorldGetAutoDisableSteps(MundoODE);
 }
 
 /*!
 */
-void GDT::fisica::Mundo::AutoDesactivacion_por_Tiempo(dReal Tiempo)
+void GDT::Fisica::Mundo::AutoDesactivacion_por_Tiempo(dReal Tiempo)
 {
     dWorldSetAutoDisableTime(MundoODE, Tiempo);
 }
 
 /*!
 */
-dReal GDT::fisica::Mundo::ValorAutoDesactivacion_por_Tiempo()
+dReal GDT::Fisica::Mundo::ValorAutoDesactivacion_por_Tiempo()
 {
     return dWorldGetAutoDisableTime(MundoODE);
 }
@@ -257,7 +257,7 @@ void CerrarODE(){
 
 /*!
 */
-vector3df GDT::fisica::Mundo::Impulso_a_Fuerza(dReal Incremento,vector3df Impulso)
+vector3df GDT::Fisica::Mundo::Impulso_a_Fuerza(dReal Incremento,vector3df Impulso)
 {
     dVector3 vFuerza;
     vector3df vFuerzaR;
@@ -272,13 +272,13 @@ vector3df GDT::fisica::Mundo::Impulso_a_Fuerza(dReal Incremento,vector3df Impuls
 }
 
 /*!
-* Es hom&oacute;logo a GD_Sistema::Render(), pero en vez de dibujar,
+* Es hom&oacute;logo a Sistema::Render(), pero en vez de dibujar,
 * calcula todos los factores f&iacute;sicos en juego.
 *
 * \note Cabe destacar que ODE solamente se dedica calcular. Quien dibuja en pantalla
 * los resultados es el motor Irrlicht.
 */
-void GDT::fisica::Mundo::Actualizar(dReal VelIteracion)
+void GDT::Fisica::Mundo::Actualizar(dReal VelIteracion)
 {
     dWorldStep (MundoODE, VelIteracion);
 }
@@ -286,7 +286,7 @@ void GDT::fisica::Mundo::Actualizar(dReal VelIteracion)
 /*!
 * Es m&aacute;s veloz que Actualizar() pero a la vez m&aacute;s impreciso
 */
-void GDT::fisica::Mundo::Actualzar_Modo_QS(dReal VelIteracion)
+void GDT::Fisica::Mundo::Actualzar_Modo_QS(dReal VelIteracion)
 {
     //dWorldStep(MundoODE,VelIteracion);
     dWorldQuickStep(MundoODE,VelIteracion);
@@ -295,7 +295,7 @@ void GDT::fisica::Mundo::Actualzar_Modo_QS(dReal VelIteracion)
 /*!
 * \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-void GDT::fisica::Mundo::Actualizar_Rapido(dReal VelIteracion)
+void GDT::Fisica::Mundo::Actualizar_Rapido(dReal VelIteracion)
 {
     //dWorldStep(MundoODE,VelIteracion);
     dWorldQuickStep(MundoODE,VelIteracion);
@@ -304,7 +304,7 @@ void GDT::fisica::Mundo::Actualizar_Rapido(dReal VelIteracion)
 /*!
 * Mientras mayor sea el n&uacute;mero, m&aacute;s preciso.
 */
-void GDT::fisica::Mundo::NumIteraciones_modo_QS(int Iteraciones)
+void GDT::Fisica::Mundo::NumIteraciones_modo_QS(int Iteraciones)
 {
     dWorldSetQuickStepNumIterations (MundoODE, Iteraciones);
 }
@@ -312,13 +312,13 @@ void GDT::fisica::Mundo::NumIteraciones_modo_QS(int Iteraciones)
 /*!
 * \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-void GDT::fisica::Mundo::NumIteraciones_Rapidas(int Iteraciones)
+void GDT::Fisica::Mundo::NumIteraciones_Rapidas(int Iteraciones)
 {
     dWorldSetQuickStepNumIterations (MundoODE, Iteraciones);
 }
 
 
-int GDT::fisica::Mundo::ValorNumIteraciones_modo_QS()
+int GDT::Fisica::Mundo::ValorNumIteraciones_modo_QS()
 {
     return dWorldGetQuickStepNumIterations(MundoODE);
 }
@@ -326,38 +326,38 @@ int GDT::fisica::Mundo::ValorNumIteraciones_modo_QS()
 /*!
 * \author Sir_Gon <sir_gon@users.sourceforge.net>
 */
-int GDT::fisica::Mundo::ValorNumIteraciones_Rapidas()
+int GDT::Fisica::Mundo::ValorNumIteraciones_Rapidas()
 {
     return dWorldGetQuickStepNumIterations(MundoODE);
 }
 
-void GDT::fisica::Mundo::VelocidadMaximaDeCorreccion_por_Contacto(dReal vel)
+void GDT::Fisica::Mundo::VelocidadMaximaDeCorreccion_por_Contacto(dReal vel)
 {
     dWorldSetContactMaxCorrectingVel(MundoODE, vel);
 }
-dReal GDT::fisica::Mundo::ValorVelocidadMaximaDeCorreccion_por_Contacto()
+dReal GDT::Fisica::Mundo::ValorVelocidadMaximaDeCorreccion_por_Contacto()
 {
     return dWorldGetContactMaxCorrectingVel(MundoODE);
 }
 
-void GDT::fisica::Mundo::SuperficieDeContacto(dReal Profundidad)
+void GDT::Fisica::Mundo::SuperficieDeContacto(dReal Profundidad)
 {
     dWorldSetContactSurfaceLayer (MundoODE,Profundidad);
 }
-dReal GDT::fisica::Mundo::ValorSuperficieDeContacto()
+dReal GDT::Fisica::Mundo::ValorSuperficieDeContacto()
 {
     return dWorldGetContactSurfaceLayer(MundoODE);
 }
 
-void GDT::fisica::Mundo::Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones)
+void GDT::Fisica::Mundo::Actualizar_Modo_SF1(dReal VelIteracion, int MaxIteraciones)
 {
     dWorldStepFast1(MundoODE, VelIteracion, MaxIteraciones);
 }
-void GDT::fisica::Mundo::ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion)
+void GDT::Fisica::Mundo::ProfundidadDeAutoactivacionSF1(int ProfundidadDeAutoactivacion)
 {
     dWorldSetAutoEnableDepthSF1(MundoODE, ProfundidadDeAutoactivacion);
 }
-int GDT::fisica::Mundo::ValorProfundidadDeAutoactivacionSF1()
+int GDT::Fisica::Mundo::ValorProfundidadDeAutoactivacionSF1()
 {
     return dWorldGetAutoEnableDepthSF1(MundoODE);
 }
@@ -365,7 +365,7 @@ int GDT::fisica::Mundo::ValorProfundidadDeAutoactivacionSF1()
 //*******************************************************
 //********************* Funciones ***********************
 //*******************************************************
-void GDT::fisica::QuaternionToEuler(const dQuaternion quaternion,irr::core::vector3df &euler){
+void GDT::Fisica::QuaternionToEuler(const dQuaternion quaternion,irr::core::vector3df &euler){
       dReal w,x,y,z;
       w=quaternion[0];
       x=quaternion[1];
@@ -383,7 +383,7 @@ void GDT::fisica::QuaternionToEuler(const dQuaternion quaternion,irr::core::vect
       euler.Y = (irr::f32) (asin(-2.0 * (x*z - y*w))*irr::core::RADTODEG64);
 }
 
-void GDT::fisica::EulerToQuaternion(const irr::core::vector3df &euler, dQuaternion quaternion){
+void GDT::Fisica::EulerToQuaternion(const irr::core::vector3df &euler, dQuaternion quaternion){
       double _heading=euler.Z*irr::core::DEGTORAD64/2.0;
       double _attitude=euler.Y*irr::core::DEGTORAD64/2.0;
       double _bank=euler.X*irr::core::DEGTORAD64/2.0;
@@ -405,7 +405,7 @@ void GDT::fisica::EulerToQuaternion(const irr::core::vector3df &euler, dQuaterni
       quaternion[3]=(dReal) (s1*c2*c3 - c1*s2*s3);
 }
 
-vector3df GDT::fisica::RealAVector3d(const dReal* Val)
+vector3df GDT::Fisica::RealAVector3d(const dReal* Val)
 {
     vector3df Vectr;
     Vectr.X=(float)Val[0];
@@ -414,7 +414,7 @@ vector3df GDT::fisica::RealAVector3d(const dReal* Val)
     return Vectr;
 }
 
-dReal* GDT::fisica::Vector3dAReal(const vector3df Val)
+dReal* GDT::Fisica::Vector3dAReal(const vector3df Val)
 {
     dReal* Vectr;
 

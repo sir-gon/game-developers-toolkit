@@ -22,7 +22,7 @@
 #include "gd_malla.h" // class's header file
 
 // class constructor
-GD_Malla::GD_Malla()
+GDT::Nodo::Malla::Malla()
 {
 
 
@@ -30,7 +30,7 @@ GD_Malla::GD_Malla()
 
 
 // class destructor
-GD_Malla::~GD_Malla()
+GDT::Nodo::Malla::~Malla()
 {
 	// insert your code here
 }
@@ -61,13 +61,13 @@ Ejemplo:
 Dragon.Cargar ("media/dragon.x");
 \endcode
 */
-void GD_Malla::Cargar(char *filename)
+void GDT::Nodo::Malla::Cargar(char *filename)
 {
 
 
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
 
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     mesh = mesh_smgr->getMesh(filename); //Cargando el objetos segun el archivo
     static_mesh=mesh->getMesh(0);// Malla estatica
@@ -126,12 +126,12 @@ Ejemplo:
 Pared.CargarTengentes("Cuarto.x");
 \endcode
 */
-void GD_Malla::CargarTangentes(char *filename)
+void GDT::Nodo::Malla::CargarTangentes(char *filename)
 {
 
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
 
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     mesh = mesh_smgr->getMesh(filename); //Cargando el objetos segun el archivo
     static_mesh=mesh->getMesh(0);// Malla estatica
@@ -155,12 +155,12 @@ void GD_Malla::CargarTangentes(char *filename)
 /*!
 \deprecated vea CrearCaja().
 */
-void GD_Malla::CrearCubo(  )
+void GDT::Nodo::Malla::CrearCubo(  )
 {
     // REEMPLAZADO PARA COMPATIBILIDAD CON VC+ 2005 EXPRESS
-    //RegistrarDevice(GD_Sistema::GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-	RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    //RegistrarDevice(Sistema::Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+	RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     static_mesh=DibujarCubo();
 
@@ -206,10 +206,10 @@ Ejemplo:
 Caja.CreaCaja(10,10,10);
 \endcode
 */
-void GD_Malla::CrearCaja(float tamx, float tamy, float tamz )
+void GDT::Nodo::Malla::CrearCaja(float tamx, float tamy, float tamz )
 {
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     static_mesh=DibujarCubo();
 
@@ -247,7 +247,7 @@ Ejemplo:
 Caja.CreaCubo(10,10,10);
 \endcode
 */
-void GD_Malla::CrearCubo(float tamx, float tamy, float tamz )
+void GDT::Nodo::Malla::CrearCubo(float tamx, float tamy, float tamz )
 {
 	CrearCaja(tamx,tamy,tamz);
 }
@@ -261,10 +261,10 @@ Ejemplo:
 Piso.CrearPlano (100, 100);
 \endcode
 */
-void GD_Malla::CrearPlano( int tx, int ty )
+void GDT::Nodo::Malla::CrearPlano( int tx, int ty )
 {
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     static_mesh=DibujarPlano(tx,ty);
 
@@ -306,10 +306,10 @@ Ejemplo:
 Tarro.CrearCilindro( 2,2,1 );
 \endcode
 */
-void GD_Malla::CrearCilindro( int tx, int ty, f32 radio  )
+void GDT::Nodo::Malla::CrearCilindro( int tx, int ty, f32 radio  )
 {
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     static_mesh=DibujarCilindro( tx, ty, radio);
 
@@ -353,10 +353,10 @@ Ejemplo:
 Conito.CrearCono( 2,2,1 );
 \endcode
 */
-void GD_Malla::CrearCono( int tx, int ty, f32 radio )
+void GDT::Nodo::Malla::CrearCono( int tx, int ty, f32 radio )
 {
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     static_mesh=DibujarCono( tx, ty, radio);
 
@@ -398,10 +398,10 @@ Ejemplo:
 Bola.CrearEsfera( 10 );
 \endcode
 */
-void GD_Malla::CrearEsfera( float radio, int polynum )
+void GDT::Nodo::Malla::CrearEsfera( float radio, int polynum )
 {
-    RegistrarDevice(GD_Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
-    mesh_smgr=GD_Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
+    RegistrarDevice(Sistema::device); //Asignando el dispositivo principal al dispositivo de escena de la clase nodo.
+    mesh_smgr=Sistema::device->getSceneManager(); //Creando un Manejador de escena (Scene Manager)
 
     nodon=mesh_smgr->addSphereSceneNode ( radio, polynum );
 
@@ -426,14 +426,14 @@ void GD_Malla::CrearEsfera( float radio, int polynum )
 }
 
 /*!
-M&aacute;s conocidas como "stencil shadows", todo se hace autom&aacute;ticamente seg&uacute;n las luces que haya y su posici&oacute;. Si se desea controlar el n&uacute;mero de luces que proyecten sombras GD_Luz tiene comandos para configurar si crean o no sombras.
+M&aacute;s conocidas como "stencil shadows", todo se hace autom&aacute;ticamente seg&uacute;n las luces que haya y su posici&oacute;. Si se desea controlar el n&uacute;mero de luces que proyecten sombras Luz tiene comandos para configurar si crean o no sombras.
 
 Ejemplo:
 \code
 Dragon.ProyectarSombra();
 \endcode
 */
-void GD_Malla::ProyectarSombra()
+void GDT::Nodo::Malla::ProyectarSombra()
 {
    nodoAM->addShadowVolumeSceneNode();
 }
@@ -447,7 +447,7 @@ Ejemplo:
 Cuadro = Dragon.RetonarCuadro();
 \endcode
 */
-int GD_Malla::RetornarCuadro()
+int GDT::Nodo::Malla::RetornarCuadro()
 {
    return nodoAM->getFrameNr();
 }
@@ -455,7 +455,7 @@ int GD_Malla::RetornarCuadro()
 /*!
 \param CuadrosPorSegundo son los cuadros por segundo (CPS)
 */
-void GD_Malla::VelocidadAnimacion(int CuadrosPorSegundo)
+void GDT::Nodo::Malla::VelocidadAnimacion(int CuadrosPorSegundo)
 {
       RegistrarVelAni(CuadrosPorSegundo);
       nodoAM->setAnimationSpeed((f32)velani);
@@ -467,14 +467,14 @@ Ejemplo:
 Dragon.CuadroActual(120);
 \endcode
 */
-void GD_Malla::CuadroActual(int cuadro)
+void GDT::Nodo::Malla::CuadroActual(int cuadro)
 {
     nodoAM->setCurrentFrame(cuadro);
     nodoAM->setAnimationSpeed((f32)velani);
 }
 
 //! Establece el ciclo de la animacion.
-void GD_Malla::CicloCuadros(int ini, int fin)
+void GDT::Nodo::Malla::CicloCuadros(int ini, int fin)
 {
      
      // Evita el error al colocar 0 como el inicio
@@ -524,7 +524,7 @@ Ejemplo:
 Dragon.CicloMD2( RUN );
 \endcode
 */
-void GD_Malla::CicloMD2(irr::scene::EMD2_ANIMATION_TYPE tipoAnimacionMD2 )
+void GDT::Nodo::Malla::CicloMD2(irr::scene::EMD2_ANIMATION_TYPE tipoAnimacionMD2 )
 {
 
 //     printf("tipoAnimacionMD2 = %d, old = %d\n",tipoAnimacionMD2,old_aniTipoActual);
@@ -542,18 +542,18 @@ void GD_Malla::CicloMD2(irr::scene::EMD2_ANIMATION_TYPE tipoAnimacionMD2 )
 }
 
 
-void GD_Malla::Repeticion(bool enCiclo)
+void GDT::Nodo::Malla::Repeticion(bool enCiclo)
 {
      nodoAM->setLoopMode( enCiclo );
 }
 
-void GD_Malla::ControlAnimacion(bool control)
+void GDT::Nodo::Malla::ControlAnimacion(bool control)
 {
      controlani=control;
 }
 
 /*!
-Se usa para remplazar un GD_Malla con un nodo de un hueso para poder manejarlo.
+Se usa para remplazar un Malla con un nodo de un hueso para poder manejarlo.
 Se usa conjuntamente con RetornarNodoHuesoX y RetornarNodoHuesoMS3D
 
 Ejemplo:
@@ -561,7 +561,7 @@ Ejemplo:
 nHueso.Remplazar( RetornarNodoHuesoX(brazo ));
 \endcode
 */
-void GD_Malla::Reemplazar(ISceneNode* nod_R)
+void GDT::Nodo::Malla::Reemplazar(ISceneNode* nod_R)
 {
      nodon=nod_R;
 }
@@ -577,7 +577,7 @@ HuesoManoD.Reemplazar( Protagonista.RetornarNodoHuesoX( "Bip01_R_Hand" ) );
 HuesoManoD.Anclar( Espada )
 \endcode
 */
-ISceneNode* GD_Malla::RetornarNodoHuesoX(c8* Nombre )
+ISceneNode* GDT::Nodo::Malla::RetornarNodoHuesoX(c8* Nombre )
 {
 
    ISceneNode* nodo_hueso = nodoAM->getXJointNode(Nombre);
@@ -589,7 +589,7 @@ Para que al remplazarlo con el comando Reemplazar() pueda "anclarle" un objeto, 
 
 \image html anclarahueso.png
 */
-ISceneNode* GD_Malla::RetornarNodoHuesoMS3D(c8* Nombre )
+ISceneNode* GDT::Nodo::Malla::RetornarNodoHuesoMS3D(c8* Nombre )
 {
 
    ISceneNode* nodo_hueso = nodoAM->getMS3DJointNode(Nombre);
@@ -597,7 +597,7 @@ ISceneNode* GD_Malla::RetornarNodoHuesoMS3D(c8* Nombre )
 }
 
 //From Irrforge.org
-IMesh* GD_Malla::DibujarCubo()
+IMesh* GDT::Nodo::Malla::DibujarCubo()
 {
       SMesh* msh = new SMesh();
       SMeshBuffer* mb = new SMeshBuffer();
@@ -628,7 +628,7 @@ IMesh* GD_Malla::DibujarCubo()
 }
 
 
-IMesh* GD_Malla::DibujarPlano(int gridX, int gridY)
+IMesh* GDT::Nodo::Malla::DibujarPlano(int gridX, int gridY)
 {
   SMesh* msh = new SMesh();
   SMeshBuffer* mb = new SMeshBuffer();
@@ -657,7 +657,7 @@ IMesh* GD_Malla::DibujarPlano(int gridX, int gridY)
   return msh;
 }
 
-IMesh* GD_Malla::DibujarCilindro(int gridX, int gridY,f32 ridus)
+IMesh* GDT::Nodo::Malla::DibujarCilindro(int gridX, int gridY,f32 ridus)
 {
           SMesh* msh = new SMesh();
           SMeshBuffer* mb = new SMeshBuffer();
@@ -700,7 +700,7 @@ IMesh* GD_Malla::DibujarCilindro(int gridX, int gridY,f32 ridus)
 }
 
 
-IMesh* GD_Malla::DibujarCono(int gridX, int gridY,f32 ridus)
+IMesh* GDT::Nodo::Malla::DibujarCono(int gridX, int gridY,f32 ridus)
 {
   SMesh* msh = new SMesh();
   SMeshBuffer* mb = new SMeshBuffer();
@@ -745,19 +745,19 @@ IMesh* GD_Malla::DibujarCono(int gridX, int gridY,f32 ridus)
 }
 
 
-IMesh* GD_Malla::DibujarEsfera()
+IMesh* GDT::Nodo::Malla::DibujarEsfera()
 {
     // return msh
     // La siguiente linea fue agregada SOLO para probar con VC++ 2005
     return static_mesh;
 }
 
-void GD_Malla::RegistrarVelAni(int va)
+void GDT::Nodo::Malla::RegistrarVelAni(int va)
 {
     velani = va;
 }
 
-void GD_Malla::CalibrarColisionConEscenario(float x, float y, float z)
+void GDT::Nodo::Malla::CalibrarColisionConEscenario(float x, float y, float z)
 {
     intersec_coli_a->setScale(vector3df(x,y,z));
     intersec_coli_b->setScale(vector3df(x,y,z));
@@ -767,21 +767,21 @@ void GD_Malla::CalibrarColisionConEscenario(float x, float y, float z)
     intersec_coli_f->setScale(vector3df(x,y,z));
 }
 
-void GD_Malla::CalibrarColisionConEscenarioX(float x, float y, float z)
+void GDT::Nodo::Malla::CalibrarColisionConEscenarioX(float x, float y, float z)
 {
     intersec_coli_a->setScale(vector3df(x,y,z));
     intersec_coli_b->setScale(vector3df(x,y,z));
 
 }
 
-void GD_Malla::CalibrarColisionConEscenarioY(float x, float y, float z)
+void GDT::Nodo::Malla::CalibrarColisionConEscenarioY(float x, float y, float z)
 {
     intersec_coli_c->setScale(vector3df(x,y,z));
     intersec_coli_d->setScale(vector3df(x,y,z));
 
 }
 
-void GD_Malla::CalibrarColisionConEscenarioZ(float x, float y, float z)
+void GDT::Nodo::Malla::CalibrarColisionConEscenarioZ(float x, float y, float z)
 {
     intersec_coli_e->setScale(vector3df(x,y,z));
     intersec_coli_f->setScale(vector3df(x,y,z));

@@ -38,22 +38,48 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+
+namespace GDT
+{
+
+namespace Nodo
+{
+
 //! Efectos de Agua
-class GD_Agua : public GD_Nodo
+class Agua : public NodoBase
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Agua();
+		_GDT_EXPORT_ Agua();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Agua();
+		_GDT_EXPORT_ ~Agua();
 
      //! Malla que contiene el plano
      scene::IAnimatedMesh* mesh; 
 
     //! Crea una superficie de agua con su movimiento que se actualiza autom&aacute;ticamente.
-    _GDT_EXPORT_ void CrearNormal(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t);
+    _GDT_EXPORT_ void CrearNormal(
+	float x, float y,
+	int nx, int ny,
+	int tx,int ty,
+	f32 AlturaOnda,
+	f32 VelocidadOnda,
+	f32 LongitudOnda,
+	char* textura
+	);
     //! Es igual que CrearNormal pero realista, los par&aacute;metros son los mismos excepto t2 que es la textura del piso.
-    _GDT_EXPORT_ void CrearRealista(float x, float y, int nx, int ny,int tx,int ty,f32 AlturaOnda,f32 VelocidadOnda, f32 LongitudOnda, char* t1, char* t2);
+    _GDT_EXPORT_ void CrearRealista(
+	float x, float y,
+	int nx, int ny,
+	int tx, int ty,
+	f32 AlturaOnda,
+	f32 VelocidadOnda,
+	f32 LongitudOnda,
+	char* texturaAgua, char* texturaPiso);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_AGUA_H

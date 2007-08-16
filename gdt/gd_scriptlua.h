@@ -54,16 +54,22 @@ extern "C"
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Script
+{
+
 //! Sistema de Scripting LUA
-class GD_ScriptLua
+class Lua
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_ScriptLua();
-	_GDT_EXPORT_ GD_ScriptLua(lua_State* L);
+	_GDT_EXPORT_ Lua();
+	_GDT_EXPORT_ Lua(lua_State* L);
 	
 	// class destructor
-	_GDT_EXPORT_ ~GD_ScriptLua();
+	_GDT_EXPORT_ ~Lua();
 	
 	//---------
 	//Funciones
@@ -142,6 +148,10 @@ private:
 	void Priv_LlegarATabla( char *strCadenaTabla );
 
 };
+
+} // FIN NAMESPACE SCRIPT
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_SISTEMALUA_H
 

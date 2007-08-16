@@ -56,11 +56,16 @@
 #define ESCUDO_CILINDRO 4
 #define ESCUDO_SEMICILINDRO   5
 
+namespace GDT
+{
+
+namespace Fisicas
+{
 
 //static NewtonWorld* nWorld=NewtonCreate (NULL,NULL);
 static NewtonWorld* nWorld;
 
-class GD_FisicasNwtMundo
+class MundoNwt
 {
 
    public:
@@ -89,8 +94,8 @@ class GD_FisicasNwtMundo
    //triangle3df Triangulos[];
 
 
-   _GDT_EXPORT_ GD_FisicasNwtMundo();
-   _GDT_EXPORT_ ~GD_FisicasNwtMundo();
+   _GDT_EXPORT_ MundoNwt();
+   _GDT_EXPORT_ ~MundoNwt();
 
    _GDT_EXPORT_ void DestruyeNewtoneano();
 
@@ -229,6 +234,11 @@ void LevelCollisionCallback (
 	// NewtonTreeCollisionSetFaceAtribute (treeCollision, indexArray, new id);
 
 }
+
+} // FIN NAMESPACE FISICAS
+
+} // FIN NAMESPACE GDT
+
 #endif // FISICAS_NEWTON_NWTNO_H
 
 #endif // _GDT_FISICAS_NEWTON_

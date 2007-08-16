@@ -57,28 +57,30 @@ struct stMouse
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 
-//class GD_Malla;
+namespace GDT
+{
 
-class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
+//! Controles Predise&ntilde;ados
+class ControlesPrediseniados : public Matematicas, public Sistema
 {
    private:
-      GD_Sistema sistema;
+      Sistema sistema;
    public:
    //protected:
       stTeclado Teclado;
       stMouse Mouse;
 
 
-      _GDT_EXPORT_ GD_ControlesPrediseniados();
-      _GDT_EXPORT_ GD_ControlesPrediseniados(GD_Sistema sistemaGeneral);
-      _GDT_EXPORT_ ~GD_ControlesPrediseniados();
+      _GDT_EXPORT_ ControlesPrediseniados();
+      _GDT_EXPORT_ ControlesPrediseniados(Sistema sistemaGeneral);
+      _GDT_EXPORT_ ~ControlesPrediseniados();
 
       _GDT_EXPORT_ void TeclasActivas(int iUp,int iDown,int iRight,int iLeft,int iControl,int iShift);
       _GDT_EXPORT_ void ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift);
 
       //Plantilla de tipos de dato que usan la clase nodo
-      _GDT_EXPORT_ void ActivarSistema(GD_Sistema sistem);
-      _GDT_EXPORT_ void TecladoUDRL(GD_Malla Malla);
+      _GDT_EXPORT_ void ActivarSistema(Sistema sistem);
+      _GDT_EXPORT_ void TecladoUDRL(GDT::Nodo::Malla MallaX);
       _GDT_EXPORT_ void TecladoUDRLCtrlShift();
       _GDT_EXPORT_ void TecladoURLDMouseMove();
       _GDT_EXPORT_ void TecladoUDRLCtrlShiftMouseMove();
@@ -89,4 +91,7 @@ class GD_ControlesPrediseniados : public GD_Matematicas, public GD_Sistema
       _GDT_EXPORT_ void TecladoUDRLCtrlShiftMouseMove(stTeclado *pTeclado,stMouse *pMouse);
 
 };
+
+} // FIN NAMESPACE GDT
+
 #endif //CONTROLESPREDISENIADOS_H

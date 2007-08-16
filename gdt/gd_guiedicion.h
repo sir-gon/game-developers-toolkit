@@ -45,8 +45,8 @@ namespace GDT
 namespace Gui
 {
 
-//! Control GUI "Cuadro de Edición" (EditBox)
-class Edicion : public GD_gui
+//! Control GUI "Cuadro de Edici&oacute;n" (EditBox)
+class Edicion : public GuiBase
 {
 public:
 	// class constructor
@@ -64,7 +64,7 @@ public:
 	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

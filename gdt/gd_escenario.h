@@ -38,22 +38,32 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
+
 //! Mallas de Escenario
-class GD_Escenario : public GD_Nodo
+class Escenario : public NodoBase
 {
 	public:
-		// class constructor
-		_GDT_EXPORT_ GD_Escenario();
-		// class destructor
-		_GDT_EXPORT_ ~GD_Escenario();
-		
-		_GDT_EXPORT_ void CargarBSP(char *filenamePK3, char *filenameBSP);
-		_GDT_EXPORT_ void Cargar(char *filename);
-
-		IAnimatedMesh* mesh;
-		IMesh* meshs;
-		ITriangleSelector* selector;
-		_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
+	// class constructor
+	_GDT_EXPORT_ Escenario();
+	// class destructor
+	_GDT_EXPORT_ ~Escenario();
+	
+	_GDT_EXPORT_ void CargarBSP(char *filenamePK3, char *filenameBSP);
+	_GDT_EXPORT_ void Cargar(char *filename);
+	
+	IAnimatedMesh* mesh;
+	IMesh* meshs;
+	ITriangleSelector* selector;
+	_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_ESCENARIO_H

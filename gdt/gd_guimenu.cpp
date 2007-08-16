@@ -57,16 +57,15 @@ Menu.Crear();
 */
 void GDT::Gui::Menu::Crear(IGUIElement* padre)
 {
-    RegistrarDevice(GD_Sistema::device);
-
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-
-    MenuID=GD_Sistema::ContadorElementosGui++;
-    menu=guienv->addMenu(padre, MenuID);
-
-    guiele = menu;
-
+	RegistrarDevice(Sistema::device);
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	MenuID=Sistema::ContadorElementosGui++;
+	menu=guienv->addMenu(padre, MenuID);
+	
+	guiele = menu;
 }
 
 /*!
@@ -100,7 +99,7 @@ void GDT::Gui::Menu::InsertarSeparador(void)
 /*!
 Ejemplo:
 \code
-GD_GuiMenu MenuArchivo( Menu.SubMenu(0) );
+GuiMenu MenuArchivo( Menu.SubMenu(0) );
 \endcode
 */
 IGUIContextMenu* GDT::Gui::Menu::SubMenu(int  nID)

@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 /*!
-* \class GD_GuiDialogoAbrir
+* \class GDT::Gui::DialogoAbrir
 *
 * Este Control GUI nos permite interactuar con el sistema de archivos,
 * mostrando las carpetas y archivos, y brindando la posibilidad de navegar
@@ -55,12 +55,12 @@ GDT::Gui::DialogoAbrir::~DialogoAbrir()
 */
 void GDT::Gui::DialogoAbrir::Crear(wchar_t * titulo, bool modal, IGUIElement* padre)
 {
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
-	IVideoDriver* driver = midevice->getVideoDriver();
+	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	opendlg=guienv->addFileOpenDialog(titulo, modal, padre, GD_Sistema::ContadorElementosGui++);
+	opendlg=guienv->addFileOpenDialog(titulo, modal, padre, Sistema::ContadorElementosGui++);
 	guiele = opendlg;
 }
 

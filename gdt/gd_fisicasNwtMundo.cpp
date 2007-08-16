@@ -24,7 +24,7 @@
 #include "gd_fisicasNwtMundo.h"
 
 /*!
-* \class GD_FisicasNwtMundo
+* \class GDT::Fisicas::MundoNwt
 *
 * Implementa un Mundo de f&iacute;sicas Newton.
 *
@@ -33,16 +33,16 @@
 * \author Astucia
 */
 
-GD_FisicasNwtMundo::GD_FisicasNwtMundo()
+GDT::Fisicas::MundoNwt::MundoNwt()
 {};
 
-GD_FisicasNwtMundo::~GD_FisicasNwtMundo()
+GDT::Fisicas::MundoNwt::~MundoNwt()
 {};
 
-void GD_FisicasNwtMundo::DestruyeNewtoneano()
+void GDT::Fisicas::MundoNwt::DestruyeNewtoneano()
 {};
 
-NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
+NewtonCollision* GDT::Fisicas::MundoNwt::CreaEscudo ( int Escudo )
 {
 	NewtonCollision* collision;
 
@@ -66,9 +66,9 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 0:
 		{
 			//Caja
-			Largo= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-boundingBox.MinEdge.X );
-			Alto= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
-			Ancho= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-boundingBox.MinEdge.Z );
+			Largo= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-boundingBox.MinEdge.X );
+			Alto= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Ancho= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-boundingBox.MinEdge.Z );
 
 			printf ( "Largo: %f, Alto: %f, Ancho: %f\n",Largo,Alto,Ancho );
 
@@ -81,9 +81,9 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 1:
 		{
 			//Esfera
-			RadioX= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			RadioY= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-centro.Y );
-			RadioZ= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-centro.Z );
+			RadioX= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			RadioY= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-centro.Y );
+			RadioZ= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Z-centro.Z );
 
 			printf ( "RadioX: %f, RadioY: %f, RadioZ: %f\n",RadioX,RadioY,RadioZ );
 
@@ -95,8 +95,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 2:
 		{
 			//Cono
-			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCone ( nMundo,Radio,Altura,NULL );
@@ -106,8 +106,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 3:
 		{
 			//Capsula
-			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCapsule ( nMundo,Radio,Altura,NULL );
@@ -117,8 +117,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 4:
 		{
 			//Cilindro
-			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateCylinder ( nMundo,Radio,Altura,NULL );
@@ -128,8 +128,8 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 		case 5:
 		{
 			//SemiCilindro
-			Radio= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
-			Altura= ( dFloat ) GD_Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
+			Radio= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.X-centro.X );
+			Altura= ( dFloat ) GDT::Matematicas::Absoluto ( ( double ) boundingBox.MaxEdge.Y-boundingBox.MinEdge.Y );
 
 			//Creando colision
 			collision = NewtonCreateChamferCylinder ( nMundo,Radio,Altura,NULL/*(dFloat*)&matrix.M[0]*/ );
@@ -140,7 +140,7 @@ NewtonCollision* GD_FisicasNwtMundo::CreaEscudo ( int Escudo )
 
 }
 
-void GD_FisicasNwtMundo::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
+void GDT::Fisicas::MundoNwt::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
 {
 
 	//Cargando el objeto Malla.
@@ -167,7 +167,7 @@ void GD_FisicasNwtMundo::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,
 
 }
 
-void GD_FisicasNwtMundo::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
+void GDT::Fisicas::MundoNwt::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
 {
 
 	vector3df e0, e1, area;
@@ -180,7 +180,7 @@ void GD_FisicasNwtMundo::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,IScen
 
 
 	// load map  ----------------------------------------------------------------
-	//Esenario.Cargar("media/warehouse/warehouse.x",true,Sistema.RetornarDevice());
+	//Esenario.Cargar("media/warehouse/warehouse.x",true,System.RetornarDevice());
 	//Esenario.Posicionar(0.0,0.0,0.0);
 	//---------------------------------------------------------------------------
 
@@ -244,12 +244,12 @@ void GD_FisicasNwtMundo::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,IScen
 }
 
 
-void GD_FisicasNwtMundo::AsignaMatriz ( const matrix4 mat )
+void GDT::Fisicas::MundoNwt::AsignaMatriz ( const matrix4 mat )
 {
 	NewtonBodySetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
 }
 
-void GD_FisicasNwtMundo::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
+void GDT::Fisicas::MundoNwt::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
 {
 	// set the body mass and inertia
 	masa=mass;
@@ -259,26 +259,26 @@ void GD_FisicasNwtMundo::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat Inerci
 	NewtonBodySetMassMatrix ( pCuerpoNwtn, ( dFloat ) masa, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GD_FisicasNwtMundo::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
+void GDT::Fisicas::MundoNwt::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
 {
 	AsignarMasa ( ( dFloat ) mass, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GD_FisicasNwtMundo::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
+void GDT::Fisicas::MundoNwt::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={OX,OY,OZ,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-void GD_FisicasNwtMundo::AsignarOmega ( vector3df vOmega )
+void GDT::Fisicas::MundoNwt::AsignarOmega ( vector3df vOmega )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={ ( dFloat ) vOmega.X, ( dFloat ) vOmega.Y, ( dFloat ) vOmega.Z,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-vector3df GD_FisicasNwtMundo::AsignarFuerza ( float X,float Y,float Z )
+vector3df GDT::Fisicas::MundoNwt::AsignarFuerza ( float X,float Y,float Z )
 {
 	fuerza.X=X;
 	fuerza.Y=Y;
@@ -287,7 +287,7 @@ vector3df GD_FisicasNwtMundo::AsignarFuerza ( float X,float Y,float Z )
 	return fuerza;
 }
 
-vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
+vector3df GDT::Fisicas::MundoNwt::AsignarGiro ( float X,float Y,float Z )
 {
 	giro.X=X;
 	giro.Y=Y;
@@ -296,7 +296,7 @@ vector3df GD_FisicasNwtMundo::AsignarGiro ( float X,float Y,float Z )
 	return giro;
 }
 
-void GD_FisicasNwtMundo::AplicarFuerza_Torcion()
+void GDT::Fisicas::MundoNwt::AplicarFuerza_Torcion()
 {
 
 	NwtnFuerza.X=fuerza.X;
@@ -306,13 +306,13 @@ void GD_FisicasNwtMundo::AplicarFuerza_Torcion()
 	NewtonBodySetForceAndTorqueCallback ( pCuerpoNwtn, AplicarFuerza_TorcionParaCallbak );
 }
 
-void GD_FisicasNwtMundo::AsignaMaterial ( int MaterialID )
+void GDT::Fisicas::MundoNwt::AsignaMaterial ( int MaterialID )
 {
 	NewtonBodySetMaterialGroupID ( pCuerpoNwtn, MaterialID );
 }
 
 
-void GD_FisicasNwtMundo::ConvertidorNewtonIrrlicht()
+void GDT::Fisicas::MundoNwt::ConvertidorNewtonIrrlicht()
 {
 	//Cargando los datos del cuerpo Newtoneano en la matriz del cuerpo Irrlicht
 	NewtonBodyGetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
@@ -327,7 +327,7 @@ void GD_FisicasNwtMundo::ConvertidorNewtonIrrlicht()
 
 }
 
-ISceneNode* GD_FisicasNwtMundo::Actualizar()
+ISceneNode* GDT::Fisicas::MundoNwt::Actualizar()
 {
 
 	// set the transform call back function
@@ -340,30 +340,30 @@ ISceneNode* GD_FisicasNwtMundo::Actualizar()
 	return nodoMalla;
 }
 
-void GD_FisicasNwtMundo::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
+void GDT::Fisicas::MundoNwt::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
 {
-	//GD_Matematicas SMT;
+	//GDT::Matematicas SMT;
 
-	velmov=GD_Matematicas::Potencia ( velmov,2.0 );
-	velgiro=GD_Matematicas::Potencia ( velgiro,2.0 );
+	velmov=GDT::Matematicas::Potencia ( velmov,2.0 );
+	velgiro=GDT::Matematicas::Potencia ( velgiro,2.0 );
 	NewtonBodySetFreezeTreshold ( pCuerpoNwtn,velmov,velgiro,maxFPS );
 }
 
-void GD_FisicasNwtMundo::AsignarMatrizRecursivamente ( const matrix4 mat )
+void GDT::Fisicas::MundoNwt::AsignarMatrizRecursivamente ( const matrix4 mat )
 {
 	NewtonBodySetMatrixRecursive ( pCuerpoNwtn, ( dFloat* ) &mat );
 }
 
-void GD_FisicasNwtMundo::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
+void GDT::Fisicas::MundoNwt::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn,vecVelocidadDelta,vecVelocidadDelta );
 }
-void GD_FisicasNwtMundo::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
+void GDT::Fisicas::MundoNwt::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn, ( dFloat* ) &vecVelocidadDelta, ( dFloat* ) &vecPuntoDeImpulso );
 }
 
-bool GD_FisicasNwtMundo::StatusActivo()
+bool GDT::Fisicas::MundoNwt::StatusActivo()
 {
 	return ( bool ) NewtonBodyGetSleepingState ( pCuerpoNwtn );
 }
@@ -371,7 +371,7 @@ bool GD_FisicasNwtMundo::StatusActivo()
 
 ///---------------------------------------------------------------------------
 
-matrix4 RowMaj2ColumnMaj ( matrix4 RowMat )
+matrix4 GDT::Fisicas::RowMaj2ColumnMaj ( matrix4 RowMat )
 {
 
 	//int Row,Col;
@@ -406,7 +406,7 @@ matrix4 RowMaj2ColumnMaj ( matrix4 RowMat )
 	return ColMat;
 }
 
-matrix4 ColumnMaj2RowMaj ( matrix4 ColMat )
+matrix4 GDT::Fisicas::ColumnMaj2RowMaj ( matrix4 ColMat )
 {
 	//int Row,Col;
 	//int i=0;
@@ -460,13 +460,13 @@ matrix4 ColumnMaj2RowMaj ( matrix4 ColMat )
 
 ///*************************************************************
 // memory allocation for Newton
-void*  PhysicsAlloc ( int sizeInBytes )
+void*  GDT::Fisicas::PhysicsAlloc ( int sizeInBytes )
 {
 	return malloc ( sizeInBytes );
 }
 
 // memory de-allocation for Newton
-void  PhysicsFree ( void *ptr, int sizeInBytes )
+void  GDT::Fisicas::PhysicsFree ( void *ptr, int sizeInBytes )
 {
 	free ( ptr );
 }

@@ -55,9 +55,14 @@ using namespace gui;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
-//! C&aacute;lculos Matem&aacute;ticos
-class GD_Matematicas
+namespace GDT
 {
+
+//! C&aacute;lculos Matem&aacute;ticos
+class Matematicas
+{
+protected: 
+	static bool init;
 public:
 	//! Arreglo con los cosenos de los 360 &aacute;ngulos
 	_GDT_EXPORT_ static double FastCos[360];
@@ -202,5 +207,6 @@ public:
 
 };
 
+} //FIN NAMESPACE GDT
 
 #endif // GD_MATEMATICAS_H

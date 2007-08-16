@@ -49,12 +49,12 @@ En &eacute;l se podr&aacute;n insertar otros controles.
 void GDT::Gui::Ventana::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal, IGUIElement* padre)
 {
 
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
-	IVideoDriver* driver = midevice->getVideoDriver();
+	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	ventana=guienv->addWindow(rect<s32>(x1,y1,x2,y2),modal, texto, padre, GD_Sistema::ContadorElementosGui++);
+	ventana=guienv->addWindow(rect<s32>(x1,y1,x2,y2),modal, texto, padre, Sistema::ContadorElementosGui++);
 	
 	// Provisional. Desactivamos y ocultamos el Bot&oacute;n de Cerrar.
 	// Porque si la ventana adopta hijos de un error al cerrarse

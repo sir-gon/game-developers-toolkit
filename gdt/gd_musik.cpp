@@ -20,9 +20,9 @@
  ***************************************************************************/
 
 /*!
-* \class GD_Musik
+* \class GDT::Sonido::Musik
 *
-* Trabaja en forma similar a GD_Sonido3D, en el sentido que los m&eacute;todos
+* Trabaja en forma similar a Sonido3D, en el sentido que los m&eacute;todos
 * estan pensados bajo los mismos conceptos.
 *
 * \note Este m&oacute;dulo funciona solo en win32, ya que ocupa la WINAPI.
@@ -34,17 +34,17 @@
 
 #include "gd_musik.h"
 
-GD_Musik::GD_Musik()
+GDT::Sonido::Musik::Musik()
 {
 
 }
-GD_Musik::~GD_Musik()
+GDT::Sonido::Musik::~Musik()
 {
 
   Destruir();
 }
 
-bool GD_Musik::Iniciar(MUSIK_STRING ArchivoMIDI)
+bool GDT::Sonido::Musik::Iniciar(MUSIK_STRING ArchivoMIDI)
 {
 
     lpszArchivoMIDI=ArchivoMIDI;
@@ -97,40 +97,40 @@ bool GD_Musik::Iniciar(MUSIK_STRING ArchivoMIDI)
    return true;
 }
 
-bool GD_Musik::Cargar(MUSIK_STRING ArchivoMIDI)
+bool GDT::Sonido::Musik::Cargar(MUSIK_STRING ArchivoMIDI)
 {
    return Iniciar(ArchivoMIDI);
 }
 
-void GD_Musik::Destruir()
+void GDT::Sonido::Musik::Destruir()
 {
    Volumen(dwStartVolume);   // Reestablece el volumen inicial
    mciSendCommand(wDeviceID, MCI_CLOSE, 0, (DWORD) &mciGenericParms);
 }
 
-void GD_Musik::Inicio_Fin(int Inicio,int Fin)
+void GDT::Sonido::Musik::Inicio_Fin(int Inicio,int Fin)
 {
    mciPlayParms.dwFrom=Inicio;
    mciPlayParms.dwTo=Fin;
 }
 
-void GD_Musik::InicioEn(int Inicio)
+void GDT::Sonido::Musik::InicioEn(int Inicio)
 {
    mciPlayParms.dwFrom=Inicio;
 }
 
-void GD_Musik::FinEn(int Fin)
+void GDT::Sonido::Musik::FinEn(int Fin)
 {
       mciPlayParms.dwTo=Fin;
 }
 
 
-void GD_Musik::Play()
+void GDT::Sonido::Musik::Play()
 {
    mciSendCommand(wDeviceID, MCI_PLAY, MCI_FROM|MCI_NOTIFY,(DWORD) &mciPlayParms);
 }
 
-void GD_Musik::Play(int Inicio,int Fin)
+void GDT::Sonido::Musik::Play(int Inicio,int Fin)
 {
 
    Inicio_Fin(Inicio,Fin);
@@ -138,7 +138,7 @@ void GD_Musik::Play(int Inicio,int Fin)
 
 }
 
-int GD_Musik::Loop()
+int GDT::Sonido::Musik::Loop()
 {
    if(Ejecutando()==false)
       Play();
@@ -146,7 +146,7 @@ int GD_Musik::Loop()
    return 0;
 }
 
-int GD_Musik::Loop(int Inicio, int Fin)
+int GDT::Sonido::Musik::Loop(int Inicio, int Fin)
 {
    if(Ejecutando()==false)
       Play(Inicio,Fin);
@@ -154,22 +154,22 @@ int GD_Musik::Loop(int Inicio, int Fin)
       return 0;
 }
 
-void GD_Musik::Stop()
+void GDT::Sonido::Musik::Stop()
 {
    dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_STOP | MCI_NOTIFY ,(DWORD)(LPVOID) &mciPlayParms);
 }
 
-void GD_Musik::Pause()
+void GDT::Sonido::Musik::Pause()
 {
    dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_PAUSE | MCI_NOTIFY ,(DWORD)(LPVOID) &mciPlayParms);
 }
 
-void GD_Musik::Resume()
+void GDT::Sonido::Musik::Resume()
 {
    dwReturn = mciSendCommand(wDeviceID, MCI_PLAY, MCI_RESUME | MCI_NOTIFY ,(DWORD)(LPVOID) &mciPlayParms);
 }
 
-int GD_Musik::Posicion()
+int GDT::Sonido::Musik::Posicion()
 {
    mciStatusParms.dwItem=MCI_STATUS_POSITION;
 
@@ -178,7 +178,7 @@ int GD_Musik::Posicion()
    return mciStatusParms.dwReturn;
 }
 
-void GD_Musik::Volumen(DWORD dwVolumen)
+void GDT::Sonido::Musik::Volumen(DWORD dwVolumen)
 {
    dwVolumen=dwVolumen * 655;
 
@@ -195,14 +195,14 @@ void GD_Musik::Volumen(DWORD dwVolumen)
 
 // STATUS **********************************************************************************************
 
-int GD_Musik::VolumenActual()
+int GDT::Sonido::Musik::VolumenActual()
 {
    DWORD dwVolume;
    midiOutGetVolume(hmidiout,&dwVolume);
    return (int) dwVolume;
 }
 
-int GD_Musik::TamMIDI()
+int GDT::Sonido::Musik::TamMIDI()
 {
    mciStatusParms.dwItem=MCI_STATUS_LENGTH;
 
@@ -211,7 +211,7 @@ int GD_Musik::TamMIDI()
    return mciStatusParms.dwReturn;
 }
 
-char* GD_Musik::ArchivoActual()
+char* GDT::Sonido::Musik::ArchivoActual()
 {
    char* pszArchivo=NULL;
    sprintf(pszArchivo,"%s",lpszArchivoMIDI);
@@ -219,12 +219,12 @@ char* GD_Musik::ArchivoActual()
    return pszArchivo;
 }
 
-void GD_Musik::DeviceId()
+void GDT::Sonido::Musik::DeviceId()
 {
       mciGetDeviceID(lpszDevice);
 }
 
-bool GD_Musik::Ejecutando()
+bool GDT::Sonido::Musik::Ejecutando()
 {
 
    mciStatusParms.dwItem=MCI_STATUS_MODE;
@@ -242,7 +242,7 @@ bool GD_Musik::Ejecutando()
    return false;
 }
 
-int GD_Musik::StatusEjecutando()
+int GDT::Sonido::Musik::StatusEjecutando()
 {
 
    mciStatusParms.dwItem=MCI_STATUS_MODE;

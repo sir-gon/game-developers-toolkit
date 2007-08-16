@@ -22,25 +22,25 @@
 #include "gd_terreno.h" // class's header file
 
 // class constructor
-GD_Terreno::GD_Terreno()
+GDT::Nodo::Terreno::Terreno()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Terreno::~GD_Terreno()
+GDT::Nodo::Terreno::~Terreno()
 {
 	// insert your code here
 }
 
 
-void GD_Terreno::Crear(char *filenameHMAP,float x, float y, float z)
+void GDT::Nodo::Terreno::Crear(char *filenameHMAP,float x, float y, float z)
 {
      
-    RegistrarDevice(GD_Sistema::device);
+    RegistrarDevice(Sistema::device);
     ISceneManager* mismgr=midevice->getSceneManager();
     
-    IVideoDriver* driver = midevice->getVideoDriver();
+    //IVideoDriver* driver = midevice->getVideoDriver();
     
 	nodt = mismgr->addTerrainSceneNode( filenameHMAP,0,-1, vector3df(0,0,0),vector3df(0,0,0),vector3df(x,y/3,z));
 
@@ -53,12 +53,12 @@ void GD_Terreno::Crear(char *filenameHMAP,float x, float y, float z)
      
 }
 
-ITriangleSelector* GD_Terreno::RetornarDatos()
+ITriangleSelector* GDT::Nodo::Terreno::RetornarDatos()
 {
      return selector;
 }
 
-void GD_Terreno::Texturizar(char *filenameTEX)
+void GDT::Nodo::Terreno::Texturizar(char *filenameTEX)
 {
     
      IVideoDriver* driver = midevice->getVideoDriver();

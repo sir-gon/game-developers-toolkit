@@ -22,7 +22,7 @@
 #ifdef _GDT_SCRIPTING_
 
 /*!
-* \class GD_ScriptLua
+* \class GDT::Script::Lua
 *
 * Provee una capa de Scripting externa, en Lenguaje Lua.
 */
@@ -30,7 +30,7 @@
 #include "gd_scriptlua.h" // class's header file
 
 // class constructor
-GD_ScriptLua::GD_ScriptLua()
+GDT::Script::Lua::Lua()
 {
     // Abrimos Lua
     this->LuaMV = lua_open();
@@ -57,13 +57,13 @@ GD_ScriptLua::GD_ScriptLua()
     lua_pop(this->LuaMV, lua_gettop(this->LuaMV) );
 }
 
-GD_ScriptLua::GD_ScriptLua(lua_State* L)
+GDT::Script::Lua::Lua(lua_State* L)
 {
 	this->LuaMV = L;
 }
 
 // class destructor
-GD_ScriptLua::~GD_ScriptLua()
+GDT::Script::Lua::~Lua()
 {
 	// insert your code here
 }
@@ -76,9 +76,9 @@ GD_ScriptLua::~GD_ScriptLua()
 // Inicio y Cierre
 // *********
 /*!
-\deprecated El constructor ya hace lo mismo.
+* \deprecated El constructor ya hace lo mismo.
 */
-void GD_ScriptLua::Inicializar(void)
+void GDT::Script::Lua::Inicializar(void)
 {
     // Abrimos Lua
     this->LuaMV = lua_open();
@@ -107,28 +107,31 @@ void GD_ScriptLua::Inicializar(void)
 }
 
 /*!
-Cuando el sistema se cierra, se borran todas las variables y tablas que este contenga. Tambi&eacute;n se descargan los archivos scripts, incluyendo las funciones que estos contengan, y las que hayamos registrado nosotros.
-
-Es muy recomendable cerrar el sistema Lua cuando ya no lo necesitemos y as&iacute; ahorrar memoria.
-
-Ejemplo:
-\code
-Lua.Cerrar();
-\endcode
+* Cuando el sistema se cierra, se borran todas las variables y tablas que 
+* este contenga. Tambi&eacute;n se descargan los archivos scripts, incluyendo 
+* las funciones que estos contengan, y las que hayamos registrado nosotros.
+* 
+* Es muy recomendable cerrar el sistema Lua cuando ya no lo necesitemos y 
+* as&iacute; ahorrar memoria.
+* 
+* Ejemplo:
+* \code
+* Lua.Cerrar();
+* \endcode
 */
-void GD_ScriptLua::Cerrar(void)
+void GDT::Script::Lua::Cerrar(void)
 {
      // Cerramos
     lua_close(this->LuaMV);   
 }
 
 /*!
-\return la M&aacute;quina Virtual Lua.
-
-Ejemplo:
-L = Lua.RetornarEstado();
+* \return la M&aacute;quina Virtual Lua.
+* 
+* Ejemplo:
+* L = Lua.RetornarEstado();
 */
-lua_State* GD_ScriptLua::RetornarEstado(void)
+lua_State* GDT::Script::Lua::RetornarEstado(void)
 {
     return this->LuaMV;
 }
@@ -138,14 +141,14 @@ lua_State* GD_ScriptLua::RetornarEstado(void)
 // Ejecucion
 // *********
 /*!
-\return 0 si no se producen errores.
-
-Ejemplo:
-\code
-int error = Lua.EjecutarCadena("a = 5; print(a);");
-\endcode
+* \return 0 si no se producen errores.
+* 
+* Ejemplo:
+* \code
+* int error = Lua.EjecutarCadena("a = 5; print(a);");
+* \endcode
 */
-int GD_ScriptLua::EjecutarCadena(char* strCadenaLua)
+int GDT::Script::Lua::EjecutarCadena(char* strCadenaLua)
 {
     int iError;
     // Cargamos la cadena y la ejecutamos en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
@@ -159,14 +162,14 @@ int GD_ScriptLua::EjecutarCadena(char* strCadenaLua)
 }
 
 /*!
-\return 0 si no se producen errores.
-
-Ejemplo:
-\code
-int error = Lua.EjecutarArchivo("script.lua");
-\endcode
+* \return 0 si no se producen errores.
+* 
+* Ejemplo:
+* \code
+* int error = Lua.EjecutarArchivo("script.lua");
+* \endcode
 */
-int GD_ScriptLua::EjecutarArchivo(char* strArchivo)
+int GDT::Script::Lua::EjecutarArchivo(char* strArchivo)
 {
     int iError;
     // Cargamos el archivo y lo ejecutamos en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
@@ -184,13 +187,13 @@ int GD_ScriptLua::EjecutarArchivo(char* strArchivo)
 // Obtenciï¿½ de valores
 // *********
 /*!
-Ejemplo:
-\code
-numero = Lua.RetornarNumero("minumero");
-numero = Lua.RetornarNumero("mitabla->minumero");
-\endcode
+* Ejemplo:
+* \code
+* numero = Lua.RetornarNumero("minumero");
+* numero = Lua.RetornarNumero("mitabla->minumero");
+* \endcode
 */
-lua_Number GD_ScriptLua::RetornarNumero(char *strCadenaTabla)
+lua_Number GDT::Script::Lua::RetornarNumero(char *strCadenaTabla)
 {
     // Vamos hasta el valor de la tabla
     this->Priv_LlegarATabla(strCadenaTabla);
@@ -221,13 +224,13 @@ lua_Number GD_ScriptLua::RetornarNumero(char *strCadenaTabla)
 }
 
 /*!
-Ejemplo:
-\code
-texto = Lua.RetornarCadena("micadena");
-texto = Lua.RetornarNumero("mitabla->micadena");
-\endcode
+* Ejemplo:
+* \code
+* texto = Lua.RetornarCadena("micadena");
+* texto = Lua.RetornarNumero("mitabla->micadena");
+* \endcode
 */
-const char *GD_ScriptLua::RetornarCadena( char *strCadenaTabla)
+const char *GDT::Script::Lua::RetornarCadena( char *strCadenaTabla)
 {
     // Vamos hasta el valor de la tabla
     this->Priv_LlegarATabla(strCadenaTabla);
@@ -262,13 +265,13 @@ const char *GD_ScriptLua::RetornarCadena( char *strCadenaTabla)
 // Cambio de valores
 // *********
 /*!
-Ejemplo:
-\code
-Lua.CambiarNumero("minumero", 53);
-Lua.CambiarNumero("mitabla->minumero", 53);
-\endcode
+* Ejemplo:
+* \code
+* Lua.CambiarNumero("minumero", 53);
+* Lua.CambiarNumero("mitabla->minumero", 53);
+* \endcode
 */
-void GD_ScriptLua::CambiarNumero(char *strCadenaTabla, lua_Number lnNumero)
+void GDT::Script::Lua::CambiarNumero(char *strCadenaTabla, lua_Number lnNumero)
 {  
     // Contamos el nmero de partes en que se divide la cadena 
     char *ptrC;
@@ -329,13 +332,13 @@ void GD_ScriptLua::CambiarNumero(char *strCadenaTabla, lua_Number lnNumero)
 }
 
 /*!
-Ejemplo:
-\code
-Lua.CambiarTexto("mitexto", "Un texto");
-Lua.CambiarTexto("mitabla->mitexto", "Otro texto");
-\endcode
+* Ejemplo:
+* \code
+* Lua.CambiarTexto("mitexto", "Un texto");
+* Lua.CambiarTexto("mitabla->mitexto", "Otro texto");
+* \endcode
 */
-void GD_ScriptLua::CambiarCadena(char *strCadenaTabla, const char *strCadenaTexto)
+void GDT::Script::Lua::CambiarCadena(char *strCadenaTabla, const char *strCadenaTexto)
 {
     // Contamos el nmero de partes en que se divide la cadena 
     char *ptrC;
@@ -399,12 +402,12 @@ void GD_ScriptLua::CambiarCadena(char *strCadenaTabla, const char *strCadenaText
 // Lallamar Funciones
 // *********
 /*!
-Ejemplo:
-\code
-Lua.PrepararFuncion("Funcion");
-\endcode
+* Ejemplo:
+* \code
+* Lua.PrepararFuncion("Funcion");
+* \endcode
 */
-void GD_ScriptLua::PrepararFuncion(char *strFuncion)
+void GDT::Script::Lua::PrepararFuncion(char *strFuncion)
 {
     // Limpiamos la pila por precacuciï¿½
     lua_pop(this->LuaMV, lua_gettop(this->LuaMV) );
@@ -414,38 +417,39 @@ void GD_ScriptLua::PrepararFuncion(char *strFuncion)
 }
 
 /*!
-Ejemplo:
-\code
-Lua.PonerParametroNumero(65);
-\endcode
+* Ejemplo:
+* \code
+* Lua.PonerParametroNumero(65);
+* \endcode
 */
-void GD_ScriptLua::PonerParametroNumero(lua_Number lNumero)
+void GDT::Script::Lua::PonerParametroNumero(lua_Number lNumero)
 {
     lua_pushnumber(this->LuaMV, lNumero);
 }
 
 /*!
-Ejemplo:
-\code
-Lua.PonerParametroCadena("hola");
-\endcode
+* Ejemplo:
+* \code
+* Lua.PonerParametroCadena("hola");
+* \endcode
 */
-void GD_ScriptLua::PonerParametroCadena(char *strCadena)
+void GDT::Script::Lua::PonerParametroCadena(char *strCadena)
 {
     lua_pushstring(this->LuaMV, strCadena);
 }
 
 /*!
-\return 0 si no se producen errores.
-
-Se indicar&aacute;n el n&uacute;mero de par&aacute;metros que se le ha pasado y el n&uacute;mero de resultados que retornar&aacute; la funci&oacute;n.
-
-Ejemplo:
-\code
-int error = Lua.LlamarFuncion(4,3);
-\endcode
+* \return 0 si no se producen errores.
+* 
+* Se indicar&aacute;n el n&uacute;mero de par&aacute;metros que se le ha 
+* pasado y el n&uacute;mero de resultados que retornar&aacute; la funci&oacute;n.
+* 
+* Ejemplo:
+* \code
+* int error = Lua.LlamarFuncion(4,3);
+* \endcode
 */
-int GD_ScriptLua::LlamarFuncion(int nArgumentos, int nResultados)
+int GDT::Script::Lua::LlamarFuncion(int nArgumentos, int nResultados)
 {
     int iError;
     // Llamamos a la funciï¿½ en modo seguro en modo seguro. Si los errores estï¿½ automï¿½icos se muestran.
@@ -459,29 +463,29 @@ int GD_ScriptLua::LlamarFuncion(int nArgumentos, int nResultados)
 }
 
 /*!
-Ejemplo:
-\code
-numero = Lua.RetornarResultadoNumero();
-\endcode
+* Ejemplo:
+* \code
+* numero = Lua.RetornarResultadoNumero();
+* \endcode
 */
-lua_Number GD_ScriptLua::RetornarResultadoNumero(void)
+lua_Number GDT::Script::Lua::RetornarResultadoNumero(void)
 {
-    lua_Number nRet;
-    if( lua_isnumber(this->LuaMV, -1) )
-        nRet = lua_tonumber(this->LuaMV, -1);
-    
-    lua_pop(this->LuaMV,1);
-    
-    return nRet;
+	lua_Number nRet;
+	if( lua_isnumber(this->LuaMV, -1) )
+	nRet = lua_tonumber(this->LuaMV, -1);
+	
+	lua_pop(this->LuaMV,1);
+	
+	return nRet;
 }
 
 /*!
-Ejemplo:
-\code
-int texto = Lua.RetornarResultadoCadena();
-\endcode
+* Ejemplo:
+* \code
+* int texto = Lua.RetornarResultadoCadena();
+* \endcode
 */
-const char *GD_ScriptLua::RetornarResultadoCadena(void)
+const char *GDT::Script::Lua::RetornarResultadoCadena(void)
 {
     const char *strDev;
     if( lua_isstring(this->LuaMV, -1) )
@@ -493,14 +497,15 @@ const char *GD_ScriptLua::RetornarResultadoCadena(void)
 }
 
 /*!
-Los resultados deben ser limpiados antes de realizar cualquier otra operaci&oacute;n de Lua diferente a retornar.
-
-Ejemplo:
-\code
-Lua.LimparResultados();
-\endcode
+* Los resultados deben ser limpiados antes de realizar cualquier otra 
+* operaci&oacute;n de Lua diferente a retornar.
+* 
+* Ejemplo:
+* \code
+* Lua.LimparResultados();
+* \endcode
 */
-void GD_ScriptLua::LimpiarResultados(void)
+void GDT::Script::Lua::LimpiarResultados(void)
 {
     // Destuimos todos los elementos de la pila
     lua_pop(this->LuaMV, lua_gettop(this->LuaMV) );
@@ -511,84 +516,86 @@ void GD_ScriptLua::LimpiarResultados(void)
 // Funciones C a LUA
 // *********
 /*!
-Registra una funci&oacute;n, programada en nuestro c&oacute;digo GDT, para ser usada como una funci&oacute;n de Lua.
-\param strNombre es el nombre que tendr&aacute; la funci&oacute;n en Lua.
-\param fFuncion es el la funci&oacute;n en nuestro c&oacute;digo GDT.
-
-Ejemplo:
-\code
-Lua.RegistrarFuncion("HacerSumas", LUA_Hacer_Sumas);
-\endcode
+* Registra una funci&oacute;n, programada en nuestro c&oacute;digo GDT, para 
+* ser usada como una funci&oacute;n de Lua.
+* \param strNombre es el nombre que tendr&aacute; la funci&oacute;n en Lua.
+* \param fFuncion es el la funci&oacute;n en nuestro c&oacute;digo GDT.
+* 
+* Ejemplo:
+* \code
+* Lua.RegistrarFuncion("HacerSumas", LUA_Hacer_Sumas);
+* \endcode
 */
-void GD_ScriptLua::RegistrarFuncion(const char *strNombre, lua_CFunction fFuncion)
+void GDT::Script::Lua::RegistrarFuncion(const char *strNombre, lua_CFunction fFuncion)
 {
     lua_register(this->LuaMV, strNombre, fFuncion);
 }
 
 /*!
-Ejemplo:
-\code
-parametros = Lua.NumeroParametros();
-\endcode
+* Ejemplo:
+* \code
+* parametros = Lua.NumeroParametros();
+* \endcode
 */
-int GD_ScriptLua::NumeroParametros(void)
+int GDT::Script::Lua::NumeroParametros(void)
 {
     return lua_gettop(this->LuaMV);
 }
 
 /*!
-Ejemplo:
-\code
-numero = Lua.RetornarParametroNumero(1);
-\endcode
+* Ejemplo:
+* \code
+* numero = Lua.RetornarParametroNumero(1);
+* \endcode
 */
-lua_Number GD_ScriptLua::RetornarParametroNumero(int nParametro)
+lua_Number GDT::Script::Lua::RetornarParametroNumero(int nParametro)
 {
     return lua_tonumber(this->LuaMV, nParametro);
 }
 
 /*!
-Ejemplo:
-\code
-texto = Lua.RetornarParametroCadena(2);
-\endcode
+* Ejemplo:
+* \code
+* texto = Lua.RetornarParametroCadena(2);
+* \endcode
 */
-const char *GD_ScriptLua::RetornarParametroCadena(int nParametro)
+const char *GDT::Script::Lua::RetornarParametroCadena(int nParametro)
 {
     return lua_tostring(this->LuaMV, nParametro);
 }
 
 /*!
-Los par&aacute;metros deben ser limpiados antes de realizar cualquier otra operaci&oacute;n de Lua diferente a retornar par&aacute;metros.
-
-Ejemplo:
-\code
-Lua.LimparParametros();
-\endcode
+* Los par&aacute;metros deben ser limpiados antes de realizar cualquier 
+* otra operaci&oacute;n de Lua diferente a retornar par&aacute;metros.
+* 
+* Ejemplo:
+* \code
+* Lua.LimparParametros();
+* \endcode
 */
-void GD_ScriptLua::LimpiarParametros(void)
+void GDT::Script::Lua::LimpiarParametros(void)
 {
     lua_pop(this->LuaMV, lua_gettop(this->LuaMV) );
 }
 
 /*!
-Ejemplo:
-\code
-Lua.PonerResultadoNumero(43);
-\endcode
+* Ejemplo:
+* \code
+* Lua.PonerResultadoNumero(43);
+* \endcode
 */
-void GD_ScriptLua::PonerResultadoNumero(lua_Number lNumero)
+void GDT::Script::Lua::PonerResultadoNumero(lua_Number lNumero)
 {
     lua_pushnumber(this->LuaMV, lNumero);
 }
 
 /*!
-Ejemplo:
-\code
-Lua.PonerResultadoCadena("Adios");
-\endcode
+* Ejemplo:
+* \code
+* Lua.PonerResultadoCadena("Adios");
+* \endcode
 */
-void GD_ScriptLua::PonerResultadoCadena(const char *strCadena)
+void GDT::Script::Lua::PonerResultadoCadena(const char *strCadena)
 {
     lua_pushstring(this->LuaMV, strCadena);
 }
@@ -598,28 +605,31 @@ void GD_ScriptLua::PonerResultadoCadena(const char *strCadena)
 // Errores
 // *********
 /*!
-Por defecto, cuando se inicializa el sistema se activa que los errores se muestren autom&aacute;ticamente.
-
-Ejemplo:
-\code
-Lua.MostrarErroresAutomaticamente( false );
-\endcode
+* Por defecto, cuando se inicializa el sistema se activa que los errores 
+* se muestren autom&aacute;ticamente.
+* 
+* Ejemplo:
+* \code
+* Lua.MostrarErroresAutomaticamente( false );
+* \endcode
 */
-void GD_ScriptLua::MostrarErroresAutomaticamente(bool bMostrar)
+void GDT::Script::Lua::MostrarErroresAutomaticamente(bool bMostrar)
 {
     // Cambiamos si los errores se mostrarï¿½ automï¿½icamente
     this->bAutoErrores = bMostrar;
 }
 
 /*!
-Debe ser llamado s&oacute;lo cuando se sepa que se ha producido un error y cuando est&eacute; desactivado que se muestren errores autom&aacute;ticamente.
-
-Ejemplo:
-\code
-Lua.MostrarError();
-\endcode
+* Debe ser llamado s&oacute;lo cuando se sepa que se ha producido un error 
+* y cuando est&eacute; desactivado que se muestren errores 
+* autom&aacute;ticamente.
+* 
+* Ejemplo:
+* \code
+* Lua.MostrarError();
+* \endcode
 */
-void GD_ScriptLua::MostrarError(void)
+void GDT::Script::Lua::MostrarError(void)
 {
     // Mostramos el Error por pantalla
     printf("!SistemaLua ERROR: %s\n", lua_tostring(this->LuaMV, -1) );
@@ -630,7 +640,7 @@ void GD_ScriptLua::MostrarError(void)
 // -----------------
 // FUNCIONES PRIVADAS DE LA CLASE
 // ------------------
-void GD_ScriptLua::Priv_LlegarATabla( char *strCadenaTabla )
+void GDT::Script::Lua::Priv_LlegarATabla( char *strCadenaTabla )
 {
     // Copiamos la Cadena   
     char *ptr;

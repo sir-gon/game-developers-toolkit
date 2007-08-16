@@ -42,17 +42,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
+
 //! Crea y controla luces
-/*!
-Las luces permiten iluminar las mallas, con el color que sea establecida la luz, incluso se pueden proyectar sombras din&aacute;micas en las mallas ocupando luces.
-*/
-class GD_Luz : public GD_Nodo
+class Luz : public NodoBase
 {
         public:
         // class constructor
-        _GDT_EXPORT_ GD_Luz();
+        _GDT_EXPORT_ Luz();
         // class destructor
-        _GDT_EXPORT_ ~GD_Luz();
+        _GDT_EXPORT_ ~Luz();
 
         ILightSceneNode* nodl;
         video::SLight sluz; 
@@ -86,7 +89,7 @@ class GD_Luz : public GD_Nodo
         _GDT_EXPORT_ void ColorDifuso(s32 r,s32 g,s32 b);
         _GDT_EXPORT_ void ColorEspecular(s32 r,s32 g,s32 b);
 
-        // no son los mismos que heredan de GD_Nodo, con las luces funciona diferente
+        // no son los mismos que heredan de NodoBase, con las luces funciona diferente
         // asi que tenemos que implementar nuevos metodos
         _GDT_EXPORT_ int RetornarColorAmbienteR();
         _GDT_EXPORT_ int RetornarColorAmbienteG();
@@ -102,7 +105,11 @@ class GD_Luz : public GD_Nodo
         _GDT_EXPORT_ void AumentarColorDifuso(float val);
         _GDT_EXPORT_ void AumentarColorEspecular(float val);
 
-        _GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+        _GDT_EXPORT_ void CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_LUZ_H

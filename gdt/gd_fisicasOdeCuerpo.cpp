@@ -22,7 +22,7 @@
 #if defined(_GDT_FISICAS_ODE_)
 
 /*!
-* \class GDT::fisica::Cuerpo
+* \class GDT::Fisica::Cuerpo
 *
 * Crea y maneja un Cuerpo R�ido, el cual puede interactuar con un Mundo
 * y con otros Cuerpos que esten presentes en el mismo Mundo.
@@ -35,45 +35,45 @@
 #include "gd_fisicasOdeCuerpo.h"
 #include "gd_fisicasOdeSistema.h"
 
-dBodyID GDT::fisica::Cuerpo::Crear(dWorldID MundoODE)
+dBodyID GDT::Fisica::Cuerpo::Crear(dWorldID MundoODE)
 {
     return Body=dBodyCreate(MundoODE);
 }
-void GDT::fisica::Cuerpo::Destruir()
+void GDT::Fisica::Cuerpo::Destruir()
 {
     dBodyDestroy(Body);
 }
 
-vector3df GDT::fisica::Cuerpo::Posicion()
+vector3df GDT::Fisica::Cuerpo::Posicion()
 {
     return RealAVector3d(dBodyGetPosition(Body));
 }
-vector3df GDT::fisica::Cuerpo::Rotacion()
+vector3df GDT::Fisica::Cuerpo::Rotacion()
 {
     return RealAVector3d(dBodyGetRotation(Body));
 }
-vector3df GDT::fisica::Cuerpo::ValorQuaternion()
+vector3df GDT::Fisica::Cuerpo::ValorQuaternion()
 {
     return RealAVector3d(dBodyGetQuaternion(Body));
 }
-vector3df GDT::fisica::Cuerpo::ValorVelocidadLinear()
+vector3df GDT::Fisica::Cuerpo::ValorVelocidadLinear()
 {
     return RealAVector3d(dBodyGetLinearVel(Body));
 }
-vector3df GDT::fisica::Cuerpo::ValorVelocidadAngular()
+vector3df GDT::Fisica::Cuerpo::ValorVelocidadAngular()
 {
     return RealAVector3d(dBodyGetAngularVel(Body));
 }
 
-void GDT::fisica::Cuerpo::Posicionar(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::Posicionar(dReal X, dReal Y, dReal Z)
 {
     dBodySetPosition(Body, X, Y, Z);
 }
-void GDT::fisica::Cuerpo::Posicionar(vector3df Pos)
+void GDT::Fisica::Cuerpo::Posicionar(vector3df Pos)
 {
     Posicionar((dReal) Pos.X, (dReal) Pos.Y, (dReal) Pos.Z);
 }
-void GDT::fisica::Cuerpo::PosicionarX(dReal X)
+void GDT::Fisica::Cuerpo::PosicionarX(dReal X)
 {
     vector3df PosA;
 
@@ -81,7 +81,7 @@ void GDT::fisica::Cuerpo::PosicionarX(dReal X)
     PosA.X=X;
     Posicionar(PosA);
 }
-void GDT::fisica::Cuerpo::PosicionarY(dReal Y)
+void GDT::Fisica::Cuerpo::PosicionarY(dReal Y)
 {
     vector3df PosA;
 
@@ -89,7 +89,7 @@ void GDT::fisica::Cuerpo::PosicionarY(dReal Y)
     PosA.Y=Y;
     Posicionar(PosA);
 }
-void GDT::fisica::Cuerpo::PosicionarZ(dReal Z)
+void GDT::Fisica::Cuerpo::PosicionarZ(dReal Z)
 {
     vector3df PosA;
 
@@ -99,161 +99,161 @@ void GDT::fisica::Cuerpo::PosicionarZ(dReal Z)
 
 }
 
-void GDT::fisica::Cuerpo::Rotar(const dMatrix3 R)
+void GDT::Fisica::Cuerpo::Rotar(const dMatrix3 R)
 {
     dBodySetRotation(Body,R);
 }
-void GDT::fisica::Cuerpo::Quaternion(const dQuaternion q)
+void GDT::Fisica::Cuerpo::Quaternion(const dQuaternion q)
 {
     dBodySetQuaternion(Body,q);
 }
 
-void GDT::fisica::Cuerpo::VelocidadLinear(dReal x, dReal y, dReal z)
+void GDT::Fisica::Cuerpo::VelocidadLinear(dReal x, dReal y, dReal z)
 {
     dBodySetLinearVel(Body,x,y,z);
 }
-void GDT::fisica::Cuerpo::VelocidadLinear(vector3df VelLinear)
+void GDT::Fisica::Cuerpo::VelocidadLinear(vector3df VelLinear)
 {
     VelocidadLinear((dReal) VelLinear.X, (dReal) VelLinear.Y, (dReal) VelLinear.Z);
 }
 
-void GDT::fisica::Cuerpo::VelocidadAngular(dReal x, dReal y, dReal z)
+void GDT::Fisica::Cuerpo::VelocidadAngular(dReal x, dReal y, dReal z)
 {
     dBodySetAngularVel(Body,x,y,z);
 }
-void GDT::fisica::Cuerpo::VelocidadAngular(vector3df VelAngular)
+void GDT::Fisica::Cuerpo::VelocidadAngular(vector3df VelAngular)
 {
     VelocidadAngular((dReal) VelAngular.X, (dReal) VelAngular.Y, (dReal) VelAngular.Z);
 }
 
-void GDT::fisica::Cuerpo::AsignarMasa(const dMass *mass)
+void GDT::Fisica::Cuerpo::AsignarMasa(const dMass *mass)
 {
     dBodySetMass(Body, mass);
     //dBodyGetMass(Body, Masa);
 }
-dMass* GDT::fisica::Cuerpo::ValorMasa()
+dMass* GDT::Fisica::Cuerpo::ValorMasa()
 {
     dBodyGetMass(Body, Masa);
     return Masa;
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerza(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AniadirFuerza(dReal X, dReal Y, dReal Z)
 {
     dBodyAddForce(Body, X, Y, Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerza(vector3df Fuerza)
+void GDT::Fisica::Cuerpo::AniadirFuerza(vector3df Fuerza)
 {
     AniadirFuerza((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirGiro(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AniadirGiro(dReal X, dReal Y, dReal Z)
 {
     dBodyAddTorque(Body, X, Y, Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirGiro(vector3df Giro)
+void GDT::Fisica::Cuerpo::AniadirGiro(vector3df Giro)
 {
     AniadirGiro((dReal) Giro.X, (dReal) Giro.Y, (dReal) Giro.Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativa(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativa(dReal X, dReal Y, dReal Z)
 {
     dBodyAddRelForce(Body, X, Y, Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativa(vector3df Fuerza)
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativa(vector3df Fuerza)
 {
     AniadirFuerzaRelativa((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirGiroRelativo(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AniadirGiroRelativo(dReal X, dReal Y, dReal Z)
 {
     dBodyAddRelTorque(Body, X, Y, Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirGiroRelativo(vector3df Giro)
+void GDT::Fisica::Cuerpo::AniadirGiroRelativo(vector3df Giro)
 {
     AniadirGiroRelativo((dReal) Giro.X, (dReal) Giro.Y, (dReal) Giro.Z);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerzaDesdePosicion(dReal cX, dReal cY, dReal cZ,
+void GDT::Fisica::Cuerpo::AniadirFuerzaDesdePosicion(dReal cX, dReal cY, dReal cZ,
                                              dReal pX, dReal pY, dReal pZ)
 {
     dBodyAddForceAtPos(Body, cX, cY, cZ, pX, pY, pZ);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerzaDesdePosicion(vector3df Fuerza,vector3df Posicion)
+void GDT::Fisica::Cuerpo::AniadirFuerzaDesdePosicion(vector3df Fuerza,vector3df Posicion)
 {
     AniadirFuerzaDesdePosicion((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z,
                                (dReal) Posicion.X, (dReal) Posicion.Y, (dReal) Posicion.Z);
 }
-void GDT::fisica::Cuerpo::AniadirFuerzaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
+void GDT::Fisica::Cuerpo::AniadirFuerzaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
                                                      dReal pX, dReal pY, dReal pZ)
 {
     dBodyAddForceAtRelPos(Body, cX, cY, cZ, pX, pY, pZ);
 }
 
-void GDT::fisica::Cuerpo::AniadirFuerzaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion)
+void GDT::Fisica::Cuerpo::AniadirFuerzaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion)
 {
     AniadirFuerzaDesdePosicionRelativa((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z,
                                         (dReal) Posicion.X, (dReal) Posicion.Y, (dReal) Posicion.Z);
 }
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicion(dReal cX, dReal cY, dReal cZ,
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicion(dReal cX, dReal cY, dReal cZ,
                                                      dReal pX, dReal pY, dReal pZ)
 {
     dBodyAddRelForceAtPos(Body, cX, cY, cZ, pX, pY, pZ);
 }
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicion(vector3df Fuerza,vector3df Posicion)
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicion(vector3df Fuerza,vector3df Posicion)
 {
     AniadirFuerzaRelativaDesdePosicion((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z,
                                         (dReal) Posicion.X, (dReal) Posicion.Y, (dReal) Posicion.Z);
 }
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicionRelativa(dReal cX, dReal cY, dReal cZ,
                                                              dReal pX, dReal pY, dReal pZ)
 {
     dBodyAddRelForceAtRelPos(Body, cX, cY, cZ, pX, pY, pZ);
 }
-void GDT::fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion)
+void GDT::Fisica::Cuerpo::AniadirFuerzaRelativaDesdePosicionRelativa(vector3df Fuerza,vector3df Posicion)
 {
     AniadirFuerzaRelativaDesdePosicionRelativa((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z,
                                                 (dReal) Posicion.X, (dReal) Posicion.Y, (dReal) Posicion.Z);
 }
-const dReal* GDT::fisica::Cuerpo::RetornarFuerza()
+const dReal* GDT::Fisica::Cuerpo::RetornarFuerza()
 {
     return dBodyGetForce(Body);
 }
 
-const dReal* GDT::fisica::Cuerpo::RetornarGiro()
+const dReal* GDT::Fisica::Cuerpo::RetornarGiro()
 {
     return dBodyGetTorque(Body);
 }
 
-void GDT::fisica::Cuerpo::AsignarFuerza(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AsignarFuerza(dReal X, dReal Y, dReal Z)
 {
     dBodySetForce(Body, X, Y, Z);
 }
 
-void GDT::fisica::Cuerpo::AsignarFuerza(vector3df Fuerza)
+void GDT::Fisica::Cuerpo::AsignarFuerza(vector3df Fuerza)
 {
     AsignarFuerza((dReal) Fuerza.X, (dReal) Fuerza.Y, (dReal) Fuerza.Z);
 }
-void GDT::fisica::Cuerpo::AsignarGiro(dReal X, dReal Y, dReal Z)
+void GDT::Fisica::Cuerpo::AsignarGiro(dReal X, dReal Y, dReal Z)
 {
     dBodySetTorque(Body, X, Y, Z);
 }
-void GDT::fisica::Cuerpo::AsignarGiro(vector3df Giro)
+void GDT::Fisica::Cuerpo::AsignarGiro(vector3df Giro)
 {
     AsignarGiro((dReal) Giro.X, (dReal) Giro.Y, (dReal) Giro.Z);
 }
 
-void GDT::fisica::Cuerpo::RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz,
                                      dVector3 result)
 {
     dBodyGetRelPointPos(Body, px, py, pz,result);
 }
 
-vector3df GDT::fisica::Cuerpo::RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::RetornarPuntoDePosicionRelativa(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -264,12 +264,12 @@ vector3df GDT::fisica::Cuerpo::RetornarPuntoDePosicionRelativa(dReal px, dReal p
     return resultado;
 }
 
-void GDT::fisica::Cuerpo::RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz,
                                                     dVector3 result)
 {
     dBodyGetRelPointVel(Body, px, py, pz,result);
 }
-vector3df GDT::fisica::Cuerpo::RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::RetornarPuntoDeVelocidadRelativa(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -279,12 +279,12 @@ vector3df GDT::fisica::Cuerpo::RetornarPuntoDeVelocidadRelativa(dReal px, dReal 
     resultado.Z=result[2];
     return resultado;
 }
-void GDT::fisica::Cuerpo::RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz,
                                             dVector3 result)
 {
     dBodyGetPointVel(Body,px, py, pz,result);
 }
-vector3df GDT::fisica::Cuerpo::RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::RetornarPuntoDeVelocidad(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -295,12 +295,12 @@ vector3df GDT::fisica::Cuerpo::RetornarPuntoDeVelocidad(dReal px, dReal py, dRea
     return resultado;
 
 }
-void GDT::fisica::Cuerpo::RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz,
                                                     dVector3 result)
 {
     dBodyGetPosRelPoint(Body,px, py, pz,result);
 }
-vector3df GDT::fisica::Cuerpo::RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::RetornarPosicionRelativaAlPunto(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -312,12 +312,12 @@ vector3df GDT::fisica::Cuerpo::RetornarPosicionRelativaAlPunto(dReal px, dReal p
 }
 
 
-void GDT::fisica::Cuerpo::Vector_A_Mundo(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::Vector_A_Mundo(dReal px, dReal py, dReal pz,
                                  dVector3 result)
 {
     dBodyVectorToWorld(Body, px, py, pz,result);
 }
-vector3df GDT::fisica::Cuerpo::Vector_A_Mundo(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::Vector_A_Mundo(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -328,12 +328,12 @@ vector3df GDT::fisica::Cuerpo::Vector_A_Mundo(dReal px, dReal py, dReal pz)
     return resultado;
 }
 
-void GDT::fisica::Cuerpo::Vector_De_Mundo(dReal px, dReal py, dReal pz,
+void GDT::Fisica::Cuerpo::Vector_De_Mundo(dReal px, dReal py, dReal pz,
                                     dVector3 result)
 {
     dBodyVectorFromWorld(Body, px, py, pz, result);
 }
-vector3df GDT::fisica::Cuerpo::Vector_De_Mundo(dReal px, dReal py, dReal pz)
+vector3df GDT::Fisica::Cuerpo::Vector_De_Mundo(dReal px, dReal py, dReal pz)
 {
     dVector3 result;
     vector3df resultado;
@@ -345,15 +345,15 @@ vector3df GDT::fisica::Cuerpo::Vector_De_Mundo(dReal px, dReal py, dReal pz)
 }
 
 
-void GDT::fisica::Cuerpo::Activar()
+void GDT::Fisica::Cuerpo::Activar()
 {
     dBodyEnable(Body);
 }
-void GDT::fisica::Cuerpo::Desactivar()
+void GDT::Fisica::Cuerpo::Desactivar()
 {
     dBodyDisable(Body);
 }
-bool GDT::fisica::Cuerpo::Activo()
+bool GDT::Fisica::Cuerpo::Activo()
 {
     //return (bool)dBodyIsEnabled(Body);
 	if(dBodyIsEnabled(Body) == 0)
@@ -364,11 +364,11 @@ bool GDT::fisica::Cuerpo::Activo()
 }
 
 
-void GDT::fisica::Cuerpo::ModoAutodesactivar(bool bDeshabilitable)
+void GDT::Fisica::Cuerpo::ModoAutodesactivar(bool bDeshabilitable)
 {
     dBodySetAutoDisableFlag(Body, (int) bDeshabilitable);
 }
-bool GDT::fisica::Cuerpo::ValorModoAutodesactivar()
+bool GDT::Fisica::Cuerpo::ValorModoAutodesactivar()
 {
     //return (bool)dBodyGetAutoDisableFlag(Body);
 		if(dBodyGetAutoDisableFlag(Body) == 0) {
@@ -377,57 +377,57 @@ bool GDT::fisica::Cuerpo::ValorModoAutodesactivar()
 		return true;
 	}
 }
-void GDT::fisica::Cuerpo::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
+void GDT::Fisica::Cuerpo::Autodesactivacion_por_UmbralLinear(dReal UmbralLinear)
 {
     dBodySetAutoDisableLinearThreshold(Body, UmbralLinear);
 }
-dReal GDT::fisica::Cuerpo::ValorAutodesactivacion_por_UmbralLinear()
+dReal GDT::Fisica::Cuerpo::ValorAutodesactivacion_por_UmbralLinear()
 {
     return dBodyGetAutoDisableLinearThreshold(Body);
 }
-void GDT::fisica::Cuerpo::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
+void GDT::Fisica::Cuerpo::AutoDesactivacion_por_UmbralAngular(dReal UmbralAngular)
 {
     dBodySetAutoDisableAngularThreshold(Body, UmbralAngular);
 }
-dReal GDT::fisica::Cuerpo::ValorAutoDesactivacion_por_UmbralAngular()
+dReal GDT::Fisica::Cuerpo::ValorAutoDesactivacion_por_UmbralAngular()
 {
     return dBodyGetAutoDisableAngularThreshold(Body);
 }
-void GDT::fisica::Cuerpo::AutoDesactivacion_por_Iteraciones(int Iteraciones)
+void GDT::Fisica::Cuerpo::AutoDesactivacion_por_Iteraciones(int Iteraciones)
 {
     dBodySetAutoDisableSteps (Body,Iteraciones);
 }
-int GDT::fisica::Cuerpo::ValorAutoDesactivacion_por_Iteraciones()
+int GDT::Fisica::Cuerpo::ValorAutoDesactivacion_por_Iteraciones()
 {
     return dBodyGetAutoDisableSteps(Body);
 }
-void GDT::fisica::Cuerpo::AutoDesactivacion_por_Tiempo(dReal Tiempo)
+void GDT::Fisica::Cuerpo::AutoDesactivacion_por_Tiempo(dReal Tiempo)
 {
     dBodySetAutoDisableTime(Body, Tiempo);
 }
-dReal GDT::fisica::Cuerpo::ValorAutoDesactivacion_por_Tiempo()
+dReal GDT::Fisica::Cuerpo::ValorAutoDesactivacion_por_Tiempo()
 {
     return dBodyGetAutoDisableTime(Body);
 }
-void GDT::fisica::Cuerpo::AutoDesactivacion_por_Default()
+void GDT::Fisica::Cuerpo::AutoDesactivacion_por_Default()
 {
     dBodySetAutoDisableDefaults(Body);
 }
 
-void GDT::fisica::Cuerpo::SetData(void *data)
+void GDT::Fisica::Cuerpo::SetData(void *data)
 {
     dBodySetData(Body, data);
 }
-void* GDT::fisica::Cuerpo::GetData()
+void* GDT::Fisica::Cuerpo::GetData()
 {
     return (void*) dBodyGetData(Body);
 }
 
-void GDT::fisica::Cuerpo::ModoDeRotacionFinita(bool activo)
+void GDT::Fisica::Cuerpo::ModoDeRotacionFinita(bool activo)
 {
     dBodySetFiniteRotationMode(Body, (int) activo);
 }
-bool GDT::fisica::Cuerpo::RotacionFinitaActivada()
+bool GDT::Fisica::Cuerpo::RotacionFinitaActivada()
 {
 	//return dBodyGetFiniteRotationMode(Body);
 	if(!dBodyGetFiniteRotationMode(Body))
@@ -435,29 +435,29 @@ bool GDT::fisica::Cuerpo::RotacionFinitaActivada()
 	else
 		return true;
 }
-void GDT::fisica::Cuerpo::EjeDeRotacionFinita(dReal x, dReal y, dReal z)
+void GDT::Fisica::Cuerpo::EjeDeRotacionFinita(dReal x, dReal y, dReal z)
 {
     dBodySetFiniteRotationAxis(Body,x, y, z);
 }
-void GDT::fisica::Cuerpo::EjeDeRotacionFinita(vector3df ejes)
+void GDT::Fisica::Cuerpo::EjeDeRotacionFinita(vector3df ejes)
 {
     EjeDeRotacionFinita((dReal) ejes.X, (dReal) ejes.Y, (dReal) ejes.Z);
 }
 
-int GDT::fisica::Cuerpo::Articulaciones()
+int GDT::Fisica::Cuerpo::Articulaciones()
 {
     return dBodyGetNumJoints(Body);
 }
-dJointID GDT::fisica::Cuerpo::SelecArticulacion(int index)
+dJointID GDT::Fisica::Cuerpo::SelecArticulacion(int index)
 {
     return dBodyGetJoint(Body, index);
 }
 
-void GDT::fisica::Cuerpo::ActivarGravedad(bool activo)
+void GDT::Fisica::Cuerpo::ActivarGravedad(bool activo)
 {
     dBodySetGravityMode(Body, (int) activo);
 }
-bool GDT::fisica::Cuerpo::GravedadActiva()
+bool GDT::Fisica::Cuerpo::GravedadActiva()
 {
 	// return (bool) dBodyGetGravityMode(Body);
     if(!dBodyGetGravityMode(Body))
@@ -468,11 +468,11 @@ bool GDT::fisica::Cuerpo::GravedadActiva()
 }
 
 /* ///Funciones escritas en la documentacion de ODG pero que no son operativas
-void GDT::fisica::Cuerpo::UmbralDeAutoDesactivacion_ModoSF1(dReal umbral)
+void GDT::Fisica::Cuerpo::UmbralDeAutoDesactivacion_ModoSF1(dReal umbral)
 {
     dBodySetAutoDisableThresholdSF1(Body, umbral);
 }
-dReal GDT::fisica::Cuerpo::ValorUmbralDeAutoDesactivacion_ModoSF1()
+dReal GDT::Fisica::Cuerpo::ValorUmbralDeAutoDesactivacion_ModoSF1()
 {
     return dBodyGetAutoDisableThresholdSF1(Body);
 }
@@ -480,16 +480,16 @@ dReal GDT::fisica::Cuerpo::ValorUmbralDeAutoDesactivacion_ModoSF1()
 {
     dBodySetAutoDisableStepsSF1(Body, Iteraciones);
 }
-int GDT::fisica::Cuerpo::ValorAutoDesactivacion_por_Iteraciones_ModoSF1()
+int GDT::Fisica::Cuerpo::ValorAutoDesactivacion_por_Iteraciones_ModoSF1()
 {
     return dBodyGetAutoDisableStepsSF1(Body);
 }
 
-void GDT::fisica::Cuerpo::ModoSF1_AutoDesactivacion(bool activo)
+void GDT::Fisica::Cuerpo::ModoSF1_AutoDesactivacion(bool activo)
 {
     dBodySetAutoDisableSF1(Body, (int) activo);
 }
-bool GDT::fisica::Cuerpo::ValorModoSF1_AutoDesactivacion()
+bool GDT::Fisica::Cuerpo::ValorModoSF1_AutoDesactivacion()
 {
     return (bool)dBodyGetAutoDisableSF1(Body);
 }

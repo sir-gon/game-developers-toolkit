@@ -308,8 +308,8 @@ char* GDT::Cadena::ConvertirNumeroEnChar(int numero)
 
 	// Calcular la cantidad de digitos del numero
 	int digitos = 1 +
-		(int)GD_Matematicas::Logaritmo10(
-			GD_Matematicas::Absoluto( numero )
+		(int)Matematicas::Logaritmo10(
+			Matematicas::Absoluto( numero )
 		);
 	#ifdef _GDT_DEBUG_
 	printf("El entero tiene: %d digitos\n", digitos);

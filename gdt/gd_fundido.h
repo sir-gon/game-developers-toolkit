@@ -39,14 +39,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Gui
+{
+
 //! Para hacer fundidos de pantalla
-class GD_Fundido : public GD_gui
+class Fundido : public GuiBase
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Fundido();
+		_GDT_EXPORT_ Fundido();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Fundido();
+		_GDT_EXPORT_ ~Fundido();
 		
 		IGUIInOutFader* fundido;
 		
@@ -56,7 +62,10 @@ class GD_Fundido : public GD_gui
 		_GDT_EXPORT_ void FundirHaciaDentro(int tiempo);
 		_GDT_EXPORT_ void FundirHaciaFuera(int tiempo);
 		_GDT_EXPORT_ bool Terminado(void);
-        		
 };
+
+} // FIN NAMESPACE GUI
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_FUNDIDO_H

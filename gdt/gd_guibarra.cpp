@@ -51,15 +51,15 @@ Barra.CrearHorizontal(5,5, 30,15);
 */
 void GDT::Gui::Barra::CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre)
 {
-
-    RegistrarDevice(GD_Sistema::device); 
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     barra=guienv->addScrollBar(true, rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
-     
-      guiele = barra;
+	
+	RegistrarDevice(Sistema::device); 
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	barra=guienv->addScrollBar(true, rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
+	
+	guiele = barra;
 }
 
 /*!
@@ -74,15 +74,14 @@ Barra.CrearVerticall(5,5, 15,30);
 */
 void GDT::Gui::Barra::CrearVertical(int x1, int y1, int x2, int y2,IGUIElement* padre)
 {
-
-    RegistrarDevice(GD_Sistema::device); 
-    
-    IVideoDriver* driver = midevice->getVideoDriver();
-    IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
-     barra=guienv->addScrollBar(false, rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
-     
-      guiele = barra;
+	RegistrarDevice(Sistema::device);
+	
+	//IVideoDriver* driver = midevice->getVideoDriver();
+	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
+	
+	barra=guienv->addScrollBar(false, rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
+	
+	guiele = barra;
 }
 
 /*!

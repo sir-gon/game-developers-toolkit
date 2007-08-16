@@ -51,16 +51,22 @@ struct MaterialData
 #endif /* _GDT_DOXYGEN_IGNORAR_ */
 
 
-class GD_FisicasNwtMaterial
+namespace GDT
+{
+
+namespace Fisicas
+{
+
+class MaterialNwt
 {
    public:
 
    NewtonWorld* nMundo;
 
 
-   _GDT_EXPORT_ GD_FisicasNwtMaterial();
-   _GDT_EXPORT_ GD_FisicasNwtMaterial(NewtonWorld* nMundo);
-   _GDT_EXPORT_ ~GD_FisicasNwtMaterial();
+   _GDT_EXPORT_ MaterialNwt();
+   _GDT_EXPORT_ MaterialNwt(NewtonWorld* nMundo);
+   _GDT_EXPORT_ ~MaterialNwt();
 
 
 
@@ -93,6 +99,9 @@ class GD_FisicasNwtMaterial
 
 };
 
+} // FIN NAMESPACE FISICAS
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_FISICAS_NEWTON_MATERIAL_H_
 

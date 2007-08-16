@@ -25,7 +25,7 @@
 * Este Control GUI nos permite ingresar texto a trav&eacute;s de una 
 * caja donde aparecen los caracteres que escribimos.
 *
-* Considerese de aquí en adelante "Edicion" como un ejemplo de un 
+* Considerese de aquï¿½en adelante "Edicion" como un ejemplo de un 
 * objeto instanciado de esta clase.
 */
 
@@ -57,12 +57,12 @@ Edicion.Crearl(5,5, 30,15, L"Escribe aqui", true);
 */
 void GDT::Gui::Edicion::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde,IGUIElement* padre)
 {
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
-	IVideoDriver* driver = midevice->getVideoDriver();
+	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	editbox=guienv->addEditBox(texto, rect<s32>(x1,y1,x2,y2),borde,padre, GD_Sistema::ContadorElementosGui++);
+	editbox=guienv->addEditBox(texto, rect<s32>(x1,y1,x2,y2),borde,padre, Sistema::ContadorElementosGui++);
 	guiele = editbox;
 }
 

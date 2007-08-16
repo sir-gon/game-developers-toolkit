@@ -53,15 +53,20 @@ using namespace gui;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
 
 //! Controla un objeto en el espacio (un Nodo)
-class GD_Nodo
+class NodoBase
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Nodo();
+	_GDT_EXPORT_ NodoBase();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Nodo();
+	_GDT_EXPORT_ ~NodoBase();
 
 	IrrlichtDevice *midevice;
 	ISceneManager* mesh_smgr;
@@ -146,7 +151,7 @@ public:
 	_GDT_EXPORT_ void GirarZ(float z);
 	
 	//! Orienta el nodo hacia otro.
-	_GDT_EXPORT_ vector3df Orientar(GD_Nodo gdnodito);
+	_GDT_EXPORT_ vector3df Orientar(NodoBase gdnodito);
 	//! Orienta el nodo hacia un vector.
 	_GDT_EXPORT_ vector3df Orientar(vector3df destino);
 	//! Orienta el nodo hacia las coordenadas X, Y, Z.
@@ -163,8 +168,8 @@ public:
 	
 	//! Aplica una textura al nodo, en base a una imagen
 	_GDT_EXPORT_ void Texturizar(char *filename, int capa=-1);
-	//! Aplica una textura al nodo, en base a un objeto GD_Textura
-	_GDT_EXPORT_ void Texturizar(GD_Textura textu, int capa=-1);
+	//! Aplica una textura al nodo, en base a un objeto Textura
+	_GDT_EXPORT_ void Texturizar(Textura textu, int capa=-1);
 	
 	//! Activa o desactiva un material de renderizado
 	_GDT_EXPORT_ void MaterialFlag(E_MATERIAL_FLAG cual, bool enable);
@@ -198,9 +203,9 @@ public:
 	_GDT_EXPORT_ bool EsVisible();
 	
 	//! Le ancla un nodo
-	_GDT_EXPORT_ void Anclar(GD_Nodo gdnodito);
+	_GDT_EXPORT_ void Anclar(NodoBase gdnodito);
 	//! Desancla un nodo previamente anclado.
-	_GDT_EXPORT_ void DesAnclar(GD_Nodo gdnodito);
+	_GDT_EXPORT_ void DesAnclar(NodoBase gdnodito);
 	
 	//! Crea una respuesta de colisi&oacute;n.
 	_GDT_EXPORT_ void CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
@@ -223,7 +228,11 @@ public:
 	
 	_GDT_EXPORT_ int RetornarBrillo();
 	
-	_GDT_EXPORT_ void AgregarAnimador(GD_Animador Animate);
+	_GDT_EXPORT_ void AgregarAnimador(Animador Animate);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_NODO_H

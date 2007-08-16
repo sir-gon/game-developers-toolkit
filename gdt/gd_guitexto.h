@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Texto" (Text)
-class Texto : public GD_gui
+class Texto : public GuiBase
 {
 private:
 	int iX,iY,iAlto,iAncho;
@@ -88,7 +88,7 @@ public:
 	_GDT_EXPORT_ bool EsVisible();
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

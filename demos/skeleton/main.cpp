@@ -10,17 +10,17 @@
  
 #include <gdt.h>
 
-GD_Sistema Sistema;
-GD_Camara Camara;
-GD_Malla Figura;
-GD_Luz Luz;
+Sistema MiSistema;
+Camara MiCamara;
+Malla Figura;
+Luz Lampara;
 
 int main()
 {
-	Sistema.Inicializar(640,480,16,false,OPENGL);
-	Sistema.ColorFondo(30,30,30);
+	MiSistema.Inicializar(640,480,16,false,OPENGL);
+	MiSistema.ColorFondo(30,30,30);
 
-	Camara.Crear(Tipo_Modelador);
+	MiCamara.Crear(Tipo_Modelador);
 	
 	// Crea una Figura
     Figura.CrearEsfera(30);
@@ -30,20 +30,20 @@ int main()
     Figura.ColorDifuso(0,0,50);
     
     // posicion // colores // radio
-    Luz.Crear(60,60,60, 30, 30, 30, 25);
+    Lampara.Crear(60,60,60, 30, 30, 30, 25);
     
     // Ciclo de dibujado
-	while(Sistema.EnEjecucion())
+	while(MiSistema.EnEjecucion())
 	{
           // Capturar Evento de Teclado
-          if (Sistema.TeclaAbajo(T_ESC))
+          if (MiSistema.TeclaAbajo(T_ESC))
              // Cerrar Ejecucion
-             Sistema.Matarme();
+             MiSistema.Matarme();
           // Dibujar
-          Sistema.Render();
+          MiSistema.Render();
 	}
 
-	Sistema.Matarme();
+	MiSistema.Matarme();
 
 	return 0;
 }

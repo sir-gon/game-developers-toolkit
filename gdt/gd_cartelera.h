@@ -39,21 +39,40 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
 
 //! Imagenes que siempre se ven frontalmente en la c&aacute;mara
-class GD_Cartelera : public GD_Nodo
+class Cartelera : public NodoBase
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Cartelera();
+	_GDT_EXPORT_ Cartelera();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Cartelera();
+	_GDT_EXPORT_ ~Cartelera();
 	
 	IBillboardSceneNode* nodb;
 	
-	//! Carga una imágen como una Cartelera.
-	_GDT_EXPORT_ void Crear(float tamx, float tamy, char* filename);
-	_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+	//! Carga una imï¿½en como una Cartelera.
+	_GDT_EXPORT_ void Crear(
+		float tamx,
+		float tamy,
+		char* filename
+		);
+
+	_GDT_EXPORT_ void CrearColision(
+		Escenario scen,
+		float radiox, float radioy, float radioz,
+		float transx, float transy, float transz,
+		float grax, float gray, float graz
+		);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_CARTELERA_H

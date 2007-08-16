@@ -50,12 +50,12 @@ Boton.Crear(5,5, 35,25);
 */
 void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2,IGUIElement* padre)
 {
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
-	IVideoDriver* driver = midevice->getVideoDriver();
+	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
 	
 	
 	guiele = boton;
@@ -74,12 +74,12 @@ Boton.Texto(5,5, 35,25,L"Pulsame");
 */
 void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre)
 {
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
-	IVideoDriver* driver = midevice->getVideoDriver();
+	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
 	
 	boton->setText(texto);
 	
@@ -96,12 +96,12 @@ void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGU
 void GDT::Gui::Boton::CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre)
 {
 
-	RegistrarDevice(GD_Sistema::device);
+	RegistrarDevice(Sistema::device);
 	
 	IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
 	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, GD_Sistema::ContadorElementosGui++);
+	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
 	
 	boton->setImage(driver->getTexture(filename_boton_normal));
 	boton->setPressedImage(driver->getTexture(filename_boton_presionado)); 

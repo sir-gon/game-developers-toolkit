@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Menu" y "SubMenu"
-class Menu : public GD_gui
+class Menu : public GuiBase
 {
 public:
 	// class constructor
@@ -85,7 +85,7 @@ public:
 
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

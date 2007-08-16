@@ -21,38 +21,40 @@
 
 #include "gd_textura.h" // class's header file
 
-// class constructor
-GD_Textura::GD_Textura()
-{
-	// insert your code here
-}
-
-// class destructor
-GD_Textura::~GD_Textura()
+/*!
+*/
+GDT::Textura::Textura()
 {
 	// insert your code here
 }
 
 /*!
 */
-void GD_Textura::Cargar(char* filename)
+GDT::Textura::~Textura()
 {
-   mi_device = GD_Sistema::device;
+	// insert your code here
+}
+
+/*!
+*/
+void GDT::Textura::Cargar(char* filename)
+{
+   mi_device = Sistema::device;
      
-   tex = GD_Sistema::device->getVideoDriver()->getTexture(filename);
+   tex = Sistema::device->getVideoDriver()->getTexture(filename);
 }
 
 
 /*!
 */
-ITexture* GD_Textura::Textura()
+ITexture* GDT::Textura::RetornarTextura()
 {
    return tex;
 }
 
 /*!
 */
-void GD_Textura::GenerarMapaNormales(float amplitud)
+void GDT::Textura::GenerarMapaNormales(float amplitud)
 {
      mi_device->getVideoDriver()->makeNormalMapTexture(tex, amplitud);
 

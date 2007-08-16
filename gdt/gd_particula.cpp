@@ -22,19 +22,19 @@
 #include "gd_particula.h" // class's header file
 
 // class constructor
-GD_Particula::GD_Particula()
+GDT::Nodo::Particula::Particula()
 {
 	// insert your code here
 }
 
 // class destructor
-GD_Particula::~GD_Particula()
+GDT::Nodo::Particula::~Particula()
 {
 	// insert your code here
 }
 
 
-void GD_Particula::Crear(float x, float y, float z, float dx, float dy, float dz, int minparsec, int maxparsec, int tiempodevidamin, int tiempodevidamax, int maxang, char* filename)
+void GDT::Nodo::Particula::Crear(float x, float y, float z, float dx, float dy, float dz, int minparsec, int maxparsec, int tiempodevidamin, int tiempodevidamax, int maxang, char* filename)
 {
 //7,1,7
 //x,y,z -> caja
@@ -51,10 +51,10 @@ void GD_Particula::Crear(float x, float y, float z, float dx, float dy, float dz
 //0
 //maxang  
 
-    RegistrarDevice(GD_Sistema::device);
+    RegistrarDevice(Sistema::device);
     
-    ISceneManager* mismgr=GD_Sistema::device->getSceneManager();
-    IVideoDriver* driver = GD_Sistema::device->getVideoDriver();
+    ISceneManager* mismgr=Sistema::device->getSceneManager();
+    IVideoDriver* driver = Sistema::device->getVideoDriver();
     
 
 	nodpt = mismgr->addParticleSystemSceneNode(false);
@@ -90,13 +90,13 @@ void GD_Particula::Crear(float x, float y, float z, float dx, float dy, float dz
 }
 
 
-void GD_Particula::Escalar(float x,float y)
+void GDT::Nodo::Particula::Escalar(float x,float y)
 {
  nodpt->setParticleSize(core::dimension2d<f32>(x, y));
 }
 
 
-void GD_Particula::CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Particula::CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
 {
 
     ITriangleSelector* selector = scen.RetornarDatos();

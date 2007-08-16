@@ -41,14 +41,17 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
 //! Animador
-class GD_Animador
+class Animador
 {
 	public:
 	// class constructor
-	_GDT_EXPORT_ GD_Animador();
+	_GDT_EXPORT_ Animador();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Animador();
+	_GDT_EXPORT_ ~Animador();
 	
 	scene::ISceneNodeAnimator* anim;
 	scene::ISceneNodeAnimator* Retornar(void);
@@ -91,7 +94,7 @@ class GD_Animador
 
 	//! Crea un animador de textura, esto hace que el nodo quede texturizado por una secuencia de imagenes ej. Animate.CrearTexturaAnimada("ani/fuego","bmp", 8,50); Malla.AgregarAnimador(Animate);, las imagenes tienen que estar numeradas ej. Fuego_1.bmp Fuego_2.bmp . Los dos primeros parametros en el ej. seria corresponden a "Fuego", "bmp" 
 	_GDT_EXPORT_ void CrearTexturaAnimada(
-		char* RutaArchivoBase,
+		char* RutaArchivoGuiBase,
 		char* Extension,
 		int NumeroCuadros,
 		int TiempoPorCuadro=100,
@@ -101,5 +104,7 @@ class GD_Animador
 	_GDT_EXPORT_ void Destruir();
 
 };
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_ANIMADOR_H

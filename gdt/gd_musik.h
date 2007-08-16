@@ -60,8 +60,14 @@
 	#define MUSIK_STRING	LPSTR
 #endif
 
+namespace GDT
+{
+
+namespace Sonido
+{
+
 //!  Permite tocar musica desde archivos MIDI
-class GD_Musik
+class Musik
 {
    private:
 	HMIDIOUT hmidiout;
@@ -89,8 +95,8 @@ class GD_Musik
 	HWND hwReturn;
 	MUSIK_STRING lpszArchivoMIDI;
 
-	_GDT_EXPORT_ GD_Musik();
-	_GDT_EXPORT_ ~GD_Musik();
+	_GDT_EXPORT_ Musik();
+	_GDT_EXPORT_ ~Musik();
 
 	_GDT_EXPORT_ bool Iniciar(MUSIK_STRING ArchivoMIDI);
 	_GDT_EXPORT_ bool Cargar(MUSIK_STRING ArchivoMIDI);
@@ -116,6 +122,10 @@ class GD_Musik
 	_GDT_EXPORT_ void DeviceId();
 
 };
+
+} // FIN NAMESPACE SONIDO
+
+} // FIN NAMESPACE GDT
 
 #endif //_GD_MUSIK_H_
 

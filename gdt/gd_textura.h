@@ -50,14 +50,17 @@ using namespace gui;
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
 //! Representa una textura.
-class GD_Textura
+class Textura
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Textura();
+		_GDT_EXPORT_ Textura();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Textura();
+		_GDT_EXPORT_ ~Textura();
 		
         IrrlichtDevice *mi_device;
 		
@@ -66,10 +69,12 @@ class GD_Textura
 		//! Carga una Textura
 		_GDT_EXPORT_ void Cargar(char* filename);
 		//! Retorna el objeto interno de la Textura.
-		_GDT_EXPORT_ ITexture* Textura();
+		_GDT_EXPORT_ ITexture* RetornarTextura();
 		//! Genera un mapa de normales a partir de la Textura
 		_GDT_EXPORT_ void GenerarMapaNormales(float amplitud=1.0);
 
 };
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_TEXTURA_H

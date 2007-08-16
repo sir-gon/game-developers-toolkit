@@ -46,7 +46,7 @@ namespace Gui
 {
 
 //! Control GUI "Dialogo de Abrir" para archivos
-class DialogoAbrir : public GD_gui
+class DialogoAbrir : public GuiBase
 {
 public:
 	// class constructor
@@ -61,7 +61,7 @@ public:
 	
 };
 
-} // FIN NAMESPACE SONIDO
+} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

@@ -39,22 +39,31 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
 
 //! Sistemas de Part&iacute;culas
-class GD_Particula : public GD_Nodo
+class Particula : public NodoBase
 {
 	public:
 		// class constructor
-		_GDT_EXPORT_ GD_Particula();
+		_GDT_EXPORT_ Particula();
 		// class destructor
-		_GDT_EXPORT_ ~GD_Particula();
+		_GDT_EXPORT_ ~Particula();
 		
 		IParticleSystemSceneNode* nodpt;
 		//! Crea un sistema de part&iacute;culas con actualizaci&oacute;n autom&aacute;tica y todo autom&aacute;tico
 		_GDT_EXPORT_ void Crear(float x, float y, float z, float dx, float dy, float dz, int minparsec, int maxparsec, int tiempodevidamin, int tiempodevidamax, int maxang, char* filename);
 		_GDT_EXPORT_ void Escalar(float x,float y);
 		
-		_GDT_EXPORT_ void CrearColision( GD_Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
+		_GDT_EXPORT_ void CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_PARTICULA_H

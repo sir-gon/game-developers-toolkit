@@ -63,7 +63,7 @@ GDT::Gui::Imagen::~Imagen()
 void GDT::Gui::Imagen::Cargar(char *filename)
 {
 
-    RegistrarDevice(GD_Sistema::device);
+    RegistrarDevice(Sistema::device);
 
     driver = midevice->getVideoDriver();
     guienv = midevice->getGUIEnvironment();
@@ -96,7 +96,7 @@ img->setScaleImage(  true );
 void GDT::Gui::Imagen::Cargar(char *filename, IGUIElement* padre)
 {
 
-    RegistrarDevice(GD_Sistema::device);
+    RegistrarDevice(Sistema::device);
 
     driver = midevice->getVideoDriver();
     guienv = midevice->getGUIEnvironment();

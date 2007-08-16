@@ -38,14 +38,20 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
+
 //! Generador de Terrenos
-class GD_Terreno : public GD_Nodo
+class Terreno : public NodoBase
 {
 public:
 	// class constructor
-	_GDT_EXPORT_ GD_Terreno();
+	_GDT_EXPORT_ Terreno();
 	// class destructor
-	_GDT_EXPORT_ ~GD_Terreno();
+	_GDT_EXPORT_ ~Terreno();
 	
 	ITerrainSceneNode* nodt;
 	
@@ -55,5 +61,9 @@ public:
 	
 	_GDT_EXPORT_ void Texturizar(char *filenameTEX);
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
 
 #endif // GD_TERRENO_H

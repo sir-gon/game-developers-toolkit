@@ -41,7 +41,7 @@
 namespace GDT
 {
 
-//! Representa una Lista de Archivos de un directorio /
+//! Representa una Lista de Archivos de un directorio
 class ListaArchivos
 {
 public:

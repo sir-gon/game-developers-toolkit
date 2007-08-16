@@ -37,6 +37,7 @@
 #include "gd_sistema.h"
 #include "gd_cadena.h"
 #include "gd_cronometro.h"
+#include "gd_matematicas.h"
 // 3D
 #include "gd_animador.h"
 #include "gd_escenario.h"
@@ -59,10 +60,6 @@
 #include "gd_guidialogoabrir.h"
 #include "gd_guiventana.h"
 #include "gd_guimenu.h"
-// Reloj
-//#include "gd_reloj.h"
-//Matematicas
-#include "gd_matematicas.h"
 //Controles predise�dos
 #include "gd_controlesprediseniados.h"
 // ARCHIVOS

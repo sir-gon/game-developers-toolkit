@@ -42,19 +42,25 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Fisicas
+{
+
 //! Un Cuerpo Newton
-class GD_FisicasNwtCuerpo
+class CuerpoNwt
 {
 	public:
-		_GDT_EXPORT_ GD_FisicasNwtCuerpo();
-		_GDT_EXPORT_ GD_FisicasNwtCuerpo( NewtonWorld* NwtnWorld );
-		_GDT_EXPORT_ ~GD_FisicasNwtCuerpo();
+		_GDT_EXPORT_ CuerpoNwt();
+		_GDT_EXPORT_ CuerpoNwt( NewtonWorld* NwtnWorld );
+		_GDT_EXPORT_ ~CuerpoNwt();
 
 
 		NewtonWorld* MundoNwtn;
-		GD_Malla malla;
-		GD_FisicasNwtMundo fisica;
-		GD_FisicasNwtMaterial material;
+		GDT::Nodo::Malla malla;
+		MundoNwt fisica;
+		MaterialNwt material;
 
 		//Creacion
 		_GDT_EXPORT_ void Inicializar ( NewtonWorld* NwtnWorld );
@@ -88,6 +94,9 @@ class GD_FisicasNwtCuerpo
 
 };
 
+} // FIN NAMESPACE FISICAS
+
+} // FIN NAMESPACE GDT
 
 #endif  // GD_CUERPO_NEWTON_H
 

@@ -41,18 +41,24 @@
   #endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
+namespace GDT
+{
+
+namespace Nodo
+{
+
 //! Colisiones en el Espacio
-class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
+class Colisiones3D : public NodoBase//: public GD_Malla
 {
    protected:
       ITriangleSelector* selector;
       
    public:
 	
-	//GD_Nodo *cNodo;
+	//NodoBase *cNodo;
 	
-	_GDT_EXPORT_ GD_Colisiones3d();
-	_GDT_EXPORT_ ~GD_Colisiones3d();
+	_GDT_EXPORT_ Colisiones3D();
+	_GDT_EXPORT_ ~Colisiones3D();
 	
 	//ISceneCollisionManager* colmgr;
 	//_GDT_EXPORT_ ITriangleSelector* RetornarDatosSelector();
@@ -73,18 +79,18 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
 	//!
 	_GDT_EXPORT_ void ActualizarDatosColision();
 	
-	//! Crea un sistema de colisiones sencillo con un GD_Escenario
-	_GDT_EXPORT_ void CrearColision(GD_Escenario scen);
-	//! Crea un sistema de colisiones avanzado con un GD_Escenario, usando vectores.
-	_GDT_EXPORT_ void CrearColision(GD_Escenario scen,core::vector3df Radio,core::vector3df Gravedad,core::vector3df Traslacion);
-	//! Crea un sistema de colisiones avanzado con un GD_Escenario, usando coordenadas.
-	_GDT_EXPORT_ void CrearColision(GD_Escenario scen, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
+	//! Crea un sistema de colisiones sencillo con un Escenario
+	_GDT_EXPORT_ void CrearColision(Escenario scen);
+	//! Crea un sistema de colisiones avanzado con un Escenario, usando vectores.
+	_GDT_EXPORT_ void CrearColision(Escenario scen,core::vector3df Radio,core::vector3df Gravedad,core::vector3df Traslacion);
+	//! Crea un sistema de colisiones avanzado con un Escenario, usando coordenadas.
+	_GDT_EXPORT_ void CrearColision(Escenario scen, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ);
 	
 	//Obtencion de valores *******************************************************
 	//! Obtiene los radios del elipsoide
 	_GDT_EXPORT_ core::vector3df RetornarRadioElipsoide();
-	//! Obtiene el punto en donde se intersectan un rayo y el GD_Escenario
-	_GDT_EXPORT_ vector3df RetornarInterseccionRayo( vector3df ini, vector3df fin, GD_Escenario scen );
+	//! Obtiene el punto en donde se intersectan un rayo y el Escenario
+	_GDT_EXPORT_ vector3df RetornarInterseccionRayo( vector3df ini, vector3df fin, Escenario scen );
 	//! Obtiene el punto en donde se intersectan un rayo y el Escenario
 	_GDT_EXPORT_ vector3df RetornarInterseccionRayo( vector3df ini, vector3df fin, ITriangleSelector* trian );
 	//! Obtiene las traslaciones del elipsoide
@@ -96,12 +102,12 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
 	//! Obtiene el estado de "caida" del nodo
 	_GDT_EXPORT_ bool Callendo();
 	
-	//! Obtiene la posición donde colisiona el Nodo con el GD_Escenario
-	_GDT_EXPORT_ vector3df PosicionColisionConEscenario( GD_Escenario scen );
+	//! Obtiene la posici&oacute;n donde colisiona el Nodo con el Escenario
+	_GDT_EXPORT_ vector3df PosicionColisionConEscenario( Escenario scen );
 	//! Comprueba si el Nodo colisiona con el Escenario.
-	_GDT_EXPORT_ bool ColisionConEscenario( GD_Escenario scen );
+	_GDT_EXPORT_ bool ColisionConEscenario( Escenario scen );
 
-	//! Obtiene la posición donde colisiona el Nodo con el GD_Escenario
+	//! Obtiene la posici&oacute;n donde colisiona el Nodo con el Escenario
 	_GDT_EXPORT_ vector3df PosicionColisionConEscenario( ITriangleSelector* trian);
 	//! Comprueba si el Nodo colisiona con el Escenario.
 	_GDT_EXPORT_ bool ColisionConEscenario( ITriangleSelector* trian );
@@ -114,9 +120,9 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
 	_GDT_EXPORT_ void AsignarRadioElipsoide(core::vector3df vector_3d);
 	//! Establece los radios del elipsoide con un coordenadas.
 	_GDT_EXPORT_ void AsignarRadioElipsoide(float x, float y, float z);
-	//! Establece la traslación del elipsoide con un vector
+	//! Establece la traslaci&oacute;n del elipsoide con un vector
 	_GDT_EXPORT_ void AsignarTraslacionElipsoide(core::vector3df vector_3d);
-	//! Establece la traslación del elipsoide con un coordenadas
+	//! Establece la traslaci&oacute;n del elipsoide con un coordenadas
 	_GDT_EXPORT_ void AsignarTraslacionElipsoide(float x, float y, float z);   
 	//! Establece la gravedad del elipsoide con un vector
 	_GDT_EXPORT_ void AsignarGravedad(core::vector3df vector_3d);
@@ -124,8 +130,8 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
 	_GDT_EXPORT_ void AsignarGravedad(float x, float y, float z);
 	//! Establece datos de colision con un nuevo Escenario
 	_GDT_EXPORT_ void AsignarDatosColision(ITriangleSelector *nuevoMundo);
-	//! Establece datos de colision con un nuevo GD_Escenario
-	_GDT_EXPORT_ void AsignarDatosColision(GD_Escenario scen);
+	//! Establece datos de colision con un nuevo Escenario
+	_GDT_EXPORT_ void AsignarDatosColision(Escenario scen);
 
 	//! Obtiene una caja que rodea al Nodo
 	_GDT_EXPORT_ aabbox3d<f32> RetornarCaja();
@@ -133,9 +139,14 @@ class GD_Colisiones3d : public GD_Nodo//: public GD_Malla
 	_GDT_EXPORT_ bool ColisionConCaja(aabbox3d<f32> Cajon);
 
 	//! Comprueba si el Nodo colisiona con otro Nodo
-	_GDT_EXPORT_ bool Colisiona(GD_Nodo nodocoli);
+	_GDT_EXPORT_ bool Colisiona(NodoBase nodocoli);
 	
 	bool AntiBug;
 
 };
+
+} // FIN NAMESPACE NODO
+
+} // FIN NAMESPACE GDT
+
 #endif //GD_COLISIONES3D_H

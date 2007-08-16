@@ -31,12 +31,19 @@
   #ifdef WIN32
      #include "gd_musik.h"
   #endif
+  using namespace GDT::Sonido;
 #endif
 
 // Sistema
 #include "gd_sistema.h"
 #include "gd_cadena.h"
 #include "gd_cronometro.h"
+#include "gd_matematicas.h"
+// ARCHIVOS
+#include "gd_archivo.h"
+#include "gd_xml.h"
+#include "gd_listaarchivos.h"
+
 // 3D
 #include "gd_animador.h"
 #include "gd_escenario.h"
@@ -50,6 +57,7 @@
 #include "gd_textura.h"
 #include "gd_colisiones3d.h"
 #include "gd_malla.h"
+
 // GUI
 #include "gd_guiimagen.h"
 #include "gd_guitexto.h"
@@ -59,28 +67,25 @@
 #include "gd_guidialogoabrir.h"
 #include "gd_guiventana.h"
 #include "gd_guimenu.h"
-// Reloj
-//#include "gd_reloj.h"
-//Matematicas
-#include "gd_matematicas.h"
-//Controles predise�dos
-#include "gd_controlesprediseniados.h"
-// ARCHIVOS
-#include "gd_archivo.h"
-#include "gd_xml.h"
-#include "gd_listaarchivos.h"
 //Otros
 #include "gd_fundido.h"
+
+//Controles predise�dos
+#include "gd_controlesprediseniados.h"
+
+
 
 //Lenguaje de Scripting LUA
 #ifdef _GDT_SCRIPTING_
   #include "gd_scriptlua.h"
+  using namespace GDT::Script;
 #endif
 
 //Fisicas ODE
 #ifdef _GDT_FISICAS_ODE_
   #include "gd_fisicasOdeSistema.h"
   #include "gd_fisicasOdeCuerpo.h"
+  using namespace GDT::Fisica;
 #endif
 
 //Fisicas NEWTON DYNAMICS
@@ -106,5 +111,5 @@
 
 // CARGA AUTOMATICA DE NOMBRES DE ESPACIO
 using namespace GDT;
-using namespace Gui;
-using namespace Sonido;
+using namespace GDT::Nodo;
+using namespace GDT::Gui;
