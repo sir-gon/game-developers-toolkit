@@ -19,7 +19,8 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#include "plataforma.h"
+// DETECTOR DE PLATAFORMA
+#include "gdt_plataforma.h"
 
 // CAPA DE AUDIO
 #ifdef _GDT_SONIDO_
