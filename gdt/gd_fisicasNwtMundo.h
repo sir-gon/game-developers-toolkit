@@ -59,7 +59,7 @@
 namespace GDT
 {
 
-namespace Fisicas
+namespace Fisica
 {
 
 //static NewtonWorld* nWorld=NewtonCreate (NULL,NULL);

@@ -45,7 +45,7 @@
 namespace GDT
 {
 
-namespace Fisicas
+namespace Fisica
 {
 
 //! Un Cuerpo Newton

@@ -301,7 +301,7 @@ char* GDT::Cadena::CopiarCharEnNuevaMemoria(char* Original)
 *  cout << "El numero entero es: " << entero_en_palabras << endl;
 * \endcode
 *
-* \author sir_gon <sir_gon@users.sourceforge.net>
+* \author sir_gon 
 */
 char* GDT::Cadena::ConvertirNumeroEnChar(int numero)
 {
@@ -362,7 +362,7 @@ char* GDT::Cadena::ConvertirNumeroEnChar(int numero)
 *
 * \bug con float es impreciso
 *
-* \author sir_gon <sir_gon@users.sourceforge.net>
+* \author sir_gon 
 */
 char * GDT::Cadena::ConvertirNumeroEnChar(double numero)
 {
@@ -454,7 +454,7 @@ wchar_t * GDT::Cadena::ConvertirNumeroEnWchart(double numero)
 * cout << texto << endl;
 * \endcode
 *
-* \author sir_gon <sir_gon@users.sourceforge.net>
+* \author sir_gon 
 */
 char * GDT::Cadena::ConvertirWchartEnChar(wchar_t *cadena)
 {
@@ -503,7 +503,7 @@ char * GDT::Cadena::ConvertirWchartEnChar(wchar_t *cadena)
 * #endif
 * \endcode
 *
-* \author sir_gon <sir_gon@users.sourceforge.net>
+* \author sir_gon 
 */
 wchar_t * GDT::Cadena::ConvertirCharEnWchart(char* cadena)
 {

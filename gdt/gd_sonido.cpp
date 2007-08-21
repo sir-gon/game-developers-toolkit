@@ -43,7 +43,7 @@ GDT::Sonido::Sonido::~Sonido()
 
 char GDT::Sonido::Sonido::Cargar(char *archivo)
 {
-	/**
+	/*
     Cargar(archivo);
     RelativoOyente(1);
     Posicionar(0.0f , 0.0f , 0.1f);

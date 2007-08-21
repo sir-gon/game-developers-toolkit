@@ -25,7 +25,7 @@
 * \class GDT::Fisica::Mundo
 *
 * Crea y maneja un Mundo de F&iacute;sicas usando ODE.
-* Todos los m�odos afectan en forma global el comportamiento del Mundo.
+* Todos los m&eacute;odos afectan en forma global el comportamiento del Mundo.
 * Si se crean 2 Mundos en 2 instancias separadas, los cuerpos que pertenezcan
 * a mundos separados no interactuan, es decir, no les afectan las fuerzas del
 * otro mundo, ni
@@ -293,7 +293,7 @@ void GDT::Fisica::Mundo::Actualzar_Modo_QS(dReal VelIteracion)
 }
 
 /*!
-* \author Sir_Gon <sir_gon@users.sourceforge.net>
+* \author Sir_Gon
 */
 void GDT::Fisica::Mundo::Actualizar_Rapido(dReal VelIteracion)
 {
@@ -310,7 +310,7 @@ void GDT::Fisica::Mundo::NumIteraciones_modo_QS(int Iteraciones)
 }
 
 /*!
-* \author Sir_Gon <sir_gon@users.sourceforge.net>
+* \author Sir_Gon
 */
 void GDT::Fisica::Mundo::NumIteraciones_Rapidas(int Iteraciones)
 {
@@ -324,7 +324,7 @@ int GDT::Fisica::Mundo::ValorNumIteraciones_modo_QS()
 }
 
 /*!
-* \author Sir_Gon <sir_gon@users.sourceforge.net>
+* \author Sir_Gon
 */
 int GDT::Fisica::Mundo::ValorNumIteraciones_Rapidas()
 {

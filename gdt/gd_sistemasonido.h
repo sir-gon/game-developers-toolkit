@@ -77,22 +77,23 @@ class SistemaSonido
         // Orientation of the Listener. (first 3 elements are "at", second 3 are "up")
         // Also note that these should be units of '1'.
 
-        //variable para saber si esta iniciado o no el openal (0 no, 1 si)
-        char SGDsoundIniciado;
+        //! Estado de OpenAL. (0 desactivado, 1 activado)
+        //char SGDsoundIniciado;
+	bool SGDsoundIniciado;
 
-        //funcion para iniciar el Sonido con el dispositivo m&aacute;s compatible que encuentre
+        //! Iniciar el Sonido con el dispositivo m&aacute;s compatible que encuentre
         _GDT_EXPORT_ void Inicializar();
-        //igual pero indicandole que dispositivo tiene que usar
+        //! Igual pero indicandole que dispositivo tiene que usar
         _GDT_EXPORT_ void Inicializar(char *);
-        //finaliza el Sonido y desbloquea el dispositivo
+        //! Finaliza el Sonido y desbloquea el dispositivo
         _GDT_EXPORT_ void FinGDsonido();
-        //Ajusta la posicion en 3d del oyente
+        //! Ajusta la posicion en 3d del oyente
         _GDT_EXPORT_ void PosicionOyente(float,float,float);
-        //Ajusta el movimiento del oyente en 3d (aun en pruebas)
+        //! Ajusta el movimiento del oyente en 3d (aun en pruebas)
         _GDT_EXPORT_ void VelocidadOyente(float,float,float);
-        //Ajusta la orientacion del oyente
+        //! Ajusta la orientacion del oyente
         _GDT_EXPORT_ void OrientacionOyente(float, float, float);
-        //Ajusta la orientacion del oyente (incluyendo roll, 3 ultimos floats)
+        //! Ajusta la orientacion del oyente (incluyendo roll, 3 ultimos floats)
         _GDT_EXPORT_ void OrientacionOyente(float, float, float, float, float, float);
 };
 

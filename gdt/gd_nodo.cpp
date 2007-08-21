@@ -32,12 +32,12 @@
 * \code
 * #include <gdt.h>
 * 
-* Sistema System;
+* Sistema MiSistema;
 * Malla Cubo;
 *
 * int main()
 * {
-* 	while(System.EnEjecucion()) {
+* 	while(MiSistema.EnEjecucion()) {
 * 		///// Hacer algo ...
 * 	}
 * return 0;
@@ -84,7 +84,7 @@ void GDT::Nodo::NodoBase::Posicionar(float x, float y, float z)
       mi_posicion_z = z;
       }
      else
-      printf("ERROR: Llamada invalida a la funcion .Posicionar, verifique haber creado/cargado correctamente la entidad.\n ej. CamaraA.Crear(Tipo_Normal);");
+      printf("ERROR: Llamada invalida a la funcion .Posicionar, verifique haber creado/cargado correctamente la entidad.\n ej. MiCamara.Crear(Tipo_Normal);");
 }
 
 /*!

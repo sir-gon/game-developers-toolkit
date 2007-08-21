@@ -88,17 +88,17 @@ GDT::Sistema::~Sistema()
 * Ejemplo 1:
 * \code
 * // Ventana 640x480 a 16 bits, sin especificar driver (por defecto OPENGL)
-* System.Inicializar(640,480,16);
+* MiSistema.Inicializar(640,480,16);
 * \endcode
 * Ejemplo 2:
 * \code
 * // Ventana 640x480 a 16 bits, renderizado por SOFTWARE
-* System.Inicializar(640,480,16, SOFTWARE);
+* MiSistema.Inicializar(640,480,16, SOFTWARE);
 * \endcode
 * Ejemplo 3:
 * \code
 * // Ventana 640x480 a 16 bits, renderizado por OpenGL, con stencil buffer y vsync activado
-* System.Inicializar(640,480,16, OPENGL, true, true);
+* MiSistema.Inicializar(640,480,16, OPENGL, true, true);
 * \endcode
 */
 void GDT::Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
@@ -170,7 +170,7 @@ void GDT::Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVE
 * 
 * Ejemplo:
 * \code
-* System.EnEjecucion();
+* MiSistema.EnEjecucion();
 * \endcode
 */
 bool GDT::Sistema::EnEjecucion()
@@ -181,7 +181,7 @@ bool GDT::Sistema::EnEjecucion()
 /*!
 * Ejemplo:
 * \code
-* ancho = System.AnchoVentana();
+* ancho = MiSistema.AnchoVentana();
 * \endcode
 */
 int GDT::Sistema::AnchoVentana()
@@ -194,7 +194,7 @@ int GDT::Sistema::AnchoVentana()
 /*!
 * Ejemplo:
 * \code
-* vancho = System.AnchoVentana();
+* vancho = MiSistema.AnchoVentana();
 * \endcode
 */
 
@@ -211,7 +211,7 @@ int GDT::Sistema::AltoVentana()
 * 
 * Ejemplo:
 * \code
-* System.Fuente("media/letras.bmp");
+* MiSistema.Fuente("media/letras.bmp");
 * \endcode
 */
 void GDT::Sistema::Fuente(char* filename)
@@ -301,7 +301,7 @@ bool GDT::Sistema::ClickBoton(int id2)
 * 
 * Ejemplo:
 * \code
-* if( System.BarraMovida ( miBarra ) ) {
+* if( MiSistema.BarraMovida ( miBarra ) ) {
 *     // Aqu&iacute; lo que haga
 * }
 * \endcode
@@ -411,7 +411,7 @@ const wchar_t* GDT::Sistema::ArchivoSeleccionado(void)
 * 
 * Ejemplo:
 * \code
-* if( System.TeclaAbajo( T_ESC ) ) {
+* if( MiSistema.TeclaAbajo( T_ESC ) ) {
 *     // Ac&aacute; lo que haga
 * }
 * \endcode
@@ -518,11 +518,11 @@ void GDT::Sistema::Render()
 }
 
 /*!
-Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba System.Matarme()
+Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba MiSistema.Matarme()
 
 Ejemplo:
 \code
-System.Finalizar();
+MiSistema.Finalizar();
 \endcode
 */
 void GDT::Sistema::Finalizar()
@@ -541,7 +541,7 @@ void GDT::Sistema::Matarme()
 /*!
 * Ejemplo:
 * \code
-* System.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
+* MiSistema.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
 * \endcode
 */
 void GDT::Sistema::TituloVentana(wchar_t* textoso)
@@ -557,7 +557,7 @@ IrrlichtDevice* GDT::Sistema::RetornarDevice()
 /*!
 * Ejemplo:
 * \code
-* FPS = System.RetornarCPS();
+* FPS = MiSistema.RetornarCPS();
 * \endcode
 */
 int GDT::Sistema::RetornarCPS()
@@ -568,7 +568,7 @@ int GDT::Sistema::RetornarCPS()
 /*!
 * Ejemplo:
 * \code
-* NumPoly = System.RetornarTriangulos();
+* NumPoly = MiSistema.RetornarTriangulos();
 * \endcode
 */
 int GDT::Sistema::RetornarTriangulos()
@@ -590,7 +590,7 @@ void GDT::Sistema::VentanaEscalable(bool escalable)
 /*!
 * Ejemplo:
 * \code
-* System.ColorFondo(200,255,0):
+* MiSistema.ColorFondo(200,255,0):
 * \endcode
 */
 void GDT::Sistema::ColorFondo(int r,int g,int b)

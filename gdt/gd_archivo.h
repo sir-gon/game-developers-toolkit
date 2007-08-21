@@ -81,7 +81,8 @@ class Archivo
 
 		_GDT_EXPORT_ bool CambiarPosicion(int posicion, bool bRelativo = false);
 		_GDT_EXPORT_ int Posicion(void);
-		_GDT_EXPORT_ const char *NombreArchivo(void);
+		//! Obtiene el nombre del archivo
+		_GDT_EXPORT_ Cadena NombreArchivo(void);
 };
 
 } // FIN NAMESPACE GDT

@@ -244,8 +244,8 @@ double GDT::Matematicas::Tangente(double ang)
 
 
 /*!
-\param ValorA,ValorB números enteros.
-\return retorna el entero más pequeño.
+\param ValorA,ValorB n&uacute;meros enteros.
+\return el menor n&uacute;mero entero.
 
 Ejemplo:
 \code
@@ -253,76 +253,64 @@ Ejemplo:
 min = GDT::Matematicas::Minimo(10,20);
 \endcode
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 int GDT::Matematicas::Minimo(int ValorA,int ValorB)
 {
-    if(ValorA > ValorB)
-	return ValorB;
-    else
-        return ValorA;
+	return ValorA < ValorB ? ValorA : ValorB;
 }
 
 /*!
-\param ValorA,ValorB números reales.
-\return el número real más pequeño.
+\param ValorA,ValorB n&uacute;meros reales.
+\return el menor n&uacute;mero real.
 
 Ejemplo:
 \code
 min = GDT::Matematicas::Minimo(0, 2*GDT::Matematicas::PI());
 \endcode
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 double GDT::Matematicas::Minimo(double ValorA,double ValorB)
 {
-    if(ValorA > ValorB)
-	return ValorB;
-    else
-        return ValorA;
+	return ValorA < ValorB ? ValorA : ValorB;
 }
 
 /*!
-\param ValorA,ValorB números enteros.
-\return el entero más grande.
+\param ValorA,ValorB n&uacute;meros enteros.
+\return el entero m&aacute;s grande.
 
 Ejemplo:
 \code
 min = GDT::Matematicas::Maximo(0, 234);
 \endcode
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 int GDT::Matematicas::Maximo(int ValorA,int ValorB)
 {
-    if(ValorA < ValorB)
-	return ValorB;
-    else
-        return ValorA;
+	return ValorA > ValorB ? ValorA : ValorB;
 }
 
 /*!
-\param ValorA,ValorB números enteros.
-\return el número real más grande.
+\param ValorA,ValorB n&uacute;meros enteros.
+\return el n&uacute;mero real m&aacute;s grande.
 
 Ejemplo:
 \code
 min = GDT::Matematicas::Maximo(0, 2*GDT::Matematicas::PI());
 \endcode
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 double GDT::Matematicas::Maximo(double ValorA,double ValorB)
 {
-    if(ValorA < ValorB)
-	return ValorB;
-    else
-        return ValorA;
+	return ValorA > ValorB ? ValorA : ValorB;
 }
 
 /*!
 \param min,max los valores extremos del intervalo, sin importar el orden.
-\return un número entero pseudoaleatorio en el intervalo [min,max]
+\return un n&uacute;mero entero pseudoaleatorio en el intervalo [min,max]
 
 Los valores m&iacute;nimo y m&aacute;ximo se incluyen en las im&aacute;genes (o recorrido) de la funci&oacute;n. Es decir, se incluyen como posibles resultados.
 
@@ -340,14 +328,14 @@ int GDT::Matematicas::Azar(int min,int max)
 
 /*!
 \param min,max los valores extremos del intervalo, sin importar el orden.
-\return un número real pseudoaleatorio en el intervalo [min,max]
+\return un n&uacute;mero real pseudoaleatorio en el intervalo [min,max]
 
 Ejemplo:
 \code
 probabilidad = GDT::Matematicas::Azar(0,100); // un porcentaje real al azar
 \endcode
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 double GDT::Matematicas::Azar(double min, double max)
 {
@@ -355,8 +343,8 @@ double GDT::Matematicas::Azar(double min, double max)
 }
 
 /*!
-\param x un número real.
-\return la raiz cuadrada del número real x. Aquel número que multiplicado por sí mismo es x.
+\param x un n&uacute;mero real.
+\return la raiz cuadrada del n&uacute;mero real x. Aquel n&uacute;mero que multiplicado por sï¿½mismo es x.
 
 Ejemplo:
 \code
@@ -372,14 +360,14 @@ double GDT::Matematicas::Raiz(double x)
 /*!
 \return un &aacute;ngulo medido en <A HREF="http://es.wikipedia.org/wiki/Grado_sexagesimal">grados sexagesimales</A> entre -180 y 180 grados.
 
-Dicho ángulo es la tangente de la pendiente de la recta que uno los puntos \f$(x_1,y_1)\f$ con \f$(x_2, y_2)\f$. Esta basada en la ecuaión de la recta que pasa por 2 puntos.
+Dicho ï¿½gulo es la tangente de la pendiente de la recta que uno los puntos \f$(x_1,y_1)\f$ con \f$(x_2, y_2)\f$. Esta basada en la ecuaiï¿½ de la recta que pasa por 2 puntos.
 
-La fórmula es la siguiente:
+La fï¿½mula es la siguiente:
 \f[
    \Theta =  ArcoTangente \left( \frac{y_2 - y_1}{x_2 - x_1} \right)
 \f]
 
-Para mayor información sobre el origen de la fórmula, lea <A HREF="http://es.wikipedia.org/wiki/Pendiente_de_una_recta">este artículo</A>.
+Para mayor informaciï¿½ sobre el origen de la fï¿½mula, lea <A HREF="http://es.wikipedia.org/wiki/Pendiente_de_una_recta">este artï¿½ulo</A>.
 */
 double GDT::Matematicas::Angulo(double x1, double y1, double x2, double y2)
 {
@@ -627,9 +615,9 @@ int GDT::Matematicas::Entero(double x)
 }
 
 /*!
-\return el valor del número real sin signo.
+\return el valor del n&uacute;mero real sin signo.
 
-Definición:
+Definiciï¿½:
 \f[
 Absoluto(x) = |x| =
 \begin{cases} 
@@ -641,7 +629,7 @@ x & \text{si } x \geq 0 \\
 Ejemplo:
 
 \code
-\param x número entero.
+\param x n&uacute;mero entero.
 valor = GDT::Matematicas::Absoluto( -10 ); //
 if(valor == 10) {
     cout << "El valor absoluto de -10 es 10" << "\n";
@@ -654,10 +642,10 @@ int GDT::Matematicas::Absoluto(int x)
 }
 
 /*!
-\param x número real.
-\return el valor del número real sin signo.
+\param x n&uacute;mero real.
+\return el valor del n&uacute;mero real sin signo.
 
-Definición:
+Definiciï¿½:
 \f[
 Absoluto(x) = |x| =
 \begin{cases} 
@@ -734,10 +722,10 @@ double GDT::Matematicas::MueveZ(double z, double angulo, double velocidad)
 }
 
 /*!
-\param x número real a evaluar
+\param x n&uacute;mero real a evaluar
 \param min,max limites del intervalo.
 \param incluir Si es True se incluyen los extremos, en caso contrario se excluyen.
-\return True si el número x se encuentra en el interior del intervalo.
+\return True si el n&uacute;mero x se encuentra en el interior del intervalo.
 */
 char GDT::Matematicas::Rango(double x, double min, double max, char incluir)
 {
@@ -765,11 +753,11 @@ char GDT::Matematicas::Rango(double x, double min, double max, char incluir)
 }
 
 /*!
-\param x número real a evaluar
+\param x n&uacute;mero real a evaluar
 \param min,max limites del intervalo.
-\return True si el número x se encuentra en el interior del intervalo abierto, es decir, excluyendo los valores extremos.
+\return True si el n&uacute;mero x se encuentra en el interior del intervalo abierto, es decir, excluyendo los valores extremos.
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 char GDT::Matematicas::RangoAbierto(double x, double min, double max)
 {
@@ -780,11 +768,11 @@ char GDT::Matematicas::RangoAbierto(double x, double min, double max)
 }
 
 /*!
-\param x número real a evaluar
+\param x n&uacute;mero real a evaluar
 \param min,max extremos del intervalo.
-\return True si el número x se encuentra en el interior del intervalo cerrado, es decir, incluyendo los valores extremos.
+\return True si el n&uacute;mero x se encuentra en el interior del intervalo cerrado, es decir, incluyendo los valores extremos.
 
-\author Sir_Gon <sir_gon@users.sourceforge.net>
+\author Sir_Gon
 */
 char GDT::Matematicas::RangoCerrado(double x, double min, double max)
 {
@@ -795,7 +783,7 @@ char GDT::Matematicas::RangoCerrado(double x, double min, double max)
 }
 
 /*!
-\bug Esta implementación siempre retorna 0.
+\bug Esta implementaciï¿½ siempre retorna 0.
 */
 double GDT::Matematicas::BuscarNormal(double x, double y, double z)
 {

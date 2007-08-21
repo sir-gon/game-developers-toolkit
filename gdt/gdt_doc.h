@@ -134,15 +134,15 @@
 *  proyecto del IDE escogido.
 * 
 * - Usar una caracter&iacute;stica de GDT en un proyecto propio si GDT no fue
-*  compilado con ese soporte. En el mejor de los casos provocar&aacute;
-*  inevitablemente una caida del ejecutable. De echo es m&aacute;s probable que ni
+*  compilado con ese soporte. En el mejor de los casos podr&iacute;a provocar;
+*  una caida durante la ejecuci&oacute;n, pero es m&aacute;s probable que ni
 *  siquiera deje compilar/enlazar correctamente el proyecto.
 * 
 * - Usar una caracter&iacute;stica de GDT opcional en su proyecto, sin definir 
 *  las constantes que activan tal caracter&iacute;stica. Por ejemplo, es 
 *  incorrecto ocupar Sonido sin haber definido _GDT_SONIDO_. Estas constantes 
 *  se pueden definir en el proyecto de su IDE, as&iacute; como manualmente en su
-*  propio c&odigo, pero asegurese de hacerlo antes incluir GDT,
+*  propio c&oacute;digo, pero asegurese de hacerlo antes incluir GDT,
 *  por ejemplo as&iacute;:
 * 
 * \code

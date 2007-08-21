@@ -22,7 +22,7 @@
 #ifdef _GDT_FISICAS_NEWTON_
 
 /*!
-* \class GDT::Fisicas::MaterialNwt
+* \class GDT::Fisica::MaterialNwt
 *
 * Implementa las caracter&iacute;sticas del material de f&iacute;sicas Newton
 *
@@ -33,25 +33,25 @@
 
 #include "gd_fisicasNwtMaterial.h"
 
-GDT::Fisicas::MaterialNwt::MaterialNwt()
+GDT::Fisica::MaterialNwt::MaterialNwt()
 {
 
 }
-GDT::Fisicas::MaterialNwt::~MaterialNwt()
+GDT::Fisica::MaterialNwt::~MaterialNwt()
 {
    //NewtonMaterialDestroyAllGroupID(nMundo);
 }
 
-int GDT::Fisicas::MaterialNwt::IDMaterialPorDefecto()
+int GDT::Fisica::MaterialNwt::IDMaterialPorDefecto()
 {
    return NewtonMaterialGetDefaultGroupID(nMundo);
 }
 
-int GDT::Fisicas::MaterialNwt::CreaGrupoID()
+int GDT::Fisica::MaterialNwt::CreaGrupoID()
 {
    return NewtonMaterialCreateGroupID(nMundo);
 }
-MaterialData GDT::Fisicas::MaterialNwt::CreaGrupoID(char* pszNombre)
+MaterialData GDT::Fisica::MaterialNwt::CreaGrupoID(char* pszNombre)
 {
    MaterialData MaterialTipo;
    MaterialTipo.pszNombre=pszNombre;
@@ -59,29 +59,29 @@ MaterialData GDT::Fisicas::MaterialNwt::CreaGrupoID(char* pszNombre)
    return MaterialTipo;
 }
 
-void GDT::Fisicas::MaterialNwt::MaterialesABColisionXDefecto(int A, int B, bool Activa)
+void GDT::Fisica::MaterialNwt::MaterialesABColisionXDefecto(int A, int B, bool Activa)
 {
    NewtonMaterialSetDefaultCollidable(nMundo,A,B,(int)Activa);
 }
 
-void GDT::Fisicas::MaterialNwt::MaterialesABColisionContinua(int A, int B, bool Activa)
+void GDT::Fisica::MaterialNwt::MaterialesABColisionContinua(int A, int B, bool Activa)
 {
    NewtonMaterialSetContinuousCollisionMode(nMundo,A,B,(int)Activa);
 }
 
-void GDT::Fisicas::MaterialNwt::MaterialesABFriccionXDefecto(int A, int B,
+void GDT::Fisica::MaterialNwt::MaterialesABFriccionXDefecto(int A, int B,
                                     dFloat Friccion_Estatica,
                                     dFloat Friccion_Cinetica)
 {
    NewtonMaterialSetDefaultFriction(nMundo,A,B,Friccion_Estatica,Friccion_Cinetica);
 }
 
-void GDT::Fisicas::MaterialNwt::MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad)
+void GDT::Fisica::MaterialNwt::MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad)
 {
    NewtonMaterialSetDefaultElasticity(nMundo,A,B,Elasticidad);
 }
 
-void GDT::Fisicas::MaterialNwt::MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia)
+void GDT::Fisica::MaterialNwt::MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia)
 {
    NewtonMaterialSetDefaultSoftness(nMundo,A,B,Consistencia);
 }

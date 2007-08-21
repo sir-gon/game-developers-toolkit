@@ -24,7 +24,7 @@
 #include "gd_fisicasNwtMundo.h"
 
 /*!
-* \class GDT::Fisicas::MundoNwt
+* \class GDT::Fisica::MundoNwt
 *
 * Implementa un Mundo de f&iacute;sicas Newton.
 *
@@ -33,16 +33,16 @@
 * \author Astucia
 */
 
-GDT::Fisicas::MundoNwt::MundoNwt()
+GDT::Fisica::MundoNwt::MundoNwt()
 {};
 
-GDT::Fisicas::MundoNwt::~MundoNwt()
+GDT::Fisica::MundoNwt::~MundoNwt()
 {};
 
-void GDT::Fisicas::MundoNwt::DestruyeNewtoneano()
+void GDT::Fisica::MundoNwt::DestruyeNewtoneano()
 {};
 
-NewtonCollision* GDT::Fisicas::MundoNwt::CreaEscudo ( int Escudo )
+NewtonCollision* GDT::Fisica::MundoNwt::CreaEscudo ( int Escudo )
 {
 	NewtonCollision* collision;
 
@@ -140,7 +140,7 @@ NewtonCollision* GDT::Fisicas::MundoNwt::CreaEscudo ( int Escudo )
 
 }
 
-void GDT::Fisicas::MundoNwt::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
+void GDT::Fisica::MundoNwt::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,int EscudoColision )
 {
 
 	//Cargando el objeto Malla.
@@ -167,7 +167,7 @@ void GDT::Fisicas::MundoNwt::Inicializa ( NewtonWorld* MundoNwtn,ISceneNode* gdN
 
 }
 
-void GDT::Fisicas::MundoNwt::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
+void GDT::Fisica::MundoNwt::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,ISceneNode* gdNodo,ISceneManager* pSM,IMesh* pStaticMesh )
 {
 
 	vector3df e0, e1, area;
@@ -180,7 +180,7 @@ void GDT::Fisicas::MundoNwt::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,I
 
 
 	// load map  ----------------------------------------------------------------
-	//Esenario.Cargar("media/warehouse/warehouse.x",true,System.RetornarDevice());
+	//Esenario.Cargar("media/warehouse/warehouse.x",true,MiSistema.RetornarDevice());
 	//Esenario.Posicionar(0.0,0.0,0.0);
 	//---------------------------------------------------------------------------
 
@@ -244,12 +244,12 @@ void GDT::Fisicas::MundoNwt::CrearEscenarioNewtoneano ( NewtonWorld* MundoNwtn,I
 }
 
 
-void GDT::Fisicas::MundoNwt::AsignaMatriz ( const matrix4 mat )
+void GDT::Fisica::MundoNwt::AsignaMatriz ( const matrix4 mat )
 {
 	NewtonBodySetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
 }
 
-void GDT::Fisicas::MundoNwt::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
+void GDT::Fisica::MundoNwt::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat InerciaY,dFloat InerciaZ )
 {
 	// set the body mass and inertia
 	masa=mass;
@@ -259,26 +259,26 @@ void GDT::Fisicas::MundoNwt::AsignarMasa ( dFloat mass,dFloat InerciaX,dFloat In
 	NewtonBodySetMassMatrix ( pCuerpoNwtn, ( dFloat ) masa, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GDT::Fisicas::MundoNwt::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
+void GDT::Fisica::MundoNwt::AsignarMasa ( float mass,vector3df vecInerciaXYZ )
 {
 	AsignarMasa ( ( dFloat ) mass, ( dFloat ) vInerciaXYZ.X, ( dFloat ) vInerciaXYZ.Y, ( dFloat ) vInerciaXYZ.Z );
 }
 
-void GDT::Fisicas::MundoNwt::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
+void GDT::Fisica::MundoNwt::AsignarOmega ( dFloat OX,dFloat OY,dFloat OZ )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={OX,OY,OZ,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-void GDT::Fisicas::MundoNwt::AsignarOmega ( vector3df vOmega )
+void GDT::Fisica::MundoNwt::AsignarOmega ( vector3df vOmega )
 {
 	//Asignando angulo vectorial
 	dFloat omega[16]={ ( dFloat ) vOmega.X, ( dFloat ) vOmega.Y, ( dFloat ) vOmega.Z,1.0};
 	NewtonBodySetOmega ( pCuerpoNwtn,&omega[0] );
 }
 
-vector3df GDT::Fisicas::MundoNwt::AsignarFuerza ( float X,float Y,float Z )
+vector3df GDT::Fisica::MundoNwt::AsignarFuerza ( float X,float Y,float Z )
 {
 	fuerza.X=X;
 	fuerza.Y=Y;
@@ -287,7 +287,7 @@ vector3df GDT::Fisicas::MundoNwt::AsignarFuerza ( float X,float Y,float Z )
 	return fuerza;
 }
 
-vector3df GDT::Fisicas::MundoNwt::AsignarGiro ( float X,float Y,float Z )
+vector3df GDT::Fisica::MundoNwt::AsignarGiro ( float X,float Y,float Z )
 {
 	giro.X=X;
 	giro.Y=Y;
@@ -296,7 +296,7 @@ vector3df GDT::Fisicas::MundoNwt::AsignarGiro ( float X,float Y,float Z )
 	return giro;
 }
 
-void GDT::Fisicas::MundoNwt::AplicarFuerza_Torcion()
+void GDT::Fisica::MundoNwt::AplicarFuerza_Torcion()
 {
 
 	NwtnFuerza.X=fuerza.X;
@@ -306,13 +306,13 @@ void GDT::Fisicas::MundoNwt::AplicarFuerza_Torcion()
 	NewtonBodySetForceAndTorqueCallback ( pCuerpoNwtn, AplicarFuerza_TorcionParaCallbak );
 }
 
-void GDT::Fisicas::MundoNwt::AsignaMaterial ( int MaterialID )
+void GDT::Fisica::MundoNwt::AsignaMaterial ( int MaterialID )
 {
 	NewtonBodySetMaterialGroupID ( pCuerpoNwtn, MaterialID );
 }
 
 
-void GDT::Fisicas::MundoNwt::ConvertidorNewtonIrrlicht()
+void GDT::Fisica::MundoNwt::ConvertidorNewtonIrrlicht()
 {
 	//Cargando los datos del cuerpo Newtoneano en la matriz del cuerpo Irrlicht
 	NewtonBodyGetMatrix ( pCuerpoNwtn, ( dFloat* ) matrix.pointer() );
@@ -327,7 +327,7 @@ void GDT::Fisicas::MundoNwt::ConvertidorNewtonIrrlicht()
 
 }
 
-ISceneNode* GDT::Fisicas::MundoNwt::Actualizar()
+ISceneNode* GDT::Fisica::MundoNwt::Actualizar()
 {
 
 	// set the transform call back function
@@ -340,7 +340,7 @@ ISceneNode* GDT::Fisicas::MundoNwt::Actualizar()
 	return nodoMalla;
 }
 
-void GDT::Fisicas::MundoNwt::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
+void GDT::Fisica::MundoNwt::AsignarValoresDeReposo ( dFloat velmov,dFloat velgiro,int maxFPS )
 {
 	//GDT::Matematicas SMT;
 
@@ -349,21 +349,21 @@ void GDT::Fisicas::MundoNwt::AsignarValoresDeReposo ( dFloat velmov,dFloat velgi
 	NewtonBodySetFreezeTreshold ( pCuerpoNwtn,velmov,velgiro,maxFPS );
 }
 
-void GDT::Fisicas::MundoNwt::AsignarMatrizRecursivamente ( const matrix4 mat )
+void GDT::Fisica::MundoNwt::AsignarMatrizRecursivamente ( const matrix4 mat )
 {
 	NewtonBodySetMatrixRecursive ( pCuerpoNwtn, ( dFloat* ) &mat );
 }
 
-void GDT::Fisicas::MundoNwt::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
+void GDT::Fisica::MundoNwt::Impulsar ( dFloat* vecVelocidadDelta, dFloat* vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn,vecVelocidadDelta,vecVelocidadDelta );
 }
-void GDT::Fisicas::MundoNwt::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
+void GDT::Fisica::MundoNwt::Impulsar ( vector3df vecVelocidadDelta, vector3df vecPuntoDeImpulso )
 {
 	NewtonAddBodyImpulse ( pCuerpoNwtn, ( dFloat* ) &vecVelocidadDelta, ( dFloat* ) &vecPuntoDeImpulso );
 }
 
-bool GDT::Fisicas::MundoNwt::StatusActivo()
+bool GDT::Fisica::MundoNwt::StatusActivo()
 {
 	return ( bool ) NewtonBodyGetSleepingState ( pCuerpoNwtn );
 }
@@ -371,7 +371,7 @@ bool GDT::Fisicas::MundoNwt::StatusActivo()
 
 ///---------------------------------------------------------------------------
 
-matrix4 GDT::Fisicas::RowMaj2ColumnMaj ( matrix4 RowMat )
+matrix4 GDT::Fisica::RowMaj2ColumnMaj ( matrix4 RowMat )
 {
 
 	//int Row,Col;
@@ -406,7 +406,7 @@ matrix4 GDT::Fisicas::RowMaj2ColumnMaj ( matrix4 RowMat )
 	return ColMat;
 }
 
-matrix4 GDT::Fisicas::ColumnMaj2RowMaj ( matrix4 ColMat )
+matrix4 GDT::Fisica::ColumnMaj2RowMaj ( matrix4 ColMat )
 {
 	//int Row,Col;
 	//int i=0;
@@ -458,19 +458,19 @@ matrix4 GDT::Fisicas::ColumnMaj2RowMaj ( matrix4 ColMat )
 	return RowMat;
 }
 
-///*************************************************************
+//*************************************************************
 // memory allocation for Newton
-void*  GDT::Fisicas::PhysicsAlloc ( int sizeInBytes )
+void*  GDT::Fisica::PhysicsAlloc ( int sizeInBytes )
 {
 	return malloc ( sizeInBytes );
 }
 
 // memory de-allocation for Newton
-void  GDT::Fisicas::PhysicsFree ( void *ptr, int sizeInBytes )
+void  GDT::Fisica::PhysicsFree ( void *ptr, int sizeInBytes )
 {
 	free ( ptr );
 }
-///+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 #endif // _GDT_FISICAS_NEWTON_

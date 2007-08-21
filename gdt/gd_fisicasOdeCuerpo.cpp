@@ -24,7 +24,7 @@
 /*!
 * \class GDT::Fisica::Cuerpo
 *
-* Crea y maneja un Cuerpo R�ido, el cual puede interactuar con un Mundo
+* Crea y maneja un Cuerpo r&iacute;gido, el cual puede interactuar con un Mundo
 * y con otros Cuerpos que esten presentes en el mismo Mundo.
 *
 * \warning Esta caracter&iacute;stica esta disponible cuando _GDT_FISICAS_ODE_ est&aacute; definido en tiempo de compilaci&oacute;n.

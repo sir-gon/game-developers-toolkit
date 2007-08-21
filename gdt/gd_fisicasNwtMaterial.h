@@ -54,7 +54,7 @@ struct MaterialData
 namespace GDT
 {
 
-namespace Fisicas
+namespace Fisica
 {
 
 class MaterialNwt

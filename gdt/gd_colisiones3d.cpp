@@ -32,7 +32,7 @@
 * \code
 * #include <gdt.h>
 *
-* Sistema System;
+* Sistema MiSistema;
 * Malla Nodo;
 *
 * int main {

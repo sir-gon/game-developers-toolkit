@@ -94,6 +94,7 @@
   #include "gd_fisicasNwtMundo.h"
   #include "gd_fisicasNwtMaterial.h"
   #include "gd_fisicasNwtCuerpo.h"
+  using namespace GDT::Fisica;
 #endif
 
 //EXPORTAR SIMBOLOS AL CREAR DLL

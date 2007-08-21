@@ -20,19 +20,20 @@
  ***************************************************************************/
 
 /*!
- * \class GDT::Archivo
- *
- * Con esta clase se puede manejar informaci&oacute;n en archivos f&aacute;cilmente.
- *
- * Se puede trabajar con archivos de texto, o con archivos de estructuras.
- *
- * Siempre y cuando el usuario tenga permiso de acceso, el programa podr� * leer/escribir en la ruta que necesitemos.
- *
- * Trabajar con archivos nos permite (por ejemplo), salvar el estado actual
- * del juego, puntajes, internacionalizar la interfaz
- * (ofreciendola en varios idiomas), en fin, todo lo que requiera
- * leer/guardar informaci�.
- */
+* \class GDT::Archivo
+*
+* Con esta clase se puede manejar informaci&oacute;n en archivos f&aacute;cilmente.
+*
+* Se puede trabajar con archivos de texto, o con archivos de estructuras.
+*
+* Siempre y cuando el usuario tenga permiso de acceso, el programa podr&aacute;
+* leer/escribir en la ruta que necesitemos.
+*
+* Trabajar con archivos nos permite (por ejemplo), salvar el estado actual
+* del juego, puntajes, internacionalizar la interfaz
+* (ofreciendola en varios idiomas), en fin, todo lo que requiera
+* leer/guardar informaci&oacute;n.
+*/
 
 #include "gd_archivo.h" // class's header file
 
@@ -101,7 +102,7 @@ void GDT::Archivo::Cerrar(void)
 * \param strCadena el texto a escribir en el archivo
 * \param bytes el n&uacute;mero de bytes que se escribir&aacute;n
 *
-* Escribe el n�uacute;mero de bytes indicados de la cadena.
+* Escribe el n&uacute;mero de bytes indicados de la cadena.
 *
 * \note Se deja este m&eacute;todo con los dos p&aacute;rametros para evitar
 * conflictos con versiones anteriores y para casos especiales donde se necesite
@@ -143,6 +144,8 @@ void GDT::Archivo::Escribir(const char *strCadena)
      }
 }
 
+/*!
+*/
 void GDT::Archivo::Escribir(int numero)
 {
      Cadena Cadenin;
@@ -156,13 +159,13 @@ void GDT::Archivo::Escribir(int numero)
 }
 
 /*!
-Copia en el buffer indicado el n&uacute;mero de bytes que se quieren leer del archivo.
-
-Ejemplo:
-\code
-char Texto[4];
-Archivo.Leer(Texto, 4);
-\endcode
+* Copia en el buffer indicado el n&uacute;mero de bytes que se quieren leer del archivo.
+* 
+* Ejemplo:
+* \code
+* char Texto[4];
+* Archivo.Leer(Texto, 4);
+* \endcode
 */
 void GDT::Archivo::Leer( char * buffer, int bytes)
 {
@@ -173,13 +176,12 @@ void GDT::Archivo::Leer( char * buffer, int bytes)
 }
 
 /*!
-\return el n&uacute;mero de bytes totales del archivo se est&aacute; leyendo, devuelve el número de bytes totales del archivo.
-
-\code
-char Texto[4];
-Archivo.Leer(Texto, 4);
-\endcode
-
+* \return la cantidad de bytes total del archivo que se est&aacute; leyendo.
+* 
+* \code
+* char Texto[4];
+* Archivo.Leer(Texto, 4);
+* \endcode
 */
 int GDT::Archivo::Bytes(void)
 {
@@ -191,6 +193,8 @@ int GDT::Archivo::Bytes(void)
 	 return false;
 }
 
+/*!
+*/
 bool GDT::Archivo::CambiarPosicion(int posicion, bool bRelativo)
 {
      if(bEscribir)
@@ -203,6 +207,8 @@ bool GDT::Archivo::CambiarPosicion(int posicion, bool bRelativo)
      }
 }
 
+/*!
+*/
 int GDT::Archivo::Posicion(void)
 {
     if(bEscribir)
@@ -215,14 +221,22 @@ int GDT::Archivo::Posicion(void)
     }
 }
 
-const char *GDT::Archivo::NombreArchivo(void)
+/*!
+* \return una Cadena con el nombre del Archivo, incluyendo la ruta.
+*/
+GDT::Cadena GDT::Archivo::NombreArchivo(void)
 {
+    Cadena Salida;
+
     if(bEscribir)
     {
-        return writeFile->getFileName();
+        Salida = writeFile->getFileName();
     }
     else
     {
-        return readFile->getFileName();
+        Salida = readFile->getFileName();
     }
+
+    return Salida;
 }
+
