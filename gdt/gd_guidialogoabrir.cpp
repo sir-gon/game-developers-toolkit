@@ -47,20 +47,20 @@ GDT::Gui::DialogoAbrir::~DialogoAbrir()
 * \param titulo es el titulo del cuadro.
 * \param modal true si queremo que el control sea modal.
 * \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
-* 
+*
 * Ejemplo:
 * \code
 * DAbrir.Crear(L"Elige un archivo para cargar", true);
 * \endcode
 */
-void GDT::Gui::DialogoAbrir::Crear(wchar_t * titulo, bool modal, IGUIElement* padre)
+void GDT::Gui::DialogoAbrir::Crear ( wchar_t * titulo, bool modal, IGUIElement* padre )
 {
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	opendlg=guienv->addFileOpenDialog(titulo, modal, padre, Sistema::ContadorElementosGui++);
+
+	opendlg=guienv->addFileOpenDialog ( titulo, modal, padre, Sistema::ContadorElementosGui++ );
 	guiele = opendlg;
 }
 

@@ -24,14 +24,14 @@
 
 // CAPA DE AUDIO
 #ifdef _GDT_SONIDO_
-  //Sonido
-  #include "gd_sistemasonido.h"
-  #include "gd_sonido3d.h"
-  #include "gd_sonido.h"
-  //Musica
-  #ifdef WIN32
-     #include "gd_musik.h"
-  #endif
+//Sonido
+#include "gd_sistemasonido.h"
+#include "gd_sonido3d.h"
+#include "gd_sonido.h"
+//Musica
+#ifdef WIN32
+#include "gd_musik.h"
+#endif
 #endif
 
 // Sistema
@@ -61,7 +61,7 @@
 #include "gd_guidialogoabrir.h"
 #include "gd_guiventana.h"
 #include "gd_guimenu.h"
-//Controles predise�dos
+//Controles prediseï¿½dos
 #include "gd_controlesprediseniados.h"
 // ARCHIVOS
 #include "gd_archivo.h"
@@ -72,32 +72,32 @@
 
 //Lenguaje de Scripting LUA
 #ifdef _GDT_SCRIPTING_
-  #include "gd_scriptlua.h"
+#include "gd_scriptlua.h"
 #endif
 
 //Fisicas ODE
 #ifdef _GDT_FISICAS_ODE_
-  #include "gd_fisicasOdeSistema.h"
-  #include "gd_fisicasOdeCuerpo.h"
+#include "gd_fisicasOdeSistema.h"
+#include "gd_fisicasOdeCuerpo.h"
 #endif
 
 //Fisicas NEWTON DYNAMICS
 #ifdef _GDT_FISICAS_NEWTON_
-  #include "gd_fisicasNwtMundo.h"
-  #include "gd_fisicasNwtMaterial.h"
-  #include "gd_fisicasNwtCuerpo.h"
+#include "gd_fisicasNwtMundo.h"
+#include "gd_fisicasNwtMaterial.h"
+#include "gd_fisicasNwtCuerpo.h"
 #endif
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */

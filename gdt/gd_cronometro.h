@@ -26,48 +26,55 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* No _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Fin No _GDT_DLL_ */
-  #else
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* No _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Fin No _GDT_DLL_ */
+#else
 // SINO, DEFINIR COMO NULO EL EXPORTADOR
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-//! Contador de tiempo
-class Cronometro
-{
-	public:
-	// class constructor
-	_GDT_EXPORT_ Cronometro();
-	// class destructor
-	_GDT_EXPORT_ ~Cronometro();
-	
-	u32 TiempoDeFinalizar;
-	u32 TiempoDePulso;
-	u32 TiempoDelSistemaAlIniciar;
-	u32 Estado; //1 contando   0 termino de contar
-	u32 EstadoPulso;
-	u32 ContadorPulsos;
-	u32 TiempoDelUltimoPulso;
-	u32 TDestino;
-	bool usandoPulsos;
-	
-	_GDT_EXPORT_ void Activar(int tiempo);
-	_GDT_EXPORT_ void ActivarPulso(int tiempo);
-	_GDT_EXPORT_ bool Pulso();
-	_GDT_EXPORT_ bool Terminado();
-	_GDT_EXPORT_ bool Contando();
-	_GDT_EXPORT_ u32 TiempoRestante();
-	_GDT_EXPORT_ u32 TiempoActivado();
-};
+	//! Contador de tiempo
+	class Cronometro
+	{
+		private:
+			u32 TiempoDeFinalizar;
+			u32 TiempoDePulso;
+			u32 TiempoDelSistemaAlIniciar;
+			u32 Estado; //1 contando   0 termino de contar
+			u32 EstadoPulso;
+			u32 ContadorPulsos;
+			u32 TiempoDelUltimoPulso;
+			u32 TDestino;
+			bool usandoPulsos;
+		public:
+			// class constructor
+			_GDT_EXPORT_ Cronometro();
+			// class destructor
+			_GDT_EXPORT_ ~Cronometro();
+
+			//! (Re)establece un Contador de tiempo global, de una cantidad en milisegundos
+			_GDT_EXPORT_ void Activar ( int tiempo );
+			//!
+			_GDT_EXPORT_ void ActivarPulso ( int tiempo );
+			//!
+			_GDT_EXPORT_ bool Pulso();
+			//!
+			_GDT_EXPORT_ bool Terminado();
+			//! Comprueba si el contador est&aacute; activado
+			_GDT_EXPORT_ bool Contando();
+			//! La cantidad de tiempo que falta para llegar al fin.
+			_GDT_EXPORT_ u32 TiempoRestante();
+			//! La cantidad de tiempo transcurrida desde que se fue activado el contador.
+			_GDT_EXPORT_ u32 TiempoActivado();
+	};
 
 } // FIN NAMESPACE GDT
 

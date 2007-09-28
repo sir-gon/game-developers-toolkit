@@ -27,47 +27,47 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Barra de Desplazamiento" (ScrollBar)
-class Barra : public GuiBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Barra();
-	// class destructor
-	_GDT_EXPORT_ ~Barra();
+		class Barra : public GuiBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Barra();
+				// class destructor
+				_GDT_EXPORT_ ~Barra();
 
-	IGUIScrollBar* barra;
-	//! Crea un control Gui del tipo Barra. La Barra ser�horizontal.
-	_GDT_EXPORT_ void CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
-	//! Crea un control Gui del tipo Barra. La Barra ser�vertical.
-	_GDT_EXPORT_ void CrearVertical(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
-	//! Especifica el m&aacute;ximo valor que puede tener la barra
-	_GDT_EXPORT_ void MaximoValor(int maximo);
-	//! Obtiene la posici&oacute;n de la barra
-	_GDT_EXPORT_ int Posicion(void);
-	//! Cambia la posici&oacute;n de la barra.
-	_GDT_EXPORT_ void Posicionar(int posicion);
-};
+				IGUIScrollBar* barra;
+				//! Crea un control Gui del tipo Barra. La Barra serï¿½horizontal.
+				_GDT_EXPORT_ void CrearHorizontal ( int x1, int y1, int x2, int y2, IGUIElement* padre=0 );
+				//! Crea un control Gui del tipo Barra. La Barra serï¿½vertical.
+				_GDT_EXPORT_ void CrearVertical ( int x1, int y1, int x2, int y2, IGUIElement* padre=0 );
+				//! Especifica el m&aacute;ximo valor que puede tener la barra
+				_GDT_EXPORT_ void MaximoValor ( int maximo );
+				//! Obtiene la posici&oacute;n de la barra
+				_GDT_EXPORT_ int Posicion ( void );
+				//! Cambia la posici&oacute;n de la barra.
+				_GDT_EXPORT_ void Posicionar ( int posicion );
+		};
 
-} // FIN NAMESPACE GUI
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

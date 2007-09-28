@@ -19,7 +19,7 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-#ifdef _GDT_SONIDO_ 
+#ifdef _GDT_SONIDO_
 
 #include "gd_sonido.h" // class's header file
 
@@ -41,92 +41,92 @@ GDT::Sonido::Sonido::~Sonido()
 
 
 
-char GDT::Sonido::Sonido::Cargar(char *archivo)
+char GDT::Sonido::Sonido::Cargar ( char *archivo )
 {
 	/*
-    Cargar(archivo);
-    RelativoOyente(1);
-    Posicionar(0.0f , 0.0f , 0.1f);
+	   Cargar(archivo);
+	   RelativoOyente(1);
+	   Posicionar(0.0f , 0.0f , 0.1f);
 	*/
-    return 0;
+	return 0;
 }
 
 void GDT::Sonido::Sonido::Descargar()
 {
-    //Descargar();
+	//Descargar();
 }
 
 void GDT::Sonido::Sonido::Reproducir()
 {
-    //Reproducir();
+	//Reproducir();
 }
 
 void GDT::Sonido::Sonido::Pausa()
 {
-    //Pausa();
+	//Pausa();
 }
 
 void GDT::Sonido::Sonido::Detener()
 {
-    //Detener();
+	//Detener();
 }
 
 void GDT::Sonido::Sonido::Rebobinar()
 {
-    //Rebobinar();
+	//Rebobinar();
 }
 
 void GDT::Sonido::Sonido::Play()
 {
-    //Play();
+	//Play();
 }
 
 void GDT::Sonido::Sonido::Pause()
 {
-    //Pause();
+	//Pause();
 }
 
 void GDT::Sonido::Sonido::Stop()
 {
-    //Stop();
+	//Stop();
 }
 
 void GDT::Sonido::Sonido::Rewind()
 {
-    //Rewind();
+	//Rewind();
 }
-void GDT::Sonido::Sonido::Bucle(char loop)
+void GDT::Sonido::Sonido::Bucle ( char loop )
 {
-    //Bucle(loop);
-}
-
-void GDT::Sonido::Sonido::Pan(float p)
-{
-    GDT::Sonido::Sonido::Posicionar(p , 0.0f , 0.1f);
+	//Bucle(loop);
 }
 
-void GDT::Sonido::Sonido::Tono(float t)
+void GDT::Sonido::Sonido::Pan ( float p )
 {
-   //Tono(t);
+	GDT::Sonido::Sonido::Posicionar ( p , 0.0f , 0.1f );
+}
+
+void GDT::Sonido::Sonido::Tono ( float t )
+{
+	//Tono(t);
 }
 
 int GDT::Sonido::Sonido::Estado()
 {
-   //0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
-   //return Estado();
-   return 0;
+	//0 esta sonando , 1 esta en pausa, 2 esta parado, cualquier otra cosa es fallo
+	//return Estado();
+	return 0;
 }
-void GDT::Sonido::Sonido::Volumen(int vol)
+void GDT::Sonido::Sonido::Volumen ( int vol )
 {
-   float rvol;
-   if(vol<0)
-   {
-      vol=0;
-   }
-   rvol=(float)vol/100.0f;
-   //Posicion(0.0,0.0,0.0-rvol);
-   //ReferenciaDistancia(rvol);
-   GDT::Sonido::Sonido::VolumenMaximo(rvol);
+	float rvol;
+	if ( vol<0 )
+	{
+		vol=0;
+	}
+	rvol= ( float ) vol/100.0f;
+	//Posicion(0.0,0.0,0.0-rvol);
+	//ReferenciaDistancia(rvol);
+	GDT::Sonido::Sonido::VolumenMaximo ( rvol );
 }
 
 #endif // _GDT_SONIDO_

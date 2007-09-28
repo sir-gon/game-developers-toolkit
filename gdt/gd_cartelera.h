@@ -27,51 +27,51 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Nodo
-{
+	namespace Nodo
+	{
 
 //! Imagenes que siempre se ven frontalmente en la c&aacute;mara
-class Cartelera : public NodoBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Cartelera();
-	// class destructor
-	_GDT_EXPORT_ ~Cartelera();
-	
-	IBillboardSceneNode* nodb;
-	
-	//! Carga una im�en como una Cartelera.
-	_GDT_EXPORT_ void Crear(
-		float tamx,
-		float tamy,
-		char* filename
-		);
+		class Cartelera : public NodoBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Cartelera();
+				// class destructor
+				_GDT_EXPORT_ ~Cartelera();
 
-	_GDT_EXPORT_ void CrearColision(
-		Escenario scen,
-		float radiox, float radioy, float radioz,
-		float transx, float transy, float transz,
-		float grax, float gray, float graz
-		);
-};
+				IBillboardSceneNode* nodb;
 
-} // FIN NAMESPACE NODO
+				//! Carga una imï¿½en como una Cartelera.
+				_GDT_EXPORT_ void Crear (
+				    float tamx,
+				    float tamy,
+				    char* filename
+				);
+
+				_GDT_EXPORT_ void CrearColision (
+				    Escenario scen,
+				    float radiox, float radioy, float radioz,
+				    float transx, float transy, float transz,
+				    float grax, float gray, float graz
+				);
+		};
+
+	} // FIN NAMESPACE NODO
 
 } // FIN NAMESPACE GDT
 

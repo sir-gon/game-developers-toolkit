@@ -21,7 +21,7 @@
 
 /*!
 * \class GDT::ControlesPrediseniados
-* 
+*
 * \todo (Astucia): Crear comandos de teclado predise&ntilde;ados
 * \todo (Astucia): Crear funciones con valores de retorno
 */
@@ -30,161 +30,158 @@
 
 GDT::ControlesPrediseniados::ControlesPrediseniados()
 {
-      Teclado.iUp=38;
-      Teclado.iDown=40;
-      Teclado.iLeft=37;
-      Teclado.iRight=39;
-      Teclado.iControl=17;
-      Teclado.iShift=16;
+	Teclado.iUp=38;
+	Teclado.iDown=40;
+	Teclado.iLeft=37;
+	Teclado.iRight=39;
+	Teclado.iControl=17;
+	Teclado.iShift=16;
 
 }
-GDT::ControlesPrediseniados::~ControlesPrediseniados(){}
+GDT::ControlesPrediseniados::~ControlesPrediseniados() {}
 
-GDT::ControlesPrediseniados::ControlesPrediseniados(Sistema sistemaGeneral)
+GDT::ControlesPrediseniados::ControlesPrediseniados ( Sistema sistemaGeneral )
 {
-      sistema=sistemaGeneral;
-      Teclado.iUp=38;
-      Teclado.iDown=40;
-      Teclado.iLeft=37;
-      Teclado.iRight=39;
-      Teclado.iControl=17;
-      Teclado.iShift=16;
+	sistema=sistemaGeneral;
+	Teclado.iUp=38;
+	Teclado.iDown=40;
+	Teclado.iLeft=37;
+	Teclado.iRight=39;
+	Teclado.iControl=17;
+	Teclado.iShift=16;
 }
 
-void GDT::ControlesPrediseniados::ActivarSistema(Sistema sistem)
+void GDT::ControlesPrediseniados::ActivarSistema ( Sistema sistem )
 {
-   sistema=sistem;
+	sistema=sistem;
 }
 
-void GDT::ControlesPrediseniados::TeclasActivas(int iUp,int iDown,int iRight,int iLeft,int iControl=17,int iShift=16)
+void GDT::ControlesPrediseniados::TeclasActivas ( int iUp,int iDown,int iRight,int iLeft,int iControl=17,int iShift=16 )
 {
-   Teclado.iUp=iUp;
-   Teclado.iDown=iDown;
-   Teclado.iRight=iRight;
-   Teclado.iLeft=iLeft;
-   Teclado.iControl=iControl;
-   Teclado.iShift=iShift;
+	Teclado.iUp=iUp;
+	Teclado.iDown=iDown;
+	Teclado.iRight=iRight;
+	Teclado.iLeft=iLeft;
+	Teclado.iControl=iControl;
+	Teclado.iShift=iShift;
 }
 
-void GDT::ControlesPrediseniados::ValoresEnTeclado(double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift)
+void GDT::ControlesPrediseniados::ValoresEnTeclado ( double dUp,double dDown,double dRight,double dLeft,double dControl,double dShift )
 {
-   Teclado.dUp=dUp;
-   Teclado.dDown=dDown;
-   Teclado.dRight=dRight;
-   Teclado.dLeft=dLeft;
-   Teclado.dControl=dControl;
-   Teclado.dShift=dShift;
+	Teclado.dUp=dUp;
+	Teclado.dDown=dDown;
+	Teclado.dRight=dRight;
+	Teclado.dLeft=dLeft;
+	Teclado.dControl=dControl;
+	Teclado.dShift=dShift;
 }
 
-void GDT::ControlesPrediseniados::TecladoUDRL(GDT::Nodo::Malla MallaX)
+void GDT::ControlesPrediseniados::TecladoUDRL ( GDT::Nodo::Malla MallaX )
 {
 
-   static int Pers=0;
-   static int OldPers=0;
-   static float fPosX,fPosY,fPosZ;
-   static float fAngX,fAngY,fAngZ;
-   static vector3df vecPosPers;
-   float MousePsX;
+	//static int Pers=0;
+	//static int OldPers=0;
+	static float fPosX,fPosY,fPosZ;
+	static float fAngX,fAngY,fAngZ;
+	static vector3df vecPosPers;
+	float MousePsX;
 
-   // Estado del personaje principal
-   //Posicion
-   fPosX=MallaX.PosicionX();
-   fPosY=MallaX.PosicionY();
-   fPosZ=MallaX.PosicionZ();
-   //Angulo de rotacion
-   fAngX=MallaX.RotacionX();
-   fAngY=MallaX.RotacionY();
-   fAngZ=MallaX.RotacionZ();
-
-
-   //Moviendo
-   if ((sistema.TeclaAbajo(38))||(sistema.TeclaAbajo(87))){
-      fPosX=(float)GDT::Matematicas::NewXValue(fPosX,fAngY,-2.0);
-      fPosZ=(float)GDT::Matematicas::NewZValue(fPosZ,fAngY,-2.0);
-   }
-   if ((sistema.TeclaAbajo(T_FLECHA_ABAJO))||(sistema.TeclaAbajo(T_TECLA_S))){
-      fPosX=(float)GDT::Matematicas::NewXValue(fPosX,fAngY,2.0);
-      fPosZ=(float)GDT::Matematicas::NewZValue(fPosZ,fAngY,2.0);
-   }
-   if ((sistema.TeclaAbajo(T_FLECHA_IZQUIERDA))||(sistema.TeclaAbajo(T_TECLA_Q))){fPosY-=3.0;}
-   if ((sistema.TeclaAbajo(T_FLECHA_DERECHA))||(sistema.TeclaAbajo(T_TECLA_E))){fPosY+=3.0;}
-
-   if ((sistema.TeclaAbajo(T_CONTROL))||(sistema.TeclaAbajo(T_TECLA_D))){
-      fPosX=(float)GDT::Matematicas::NewXValue(fPosX,GDT::Matematicas::WrapValue(fAngY+90),-2.0);
-      fPosZ=(float)GDT::Matematicas::NewZValue(fPosZ,GDT::Matematicas::WrapValue(fAngY+90),-2.0);
-   }
-   if ((sistema.TeclaAbajo(T_SHIFT))||(sistema.TeclaAbajo(T_TECLA_A))){
-      fPosX=(float)GDT::Matematicas::NewXValue(fPosX,GDT::Matematicas::WrapValue(fAngY+90),2.0);
-      fPosZ=(float)GDT::Matematicas::NewZValue(fPosZ,GDT::Matematicas::WrapValue(fAngY+90),2.0);
-   }
-
-   if(sistema.TeclaAbajo(T_TECLA_M))
-      MallaX.MoverX(5.0);
+	// Estado del personaje principal
+	//Posicion
+	fPosX=MallaX.PosicionX();
+	fPosY=MallaX.PosicionY();
+	fPosZ=MallaX.PosicionZ();
+	//Angulo de rotacion
+	fAngX=MallaX.RotacionX();
+	fAngY=MallaX.RotacionY();
+	fAngZ=MallaX.RotacionZ();
 
 
-   MousePsX=sistema.MouseMovimientoX(1);
-   if (MousePsX<0)
-   {fAngY=(float)GDT::Matematicas::WrapValue(fAngY-2.5);}
-   else
-   {
-      if (MousePsX>0){fAngY=(float)GDT::Matematicas::WrapValue(fAngY+2.5);}
-   }
+	//Moviendo
+	if ( ( sistema.TeclaAbajo ( 38 ) ) || ( sistema.TeclaAbajo ( 87 ) ) )
+	{
+		fPosX= ( float ) GDT::Matematicas::NewXValue ( fPosX,fAngY,-2.0 );
+		fPosZ= ( float ) GDT::Matematicas::NewZValue ( fPosZ,fAngY,-2.0 );
+	}
+	if ( ( sistema.TeclaAbajo ( T_FLECHA_ABAJO ) ) || ( sistema.TeclaAbajo ( T_TECLA_S ) ) )
+	{
+		fPosX= ( float ) GDT::Matematicas::NewXValue ( fPosX,fAngY,2.0 );
+		fPosZ= ( float ) GDT::Matematicas::NewZValue ( fPosZ,fAngY,2.0 );
+	}
+	if ( ( sistema.TeclaAbajo ( T_FLECHA_IZQUIERDA ) ) || ( sistema.TeclaAbajo ( T_TECLA_Q ) ) ) {fPosY-=3.0;}
+	if ( ( sistema.TeclaAbajo ( T_FLECHA_DERECHA ) ) || ( sistema.TeclaAbajo ( T_TECLA_E ) ) ) {fPosY+=3.0;}
 
-   MallaX.Posicionar(fPosX,fPosY,fPosZ);
-   MallaX.RotarY(fAngY);
+	if ( ( sistema.TeclaAbajo ( T_CONTROL ) ) || ( sistema.TeclaAbajo ( T_TECLA_D ) ) )
+	{
+		fPosX= ( float ) GDT::Matematicas::NewXValue ( fPosX,GDT::Matematicas::WrapValue ( fAngY+90 ),-2.0 );
+		fPosZ= ( float ) GDT::Matematicas::NewZValue ( fPosZ,GDT::Matematicas::WrapValue ( fAngY+90 ),-2.0 );
+	}
+	if ( ( sistema.TeclaAbajo ( T_SHIFT ) ) || ( sistema.TeclaAbajo ( T_TECLA_A ) ) )
+	{
+		fPosX= ( float ) GDT::Matematicas::NewXValue ( fPosX,GDT::Matematicas::WrapValue ( fAngY+90 ),2.0 );
+		fPosZ= ( float ) GDT::Matematicas::NewZValue ( fPosZ,GDT::Matematicas::WrapValue ( fAngY+90 ),2.0 );
+	}
 
-   vecPosPers=MallaX.Posicion();
+	if ( sistema.TeclaAbajo ( T_TECLA_M ) )
+		MallaX.MoverX ( 5.0 );
 
-   // Seguimiento de camara
-   //Seguimiento_de_Camara(vecPosPers,fAngY);
 
-   //CargarNodo(nodoReceptor);
-/*
-   if(sistema.TeclaAbajo(Teclado.iUp))
-      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),0,Teclado.dUp),
-                  0,MallaX.NewZValue(MallaX.PosicionZ(),0,Teclado.dUp));
+	MousePsX=sistema.MouseMovimientoX ( 1 );
+	if ( MousePsX<0 )
+	{fAngY= ( float ) GDT::Matematicas::WrapValue ( fAngY-2.5 );}
+	else
+	{
+		if ( MousePsX>0 ) {fAngY= ( float ) GDT::Matematicas::WrapValue ( fAngY+2.5 );}
+	}
 
-   if(sistema.TeclaAbajo(Teclado.iDown))
-      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),0,Teclado.dDown),
-                  0,MallaX.NewZValue(MallaX.PosicionZ(),0,Teclado.dDown));
+	MallaX.Posicionar ( fPosX,fPosY,fPosZ );
+	MallaX.RotarY ( fAngY );
 
-   if(sistema.TeclaAbajo(Teclado.iLeft))
-      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),90,Teclado.dLeft),
-                  0,MallaX.NewZValue(MallaX.PosicionZ(),90,Teclado.dLeft));
+	vecPosPers=MallaX.Posicion();
 
-   if(sistema.TeclaAbajo(Teclado.iRight))
-      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),90,Teclado.dRight),
-                  0,MallaX.NewZValue(MallaX.PosicionZ(),90,Teclado.dRight));
+	// Seguimiento de camara
+	//Seguimiento_de_Camara(vecPosPers,fAngY);
 
-   //ActualizarNodoReceptor(nodoReceptor);
-*/
+	//CargarNodo(nodoReceptor);
+	/*
+	   if(sistema.TeclaAbajo(Teclado.iUp))
+	      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),0,Teclado.dUp),
+	                  0,MallaX.NewZValue(MallaX.PosicionZ(),0,Teclado.dUp));
+
+	   if(sistema.TeclaAbajo(Teclado.iDown))
+	      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),0,Teclado.dDown),
+	                  0,MallaX.NewZValue(MallaX.PosicionZ(),0,Teclado.dDown));
+
+	   if(sistema.TeclaAbajo(Teclado.iLeft))
+	      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),90,Teclado.dLeft),
+	                  0,MallaX.NewZValue(MallaX.PosicionZ(),90,Teclado.dLeft));
+
+	   if(sistema.TeclaAbajo(Teclado.iRight))
+	      MallaX.Mover(MallaX.NewXValue(MallaX.PosicionX(),90,Teclado.dRight),
+	                  0,MallaX.NewZValue(MallaX.PosicionZ(),90,Teclado.dRight));
+
+	   //ActualizarNodoReceptor(nodoReceptor);
+	*/
 }
 
 void GDT::ControlesPrediseniados::TecladoUDRLCtrlShift()
-{
-}
+{}
 
 void GDT::ControlesPrediseniados::TecladoURLDMouseMove()
-{
-}
+{}
 
 void GDT::ControlesPrediseniados::TecladoUDRLCtrlShiftMouseMove()
-{
-}
+{}
 
-void GDT::ControlesPrediseniados::TecladoUDRL(stTeclado *pTeclado)
-{
-}
+void GDT::ControlesPrediseniados::TecladoUDRL ( stTeclado *pTeclado )
+{}
 
-void GDT::ControlesPrediseniados::TecladoUDRLCtrlShift(stTeclado *pTeclado)
-{
-}
+void GDT::ControlesPrediseniados::TecladoUDRLCtrlShift ( stTeclado *pTeclado )
+{}
 
-void GDT::ControlesPrediseniados::TecladoURLDMouseMove(stTeclado *pTeclado,stMouse *pMouse)
-{
-}
+void GDT::ControlesPrediseniados::TecladoURLDMouseMove ( stTeclado *pTeclado,stMouse *pMouse )
+{}
 
-void GDT::ControlesPrediseniados::TecladoUDRLCtrlShiftMouseMove(stTeclado *pTeclado,stMouse *pMouse)
-{
-}
+void GDT::ControlesPrediseniados::TecladoUDRLCtrlShiftMouseMove ( stTeclado *pTeclado,stMouse *pMouse )
+{}
 

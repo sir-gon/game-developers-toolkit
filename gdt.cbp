@@ -3,10 +3,10 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="1"/>
 	<Project>
-		<Option title="GDT v2.0-ALPHA1"/>
+		<Option title="GDT v2.0-BETA"/>
 		<Option makefile="Makefile"/>
 		<Option makefile_is_custom="0"/>
-		<Option default_target="-1"/>
+		<Option default_target="1"/>
 		<Option compiler="0"/>
 		<Build>
 			<Target title="gdt">
@@ -21,7 +21,7 @@
 				<Option createStaticLib="1"/>
 				<Compiler>
 					<Add option="-O2"/>
-					<Add option="-W"/>
+					<Add option="-Wall"/>
 					<Add directory="include\AL"/>
 					<Add directory="include\Irrlicht"/>
 					<Add directory="include\ode"/>
@@ -35,6 +35,8 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-O3"/>
+			<Add option="-Wall"/>
 			<Add option="-D_GDT_DLL_"/>
 			<Add option="-D_GDT_SONIDO_"/>
 			<Add option="-D_GDT_SONIDO_OGG_"/>
@@ -54,7 +56,6 @@
 			<Add library="ogg"/>
 			<Add library="OpenAL32"/>
 			<Add library="vorbis"/>
-			<Add library="vorbisenc"/>
 			<Add library="vorbisfile"/>
 			<Add library="winmm"/>
 			<Add library="uuid"/>
@@ -472,6 +473,12 @@
 		</Unit>
 		<Unit filename="gdt\gdt.h">
 			<Option compilerVar="CPP"/>
+			<Option compile="0"/>
+			<Option link="0"/>
+			<Option target="gdt"/>
+		</Unit>
+		<Unit filename="gdt\gdt_doc.h">
+			<Option compilerVar=""/>
 			<Option compile="0"/>
 			<Option link="0"/>
 			<Option target="gdt"/>

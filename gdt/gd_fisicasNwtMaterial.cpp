@@ -35,55 +35,54 @@
 
 GDT::Fisica::MaterialNwt::MaterialNwt()
 {
-
 }
 GDT::Fisica::MaterialNwt::~MaterialNwt()
 {
-   //NewtonMaterialDestroyAllGroupID(nMundo);
+	//NewtonMaterialDestroyAllGroupID(nMundo);
 }
 
 int GDT::Fisica::MaterialNwt::IDMaterialPorDefecto()
 {
-   return NewtonMaterialGetDefaultGroupID(nMundo);
+	return NewtonMaterialGetDefaultGroupID ( nMundo );
 }
 
 int GDT::Fisica::MaterialNwt::CreaGrupoID()
 {
-   return NewtonMaterialCreateGroupID(nMundo);
+	return NewtonMaterialCreateGroupID ( nMundo );
 }
-MaterialData GDT::Fisica::MaterialNwt::CreaGrupoID(char* pszNombre)
+MaterialData GDT::Fisica::MaterialNwt::CreaGrupoID ( char* pszNombre )
 {
-   MaterialData MaterialTipo;
-   MaterialTipo.pszNombre=pszNombre;
-   MaterialTipo.ID=NewtonMaterialCreateGroupID(nMundo);
-   return MaterialTipo;
-}
-
-void GDT::Fisica::MaterialNwt::MaterialesABColisionXDefecto(int A, int B, bool Activa)
-{
-   NewtonMaterialSetDefaultCollidable(nMundo,A,B,(int)Activa);
+	MaterialData MaterialTipo;
+	MaterialTipo.pszNombre=pszNombre;
+	MaterialTipo.ID=NewtonMaterialCreateGroupID ( nMundo );
+	return MaterialTipo;
 }
 
-void GDT::Fisica::MaterialNwt::MaterialesABColisionContinua(int A, int B, bool Activa)
+void GDT::Fisica::MaterialNwt::MaterialesABColisionXDefecto ( int A, int B, bool Activa )
 {
-   NewtonMaterialSetContinuousCollisionMode(nMundo,A,B,(int)Activa);
+	NewtonMaterialSetDefaultCollidable ( nMundo,A,B, ( int ) Activa );
 }
 
-void GDT::Fisica::MaterialNwt::MaterialesABFriccionXDefecto(int A, int B,
-                                    dFloat Friccion_Estatica,
-                                    dFloat Friccion_Cinetica)
+void GDT::Fisica::MaterialNwt::MaterialesABColisionContinua ( int A, int B, bool Activa )
 {
-   NewtonMaterialSetDefaultFriction(nMundo,A,B,Friccion_Estatica,Friccion_Cinetica);
+	NewtonMaterialSetContinuousCollisionMode ( nMundo,A,B, ( int ) Activa );
 }
 
-void GDT::Fisica::MaterialNwt::MaterialesABElasticidadXDefecto(int A, int B,dFloat Elasticidad)
+void GDT::Fisica::MaterialNwt::MaterialesABFriccionXDefecto ( int A, int B,
+        dFloat Friccion_Estatica,
+        dFloat Friccion_Cinetica )
 {
-   NewtonMaterialSetDefaultElasticity(nMundo,A,B,Elasticidad);
+	NewtonMaterialSetDefaultFriction ( nMundo,A,B,Friccion_Estatica,Friccion_Cinetica );
 }
 
-void GDT::Fisica::MaterialNwt::MaterialesABConsistenciaXDefecto(int A, int B,dFloat Consistencia)
+void GDT::Fisica::MaterialNwt::MaterialesABElasticidadXDefecto ( int A, int B,dFloat Elasticidad )
 {
-   NewtonMaterialSetDefaultSoftness(nMundo,A,B,Consistencia);
+	NewtonMaterialSetDefaultElasticity ( nMundo,A,B,Elasticidad );
+}
+
+void GDT::Fisica::MaterialNwt::MaterialesABConsistenciaXDefecto ( int A, int B,dFloat Consistencia )
+{
+	NewtonMaterialSetDefaultSoftness ( nMundo,A,B,Consistencia );
 }
 
 /*void Material_nwtn::RetrollamadaColisionMaterialesAB(int A,int B,void *userData)

@@ -34,40 +34,40 @@ GDT::Nodo::Terreno::~Terreno()
 }
 
 
-void GDT::Nodo::Terreno::Crear(char *filenameHMAP,float x, float y, float z)
+void GDT::Nodo::Terreno::Crear ( char *filenameHMAP,float x, float y, float z )
 {
-     
-    RegistrarDevice(Sistema::device);
-    ISceneManager* mismgr=midevice->getSceneManager();
-    
-    //IVideoDriver* driver = midevice->getVideoDriver();
-    
-	nodt = mismgr->addTerrainSceneNode( filenameHMAP,0,-1, vector3df(0,0,0),vector3df(0,0,0),vector3df(x,y/3,z));
 
-		     
-     selector = mismgr->createTerrainTriangleSelector(nodt,0);
-	nodt->setTriangleSelector(selector);
-	
-  nodon =nodt;
-    if(!nodon) printf("ERROR: No se pudo Crear Terreno, %s.\n", filenameHMAP); 
-     
+	RegistrarDevice ( Sistema::device );
+	ISceneManager* mismgr=midevice->getSceneManager();
+
+	//IVideoDriver* driver = midevice->getVideoDriver();
+
+	nodt = mismgr->addTerrainSceneNode ( filenameHMAP,0,-1, vector3df ( 0,0,0 ),vector3df ( 0,0,0 ),vector3df ( x,y/3,z ) );
+
+
+	selector = mismgr->createTerrainTriangleSelector ( nodt,0 );
+	nodt->setTriangleSelector ( selector );
+
+	nodon =nodt;
+	if ( !nodon ) printf ( "ERROR: No se pudo Crear Terreno, %s.\n", filenameHMAP );
+
 }
 
 ITriangleSelector* GDT::Nodo::Terreno::RetornarDatos()
 {
-     return selector;
+	return selector;
 }
 
-void GDT::Nodo::Terreno::Texturizar(char *filenameTEX)
+void GDT::Nodo::Terreno::Texturizar ( char *filenameTEX )
 {
-    
-     IVideoDriver* driver = midevice->getVideoDriver();
-        
-     driver->setTextureCreationFlag(video::ETCF_ALWAYS_32_BIT, true);
-     driver->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, false);
-     
-     nodt->setMaterialTexture(0, driver->getTexture(filenameTEX));
-     
-     driver->setTextureCreationFlag(video::ETCF_ALWAYS_32_BIT, false);
-     driver->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, true);
+
+	IVideoDriver* driver = midevice->getVideoDriver();
+
+	driver->setTextureCreationFlag ( video::ETCF_ALWAYS_32_BIT, true );
+	driver->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, false );
+
+	nodt->setMaterialTexture ( 0, driver->getTexture ( filenameTEX ) );
+
+	driver->setTextureCreationFlag ( video::ETCF_ALWAYS_32_BIT, false );
+	driver->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, true );
 }

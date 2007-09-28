@@ -41,14 +41,14 @@ GDT::Gui::Fundido::~Fundido()
 
 void GDT::Gui::Fundido::Crear()
 {
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
+
 	//fundido=guienv->addInOutFader(rect<s32>(0,0,TamPantalla.Width, TamPantalla.Height), 0, -1);
 	fundido=guienv->addInOutFader();
-	
+
 	guiele = fundido;
 }
 /*
@@ -56,34 +56,34 @@ void GDT::Gui::Fundido::Crear( int x1, int y1, int x2, int y2)
 {
 
     RegistrarDevice(Sistema::device);
-    
+
     IVideoDriver* driver = midevice->getVideoDriver();
     IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-    
+
     rect<s32> rec(x1,y1,x2,y2);
-    
+
      fundido = guienv->addInOutFader(rec, 0, -1);
-      
+
       guiele = fundido;
 }
 */
 
-void GDT::Gui::Fundido::Color( int r, int g, int b)
+void GDT::Gui::Fundido::Color ( int r, int g, int b )
 {
-     fundido->setColor(video::SColor(0, r, g, b) );
+	fundido->setColor ( video::SColor ( 0, r, g, b ) );
 }
 
-void GDT::Gui::Fundido::FundirHaciaDentro(int tiempo)
+void GDT::Gui::Fundido::FundirHaciaDentro ( int tiempo )
 {
-     fundido->fadeIn(tiempo);
+	fundido->fadeIn ( tiempo );
 }
 
-void GDT::Gui::Fundido::FundirHaciaFuera(int tiempo)
+void GDT::Gui::Fundido::FundirHaciaFuera ( int tiempo )
 {
-     fundido->fadeOut(tiempo);
+	fundido->fadeOut ( tiempo );
 }
 
-bool GDT::Gui::Fundido::Terminado(void)
+bool GDT::Gui::Fundido::Terminado ( void )
 {
-     return fundido->isReady();
+	return fundido->isReady();
 }

@@ -26,43 +26,43 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
 //! Representa una Lista de Archivos de un directorio
-class ListaArchivos
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ ListaArchivos();
-	// class destructor
-	_GDT_EXPORT_ ~ListaArchivos();
-	
-	IFileSystem* FileSystem;
-	IFileList* FileList;
-	
-	_GDT_EXPORT_ void Crear(void);
-	//! Obtiene el n&uacute;mero de elementos que tiene la lista.
-	_GDT_EXPORT_ int Numero(void);
-	//! Obtiene el nombre del archivo de la posici&oacute;n indicada de la lista.
-	_GDT_EXPORT_ const c8* Nombre(int id);
-	//! Obtiene el nombre completo (incluyendo la ruta) del archivo de la posici&oacute;n indicada de la lista.
-	_GDT_EXPORT_ const c8* NombreCompleto(int id);
-	//! Comprueba si el archivo de la posici&oacute;n indicada es un Directorio
-	_GDT_EXPORT_ bool EsDirectorio(int id);
-};
+	class ListaArchivos
+	{
+		public:
+			// class constructor
+			_GDT_EXPORT_ ListaArchivos();
+			// class destructor
+			_GDT_EXPORT_ ~ListaArchivos();
+
+			IFileSystem* FileSystem;
+			IFileList* FileList;
+
+			_GDT_EXPORT_ void Crear ( void );
+			//! Obtiene el n&uacute;mero de elementos que tiene la lista.
+			_GDT_EXPORT_ int Numero ( void );
+			//! Obtiene el nombre del archivo de la posici&oacute;n indicada de la lista.
+			_GDT_EXPORT_ const c8* Nombre ( int id );
+			//! Obtiene el nombre completo (incluyendo la ruta) del archivo de la posici&oacute;n indicada de la lista.
+			_GDT_EXPORT_ const c8* NombreCompleto ( int id );
+			//! Comprueba si el archivo de la posici&oacute;n indicada es un Directorio
+			_GDT_EXPORT_ bool EsDirectorio ( int id );
+	};
 
 } // FIN NAMESPACE GDT
 

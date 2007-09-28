@@ -26,43 +26,43 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Nodo
-{
+	namespace Nodo
+	{
 
 //! Mallas de Escenario
-class Escenario : public NodoBase
-{
-	public:
-	// class constructor
-	_GDT_EXPORT_ Escenario();
-	// class destructor
-	_GDT_EXPORT_ ~Escenario();
-	
-	_GDT_EXPORT_ void CargarBSP(char *filenamePK3, char *filenameBSP);
-	_GDT_EXPORT_ void Cargar(char *filename);
-	
-	IAnimatedMesh* mesh;
-	IMesh* meshs;
-	ITriangleSelector* selector;
-	_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
-};
+		class Escenario : public NodoBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Escenario();
+				// class destructor
+				_GDT_EXPORT_ ~Escenario();
 
-} // FIN NAMESPACE NODO
+				_GDT_EXPORT_ void CargarBSP ( char *filenamePK3, char *filenameBSP );
+				_GDT_EXPORT_ void Cargar ( char *filename );
+
+				IAnimatedMesh* mesh;
+				IMesh* meshs;
+				ITriangleSelector* selector;
+				_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
+		};
+
+	} // FIN NAMESPACE NODO
 
 } // FIN NAMESPACE GDT
 

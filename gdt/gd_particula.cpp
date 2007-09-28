@@ -18,7 +18,7 @@
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor,                    *
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
- 
+
 #include "gd_particula.h" // class's header file
 
 // class constructor
@@ -34,7 +34,7 @@ GDT::Nodo::Particula::~Particula()
 }
 
 
-void GDT::Nodo::Particula::Crear(float x, float y, float z, float dx, float dy, float dz, int minparsec, int maxparsec, int tiempodevidamin, int tiempodevidamax, int maxang, char* filename)
+void GDT::Nodo::Particula::Crear ( float x, float y, float z, float dx, float dy, float dz, int minparsec, int maxparsec, int tiempodevidamin, int tiempodevidamax, int maxang, char* filename )
 {
 //7,1,7
 //x,y,z -> caja
@@ -47,66 +47,66 @@ void GDT::Nodo::Particula::Crear(float x, float y, float z, float dx, float dy, 
 //800
 //tiempodevidamin
 //2000
-//tiempodevidamax  
+//tiempodevidamax
 //0
-//maxang  
+//maxang
 
-    RegistrarDevice(Sistema::device);
-    
-    ISceneManager* mismgr=Sistema::device->getSceneManager();
-    IVideoDriver* driver = Sistema::device->getVideoDriver();
-    
+	RegistrarDevice ( Sistema::device );
 
-	nodpt = mismgr->addParticleSystemSceneNode(false);
-	
-	   if(!nodpt) printf("ERROR: No se pudo Crear Sistema De Particulas.\n"); 
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
+	IVideoDriver* driver = Sistema::device->getVideoDriver();
+
+
+	nodpt = mismgr->addParticleSystemSceneNode ( false );
+
+	if ( !nodpt ) printf ( "ERROR: No se pudo Crear Sistema De Particulas.\n" );
 //	nodpt->setPosition(core::vector3df(-70,60,40));
 //	nodpt->setScale(core::vector3df(2,2,2));
 
-	nodpt->setParticleSize(core::dimension2d<f32>(20.0f, 20.0f));
- 
-	scene::IParticleEmitter* em = nodpt->createBoxEmitter(
-		core::aabbox3d<f32>(-x,0,-z,x,y,z), 
-		core::vector3df(dx,dy,dz),
-		minparsec,maxparsec, 
-		video::SColor(0,255,255,255), video::SColor(0,255,255,255),
-		tiempodevidamin,tiempodevidamax,maxang);
+	nodpt->setParticleSize ( core::dimension2d<f32> ( 20.0f, 20.0f ) );
 
-	nodpt->setEmitter(em);
+	scene::IParticleEmitter* em = nodpt->createBoxEmitter (
+	                                  core::aabbox3d<f32> ( -x,0,-z,x,y,z ),
+	                                  core::vector3df ( dx,dy,dz ),
+	                                  minparsec,maxparsec,
+	                                  video::SColor ( 0,255,255,255 ), video::SColor ( 0,255,255,255 ),
+	                                  tiempodevidamin,tiempodevidamax,maxang );
+
+	nodpt->setEmitter ( em );
 	em->drop();
 
-	scene::IParticleAffector* paf = 
-		nodpt->createFadeOutParticleAffector();
+	scene::IParticleAffector* paf =
+	    nodpt->createFadeOutParticleAffector();
 
-	nodpt->addAffector(paf);
+	nodpt->addAffector ( paf );
 	paf->drop();
 
-	nodpt->setMaterialFlag(video::EMF_LIGHTING, false);
-	nodpt->setMaterialTexture(0, driver->getTexture(filename));
-	nodpt->setMaterialType(video::EMT_TRANSPARENT_VERTEX_ALPHA);
-	
-    nodon = nodpt;
-    
+	nodpt->setMaterialFlag ( video::EMF_LIGHTING, false );
+	nodpt->setMaterialTexture ( 0, driver->getTexture ( filename ) );
+	nodpt->setMaterialType ( video::EMT_TRANSPARENT_VERTEX_ALPHA );
+
+	nodon = nodpt;
+
 }
 
 
-void GDT::Nodo::Particula::Escalar(float x,float y)
+void GDT::Nodo::Particula::Escalar ( float x,float y )
 {
- nodpt->setParticleSize(core::dimension2d<f32>(x, y));
+	nodpt->setParticleSize ( core::dimension2d<f32> ( x, y ) );
 }
 
 
-void GDT::Nodo::Particula::CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Particula::CrearColision ( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz )
 {
 
-    ITriangleSelector* selector = scen.RetornarDatos();
+	ITriangleSelector* selector = scen.RetornarDatos();
 
-    ISceneManager* mismgr=midevice->getSceneManager();
+	ISceneManager* mismgr=midevice->getSceneManager();
 
-	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator(
-		selector, nodon, core::vector3df(radiox,radioy,radioz),
-		core::vector3df(transx,transy,transz),
-		core::vector3df(grax,gray,graz));
-	nodon->addAnimator(anim);
+	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator (
+	                                      selector, nodon, core::vector3df ( radiox,radioy,radioz ),
+	                                      core::vector3df ( transx,transy,transz ),
+	                                      core::vector3df ( grax,gray,graz ) );
+	nodon->addAnimator ( anim );
 	//anim->drop();
 }

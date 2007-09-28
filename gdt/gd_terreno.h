@@ -26,43 +26,43 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Nodo
-{
+	namespace Nodo
+	{
 
 //! Generador de Terrenos
-class Terreno : public NodoBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Terreno();
-	// class destructor
-	_GDT_EXPORT_ ~Terreno();
-	
-	ITerrainSceneNode* nodt;
-	
-	_GDT_EXPORT_ void Crear(char *filenameHMAP,float x, float y, float z);
-	ITriangleSelector* selector;
-	_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
-	
-	_GDT_EXPORT_ void Texturizar(char *filenameTEX);
-};
+		class Terreno : public NodoBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Terreno();
+				// class destructor
+				_GDT_EXPORT_ ~Terreno();
 
-} // FIN NAMESPACE NODO
+				ITerrainSceneNode* nodt;
+
+				_GDT_EXPORT_ void Crear ( char *filenameHMAP,float x, float y, float z );
+				ITriangleSelector* selector;
+				_GDT_EXPORT_ ITriangleSelector* RetornarDatos();
+
+				_GDT_EXPORT_ void Texturizar ( char *filenameTEX );
+		};
+
+	} // FIN NAMESPACE NODO
 
 } // FIN NAMESPACE GDT
 

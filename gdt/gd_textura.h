@@ -23,7 +23,7 @@
 #define GD_TEXTURA_H
 
 
-#include <irrlicht.h>
+#include <Irrlicht/irrlicht.h>
 #include "gd_sistema.h"
 
 /* No documentar */
@@ -38,42 +38,42 @@ using namespace gui;
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
 //! Representa una textura.
-class Textura
-{
-	public:
-		// class constructor
-		_GDT_EXPORT_ Textura();
-		// class destructor
-		_GDT_EXPORT_ ~Textura();
-		
-        IrrlichtDevice *mi_device;
-		
-		ITexture* tex;
+	class Textura
+	{
+		public:
+			// class constructor
+			_GDT_EXPORT_ Textura();
+			// class destructor
+			_GDT_EXPORT_ ~Textura();
 
-		//! Carga una Textura
-		_GDT_EXPORT_ void Cargar(char* filename);
-		//! Retorna el objeto interno de la Textura.
-		_GDT_EXPORT_ ITexture* RetornarTextura();
-		//! Genera un mapa de normales a partir de la Textura
-		_GDT_EXPORT_ void GenerarMapaNormales(float amplitud=1.0);
+			IrrlichtDevice *mi_device;
 
-};
+			ITexture* tex;
+
+			//! Carga una Textura
+			_GDT_EXPORT_ void Cargar ( char* filename );
+			//! Retorna el objeto interno de la Textura.
+			_GDT_EXPORT_ ITexture* RetornarTextura();
+			//! Genera un mapa de normales a partir de la Textura
+			_GDT_EXPORT_ void GenerarMapaNormales ( float amplitud=1.0 );
+
+	};
 
 } // FIN NAMESPACE GDT
 

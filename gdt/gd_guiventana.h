@@ -27,39 +27,39 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Ventana" (Window)
-class Ventana : public GuiBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Ventana();
-	// class destructor
-	_GDT_EXPORT_ ~Ventana();
-	
-	IGUIWindow* ventana;
-	//! Crea un Control GUI del tipo Ventana
-	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0);
-};
+		class Ventana : public GuiBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Ventana();
+				// class destructor
+				_GDT_EXPORT_ ~Ventana();
 
-} // FIN NAMESPACE GUI
+				IGUIWindow* ventana;
+				//! Crea un Control GUI del tipo Ventana
+				_GDT_EXPORT_ void Crear ( int x1, int y1, int x2, int y2, wchar_t * texto, bool modal,IGUIElement* padre=0 );
+		};
+
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

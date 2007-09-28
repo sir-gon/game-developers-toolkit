@@ -23,12 +23,12 @@
 * \class GDT::Nodo::Cartelera
 * Las Carteleras son im&aacute;genes 2D que no importando desde donde las
 * apunte la c&aacute;mara (en el espacio 3D), siempre se ven de la misma forma.
-* 
+*
 * Si la c&aacute;mara rota, la imagen se seguir&aacute; viendo de frente.
-* 
-* Son &uacute;tiles para agregar elementos en el escenario como 
+*
+* Son &uacute;tiles para agregar elementos en el escenario como
 * &aacute;rboles o resplandores.
-* 
+*
 * \image html cartelera.png
 */
 #include "gd_cartelera.h" // class's header file
@@ -46,47 +46,47 @@ GDT::Nodo::Cartelera::~Cartelera()
 }
 
 /*!
-* \param tamx,tamy son el tama� de la im�en.
-* \param filename la ruta al archivo im�en para la textura.
-* 
+* \param tamx,tamy son el tamaï¿½ de la imï¿½en.
+* \param filename la ruta al archivo imï¿½en para la textura.
+*
 * \image html cartelera.png
-* 
+*
 * Ejemplo:
 * \code
 * Resplandor.Crear( 10, 10, "lampara.bmp" );
 * \endcode
 */
-void GDT::Nodo::Cartelera::Crear(float tamx, float tamy, char* filename)
+void GDT::Nodo::Cartelera::Crear ( float tamx, float tamy, char* filename )
 {
-    
-    RegistrarDevice(Sistema::device);
-    ISceneManager* mismgr=Sistema::device->getSceneManager();
+
+	RegistrarDevice ( Sistema::device );
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
 
 
-    
-     nodb = mismgr->addBillboardSceneNode(0, core::dimension2d<f32>(tamx, tamy));
-	 
-	 nodon = nodb;
-  
-     if(!nodon) printf("ERROR: No se pudo Crear Cartelera.\n");
-	  
-	 nodon->setMaterialFlag(video::EMF_LIGHTING, false);
-	 nodon->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
-	 
-	 Texturizar(filename);	 
+
+	nodb = mismgr->addBillboardSceneNode ( 0, core::dimension2d<f32> ( tamx, tamy ) );
+
+	nodon = nodb;
+
+	if ( !nodon ) printf ( "ERROR: No se pudo Crear Cartelera.\n" );
+
+	nodon->setMaterialFlag ( video::EMF_LIGHTING, false );
+	nodon->setMaterialType ( video::EMT_TRANSPARENT_ADD_COLOR );
+
+	Texturizar ( filename );
 }
 
-void GDT::Nodo::Cartelera::CrearColision( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz)
+void GDT::Nodo::Cartelera::CrearColision ( Escenario scen,float radiox, float radioy,float radioz,float transx,float transy,float transz,float grax,float gray, float graz )
 {
 
-    ITriangleSelector* selector = scen.RetornarDatos();
+	ITriangleSelector* selector = scen.RetornarDatos();
 
-    ISceneManager* mismgr=midevice->getSceneManager();
+	ISceneManager* mismgr=midevice->getSceneManager();
 
-	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator(
-		selector, nodon, core::vector3df(radiox,radioy,radioz),
-		core::vector3df(transx,transy,transz),
-		core::vector3df(grax,gray,graz));
-	nodon->addAnimator(anim);
+	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator (
+	                                      selector, nodon, core::vector3df ( radiox,radioy,radioz ),
+	                                      core::vector3df ( transx,transy,transz ),
+	                                      core::vector3df ( grax,gray,graz ) );
+	nodon->addAnimator ( anim );
 	//anim->drop();
 }

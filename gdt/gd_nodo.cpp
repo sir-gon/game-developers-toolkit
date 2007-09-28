@@ -26,12 +26,12 @@
 *
 * Cada "objeto" del espacio es conciderado un Nodo, las mallas, las luces
 * sistemas de particulas, c&aacute;mara, terrenos, etc.
-* 
+*
 * De aqu&iacute; en adelante, se conciderar&aacute; para todos los ejemplos, a un
 * nodo de tipo Malla llamado Cubo, el cual se instancia as&iacute;:
 * \code
 * #include <gdt.h>
-* 
+*
 * Sistema MiSistema;
 * Malla Cubo;
 *
@@ -62,7 +62,7 @@ GDT::Nodo::NodoBase::~NodoBase()
 }
 
 
-void GDT::Nodo::NodoBase::RegistrarDevice(	IrrlichtDevice *device )
+void GDT::Nodo::NodoBase::RegistrarDevice (	IrrlichtDevice *device )
 {
 	midevice = device;
 }
@@ -74,17 +74,17 @@ Ejemplo:
 Cubo.Posicionar( 10,0,-30 );
 \endcode
 */
-void GDT::Nodo::NodoBase::Posicionar(float x, float y, float z)
+void GDT::Nodo::NodoBase::Posicionar ( float x, float y, float z )
 {
-     if(nodon) 
-     {
-      nodon->setPosition(vector3df(x, y, z));
-      mi_posicion_x = x;
-      mi_posicion_y = y;
-      mi_posicion_z = z;
-      }
-     else
-      printf("ERROR: Llamada invalida a la funcion .Posicionar, verifique haber creado/cargado correctamente la entidad.\n ej. MiCamara.Crear(Tipo_Normal);");
+	if ( nodon )
+	{
+		nodon->setPosition ( vector3df ( x, y, z ) );
+		mi_posicion_x = x;
+		mi_posicion_y = y;
+		mi_posicion_z = z;
+	}
+	else
+		printf ( "ERROR: Llamada invalida a la funcion .Posicionar, verifique haber creado/cargado correctamente la entidad.\n ej. MiCamara.Crear(Tipo_Normal);" );
 }
 
 /*!
@@ -93,10 +93,10 @@ Ejemplo:
 Cubo.Posicionar( Cosa.Posicion() );
 \endcode
 */
-void GDT::Nodo::NodoBase::Posicionar(vector3df pos)
+void GDT::Nodo::NodoBase::Posicionar ( vector3df pos )
 {
 
-     nodon->setPosition(pos);
+	nodon->setPosition ( pos );
 }
 
 /**
@@ -105,11 +105,11 @@ Ejemplo:
 Cubo.PosicionarX( 10 );
 \endcode
 */
-void GDT::Nodo::NodoBase::PosicionarX(float x)
+void GDT::Nodo::NodoBase::PosicionarX ( float x )
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     nodon->setPosition(vector3df(x, poso.Y, poso.Z));
+	vector3df poso;
+	poso = nodon->getPosition();
+	nodon->setPosition ( vector3df ( x, poso.Y, poso.Z ) );
 
 }
 
@@ -119,11 +119,11 @@ Ejemplo:
 Cubo.PosicionarY( 10 );
 \endcode
 */
-void GDT::Nodo::NodoBase::PosicionarY(float y)
+void GDT::Nodo::NodoBase::PosicionarY ( float y )
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     nodon->setPosition(vector3df(poso.X, y, poso.Z));
+	vector3df poso;
+	poso = nodon->getPosition();
+	nodon->setPosition ( vector3df ( poso.X, y, poso.Z ) );
 
 }
 
@@ -133,11 +133,11 @@ Ejemplo:
 Cubo.PosicionarZ( 10 );
 \endcode
 */
-void GDT::Nodo::NodoBase::PosicionarZ(float z)
+void GDT::Nodo::NodoBase::PosicionarZ ( float z )
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     nodon->setPosition(vector3df(poso.X, poso.Y, z));
+	vector3df poso;
+	poso = nodon->getPosition();
+	nodon->setPosition ( vector3df ( poso.X, poso.Y, z ) );
 
 }
 
@@ -151,9 +151,9 @@ PosActual = Cubo.Posicion( );
 */
 vector3df GDT::Nodo::NodoBase::Posicion()
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     return poso;
+	vector3df poso;
+	poso = nodon->getPosition();
+	return poso;
 }
 
 /*!
@@ -166,9 +166,9 @@ PosX = Cubo.PosicionX( );
 */
 float GDT::Nodo::NodoBase::PosicionX()
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     return poso.X;
+	vector3df poso;
+	poso = nodon->getPosition();
+	return poso.X;
 }
 
 /*!
@@ -182,9 +182,9 @@ PosY = Cubo.PosicionY( );
 
 float GDT::Nodo::NodoBase::PosicionY()
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     return poso.Y;
+	vector3df poso;
+	poso = nodon->getPosition();
+	return poso.Y;
 }
 
 /*!
@@ -197,9 +197,9 @@ PosZ = Cubo.PosicionZ( );
 */
 float GDT::Nodo::NodoBase::PosicionZ()
 {
-     vector3df poso;
-     poso = nodon->getPosition();
-     return poso.Z;
+	vector3df poso;
+	poso = nodon->getPosition();
+	return poso.Z;
 }
 
 /*!
@@ -210,9 +210,9 @@ Cubo.Rotar( 10,90,10 );
 
 \note Esto fija la rotaci&oacute;n, para girar un nodo vea el m&eacute;todo \ref Girar()
 */
-void GDT::Nodo::NodoBase::Rotar(float x, float y, float z)
+void GDT::Nodo::NodoBase::Rotar ( float x, float y, float z )
 {
-     nodon->setRotation(vector3df(x, y, z));
+	nodon->setRotation ( vector3df ( x, y, z ) );
 }
 
 /*!
@@ -223,9 +223,9 @@ Cubo.Rotar( Cosa.Rotacion( ) );
 
 \note Esto fija la rotaci&oacute;n, para girar un nodo vea el m&eacute;todo \ref Girar()
 */
-void GDT::Nodo::NodoBase::Rotar(vector3df rot)
+void GDT::Nodo::NodoBase::Rotar ( vector3df rot )
 {
-     nodon->setRotation(rot);
+	nodon->setRotation ( rot );
 }
 
 /*!
@@ -236,11 +236,11 @@ Cubo.RotarX( 90 );
 
 \note Esto fija la rotaci&oacute;n en X, para girar un nodo en X vea el m&eacute;todo \ref GirarX()
 */
-void GDT::Nodo::NodoBase::RotarX(float x)
+void GDT::Nodo::NodoBase::RotarX ( float x )
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     nodon->setRotation(vector3df(x, roto.Y, roto.Z));
+	vector3df roto;
+	roto = nodon->getRotation();
+	nodon->setRotation ( vector3df ( x, roto.Y, roto.Z ) );
 }
 
 /*!
@@ -251,11 +251,11 @@ Cubo.RotarY( 90 );
 
 \note Esto fija la rotaci&oacute;n en Y, para girar un nodo en Y vea el m&eacute;todo \ref GirarY()
 */
-void GDT::Nodo::NodoBase::RotarY(float y)
+void GDT::Nodo::NodoBase::RotarY ( float y )
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     nodon->setRotation(vector3df(roto.X, y, roto.Z));
+	vector3df roto;
+	roto = nodon->getRotation();
+	nodon->setRotation ( vector3df ( roto.X, y, roto.Z ) );
 }
 
 /*!
@@ -266,11 +266,11 @@ Cubo.RotarZ( 90 );
 
 \note Esto fija la rotaci&oacute;n en Z, para girar un nodo en X vea el m&eacute;todo \ref GirarZ()
 */
-void GDT::Nodo::NodoBase::RotarZ(float z)
+void GDT::Nodo::NodoBase::RotarZ ( float z )
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     nodon->setRotation(vector3df(roto.X, roto.Y, z));
+	vector3df roto;
+	roto = nodon->getRotation();
+	nodon->setRotation ( vector3df ( roto.X, roto.Y, z ) );
 }
 
 /*!
@@ -283,7 +283,7 @@ RotActual = Cubo.Rotacion( );
 */
 vector3df GDT::Nodo::NodoBase::Rotacion()
 {
-   return nodon->getRotation();
+	return nodon->getRotation();
 }
 
 /*!
@@ -296,9 +296,9 @@ RotX = Cubo.RotacionX( );
 */
 float GDT::Nodo::NodoBase::RotacionX()
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     return roto.X;
+	vector3df roto;
+	roto = nodon->getRotation();
+	return roto.X;
 }
 
 /*!
@@ -311,9 +311,9 @@ RotY = Cubo.RotacionY( );
 */
 float GDT::Nodo::NodoBase::RotacionY()
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     return roto.Y;
+	vector3df roto;
+	roto = nodon->getRotation();
+	return roto.Y;
 }
 
 /*!
@@ -326,9 +326,9 @@ RotZ = Cubo.RotacionZ( );
 */
 float GDT::Nodo::NodoBase::RotacionZ()
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     return roto.Z;
+	vector3df roto;
+	roto = nodon->getRotation();
+	return roto.Z;
 }
 
 /*!
@@ -337,10 +337,10 @@ Ejemplo:
 Cubo.Escalar( 2,10,2 );
 \endcode
 */
-void GDT::Nodo::NodoBase::Escalar(float x, float y, float z)
+void GDT::Nodo::NodoBase::Escalar ( float x, float y, float z )
 {
-     nodon->setScale(vector3df(x, y, z));
-     nodon->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+	nodon->setScale ( vector3df ( x, y, z ) );
+	nodon->setMaterialFlag ( video::EMF_NORMALIZE_NORMALS, true );
 
 }
 
@@ -350,10 +350,10 @@ Ejemplo:
 Cubo.Escalar ( Cosa.Tamano( ) );
 \endcode
 */
-void GDT::Nodo::NodoBase::Escalar(vector3df escala)
+void GDT::Nodo::NodoBase::Escalar ( vector3df escala )
 {
-     nodon->setScale(escala);
-     nodon->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+	nodon->setScale ( escala );
+	nodon->setMaterialFlag ( video::EMF_NORMALIZE_NORMALS, true );
 }
 
 /*!
@@ -364,10 +364,10 @@ Ejemplo:
 Cubo.EscalarX( 3 );
 \endcode
 */
-void GDT::Nodo::NodoBase::EscalarX(float x)
+void GDT::Nodo::NodoBase::EscalarX ( float x )
 {
-     nodon->setScale(vector3df(x, 1, 1));
-     nodon->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+	nodon->setScale ( vector3df ( x, 1, 1 ) );
+	nodon->setMaterialFlag ( video::EMF_NORMALIZE_NORMALS, true );
 }
 
 /*!
@@ -378,12 +378,12 @@ Ejemplo:
 Cubo.EscalarY( 3 );
 \endcode
 */
-void GDT::Nodo::NodoBase::EscalarY(float y)
+void GDT::Nodo::NodoBase::EscalarY ( float y )
 {
-     vector3df scal;
-     nodon->getScale();
-     nodon->setScale(vector3df(1, y, 1));
-     nodon->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+	vector3df scal;
+	nodon->getScale();
+	nodon->setScale ( vector3df ( 1, y, 1 ) );
+	nodon->setMaterialFlag ( video::EMF_NORMALIZE_NORMALS, true );
 }
 
 /*!
@@ -394,12 +394,12 @@ Ejemplo:
 Cubo.EscalarZ( 3 );
 \endcode
 */
-void GDT::Nodo::NodoBase::EscalarZ(float z)
+void GDT::Nodo::NodoBase::EscalarZ ( float z )
 {
-     vector3df scal;
-     nodon->getScale();
-     nodon->setScale(vector3df(1, 1, z));
-   	 nodon->setMaterialFlag(video::EMF_NORMALIZE_NORMALS, true);
+	vector3df scal;
+	nodon->getScale();
+	nodon->setScale ( vector3df ( 1, 1, z ) );
+	nodon->setMaterialFlag ( video::EMF_NORMALIZE_NORMALS, true );
 }
 
 /*!
@@ -410,16 +410,16 @@ Ejemplo:
 Cubo.Mover( 1, 0, 3 );
 \endcode
 */
-void GDT::Nodo::NodoBase::Mover(float x, float y, float z)
+void GDT::Nodo::NodoBase::Mover ( float x, float y, float z )
 {
-     //void MoveNode(ISceneNode* node, vector3df& dest)
-     vector3df destino;
-     destino.X = x;
-     destino.Y = y;
-     destino.Z = z;
+	//void MoveNode(ISceneNode* node, vector3df& dest)
+	vector3df destino;
+	destino.X = x;
+	destino.Y = y;
+	destino.Z = z;
 	matrix4 matrix = nodon->getRelativeTransformation();
-	matrix.transformVect(destino);
-     nodon->setPosition(destino);
+	matrix.transformVect ( destino );
+	nodon->setPosition ( destino );
 }
 
 
@@ -429,9 +429,9 @@ Ejemplo:
 Cubo.MoverX( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::MoverX(float x)
+void GDT::Nodo::NodoBase::MoverX ( float x )
 {
-     Mover(x,0,0);
+	Mover ( x,0,0 );
 }
 
 /*!
@@ -440,9 +440,9 @@ Ejemplo:
 Cubo.MoverY( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::MoverY(float y)
+void GDT::Nodo::NodoBase::MoverY ( float y )
 {
-     Mover(0,y,0);
+	Mover ( 0,y,0 );
 }
 
 /*!
@@ -451,9 +451,9 @@ Ejemplo:
 Cubo.MoverZ( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::MoverZ(float z)
+void GDT::Nodo::NodoBase::MoverZ ( float z )
 {
-     Mover(0,0,z);
+	Mover ( 0,0,z );
 }
 
 
@@ -463,11 +463,11 @@ Ejemplo:
 Cubo.Girar( 1, 0, 3 );
 \endcode
 */
-void GDT::Nodo::NodoBase::Girar(float x, float y, float z)
+void GDT::Nodo::NodoBase::Girar ( float x, float y, float z )
 {
-     vector3df roto;
-     roto = nodon->getRotation();
-     nodon->setRotation(vector3df(x+roto.X, y+roto.Y, z+roto.Z));
+	vector3df roto;
+	roto = nodon->getRotation();
+	nodon->setRotation ( vector3df ( x+roto.X, y+roto.Y, z+roto.Z ) );
 }
 
 /*!
@@ -476,9 +476,9 @@ Ejemplo:
 Cubo.GirarX( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::GirarX(float x)
+void GDT::Nodo::NodoBase::GirarX ( float x )
 {
-     Girar(x,0,0);
+	Girar ( x,0,0 );
 }
 
 /*!
@@ -487,9 +487,9 @@ Ejemplo:
 Cubo.GirarY( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::GirarY(float y)
+void GDT::Nodo::NodoBase::GirarY ( float y )
 {
-     Girar(0,y,0);
+	Girar ( 0,y,0 );
 }
 
 /*!
@@ -498,9 +498,9 @@ Ejemplo:
 Cubo.GirarZ( 1 );
 \endcode
 */
-void GDT::Nodo::NodoBase::GirarZ(float z)
+void GDT::Nodo::NodoBase::GirarZ ( float z )
 {
-     Girar(0,0,z);
+	Girar ( 0,0,z );
 }
 
 /*!
@@ -513,9 +513,9 @@ Ejemplo:
 Cubo.Anclar ( Esfera );
 \endcode
 */
-void GDT::Nodo::NodoBase::Anclar(NodoBase gdnodito)
+void GDT::Nodo::NodoBase::Anclar ( NodoBase gdnodito )
 {
-     nodon->addChild(gdnodito.nodon);
+	nodon->addChild ( gdnodito.nodon );
 }
 
 /*!
@@ -526,9 +526,9 @@ Ejemplo:
 Cubo.DesAnclar ( Esfera );
 \endcode
 */
-void GDT::Nodo::NodoBase::DesAnclar(NodoBase gdnodito)
+void GDT::Nodo::NodoBase::DesAnclar ( NodoBase gdnodito )
 {
-     nodon->removeChild(gdnodito.nodon);
+	nodon->removeChild ( gdnodito.nodon );
 }
 
 /*!
@@ -542,30 +542,30 @@ Ejemplo:
 Cubo.Orientar( Enemigo );
 \endcode
 */
-vector3df GDT::Nodo::NodoBase::Orientar(NodoBase gdnodito)
+vector3df GDT::Nodo::NodoBase::Orientar ( NodoBase gdnodito )
 {
 
-     // hallamos vector de posicion actual
-     vector3df pos_mia;
-     vector3df destino;
+	// hallamos vector de posicion actual
+	vector3df pos_mia;
+	vector3df destino;
 
-     pos_mia = nodon->getPosition();
-     destino = gdnodito.nodon->getPosition();;
+	pos_mia = nodon->getPosition();
+	destino = gdnodito.nodon->getPosition();;
 
-     // lo restamos con el destino
-     vector3df vectorRestado;
-     vectorRestado = destino - pos_mia;
+	// lo restamos con el destino
+	vector3df vectorRestado;
+	vectorRestado = destino - pos_mia;
 
-     float GradosX,GradosY,GradosZ;
-     vectorRestado = vectorRestado.getHorizontalAngle();
+	float GradosX,GradosY,GradosZ;
+	vectorRestado = vectorRestado.getHorizontalAngle();
 
-     GradosX = vectorRestado.X;
-     GradosY = vectorRestado.Y;
-     GradosZ = vectorRestado.Z;
+	GradosX = vectorRestado.X;
+	GradosY = vectorRestado.Y;
+	GradosZ = vectorRestado.Z;
 
 
-     Rotar(GradosX,GradosY,GradosZ);
-	 return vectorRestado;
+	Rotar ( GradosX,GradosY,GradosZ );
+	return vectorRestado;
 }
 
 /*!
@@ -576,56 +576,56 @@ Ejemplo:
 Cubo.Orientar( vector3df( 10,20,14 ) );
 \endcode
 */
-vector3df GDT::Nodo::NodoBase::Orientar(vector3df destino)
+vector3df GDT::Nodo::NodoBase::Orientar ( vector3df destino )
 {
-     // hallamos vector de posicion actual
-     vector3df pos_mia;
-     pos_mia = nodon->getPosition();
+	// hallamos vector de posicion actual
+	vector3df pos_mia;
+	pos_mia = nodon->getPosition();
 
-     // lo restamos con el destino
-     vector3df vectorRestado;
-     vectorRestado = destino - pos_mia;
+	// lo restamos con el destino
+	vector3df vectorRestado;
+	vectorRestado = destino - pos_mia;
 
-    /*
-     // hallamos la magnitud del vector
-     double Magnitud;
+	/*
+	 // hallamos la magnitud del vector
+	 double Magnitud;
 
-     double A2,B2,C2, Suma;
+	 double A2,B2,C2, Suma;
 
-     A2 = vectorRestado.X * vectorRestado.X;
-     B2 = vectorRestado.Y * vectorRestado.Y;
-     C2 = vectorRestado.Z * vectorRestado.Z;
+	 A2 = vectorRestado.X * vectorRestado.X;
+	 B2 = vectorRestado.Y * vectorRestado.Y;
+	 C2 = vectorRestado.Z * vectorRestado.Z;
 
-     Suma = A2 + B2 + C2;
+	 Suma = A2 + B2 + C2;
 
-     Magnitud = sqrt(Suma);
+	 Magnitud = sqrt(Suma);
 
-     // hallamos los angulos :)
+	 // hallamos los angulos :)
 
-     float AngX, AngY, AngZ;
+	 float AngX, AngY, AngZ;
 
-     AngX = acos(vectorRestado.X/Magnitud);
-     AngY = atan2(vectorRestado.Y/Magnitud);
-     AngZ = acos(vectorRestado.Z/Magnitud);
+	 AngX = acos(vectorRestado.X/Magnitud);
+	 AngY = atan2(vectorRestado.Y/Magnitud);
+	 AngZ = acos(vectorRestado.Z/Magnitud);
 
 
 
-     GradosX = 0;//X*180.0f)/3.14159f;
-     GradosY = (AngY*180.0f)/3.14159f;
-     GradosZ = 0;//Z*180.0f)/3.14159f;
+	 GradosX = 0;//X*180.0f)/3.14159f;
+	 GradosY = (AngY*180.0f)/3.14159f;
+	 GradosZ = 0;//Z*180.0f)/3.14159f;
 
-     */
-     float GradosX,GradosY,GradosZ;
-     vectorRestado = vectorRestado.getHorizontalAngle();
+	 */
+	float GradosX,GradosY,GradosZ;
+	vectorRestado = vectorRestado.getHorizontalAngle();
 
-     GradosX = vectorRestado.X;
-     GradosY = vectorRestado.Y;
-     GradosZ = vectorRestado.Z;
+	GradosX = vectorRestado.X;
+	GradosY = vectorRestado.Y;
+	GradosZ = vectorRestado.Z;
 
 //     printf("X: %f, Y: %f, Z: %f\n",GradosX,GradosY,GradosZ);
 
-     Rotar(GradosX,GradosY,GradosZ);
-	 return vectorRestado;
+	Rotar ( GradosX,GradosY,GradosZ );
+	return vectorRestado;
 }
 
 /*!
@@ -636,8 +636,9 @@ Ejemplo:
 Cubo.Orientar( 10,20,14 );
 \endcode
 */
-vector3df GDT::Nodo::NodoBase::Orientar(float x, float y, float z) {
-	return GDT::Nodo::NodoBase::Orientar( vector3df(x, y, z) );
+vector3df GDT::Nodo::NodoBase::Orientar ( float x, float y, float z )
+{
+	return GDT::Nodo::NodoBase::Orientar ( vector3df ( x, y, z ) );
 }
 
 /*!
@@ -648,9 +649,9 @@ Tam = Cubo.Tamano( );
 */
 vector3df GDT::Nodo::NodoBase::Tamano()
 {
-       vector3df vect;
-       vect = nodon->getTransformedBoundingBox().getExtent();
-       return vect;
+	vector3df vect;
+	vect = nodon->getTransformedBoundingBox().getExtent();
+	return vect;
 }
 
 /*!
@@ -661,9 +662,9 @@ TamX = Cubo.TamanoX( );
 */
 float GDT::Nodo::NodoBase::TamanoX()
 {
-      float x;
-      x = nodon->getTransformedBoundingBox().getExtent().X;
-      return x;
+	float x;
+	x = nodon->getTransformedBoundingBox().getExtent().X;
+	return x;
 }
 
 /*!
@@ -674,9 +675,9 @@ TamY = Cubo.TamanoY( );
 */
 float GDT::Nodo::NodoBase::TamanoY()
 {
-      float y;
-      y = nodon->getTransformedBoundingBox().getExtent().Y;
-      return y;
+	float y;
+	y = nodon->getTransformedBoundingBox().getExtent().Y;
+	return y;
 }
 
 /*!
@@ -687,9 +688,9 @@ TamZ = Cubo.TamanoZ( );
 */
 float GDT::Nodo::NodoBase::TamanoZ()
 {
-      float z;
-      z = nodon->getTransformedBoundingBox().getExtent().Z;
-      return z;
+	float z;
+	z = nodon->getTransformedBoundingBox().getExtent().Z;
+	return z;
 }
 
 /*!
@@ -706,20 +707,20 @@ Cubo.Texturizar( "texturas/caja.bmp" );
 Cubo.Texturizar( "texturas/caja.bmp", 2);
 \endcode
 */
-void GDT::Nodo::NodoBase::Texturizar(char* filename, int capa)
+void GDT::Nodo::NodoBase::Texturizar ( char* filename, int capa )
 {
-     //nodon->setMaterialTexture(capa, midevice->getVideoDriver()->getTexture(filename));
-     if(capa == -1) // agregado por Habatar
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->setMaterialTexture(i, midevice->getVideoDriver()->getTexture(filename));
-         }
-     }
-     else
-     {
-         nodon->setMaterialTexture(capa, midevice->getVideoDriver()->getTexture(filename));
-     }
+	//nodon->setMaterialTexture(capa, midevice->getVideoDriver()->getTexture(filename));
+	if ( capa == -1 ) // agregado por Habatar
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->setMaterialTexture ( i, midevice->getVideoDriver()->getTexture ( filename ) );
+		}
+	}
+	else
+	{
+		nodon->setMaterialTexture ( capa, midevice->getVideoDriver()->getTexture ( filename ) );
+	}
 
 }
 
@@ -737,20 +738,20 @@ Cubo.Texturizar(Madera);
 Cubo.Texturizar(Madera, 2);
 \endcode
 */
-void GDT::Nodo::NodoBase::Texturizar(Textura textu, int capa)
+void GDT::Nodo::NodoBase::Texturizar ( Textura textu, int capa )
 {
-     //nodon->setMaterialTexture(capa, textu);
-     if(capa == -1) // agregado por Habatar
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->setMaterialTexture(i, textu.tex);
-         }
-     }
-     else
-     {
-         nodon->setMaterialTexture(capa, textu.tex);
-     }
+	//nodon->setMaterialTexture(capa, textu);
+	if ( capa == -1 ) // agregado por Habatar
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->setMaterialTexture ( i, textu.tex );
+		}
+	}
+	else
+	{
+		nodon->setMaterialTexture ( capa, textu.tex );
+	}
 }
 
 /*!
@@ -779,9 +780,9 @@ Ejemplo:
 Cubo.MaterialFlag( WIREFRAME, true );
 \endcode
 */
-void GDT::Nodo::NodoBase::MaterialFlag(E_MATERIAL_FLAG cual, bool enable)
+void GDT::Nodo::NodoBase::MaterialFlag ( E_MATERIAL_FLAG cual, bool enable )
 {
-     nodon->setMaterialFlag(cual, enable);
+	nodon->setMaterialFlag ( cual, enable );
 }
 
 /*!
@@ -827,9 +828,9 @@ Ejemplo:
 Cubo.MaterialTipo( MAPA_ESFERICO );
 \endcode
 */
-void GDT::Nodo::NodoBase::MaterialTipo(E_MATERIAL_TYPE cual)
+void GDT::Nodo::NodoBase::MaterialTipo ( E_MATERIAL_TYPE cual )
 {
-     nodon->setMaterialType(cual);
+	nodon->setMaterialType ( cual );
 }
 
 /*!
@@ -840,9 +841,9 @@ Ejemplo:
 Cubo.MaterialRelieve(0.035);
 \endcode
 */
-void GDT::Nodo::NodoBase::MaterialRelieve(float alt)
+void GDT::Nodo::NodoBase::MaterialRelieve ( float alt )
 {
-     	nodon->getMaterial(0).MaterialTypeParam = alt; // adjust height for parallax effect
+	nodon->getMaterial ( 0 ).MaterialTypeParam = alt; // adjust height for parallax effect
 }
 
 /*!
@@ -856,22 +857,22 @@ Ejemplo:
 Cubo.ColorAmbiente(200,100,100);
 \endcode
 */
-void GDT::Nodo::NodoBase::ColorAmbiente(s32 r,s32 g,s32 b, int capa )
+void GDT::Nodo::NodoBase::ColorAmbiente ( s32 r,s32 g,s32 b, int capa )
 {
-	if(capa == -1)
+	if ( capa == -1 )
 	{
-		for(u32 i=0; i< nodon->getMaterialCount(); ++i)
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
 		{
-			nodon->getMaterial(i).AmbientColor.setRed(r);
-			nodon->getMaterial(i).AmbientColor.setGreen(g);
-			nodon->getMaterial(i).AmbientColor.setBlue(b);
+			nodon->getMaterial ( i ).AmbientColor.setRed ( r );
+			nodon->getMaterial ( i ).AmbientColor.setGreen ( g );
+			nodon->getMaterial ( i ).AmbientColor.setBlue ( b );
 		}
 	}
 	else
 	{
-			nodon->getMaterial(capa).AmbientColor.setRed(r);
-			nodon->getMaterial(capa).AmbientColor.setGreen(g);
-			nodon->getMaterial(capa).AmbientColor.setBlue(b);
+		nodon->getMaterial ( capa ).AmbientColor.setRed ( r );
+		nodon->getMaterial ( capa ).AmbientColor.setGreen ( g );
+		nodon->getMaterial ( capa ).AmbientColor.setBlue ( b );
 	}
 }
 
@@ -884,23 +885,23 @@ Ejemplo:
 Cubo.ColorDifuso(200,100,100);
 \endcode
 */
-void GDT::Nodo::NodoBase::ColorDifuso(s32 r,s32 g,s32 b,  int capa)
+void GDT::Nodo::NodoBase::ColorDifuso ( s32 r,s32 g,s32 b,  int capa )
 {
-     if(capa == -1)
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->getMaterial(i).DiffuseColor.setRed(r);
-                 nodon->getMaterial(i).DiffuseColor.setGreen(g);
-                 nodon->getMaterial(i).DiffuseColor.setBlue(b);
-         }
-     }
-     else
-     {
-             nodon->getMaterial(capa).DiffuseColor.setRed(r);
-             nodon->getMaterial(capa).DiffuseColor.setGreen(g);
-             nodon->getMaterial(capa).DiffuseColor.setBlue(b);
-     }
+	if ( capa == -1 )
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->getMaterial ( i ).DiffuseColor.setRed ( r );
+			nodon->getMaterial ( i ).DiffuseColor.setGreen ( g );
+			nodon->getMaterial ( i ).DiffuseColor.setBlue ( b );
+		}
+	}
+	else
+	{
+		nodon->getMaterial ( capa ).DiffuseColor.setRed ( r );
+		nodon->getMaterial ( capa ).DiffuseColor.setGreen ( g );
+		nodon->getMaterial ( capa ).DiffuseColor.setBlue ( b );
+	}
 }
 
 /*!
@@ -912,23 +913,23 @@ Ejemplo:
 Cubo.ColorEmisivo(200,100,100);
 \endcode
 */
-void GDT::Nodo::NodoBase::ColorEmisivo(s32 r,s32 g,s32 b,  int capa)
+void GDT::Nodo::NodoBase::ColorEmisivo ( s32 r,s32 g,s32 b,  int capa )
 {
-     if(capa == -1)
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->getMaterial(i).EmissiveColor.setRed(r);
-                 nodon->getMaterial(i).EmissiveColor.setGreen(g);
-                 nodon->getMaterial(i).EmissiveColor.setBlue(b);
-         }
-     }
-     else
-     {
-                 nodon->getMaterial(capa).EmissiveColor.setRed(r);
-                 nodon->getMaterial(capa).EmissiveColor.setGreen(g);
-                 nodon->getMaterial(capa).EmissiveColor.setBlue(b);
-     }
+	if ( capa == -1 )
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->getMaterial ( i ).EmissiveColor.setRed ( r );
+			nodon->getMaterial ( i ).EmissiveColor.setGreen ( g );
+			nodon->getMaterial ( i ).EmissiveColor.setBlue ( b );
+		}
+	}
+	else
+	{
+		nodon->getMaterial ( capa ).EmissiveColor.setRed ( r );
+		nodon->getMaterial ( capa ).EmissiveColor.setGreen ( g );
+		nodon->getMaterial ( capa ).EmissiveColor.setBlue ( b );
+	}
 }
 
 /*!
@@ -940,23 +941,23 @@ Ejemplo:
 Cubo.ColorEmisivo(200,100,100);
 \endcode
 */
-void GDT::Nodo::NodoBase::ColorEspecular(s32 r,s32 g,s32 b,  int capa)
+void GDT::Nodo::NodoBase::ColorEspecular ( s32 r,s32 g,s32 b,  int capa )
 {
-     if(capa == -1)
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->getMaterial(i).SpecularColor.setRed(r);
-                 nodon->getMaterial(i).SpecularColor.setGreen(g);
-                 nodon->getMaterial(i).SpecularColor.setBlue(b);
-         }
-     }
-     else
-     {
-                 nodon->getMaterial(capa).SpecularColor.setRed(r);
-                 nodon->getMaterial(capa).SpecularColor.setGreen(g);
-                 nodon->getMaterial(capa).SpecularColor.setBlue(b);
-     }
+	if ( capa == -1 )
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->getMaterial ( i ).SpecularColor.setRed ( r );
+			nodon->getMaterial ( i ).SpecularColor.setGreen ( g );
+			nodon->getMaterial ( i ).SpecularColor.setBlue ( b );
+		}
+	}
+	else
+	{
+		nodon->getMaterial ( capa ).SpecularColor.setRed ( r );
+		nodon->getMaterial ( capa ).SpecularColor.setGreen ( g );
+		nodon->getMaterial ( capa ).SpecularColor.setBlue ( b );
+	}
 }
 
 /*!
@@ -967,29 +968,29 @@ Ejemplo:
 Cubo.NivelTransparencia( 155 );
 \endcode
 */
-void GDT::Nodo::NodoBase::NivelTransparencia(s32 v,  int capa)
+void GDT::Nodo::NodoBase::NivelTransparencia ( s32 v,  int capa )
 {
-    
-    coloralphaD = v;
-    coloralphaEm = v;
-    coloralphaE = v;
+
+	coloralphaD = v;
+	coloralphaEm = v;
+	coloralphaE = v;
 
 
-     if(capa == -1)
-     {
-         for(u32 i=0; i< nodon->getMaterialCount(); ++i)
-         {
-                 nodon->getMaterial(i).DiffuseColor.setAlpha (v);
-                 nodon->getMaterial(i).EmissiveColor.setAlpha(v);
-                 nodon->getMaterial(i).SpecularColor.setAlpha (v);
-         }
-     }
-     else
-     {
-                 nodon->getMaterial(capa).DiffuseColor.setAlpha (v);
-                 nodon->getMaterial(capa).EmissiveColor.setAlpha(v);
-                 nodon->getMaterial(capa).SpecularColor.setAlpha (v);
-     }
+	if ( capa == -1 )
+	{
+		for ( u32 i=0; i< nodon->getMaterialCount(); ++i )
+		{
+			nodon->getMaterial ( i ).DiffuseColor.setAlpha ( v );
+			nodon->getMaterial ( i ).EmissiveColor.setAlpha ( v );
+			nodon->getMaterial ( i ).SpecularColor.setAlpha ( v );
+		}
+	}
+	else
+	{
+		nodon->getMaterial ( capa ).DiffuseColor.setAlpha ( v );
+		nodon->getMaterial ( capa ).EmissiveColor.setAlpha ( v );
+		nodon->getMaterial ( capa ).SpecularColor.setAlpha ( v );
+	}
 }
 
 /*!
@@ -1005,14 +1006,14 @@ Ejemplo:
 Cubo.CrearColision( Escenario.RetornarDatos(), 3,3,3,0,0,0,0,-0.1,0 );
 \endcode
 */
-void GDT::Nodo::NodoBase::CrearColision(ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ)
+void GDT::Nodo::NodoBase::CrearColision ( ITriangleSelector* selector, float RadioX, float RadioY, float RadioZ, float GravedadX, float GravedadY, float GravedadZ, float TraslacionX, float TraslacionY, float TraslacionZ )
 {
 	ISceneManager* mismgr=midevice->getSceneManager();
-	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator(
-		selector, nodon, core::vector3df(RadioX,RadioY,RadioZ),
-		core::vector3df(TraslacionX,TraslacionY,TraslacionZ),
-		core::vector3df(GravedadX,GravedadY,GravedadZ));
-	nodon->addAnimator(anim);
+	scene::ISceneNodeAnimator* anim = mismgr->createCollisionResponseAnimator (
+	                                      selector, nodon, core::vector3df ( RadioX,RadioY,RadioZ ),
+	                                      core::vector3df ( TraslacionX,TraslacionY,TraslacionZ ),
+	                                      core::vector3df ( GravedadX,GravedadY,GravedadZ ) );
+	nodon->addAnimator ( anim );
 	//anim->drop();
 }
 
@@ -1025,9 +1026,9 @@ Ejemplo:
 Cubo.Visible( false );
 \endcode
 */
-void GDT::Nodo::NodoBase::Visible(bool estado)
+void GDT::Nodo::NodoBase::Visible ( bool estado )
 {
-   nodon->setVisible(estado);
+	nodon->setVisible ( estado );
 }
 
 /*!
@@ -1042,100 +1043,100 @@ Esta = Cubo.EsVisible( );
 */
 bool GDT::Nodo::NodoBase::EsVisible()
 {
-     return nodon->isVisible();
+	return nodon->isVisible();
 }
 
-void GDT::Nodo::NodoBase::Destruir(void)
+void GDT::Nodo::NodoBase::Destruir ( void )
 {
-      nodon->remove();
+	nodon->remove();
 }
 
-void GDT::Nodo::NodoBase::Brillo(float intensidad)
+void GDT::Nodo::NodoBase::Brillo ( float intensidad )
 {
-        nodon->getMaterial(0).Shininess = intensidad;
+	nodon->getMaterial ( 0 ).Shininess = intensidad;
 }
 
 
 int GDT::Nodo::NodoBase::RetornarColorEmisivoR()
 {
-       SColor Amb = nodon->getMaterial(0).EmissiveColor;
-       return int(Amb.getRed() );
+	SColor Amb = nodon->getMaterial ( 0 ).EmissiveColor;
+	return int ( Amb.getRed() );
 }
 
 int GDT::Nodo::NodoBase::RetornarColorEmisivoG()
 {
-       SColor Amb = nodon->getMaterial(0).EmissiveColor;
-       return int(Amb.getGreen());
+	SColor Amb = nodon->getMaterial ( 0 ).EmissiveColor;
+	return int ( Amb.getGreen() );
 }
 
-int GDT::Nodo::NodoBase::RetornarColorEmisivoB()                
+int GDT::Nodo::NodoBase::RetornarColorEmisivoB()
 {
-       SColor Amb = nodon->getMaterial(0).EmissiveColor;
-       return int(Amb.getBlue());
+	SColor Amb = nodon->getMaterial ( 0 ).EmissiveColor;
+	return int ( Amb.getBlue() );
 }
 
 int GDT::Nodo::NodoBase::RetornarColorDifusoR()
 {
-       SColor Dif = nodon->getMaterial(0).DiffuseColor;
-       return int(Dif.getRed());
+	SColor Dif = nodon->getMaterial ( 0 ).DiffuseColor;
+	return int ( Dif.getRed() );
 }
 
 int GDT::Nodo::NodoBase::RetornarColorDifusoG()
 {
-       SColor Dif = nodon->getMaterial(0).DiffuseColor;
-       return int(Dif.getGreen());
+	SColor Dif = nodon->getMaterial ( 0 ).DiffuseColor;
+	return int ( Dif.getGreen() );
 }
 
-int GDT::Nodo::NodoBase::RetornarColorDifusoB()                
+int GDT::Nodo::NodoBase::RetornarColorDifusoB()
 {
-       SColor Dif = nodon->getMaterial(0).DiffuseColor;
-       return int(Dif.getBlue());
+	SColor Dif = nodon->getMaterial ( 0 ).DiffuseColor;
+	return int ( Dif.getBlue() );
 }
-      
+
 
 int GDT::Nodo::NodoBase::RetornarColorEspecularR()
 {
-       SColor Dif = nodon->getMaterial(0).SpecularColor;
-       return int(Dif.getRed());
+	SColor Dif = nodon->getMaterial ( 0 ).SpecularColor;
+	return int ( Dif.getRed() );
 }
 
 int GDT::Nodo::NodoBase::RetornarColorEspecularG()
 {
-       SColor Dif = nodon->getMaterial(0).SpecularColor;
-       return int(Dif.getGreen());
+	SColor Dif = nodon->getMaterial ( 0 ).SpecularColor;
+	return int ( Dif.getGreen() );
 }
 
-int GDT::Nodo::NodoBase::RetornarColorEspecularB()        
+int GDT::Nodo::NodoBase::RetornarColorEspecularB()
 {
-       SColor Dif = nodon->getMaterial(0).SpecularColor;
-       return int(Dif.getBlue());
-}        
+	SColor Dif = nodon->getMaterial ( 0 ).SpecularColor;
+	return int ( Dif.getBlue() );
+}
 
 
 int GDT::Nodo::NodoBase::RetornarColorAmbienteR()
 {
-       SColor Dif = nodon->getMaterial(0).AmbientColor;
-       return int(Dif.getRed());
+	SColor Dif = nodon->getMaterial ( 0 ).AmbientColor;
+	return int ( Dif.getRed() );
 }
 
 int GDT::Nodo::NodoBase::RetornarColorAmbienteG()
 {
-       SColor Dif = nodon->getMaterial(0).AmbientColor;
-       return int(Dif.getGreen());
+	SColor Dif = nodon->getMaterial ( 0 ).AmbientColor;
+	return int ( Dif.getGreen() );
 }
 
-int GDT::Nodo::NodoBase::RetornarColorAmbienteB()                
+int GDT::Nodo::NodoBase::RetornarColorAmbienteB()
 {
-       SColor Dif = nodon->getMaterial(0).AmbientColor;
-       return int(Dif.getBlue());
-}        
-
-int GDT::Nodo::NodoBase::RetornarBrillo()                
-{        
-      return (int)nodon->getMaterial(0).Shininess;
+	SColor Dif = nodon->getMaterial ( 0 ).AmbientColor;
+	return int ( Dif.getBlue() );
 }
 
-void GDT::Nodo::NodoBase::AgregarAnimador(Animador Animate)
+int GDT::Nodo::NodoBase::RetornarBrillo()
 {
-     nodon->addAnimator(Animate.Retornar());
+	return ( int ) nodon->getMaterial ( 0 ).Shininess;
+}
+
+void GDT::Nodo::NodoBase::AgregarAnimador ( Animador Animate )
+{
+	nodon->addAnimator ( Animate.Retornar() );
 }

@@ -24,23 +24,22 @@
  *
  * Permite simular la superficie de un l&iacute;quido.
  * La t&eacute;cnica es poner el nodo Agua en un lugar del escenario donde
- * se vea como si fuera la superficie de un lago, pozo, estanque, o lo 
+ * se vea como si fuera la superficie de un lago, pozo, estanque, o lo
  * que se ocurra.
- * Autom&aacute;ticamente el plano ondular&aacute; como si se tratase de un l&iacute;quido real.
+ * Autom&aacute;ticamente el plano ondular&aacute; como si se tratase
+ * de un l&iacute;quido real.
  */
 
 #include "gd_agua.h" // class's header file
 
 // class constructor
 GDT::Nodo::Agua::Agua()
-{
-}
+{}
 
 // class destructor
 GDT::Nodo::Agua::~Agua()
-{
-}
- 
+{}
+
 /*!
 * \param x,y ancho de cada cuadro del mosaico.
 * \param nx,ny cuadros en que componen el mosaico.
@@ -48,45 +47,45 @@ GDT::Nodo::Agua::~Agua()
 * \param AlturaOnda altura de la onda.
 * \param VelocidadOnda velocidad de la onda.
 * \param LongitudOnda la longitud de la onda.
-* \param t es la ruta de la textura. La textura se aplica y queda la 
+* \param t es la ruta de la textura. La textura se aplica y queda la
 * superficie transparente.
-* 
+*
 * \image html aguanormal.png
-* 
+*
 * Ejemplo:
 * \code
 * Mar.CrearNormal(100, 100, 100, 100, 100, 100, 4, 300, 30, "media/water.jpg");
 * \endcode
 */
-void GDT::Nodo::Agua::CrearNormal(
-	float x, float y, 
-	int nx, int ny,
-	int tx,int ty,
-	f32 AlturaOnda,
-	f32 VelocidadOnda,
-	f32 LongitudOnda,
-	char* t)
+void GDT::Nodo::Agua::CrearNormal (
+    float x, float y,
+    int nx, int ny,
+    int tx,int ty,
+    f32 AlturaOnda,
+    f32 VelocidadOnda,
+    f32 LongitudOnda,
+    char* t )
 {
-	RegistrarDevice(Sistema::device);
+	RegistrarDevice ( Sistema::device );
 	ISceneManager* mismgr=midevice->getSceneManager();
-	
+
 	// Se crea el plano
-	mesh = mismgr->addHillPlaneMesh("myHill",
-	core::dimension2d<f32>(x,y),
-	core::dimension2d<s32>(nx,ny), 0, 0,
-	core::dimension2d<f32>(0,0),
-	core::dimension2d<f32>((float)tx,(float)ty));
-	
+	mesh = mismgr->addHillPlaneMesh ( "myHill",
+	                                  core::dimension2d<f32> ( x,y ),
+	                                  core::dimension2d<s32> ( nx,ny ), 0, 0,
+	                                  core::dimension2d<f32> ( 0,0 ),
+	                                  core::dimension2d<f32> ( ( float ) tx, ( float ) ty ) );
+
 	// Se crea el nodo y se le agrega el plano
-	nodon = mismgr->addWaterSurfaceSceneNode(mesh->getMesh(0), AlturaOnda, VelocidadOnda, LongitudOnda);
-	
-	if(!nodon) printf("ERROR: No se pudo crear Agua Normal\n");
-	
+	nodon = mismgr->addWaterSurfaceSceneNode ( mesh->getMesh ( 0 ), AlturaOnda, VelocidadOnda, LongitudOnda );
+
+	if ( !nodon ) printf ( "ERROR: No se pudo crear Agua Normal\n" );
+
 	// Se carga la textura
-	nodon->setMaterialTexture(0, mismgr->getVideoDriver()->getTexture(t));
-	
+	nodon->setMaterialTexture ( 0, mismgr->getVideoDriver()->getTexture ( t ) );
+
 	// Se establece el material transparente
-	nodon->setMaterialType(EMT_TRANSPARENT_ADD_COLOR);
+	nodon->setMaterialType ( EMT_TRANSPARENT_ADD_COLOR );
 }
 
 /*!
@@ -101,9 +100,9 @@ void GDT::Nodo::Agua::CrearNormal(
 * \param LongitudOnda la longitud de la onda.
 * \param texturaAgua es la ruta de la textura de la superficie.
 * \param texturaPiso es la ruta de la textura del piso.
-* 
+*
 * \image html aguarealista.png
-* 
+*
 * Ejemplo:
 * \code
 * Mar.CrearRealista(
@@ -114,42 +113,42 @@ void GDT::Nodo::Agua::CrearNormal(
 * 	"media/water.jpg",  "media/piso.jpg");
 * \endcode
 */
-void GDT::Nodo::Agua::CrearRealista(
-	float x, float y,
-	int nx, int ny,
-	int tx,int ty,
-	f32 AlturaOnda, 
-	f32 VelocidadOnda,
-	f32 LongitudOnda,
-	char* texturaAgua,
-	char* texturaPiso)
+void GDT::Nodo::Agua::CrearRealista (
+    float x, float y,
+    int nx, int ny,
+    int tx,int ty,
+    f32 AlturaOnda,
+    f32 VelocidadOnda,
+    f32 LongitudOnda,
+    char* texturaAgua,
+    char* texturaPiso )
 {
-	
-	RegistrarDevice(Sistema::device);
+
+	RegistrarDevice ( Sistema::device );
 	ISceneManager* mismgr=midevice->getSceneManager();
-	
+
 	// Se crea el plano
-	mesh = mismgr->addHillPlaneMesh("myHill",
-		core::dimension2d<f32>(x,y), //tamano mosaico
-		core::dimension2d<s32>(nx,ny), 0, 0,//numero mosaicos
-		core::dimension2d<f32>(0,0),
-		core::dimension2d<f32>((float)tx,(float)ty));
-	
+	mesh = mismgr->addHillPlaneMesh ( "myHill",
+	                                  core::dimension2d<f32> ( x,y ), //tamano mosaico
+	                                  core::dimension2d<s32> ( nx,ny ), 0, 0,//numero mosaicos
+	                                  core::dimension2d<f32> ( 0,0 ),
+	                                  core::dimension2d<f32> ( ( float ) tx, ( float ) ty ) );
+
 	// Se crea el nodo y se le agrega el plano
-	nodon = mismgr->addWaterSurfaceSceneNode(
-		mesh->getMesh(0),
-		AlturaOnda,
-		VelocidadOnda,
-		LongitudOnda);
-	
-	if(!nodon) printf("ERROR: No se pudo crear Agua Realista\n");
-	
+	nodon = mismgr->addWaterSurfaceSceneNode (
+	            mesh->getMesh ( 0 ),
+	            AlturaOnda,
+	            VelocidadOnda,
+	            LongitudOnda );
+
+	if ( !nodon ) printf ( "ERROR: No se pudo crear Agua Realista\n" );
+
 	// Se carga las texturas
-	nodon->setMaterialTexture(1, mismgr->getVideoDriver()->getTexture(texturaAgua));
-	nodon->setMaterialTexture(0, mismgr->getVideoDriver()->getTexture(texturaPiso));
-	
+	nodon->setMaterialTexture ( 1, mismgr->getVideoDriver()->getTexture ( texturaAgua ) );
+	nodon->setMaterialTexture ( 0, mismgr->getVideoDriver()->getTexture ( texturaPiso ) );
+
 	// Se establece el material de refleccion de la segunda capa
-	nodon->setMaterialType(EMT_REFLECTION_2_LAYER);
+	nodon->setMaterialType ( EMT_REFLECTION_2_LAYER );
 
 }
 

@@ -48,16 +48,16 @@ Ejemplo:
 Boton.Crear(5,5, 35,25);
 \endcode
 */
-void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2,IGUIElement* padre)
+void GDT::Gui::Boton::Crear ( int x1, int y1, int x2, int y2,IGUIElement* padre )
 {
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
-	
-	
+
+	boton=guienv->addButton ( rect<s32> ( x1,y1,x2,y2 ),padre, Sistema::ContadorElementosGui++ );
+
+
 	guiele = boton;
 }
 
@@ -72,17 +72,17 @@ Ejemplo:
 Boton.Texto(5,5, 35,25,L"Pulsame");
 \endcode
 */
-void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre)
+void GDT::Gui::Boton::Crear ( int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre )
 {
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
-	
-	boton->setText(texto);
-	
+
+	boton=guienv->addButton ( rect<s32> ( x1,y1,x2,y2 ),padre, Sistema::ContadorElementosGui++ );
+
+	boton->setText ( texto );
+
 	guiele = boton;
 }
 
@@ -93,20 +93,20 @@ void GDT::Gui::Boton::Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGU
 \param filename_boton_presionado ruta a la imagen del bot&oacute;n cuando se pulsa.
 \param padre por defecto es 0. Si no esta seguro, omita este par&aacute;metro.
 */
-void GDT::Gui::Boton::CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre)
+void GDT::Gui::Boton::CrearConImagen ( int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado , IGUIElement* padre )
 {
 
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	boton=guienv->addButton(rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
-	
-	boton->setImage(driver->getTexture(filename_boton_normal));
-	boton->setPressedImage(driver->getTexture(filename_boton_presionado)); 
-	
+
+	boton=guienv->addButton ( rect<s32> ( x1,y1,x2,y2 ),padre, Sistema::ContadorElementosGui++ );
+
+	boton->setImage ( driver->getTexture ( filename_boton_normal ) );
+	boton->setPressedImage ( driver->getTexture ( filename_boton_presionado ) );
+
 	guiele = boton;
 }
-	
+
 

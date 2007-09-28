@@ -37,43 +37,43 @@ GDT::Nodo::Escenario::~Escenario()
 	// insert your code here
 }
 
-void GDT::Nodo::Escenario::CargarBSP(char *filenamePK3, char *filenameBSP)
+void GDT::Nodo::Escenario::CargarBSP ( char *filenamePK3, char *filenameBSP )
 {
-	RegistrarDevice(Sistema::device);
+	RegistrarDevice ( Sistema::device );
 	ISceneManager* mismgr=Sistema::device->getSceneManager();
-	
-	midevice->getFileSystem()->addZipFileArchive(filenamePK3);
-		
-	mesh = mismgr->getMesh(filenameBSP);
-		
-	if (mesh)
-		nodon = mismgr->addOctTreeSceneNode(mesh->getMesh(0));
-		
-		if(!nodon) printf("ERROR: No se pudo Cargar El Escenario BSP, %s en el paquete %s.\n", filenameBSP ,filenamePK3 );
-		
-	selector = mismgr->createOctTreeTriangleSelector(mesh->getMesh(0), nodon);
-	nodon->setTriangleSelector(selector);
+
+	midevice->getFileSystem()->addZipFileArchive ( filenamePK3 );
+
+	mesh = mismgr->getMesh ( filenameBSP );
+
+	if ( mesh )
+		nodon = mismgr->addOctTreeSceneNode ( mesh->getMesh ( 0 ) );
+
+	if ( !nodon ) printf ( "ERROR: No se pudo Cargar El Escenario BSP, %s en el paquete %s.\n", filenameBSP ,filenamePK3 );
+
+	selector = mismgr->createOctTreeTriangleSelector ( mesh->getMesh ( 0 ), nodon );
+	nodon->setTriangleSelector ( selector );
 	//selector->drop();
 }
 
-void GDT::Nodo::Escenario::Cargar(char *filename)
+void GDT::Nodo::Escenario::Cargar ( char *filename )
 {
-	RegistrarDevice(Sistema::device);
+	RegistrarDevice ( Sistema::device );
 	ISceneManager* mismgr=Sistema::device->getSceneManager();
-	
-	IAnimatedMesh* mesha = mismgr->getMesh(filename);
-	meshs = mesha->getMesh(0); 
-	
-	nodon = mismgr->addOctTreeSceneNode(meshs);
-	if(!nodon) printf("ERROR: No se pudo Cargar El Escenario, %s.\n", filename);     
-		
-		selector = mismgr->createOctTreeTriangleSelector(meshs, nodon);
-		nodon->setTriangleSelector(selector);  
-	
-	ColorDifuso(100,100,100);
+
+	IAnimatedMesh* mesha = mismgr->getMesh ( filename );
+	meshs = mesha->getMesh ( 0 );
+
+	nodon = mismgr->addOctTreeSceneNode ( meshs );
+	if ( !nodon ) printf ( "ERROR: No se pudo Cargar El Escenario, %s.\n", filename );
+
+	selector = mismgr->createOctTreeTriangleSelector ( meshs, nodon );
+	nodon->setTriangleSelector ( selector );
+
+	ColorDifuso ( 100,100,100 );
 }
 
 ITriangleSelector* GDT::Nodo::Escenario::RetornarDatos()
 {
-     return selector;
+	return selector;
 }

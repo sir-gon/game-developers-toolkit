@@ -60,79 +60,79 @@ GDT::Gui::Imagen::~Imagen()
 *  - Windows Bitmap (.bmp)
 *  - Zsoft Paintbrush (.pcx)
 */
-void GDT::Gui::Imagen::Cargar(char *filename)
+void GDT::Gui::Imagen::Cargar ( char *filename )
 {
 
-    RegistrarDevice(Sistema::device);
+	RegistrarDevice ( Sistema::device );
 
-    driver = midevice->getVideoDriver();
-    guienv = midevice->getGUIEnvironment();
+	driver = midevice->getVideoDriver();
+	guienv = midevice->getGUIEnvironment();
 
-    //irr::core::dimension2d< s32 > tam;
-    //irr::video::ITexture* textura;
+	//irr::core::dimension2d< s32 > tam;
+	//irr::video::ITexture* textura;
 
-    textura=driver->getTexture(filename);
+	textura=driver->getTexture ( filename );
 
-    tam = textura->getSize();
+	tam = textura->getSize();
 
-    printf("TAMX = %d, TAMY = %d\n",tam.Width, tam.Height);
+	printf ( "TAMX = %d, TAMY = %d\n",tam.Width, tam.Height );
 
-  //  int tamx = tam.Width+40;
-  //  int tamy = tam.Height+2;
-  //
-	img = guienv->addImage(rect<s32>(0,0,tam.Width,tam.Height));
-	img->setImage(textura);
+	//  int tamx = tam.Width+40;
+	//  int tamy = tam.Height+2;
+	//
+	img = guienv->addImage ( rect<s32> ( 0,0,tam.Width,tam.Height ) );
+	img->setImage ( textura );
 
 
 //	img = guienv->addImage(driver->getTexture(filename),
 	// position2d<int>(10,10));
-img->setScaleImage(  true );  
+	img->setScaleImage ( true );
 
-    guiele=img;
+	guiele=img;
 }
 
 /*!
 */
-void GDT::Gui::Imagen::Cargar(char *filename, IGUIElement* padre)
+void GDT::Gui::Imagen::Cargar ( char *filename, IGUIElement* padre )
 {
 
-    RegistrarDevice(Sistema::device);
+	RegistrarDevice ( Sistema::device );
 
-    driver = midevice->getVideoDriver();
-    guienv = midevice->getGUIEnvironment();
+	driver = midevice->getVideoDriver();
+	guienv = midevice->getGUIEnvironment();
 
-    //irr::core::dimension2d< s32 > tam;
-    //irr::video::ITexture* textura;
+	//irr::core::dimension2d< s32 > tam;
+	//irr::video::ITexture* textura;
 
-    textura=driver->getTexture(filename);
+	textura=driver->getTexture ( filename );
 
-    tam = textura->getSize();
+	tam = textura->getSize();
 
-    printf("TAMX = %d, TAMY = %d\n",tam.Width, tam.Height);
+	printf ( "TAMX = %d, TAMY = %d\n",tam.Width, tam.Height );
 
-  //  int tamx = tam.Width+40;
-  //  int tamy = tam.Height+2;
-  //
-	img = guienv->addImage(rect<s32>(0,0,tam.Width,tam.Height), padre);
-	img->setImage(textura);
+	//  int tamx = tam.Width+40;
+	//  int tamy = tam.Height+2;
+	//
+	img = guienv->addImage ( rect<s32> ( 0,0,tam.Width,tam.Height ), padre );
+	img->setImage ( textura );
 
 
 //	img = guienv->addImage(driver->getTexture(filename),
 	// position2d<int>(10,10));
-img->setScaleImage(  true );  
+	img->setScaleImage ( true );
 
-    guiele=img;
+	guiele=img;
 }
 
 /*!
 * \param uso true para activar el canal alpha, false para desactivarlo
-* 
+*
 * Ejemplo:
 * \code
 * Imagen.UsarCanalAlpha(true);
 * \endcode
 */
-void GDT::Gui::Imagen::UsarCanalAlpha(bool uso)
+void GDT::Gui::Imagen::UsarCanalAlpha ( bool uso )
 {
-    img->setUseAlphaChannel(uso);
+	img->setUseAlphaChannel ( uso );
 }

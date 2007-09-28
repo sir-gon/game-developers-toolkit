@@ -37,11 +37,11 @@ GDT::Textura::~Textura()
 
 /*!
 */
-void GDT::Textura::Cargar(char* filename)
+void GDT::Textura::Cargar ( char* filename )
 {
-   mi_device = Sistema::device;
-     
-   tex = Sistema::device->getVideoDriver()->getTexture(filename);
+	mi_device = Sistema::device;
+
+	tex = Sistema::device->getVideoDriver()->getTexture ( filename );
 }
 
 
@@ -49,14 +49,14 @@ void GDT::Textura::Cargar(char* filename)
 */
 ITexture* GDT::Textura::RetornarTextura()
 {
-   return tex;
+	return tex;
 }
 
 /*!
 */
-void GDT::Textura::GenerarMapaNormales(float amplitud)
+void GDT::Textura::GenerarMapaNormales ( float amplitud )
 {
-     mi_device->getVideoDriver()->makeNormalMapTexture(tex, amplitud);
+	mi_device->getVideoDriver()->makeNormalMapTexture ( tex, amplitud );
 
-} 
+}
 

@@ -26,59 +26,59 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 
 namespace GDT
 {
 
-namespace Nodo
-{
+	namespace Nodo
+	{
 
-//! Efectos de Agua
-class Agua : public NodoBase
-{
-	public:
-		// class constructor
-		_GDT_EXPORT_ Agua();
-		// class destructor
-		_GDT_EXPORT_ ~Agua();
+		//! Efectos de Agua
+		class Agua : public NodoBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Agua();
+				// class destructor
+				_GDT_EXPORT_ ~Agua();
 
-     //! Malla que contiene el plano
-     scene::IAnimatedMesh* mesh; 
+				//! Malla que contiene el plano
+				scene::IAnimatedMesh* mesh;
 
-    //! Crea una superficie de agua con su movimiento que se actualiza autom&aacute;ticamente.
-    _GDT_EXPORT_ void CrearNormal(
-	float x, float y,
-	int nx, int ny,
-	int tx,int ty,
-	f32 AlturaOnda,
-	f32 VelocidadOnda,
-	f32 LongitudOnda,
-	char* textura
-	);
-    //! Es igual que CrearNormal pero realista, los par&aacute;metros son los mismos excepto t2 que es la textura del piso.
-    _GDT_EXPORT_ void CrearRealista(
-	float x, float y,
-	int nx, int ny,
-	int tx, int ty,
-	f32 AlturaOnda,
-	f32 VelocidadOnda,
-	f32 LongitudOnda,
-	char* texturaAgua, char* texturaPiso);
-};
+				//! Crea una superficie de agua con su movimiento que se actualiza autom&aacute;ticamente.
+				_GDT_EXPORT_ void CrearNormal (
+				    float x, float y,
+				    int nx, int ny,
+				    int tx,int ty,
+				    f32 AlturaOnda,
+				    f32 VelocidadOnda,
+				    f32 LongitudOnda,
+				    char* textura
+				);
+				//! Es igual que CrearNormal pero realista, los par&aacute;metros son los mismos excepto t2 que es la textura del piso.
+				_GDT_EXPORT_ void CrearRealista (
+				    float x, float y,
+				    int nx, int ny,
+				    int tx, int ty,
+				    f32 AlturaOnda,
+				    f32 VelocidadOnda,
+				    f32 LongitudOnda,
+				    char* texturaAgua, char* texturaPiso );
+		};
 
-} // FIN NAMESPACE NODO
+	} // FIN NAMESPACE NODO
 
 } // FIN NAMESPACE GDT
 

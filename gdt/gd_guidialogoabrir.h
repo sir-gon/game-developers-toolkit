@@ -27,41 +27,41 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Dialogo de Abrir" para archivos
-class DialogoAbrir : public GuiBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ DialogoAbrir();
-	// class destructor
-	_GDT_EXPORT_ ~DialogoAbrir();
-	
-	IGUIFileOpenDialog* opendlg;
+		class DialogoAbrir : public GuiBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ DialogoAbrir();
+				// class destructor
+				_GDT_EXPORT_ ~DialogoAbrir();
 
-	//! Crea un Control GUI del tipo Dialogo Abrir.
-	_GDT_EXPORT_ void Crear(wchar_t * titulo, bool modal, IGUIElement* padre=0);
-	
-};
+				IGUIFileOpenDialog* opendlg;
 
-} // FIN NAMESPACE GUI
+				//! Crea un Control GUI del tipo Dialogo Abrir.
+				_GDT_EXPORT_ void Crear ( wchar_t * titulo, bool modal, IGUIElement* padre=0 );
+
+		};
+
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

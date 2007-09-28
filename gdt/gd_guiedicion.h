@@ -27,44 +27,44 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Cuadro de Edici&oacute;n" (EditBox)
-class Edicion : public GuiBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Edicion();
-	// class destructor
-	_GDT_EXPORT_ ~Edicion();
-	
-	IGUIEditBox* editbox;
+		class Edicion : public GuiBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Edicion();
+				// class destructor
+				_GDT_EXPORT_ ~Edicion();
 
-	//! Crea un Control Gui del tipo Edici&oacute;n de texto.
-	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0);
-	//! Especifica el m&aacute;ximo de caracteres que se pueden escribir.
-	_GDT_EXPORT_ void CaracteresMaximo(int max);
-	//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
-	_GDT_EXPORT_ int RetornarCaracteresMaximo(void);
-};
+				IGUIEditBox* editbox;
 
-} // FIN NAMESPACE GUI
+				//! Crea un Control Gui del tipo Edici&oacute;n de texto.
+				_GDT_EXPORT_ void Crear ( int x1, int y1, int x2, int y2, wchar_t * texto, bool borde, IGUIElement* padre=0 );
+				//! Especifica el m&aacute;ximo de caracteres que se pueden escribir.
+				_GDT_EXPORT_ void CaracteresMaximo ( int max );
+				//! Retorna el m&aacute;ximo de caracteres que se pueden escribir.
+				_GDT_EXPORT_ int RetornarCaracteresMaximo ( void );
+		};
+
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

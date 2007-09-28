@@ -60,29 +60,29 @@ CieloCubo.CrearCubico(
 	"media/cara_trasera.jpg");
 \endcode
 */
-void GDT::Nodo::Panorama::CrearCubico(char* up, char* down, char* left, char* right, char* front,char* back)
+void GDT::Nodo::Panorama::CrearCubico ( char* up, char* down, char* left, char* right, char* front,char* back )
 {
-    
-    RegistrarDevice(Sistema::device);
-    ISceneManager* mismgr=Sistema::device->getSceneManager();
+
+	RegistrarDevice ( Sistema::device );
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
 
 
 
-     mismgr->getVideoDriver()->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, false);
+	mismgr->getVideoDriver()->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, false );
 
-	nodon = mismgr->addSkyBoxSceneNode(
-		mismgr->getVideoDriver()->getTexture(up),
-		mismgr->getVideoDriver()->getTexture(down),
-		mismgr->getVideoDriver()->getTexture(left),
-		mismgr->getVideoDriver()->getTexture(right),
-		mismgr->getVideoDriver()->getTexture(front),
-		mismgr->getVideoDriver()->getTexture(back));
-		
-    if(!nodon) printf("ERROR: No se pudo Crear Panorama Cubico.\n"); 
+	nodon = mismgr->addSkyBoxSceneNode (
+	            mismgr->getVideoDriver()->getTexture ( up ),
+	            mismgr->getVideoDriver()->getTexture ( down ),
+	            mismgr->getVideoDriver()->getTexture ( left ),
+	            mismgr->getVideoDriver()->getTexture ( right ),
+	            mismgr->getVideoDriver()->getTexture ( front ),
+	            mismgr->getVideoDriver()->getTexture ( back ) );
 
-	mismgr->getVideoDriver()->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, true);
-	
-	
+	if ( !nodon ) printf ( "ERROR: No se pudo Crear Panorama Cubico.\n" );
+
+	mismgr->getVideoDriver()->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, true );
+
+
 }
 
 /*!
@@ -97,30 +97,30 @@ Ejemplo:
 CieloDomo.CrearDomo("../media/panorama/domin.jpg",13,13,100,100);
 \endcode
 */
-void GDT::Nodo::Panorama::CrearDomo(char* texturadomo, int hres, int vres, int texporc, int esfporc)
+void GDT::Nodo::Panorama::CrearDomo ( char* texturadomo, int hres, int vres, int texporc, int esfporc )
 {
-    RegistrarDevice(Sistema::device);
-    ISceneManager* mismgr=Sistema::device->getSceneManager();
+	RegistrarDevice ( Sistema::device );
+	ISceneManager* mismgr=Sistema::device->getSceneManager();
 
-    float texpor = (float)texporc/100;
-    float esfpor = (float)esfporc/50;    
-    
-    if(texpor>1) texpor=1;
-    if(esfpor>2) texpor=2;
-    
+	float texpor = ( float ) texporc/100;
+	float esfpor = ( float ) esfporc/50;
 
-    mismgr->getVideoDriver()->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, false);
-
-	nodon = mismgr->addSkyDomeSceneNode(mismgr->getVideoDriver()->getTexture(texturadomo), 
-                                        hres,
-                                        vres,
-                                        texpor,
-                                        esfpor);
-
-    if(!nodon) printf("ERROR: No se pudo Crear Panorama Domo.\n"); 
+	if ( texpor>1 ) texpor=1;
+	if ( esfpor>2 ) texpor=2;
 
 
-	mismgr->getVideoDriver()->setTextureCreationFlag(video::ETCF_CREATE_MIP_MAPS, true);
+	mismgr->getVideoDriver()->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, false );
+
+	nodon = mismgr->addSkyDomeSceneNode ( mismgr->getVideoDriver()->getTexture ( texturadomo ),
+	                                      hres,
+	                                      vres,
+	                                      texpor,
+	                                      esfpor );
+
+	if ( !nodon ) printf ( "ERROR: No se pudo Crear Panorama Domo.\n" );
+
+
+	mismgr->getVideoDriver()->setTextureCreationFlag ( video::ETCF_CREATE_MIP_MAPS, true );
 
 
 }

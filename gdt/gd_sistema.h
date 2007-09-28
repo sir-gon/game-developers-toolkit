@@ -22,9 +22,8 @@
 #ifndef GD_SISTEMA_H
 #define GD_SISTEMA_H
 
-
 // irrlicht
-#include <irrlicht.h>
+#include <Irrlicht/irrlicht.h>
 #include <wchar.h>
 #include <string.h>
 #include <cassert>
@@ -41,16 +40,16 @@ using namespace gui;
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 
@@ -200,185 +199,188 @@ namespace GDT
 {
 
 //! Clase Maestra de GDT
-class Sistema : public IEventReceiver {
-protected:
-	// misc
-	int lastFPS;
-	u32 lasttick;
+	class Sistema : public IEventReceiver
+	{
+		protected:
+			// misc
+			int lastFPS;
+			u32 lasttick;
 
-public:
-	// class constructor
-	_GDT_EXPORT_ Sistema();
-	// class destructor
-	_GDT_EXPORT_ ~Sistema();
-	
-	// Irrlicht  vars
-	IVideoDriver* driver;
-	ISceneManager* smgr;
-	IGUIEnvironment* guienv;
-	static IrrlichtDevice *device;
-	IGUISkin* skin;
-	
-	ISceneCollisionManager* colin;
-	
-	bool m_key_buf[256];
-	bool m_key_buf_old[256];
-	bool m_mouse_button_buf[3];
-	bool m_mouse_button_buf_old[3];
-	
-	int ultimatecla;
-	
-	bool pulsada[256];
-	
-	int creadoX,creadoY;
-	
-	int sR,sG,sB,sT; // colores sombra
-	//! Establece el color de las sombras Stencil
-	_GDT_EXPORT_ void ColorSombra(int R, int G, int B);
-	_GDT_EXPORT_ void TranslucidezSombra(int T); 
-	
-	//! Obtiene el valor de la &uacute;ltima tecla precionada.
-	_GDT_EXPORT_ int TeclaPrecionada();
-	//! Comprueba si se esta presionando la esta tecla.
-	_GDT_EXPORT_ bool TeclaAbajo(int index);
-	//! 
-	_GDT_EXPORT_ bool TeclaPulsada(int index);
-	_GDT_EXPORT_ bool MouseBotonAbajo(int index);
-	_GDT_EXPORT_ bool MouseBotonArribaAbajo(int index);
-	_GDT_EXPORT_ bool MouseBotonAbajoArriba(int index);
-	
-	//! Crea un sistema de GDT
-	_GDT_EXPORT_ void Inicializar(int ancho=640, int alto=480, int prof=16, bool full=false, E_DRIVER_TYPE VideoDriver=EDT_OPENGL, bool StencilBuffer=false, bool Vsync=false);
-	//! Dibuja un cuadro actual de la escena por Pantalla
-	_GDT_EXPORT_ void Render();
-	
-	//! Ancho de la ventana
-	int xventana;
-	//! Alto de la ventana
-	int yventana;
-	
-	//! Obtiene el ancho de la ventana
-	_GDT_EXPORT_ int AnchoVentana();
-	//! Obtiene el alto de la ventana
-	_GDT_EXPORT_ int AltoVentana();
-	
-	//! Destruye el sistema
-	_GDT_EXPORT_ void Finalizar();
-	_GDT_EXPORT_ void Matarme();
+		public:
+			// class constructor
+			_GDT_EXPORT_ Sistema();
+			// class destructor
+			_GDT_EXPORT_ ~Sistema();
 
-	int _CPS;
-	//! Retorna los Cuadros Por Segundo, conocido mundialmente como FPS.
-	_GDT_EXPORT_ int RetornarCPS();
-	
-	int Triangulos;
-	//! Retornar el numero de pol&iacute;gonos que se est&aacute;n renderizando
-	_GDT_EXPORT_ int RetornarTriangulos();
-	
-	bool _RenderVentana;
-	_GDT_EXPORT_ void RenderizarSoloConVentanaActiva(bool activa);
-	
-	bool _VentanaEscalable;
-	_GDT_EXPORT_ void VentanaEscalable(bool escalable);
-	
-	//! Obtiene el tiempo virtual del sistema, es decir cuanto tiempo a estado en ejecuci&oacute;n.
-	_GDT_EXPORT_ int Milisegundos();
-	//! Obtiene el tiempo virtual del sistema, sin interrupciones.
-	_GDT_EXPORT_ int MilisegundosSistema();
-	
-	int milsc_act;
-	int milsc_ini;
-	//! Establece el tiempo de inicio del timer como el tiempo actual.
-	_GDT_EXPORT_ void ReiniciarReloj();
-	
-	int cfa;
-	int cfr;
-	int cfg;
-	int cfb;
-	//! Establece el color de fondo
-	_GDT_EXPORT_ void ColorFondo(int r,int g,int b);
-	
-	_GDT_EXPORT_ void ConfigurarNiebla(int r, int g, int  b, bool lineal, float inicio, float fin,float densidad);
-	//! Establece el titulo de la ventana
-	_GDT_EXPORT_ void TituloVentana(wchar_t* textoso);
-	//! Cambia la fuente del sistema basado en Bitmap
-	_GDT_EXPORT_ void Fuente(char* filename);
-	//! 
-	_GDT_EXPORT_ virtual bool OnEvent(SEvent event);
-	//! Comprueba si el Sistema aun est&aacute; en ejecuci&oacute;n
-	_GDT_EXPORT_ bool EnEjecucion();
-	
-	static int ContadorElementosGui;
-	
-	// Bot&oacute;n
-	int ultimoIdBotonClick;
-	_GDT_EXPORT_ bool ClickBoton(int id2);
-	//_GDT_EXPORT_ bool MouseClick( GD_GuiBoton botoni );
-	
-	// Barra
-	//     bool BarraMovida( GD_GuiBarra barrin );
-	int ultimaIdBarraMovida;
-	int ultimaBarraPosicion;
-	//! Retorna true si se mueve la barra
-	_GDT_EXPORT_ bool BarraMovida(int id2);
-	
-	// DialogoAbrirArchivo
-	bool dialogoArchivoSeleccionado;
-	const wchar_t* NombreArchivoSeleccionado;
-	_GDT_EXPORT_ const wchar_t* ArchivoSeleccionado(void);
-	
-	// Menu
-	int MenuOpcionSeleccionada;
-	
-	ITimer *tiempo_actual;
-	//! Detiene la ejecuci&oacute;n del programa durante una cantidad de milisegunos
-	_GDT_EXPORT_ void Dormir(int milisecs);
-	
-	// camaras
-	_GDT_EXPORT_ void ActivarCamara( ICameraSceneNode* cam ); //Camara cam );
-	_GDT_EXPORT_ void AreaRenderizado(int x1, int y1, int x2, int y2);
-	
-	_GDT_EXPORT_ void Limpiar();
-	
-	_GDT_EXPORT_ IrrlichtDevice* RetornarDevice();
-	
-	int cps_deseados;
-	_GDT_EXPORT_ void LimiteCPS(int lcps);
-	
-	//funciones de Raton
-	//! Coloca el cursor en un punto de la pantalla
-	_GDT_EXPORT_ void MousePosicionar(int X,int Y); 
-	//! Devuelve la posicion en X del curso
-	_GDT_EXPORT_ int MousePosicionX();
-	//! Devuelve la posicion en Y del cursor
-	_GDT_EXPORT_ int MousePosicionY();
-	//! Devuelve el movimiento en el eje X del cursor
-	_GDT_EXPORT_ f32 MouseMovimientoX(f32 sensibilidad);
-	//! Devuelve el movimiento en el eje Y del cursor
-	_GDT_EXPORT_ f32 MouseMovimientoY(f32 sensibilidad);
-	//! Oculta el cursor
-	_GDT_EXPORT_ void OcultarPuntero();
-	
-	//Archivos
-	//! Cambia la ruta actual del directorio de ejecuci&oacute;n
-	_GDT_EXPORT_ void CambiarDirectorio(const char *strDir);
-	//! Obtiene la ruta del directorio de ejecuci&oacute;n actual
-	_GDT_EXPORT_ const char *Directorio(void);
-	//! Comprueba la existencia del archivo
-	_GDT_EXPORT_ bool ArchivoExiste(const char *strArchivo);
-	
-	// Escenas en formato Irr , XML, hechas con irrEdit o guardas en tiemporeal
-	
-	_GDT_EXPORT_ void CargarEscena(char* file);
-	_GDT_EXPORT_ void GuardarEscena(char* file);
+			// Irrlicht  vars
+			IVideoDriver* driver;
+			ISceneManager* smgr;
+			IGUIEnvironment* guienv;
+			static IrrlichtDevice *device;
+			IGUISkin* skin;
 
-	_GDT_EXPORT_ void ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn);
-	
-	IGUIFileOpenDialog* UltimoDialogoSeleccionado;
-	c8 RutaArchivoSeleccionado[1024];
-	
-	//! Establece la transparencia de los elementos gui creados hasta el momento.
-	_GDT_EXPORT_ void TransparenciaGUI(int valor);
-};
+			ISceneCollisionManager* colin;
+
+			bool m_key_buf[256];
+			bool m_key_buf_old[256];
+			bool m_mouse_button_buf[3];
+			bool m_mouse_button_buf_old[3];
+
+			int ultimatecla;
+
+			bool pulsada[256];
+
+			int creadoX,creadoY;
+
+			int sR,sG,sB,sT; // colores sombra
+			//! Establece el color de las sombras Stencil
+			_GDT_EXPORT_ void ColorSombra ( int R, int G, int B );
+			_GDT_EXPORT_ void TranslucidezSombra ( int T );
+
+			//! Obtiene el valor de la &uacute;ltima tecla precionada.
+			_GDT_EXPORT_ int TeclaPrecionada();
+			//! Comprueba si se esta presionando la esta tecla.
+			_GDT_EXPORT_ bool TeclaAbajo ( int index );
+			//!
+			_GDT_EXPORT_ bool TeclaPulsada ( int index );
+			_GDT_EXPORT_ bool MouseBotonAbajo ( int index );
+			_GDT_EXPORT_ bool MouseBotonArribaAbajo ( int index );
+			_GDT_EXPORT_ bool MouseBotonAbajoArriba ( int index );
+
+			//! Crea un sistema de GDT
+			_GDT_EXPORT_ void Inicializar ( int ancho=640, int alto=480, int prof=16, bool full=false, E_DRIVER_TYPE VideoDriver=EDT_OPENGL, bool StencilBuffer=false, bool Vsync=false );
+			//! Dibuja un cuadro actual de la escena por Pantalla
+			_GDT_EXPORT_ void Render();
+
+			//! Ancho de la ventana
+			int xventana;
+			//! Alto de la ventana
+			int yventana;
+
+			//! Obtiene el ancho de la ventana
+			_GDT_EXPORT_ int AnchoVentana();
+			//! Obtiene el alto de la ventana
+			_GDT_EXPORT_ int AltoVentana();
+
+			//! Destruye el sistema
+			_GDT_EXPORT_ void Finalizar();
+			_GDT_EXPORT_ void Matarme();
+
+			int _CPS;
+			//! Retorna los Cuadros Por Segundo, conocido mundialmente como FPS.
+			_GDT_EXPORT_ int RetornarCPS();
+
+			int Triangulos;
+			//! Retornar el numero de pol&iacute;gonos que se est&aacute;n renderizando
+			_GDT_EXPORT_ int RetornarTriangulos();
+
+			bool _RenderVentana;
+			_GDT_EXPORT_ void RenderizarSoloConVentanaActiva ( bool activa );
+
+			bool _VentanaEscalable;
+			_GDT_EXPORT_ void VentanaEscalable ( bool escalable );
+
+			//! Obtiene el tiempo virtual del sistema, es decir cuanto tiempo a estado en ejecuci&oacute;n.
+			_GDT_EXPORT_ int Milisegundos();
+			//! Obtiene el tiempo virtual del sistema, sin interrupciones.
+			_GDT_EXPORT_ int MilisegundosSistema();
+
+			int milsc_act;
+			int milsc_ini;
+			//! Establece el tiempo de inicio del timer como el tiempo actual.
+			_GDT_EXPORT_ void ReiniciarReloj();
+
+			int cfa;
+			int cfr;
+			int cfg;
+			int cfb;
+			//! Establece el color de fondo
+			_GDT_EXPORT_ void ColorFondo ( int r,int g,int b );
+
+			_GDT_EXPORT_ void ConfigurarNiebla ( int r, int g, int  b, bool lineal, float inicio, float fin,float densidad );
+			//! Establece el titulo de la ventana
+			_GDT_EXPORT_ void TituloVentana ( wchar_t* textoso );
+			//! Cambia la fuente del sistema basado en Bitmap
+			_GDT_EXPORT_ void Fuente ( char* filename );
+			//!
+			_GDT_EXPORT_ virtual bool OnEvent ( SEvent event );
+			//! Comprueba si el Sistema aun est&aacute; en ejecuci&oacute;n
+			_GDT_EXPORT_ bool EnEjecucion();
+
+			static int ContadorElementosGui;
+
+			// Bot&oacute;n
+			int ultimoIdBotonClick;
+			_GDT_EXPORT_ bool ClickBoton ( int id2 );
+			//_GDT_EXPORT_ bool MouseClick( GD_GuiBoton botoni );
+
+			// Barra
+			//     bool BarraMovida( GD_GuiBarra barrin );
+			int ultimaIdBarraMovida;
+			int ultimaBarraPosicion;
+			//! Retorna true si se mueve la barra
+			_GDT_EXPORT_ bool BarraMovida ( int id2 );
+
+			// DialogoAbrirArchivo
+			bool dialogoArchivoSeleccionado;
+			const wchar_t* NombreArchivoSeleccionado;
+			_GDT_EXPORT_ const wchar_t* ArchivoSeleccionado ( void );
+
+			// Menu
+			int MenuOpcionSeleccionada;
+
+			ITimer *tiempo_actual;
+			//! Detiene la ejecuci&oacute;n del programa durante una cantidad de milisegunos
+			_GDT_EXPORT_ void Dormir ( int milisecs );
+
+			// camaras
+			_GDT_EXPORT_ void ActivarCamara ( ICameraSceneNode* cam ); //Camara cam );
+			_GDT_EXPORT_ void AreaRenderizado ( int x1, int y1, int x2, int y2 );
+
+			_GDT_EXPORT_ void Limpiar();
+
+			_GDT_EXPORT_ IrrlichtDevice* RetornarDevice();
+
+			int cps_deseados;
+			_GDT_EXPORT_ void LimiteCPS ( int lcps );
+
+			//funciones de Raton
+			//! Coloca el cursor en un punto de la pantalla
+			_GDT_EXPORT_ void MousePosicionar ( int X,int Y );
+			//! Devuelve la posicion en X del curso
+			_GDT_EXPORT_ int MousePosicionX();
+			//! Devuelve la posicion en Y del cursor
+			_GDT_EXPORT_ int MousePosicionY();
+			//! Devuelve el movimiento en el eje X del cursor
+			_GDT_EXPORT_ f32 MouseMovimientoX ( f32 sensibilidad );
+			//! Devuelve el movimiento en el eje Y del cursor
+			_GDT_EXPORT_ f32 MouseMovimientoY ( f32 sensibilidad );
+			//! Oculta el cursor
+			_GDT_EXPORT_ void OcultarPuntero();
+
+			//Archivos
+			//! Cambia la ruta actual del directorio de ejecuci&oacute;n
+			_GDT_EXPORT_ void CambiarDirectorio ( const char *strDir );
+			//! Obtiene la ruta del directorio de ejecuci&oacute;n actual
+			_GDT_EXPORT_ const char *Directorio ( void );
+			// //! Dada la ruta al ejecutable, obtiene la ruta al directorio base
+			// _GDT_EXPORT_ char *RutaBase ( char *ruta );
+			//! Comprueba la existencia del archivo
+			_GDT_EXPORT_ bool ArchivoExiste ( const char *strArchivo );
+
+			// Escenas en formato Irr , XML, hechas con irrEdit o guardas en tiemporeal
+
+			_GDT_EXPORT_ void CargarEscena ( char* file );
+			_GDT_EXPORT_ void GuardarEscena ( char* file );
+
+			_GDT_EXPORT_ void ActualizarArchivoSeleccionadoDialogoAbrir ( const c8* fn );
+
+			IGUIFileOpenDialog* UltimoDialogoSeleccionado;
+			c8 RutaArchivoSeleccionado[1024];
+
+			//! Establece la transparencia de los elementos gui creados hasta el momento.
+			_GDT_EXPORT_ void TransparenciaGUI ( int valor );
+	};
 
 } // FIN NAMESPACE GDT
 

@@ -60,13 +60,13 @@ GDT::Archivo::~Archivo()
 * Archivo.AbrirParaEscribir("datos.txt");
 * \endcode
 */
-void GDT::Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
+void GDT::Archivo::AbrirParaEscribir ( const char *strArchivo, bool bContinuar )
 {
-     FileSystem = Sistema::device->getFileSystem();
+	FileSystem = Sistema::device->getFileSystem();
 
-     writeFile = FileSystem->createAndWriteFile(strArchivo, bContinuar);
+	writeFile = FileSystem->createAndWriteFile ( strArchivo, bContinuar );
 
-     bEscribir = true;
+	bEscribir = true;
 }
 
 /*!
@@ -75,13 +75,13 @@ void GDT::Archivo::AbrirParaEscribir(const char *strArchivo, bool bContinuar)
 * Archivo.AbrirParaLeer("datos.txt");
 * \endcode
 */
-void GDT::Archivo::AbrirParaLeer(const char *strArchivo)
+void GDT::Archivo::AbrirParaLeer ( const char *strArchivo )
 {
-     FileSystem = Sistema::device->getFileSystem();
+	FileSystem = Sistema::device->getFileSystem();
 
-     readFile = FileSystem->createAndOpenFile(strArchivo);
+	readFile = FileSystem->createAndOpenFile ( strArchivo );
 
-     bEscribir = false;
+	bEscribir = false;
 }
 
 /*!
@@ -90,12 +90,12 @@ void GDT::Archivo::AbrirParaLeer(const char *strArchivo)
 * Archivo.Cerrar();
 * \endcode
 */
-void GDT::Archivo::Cerrar(void)
+void GDT::Archivo::Cerrar ( void )
 {
-     if(bEscribir)
-         writeFile->drop();
-     else
-         readFile->drop();
+	if ( bEscribir )
+		writeFile->drop();
+	else
+		readFile->drop();
 }
 
 /*!
@@ -113,12 +113,12 @@ void GDT::Archivo::Cerrar(void)
 * Archivo.Escribir("Hola", 4);
 * \endcode
 */
-void GDT::Archivo::Escribir(const char *strCadena, int bytes)
+void GDT::Archivo::Escribir ( const char *strCadena, int bytes )
 {
-     if(bEscribir)
-     {
-         writeFile->write(strCadena, bytes);
-     }
+	if ( bEscribir )
+	{
+		writeFile->write ( strCadena, bytes );
+	}
 }
 
 /*!
@@ -131,112 +131,112 @@ void GDT::Archivo::Escribir(const char *strCadena, int bytes)
 * Archivo.Escribir("Hola");
 * \endcode
 */
-void GDT::Archivo::Escribir(const char *strCadena)
+void GDT::Archivo::Escribir ( const char *strCadena )
 {
-     int bytes;
-     Cadena Cadenin;
+	int bytes;
+	Cadena Cadenin;
 
-     bytes = Cadenin.Longitud(strCadena);
+	bytes = Cadenin.Longitud ( strCadena );
 
-     if(bEscribir)
-     {
-         writeFile->write(strCadena, bytes);
-     }
+	if ( bEscribir )
+	{
+		writeFile->write ( strCadena, bytes );
+	}
 }
 
 /*!
 */
-void GDT::Archivo::Escribir(int numero)
+void GDT::Archivo::Escribir ( int numero )
 {
-     Cadena Cadenin;
-     int bytes;
-     bytes = Cadenin.Longitud(numero);
+	Cadena Cadenin;
+	int bytes;
+	bytes = Cadenin.Longitud ( numero );
 
-     if(bEscribir)
-     {
-         writeFile->write((int*)numero, bytes);
-     }
+	if ( bEscribir )
+	{
+		writeFile->write ( ( int* ) numero, bytes );
+	}
 }
 
 /*!
 * Copia en el buffer indicado el n&uacute;mero de bytes que se quieren leer del archivo.
-* 
+*
 * Ejemplo:
 * \code
 * char Texto[4];
 * Archivo.Leer(Texto, 4);
 * \endcode
 */
-void GDT::Archivo::Leer( char * buffer, int bytes)
+void GDT::Archivo::Leer ( char * buffer, int bytes )
 {
-     if(!bEscribir)
-     {
-         readFile->read( buffer, bytes);
-     }
+	if ( !bEscribir )
+	{
+		readFile->read ( buffer, bytes );
+	}
 }
 
 /*!
 * \return la cantidad de bytes total del archivo que se est&aacute; leyendo.
-* 
+*
 * \code
 * char Texto[4];
 * Archivo.Leer(Texto, 4);
 * \endcode
 */
-int GDT::Archivo::Bytes(void)
+int GDT::Archivo::Bytes ( void )
 {
-     if(!bEscribir)
-     {
-         readFile->getSize();
-		 return true;
-     }
-	 return false;
+	if ( !bEscribir )
+	{
+		readFile->getSize();
+		return true;
+	}
+	return false;
 }
 
 /*!
 */
-bool GDT::Archivo::CambiarPosicion(int posicion, bool bRelativo)
+bool GDT::Archivo::CambiarPosicion ( int posicion, bool bRelativo )
 {
-     if(bEscribir)
-     {
-         return writeFile->seek(posicion, bRelativo);
-     }
-     else
-     {
-         return readFile->seek(posicion, bRelativo);
-     }
+	if ( bEscribir )
+	{
+		return writeFile->seek ( posicion, bRelativo );
+	}
+	else
+	{
+		return readFile->seek ( posicion, bRelativo );
+	}
 }
 
 /*!
 */
-int GDT::Archivo::Posicion(void)
+int GDT::Archivo::Posicion ( void )
 {
-    if(bEscribir)
-    {
-        return writeFile->getPos();
-    }
-    else
-    {
-        return readFile->getPos();
-    }
+	if ( bEscribir )
+	{
+		return writeFile->getPos();
+	}
+	else
+	{
+		return readFile->getPos();
+	}
 }
 
 /*!
 * \return una Cadena con el nombre del Archivo, incluyendo la ruta.
 */
-GDT::Cadena GDT::Archivo::NombreArchivo(void)
+GDT::Cadena GDT::Archivo::NombreArchivo ( void )
 {
-    Cadena Salida;
+	Cadena Salida;
 
-    if(bEscribir)
-    {
-        Salida = writeFile->getFileName();
-    }
-    else
-    {
-        Salida = readFile->getFileName();
-    }
+	if ( bEscribir )
+	{
+		Salida = writeFile->getFileName();
+	}
+	else
+	{
+		Salida = readFile->getFileName();
+	}
 
-    return Salida;
+	return Salida;
 }
 

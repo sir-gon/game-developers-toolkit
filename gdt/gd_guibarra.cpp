@@ -22,7 +22,7 @@
 /*!
 * \class GDT::Gui::Barra
 *
-* 
+*
 */
 
 #include "gd_guibarra.h" // class's header file
@@ -49,16 +49,16 @@ Ejemplo:
 Barra.CrearHorizontal(5,5, 30,15);
 \endcode
 */
-void GDT::Gui::Barra::CrearHorizontal(int x1, int y1, int x2, int y2, IGUIElement* padre)
+void GDT::Gui::Barra::CrearHorizontal ( int x1, int y1, int x2, int y2, IGUIElement* padre )
 {
-	
-	RegistrarDevice(Sistema::device); 
-	
+
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	barra=guienv->addScrollBar(true, rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
-	
+
+	barra=guienv->addScrollBar ( true, rect<s32> ( x1,y1,x2,y2 ),padre, Sistema::ContadorElementosGui++ );
+
 	guiele = barra;
 }
 
@@ -72,20 +72,20 @@ Ejemplo:
 Barra.CrearVerticall(5,5, 15,30);
 \endcode
 */
-void GDT::Gui::Barra::CrearVertical(int x1, int y1, int x2, int y2,IGUIElement* padre)
+void GDT::Gui::Barra::CrearVertical ( int x1, int y1, int x2, int y2,IGUIElement* padre )
 {
-	RegistrarDevice(Sistema::device);
-	
+	RegistrarDevice ( Sistema::device );
+
 	//IVideoDriver* driver = midevice->getVideoDriver();
 	IGUIEnvironment* guienv = midevice->getGUIEnvironment();
-	
-	barra=guienv->addScrollBar(false, rect<s32>(x1,y1,x2,y2),padre, Sistema::ContadorElementosGui++);
-	
+
+	barra=guienv->addScrollBar ( false, rect<s32> ( x1,y1,x2,y2 ),padre, Sistema::ContadorElementosGui++ );
+
 	guiele = barra;
 }
 
 /*!
-El m�imo no puede sobrepasar de 255.
+El mï¿½imo no puede sobrepasar de 255.
 
 \param maximo el valor m&aacute;
 
@@ -94,9 +94,9 @@ Ejemplo:
 Barra.MaximoValor(157);
 \endcode
 */
-void GDT::Gui::Barra::MaximoValor(int maximo)
+void GDT::Gui::Barra::MaximoValor ( int maximo )
 {
-     barra->setMax(maximo);
+	barra->setMax ( maximo );
 }
 
 /*!
@@ -105,9 +105,9 @@ Ejemplo:
 int pos = Barra.Posicion();
 \endcode
 */
-int GDT::Gui::Barra::Posicion(void)
+int GDT::Gui::Barra::Posicion ( void )
 {
-     return barra->getPos();
+	return barra->getPos();
 }
 
 /*!
@@ -116,8 +116,8 @@ Ejemplo:
 Barra.Posicionar(50);
 \endcode
 */
-void GDT::Gui::Barra::Posicionar(int posicion)
+void GDT::Gui::Barra::Posicionar ( int posicion )
 {
-     barra->setPos(posicion);
+	barra->setPos ( posicion );
 }
 

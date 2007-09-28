@@ -23,16 +23,16 @@
 * \class GDT::Sistema
 *
 * Todo depende del Sistema, desde las funciones b&aacute;sicas de entrada
-* y salida hasta el control de los nodos y dibujado, incluyendo los 
+* y salida hasta el control de los nodos y dibujado, incluyendo los
 * c&aacute;lculos 3D necesarios.
 *
-* Al inicializar el sistema, se generar&aacute; una ventana con un 
+* Al inicializar el sistema, se generar&aacute; una ventana con un
 * viewport de las dimenciones dadas.
 *
 * Si lo desea, este viewport puede ser en modo ventana o a pantalla
 * completa, y ocupando el modo que desee (OpenGL, DirectX, Software)
 *
-* Tambi&eacute;n puede en algunos casos si lo desea ocupar un modo de 
+* Tambi&eacute;n puede en algunos casos si lo desea ocupar un modo de
 * dibujado NULL, de esta manera no se necesita dibujar por pantalla todo
 * lo que ocurre. Este modo puede ser &uacute;til para programar un servicio
 * compatible con las capacidades de Irrlicht, por ejemplo un servidor para
@@ -42,11 +42,12 @@
 * sobre el estado actual de la ejecuci&oacute;n del programa, como los Cuadros
 * dibujados por cada segundo (CPS, o FPS en ingl&eacute;s).
 *
-* Los M&eacute;todos de Entrada-Salida nos permiten acceder a eventos del 
+* Los M&eacute;todos de Entrada-Salida nos permiten acceder a eventos del
 * sistema, como por ejemplo si se ha presionado una tecla.
 */
 
 #include "gd_sistema.h" // class's header file
+
 
 IrrlichtDevice *GDT::Sistema::device=NULL;
 int GDT::Sistema::ContadorElementosGui;
@@ -60,7 +61,7 @@ GDT::Sistema::Sistema()
 {
 	// insert your code here
 
-} 
+}
 
 // class destructor
 GDT::Sistema::~Sistema()
@@ -101,34 +102,34 @@ GDT::Sistema::~Sistema()
 * MiSistema.Inicializar(640,480,16, OPENGL, true, true);
 * \endcode
 */
-void GDT::Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync)
-	{
-	printf("\n+----------+");
-	printf("\n| GDT v2.0 |");
-	printf("\n+----------+\n");
+void GDT::Sistema::Inicializar ( int ancho, int alto, int prof, bool full, E_DRIVER_TYPE VideoDriver, bool StencilBuffer, bool Vsync )
+{
+	printf ( "\n+----------+" );
+	printf ( "\n| GDT v2.0 |" );
+	printf ( "\n+----------+\n" );
 	// Init the Irrlicht engine
 
-	device = createDevice(VideoDriver, 
-           dimension2d<s32>(ancho,alto), 
-           prof, 
-           full, 
-           StencilBuffer, 
-           Vsync, 
-           this);
-	
-	if (device==NULL)
-    {
-       printf("No se Pudo crear el Sistema\n");
-       exit(-1);
-    };
-	
-		driver = device->getVideoDriver();
-		smgr = device->getSceneManager();
-		guienv = device->getGUIEnvironment();
-		colin = smgr->getSceneCollisionManager();
-	
-	device->setWindowCaption(L"GDT Game Developers Toolkit v2.0");
-	
+	device = createDevice ( VideoDriver,
+	                        dimension2d<s32> ( ancho,alto ),
+	                        prof,
+	                        full,
+	                        StencilBuffer,
+	                        Vsync,
+	                        this );
+
+	if ( device==NULL )
+	{
+		printf ( "No se Pudo crear el Sistema\n" );
+		exit ( -1 );
+	};
+
+	driver = device->getVideoDriver();
+	smgr = device->getSceneManager();
+	guienv = device->getGUIEnvironment();
+	colin = smgr->getSceneCollisionManager();
+
+	device->setWindowCaption ( L"GDT Game Developers Toolkit v2.0" );
+
 	skin = guienv->getSkin();
 	//skin->setFont(guienv->getFont("fuente_default.bmp"));
 	/*
@@ -139,35 +140,35 @@ void GDT::Sistema::Inicializar(int ancho, int alto, int prof, bool full, E_DRIVE
 	memset(m_mouse_button_buf, 0, 3);
 	memset(m_mouse_button_buf_old, 0, 3);
 	*/
-	
+
 	creadoX = ancho;
 	creadoY = alto;
-	
+
 	/*  device->getTimer()->start();
 	device->getTimer()->tick();*/
 	milsc_ini = device->getTimer()->getRealTime();
-	
+
 	cfa = 0;
 	cfr = 130;
 	cfg = 60;
 	cfb = 150;
-	
+
 	ContadorElementosGui=10;
 	lasttick = 0;
 	cps_deseados=10000;
-	
+
 	sR = 0;
 	sG = 0;
 	sB = 0;
 	sT = 100;
-	
+
 	ultimatecla=0;
-	
+
 }
 
 /*!
 * \return True si el sistema est&aacute; en ejecuci&oacute;n, en otro caso false.
-* 
+*
 * Ejemplo:
 * \code
 * MiSistema.EnEjecucion();
@@ -186,9 +187,9 @@ bool GDT::Sistema::EnEjecucion()
 */
 int GDT::Sistema::AnchoVentana()
 {
-    int tempX;
-    tempX = driver->getScreenSize().Width;
-    return tempX;
+	int tempX;
+	tempX = driver->getScreenSize().Width;
+	return tempX;
 }
 
 /*!
@@ -200,105 +201,105 @@ int GDT::Sistema::AnchoVentana()
 
 int GDT::Sistema::AltoVentana()
 {
-    int tempY;
-    tempY = driver->getScreenSize().Height;
-    return tempY;
+	int tempY;
+	tempY = driver->getScreenSize().Height;
+	return tempY;
 }
 
 
 /*!
 * \param filename la ruta de la fuente.
-* 
+*
 * Ejemplo:
 * \code
 * MiSistema.Fuente("media/letras.bmp");
 * \endcode
 */
-void GDT::Sistema::Fuente(char* filename)
+void GDT::Sistema::Fuente ( char* filename )
 {
- skin->setFont(guienv->getFont(filename));
+	skin->setFont ( guienv->getFont ( filename ) );
 }
 
 /*!
 */
 // lifetree -- to use multi-key and mouse-button
-bool GDT::Sistema::OnEvent(SEvent event)
+bool GDT::Sistema::OnEvent ( SEvent event )
 {
 
-     switch(event.EventType)
-     {
-          case EET_KEY_INPUT_EVENT:
-               m_key_buf_old[event.KeyInput.Key] = m_key_buf[event.KeyInput.Key];
+	switch ( event.EventType )
+	{
+		case EET_KEY_INPUT_EVENT:
+			m_key_buf_old[event.KeyInput.Key] = m_key_buf[event.KeyInput.Key];
 
-               m_key_buf[event.KeyInput.Key] = event.KeyInput.PressedDown;
+			m_key_buf[event.KeyInput.Key] = event.KeyInput.PressedDown;
 
-               ultimatecla=event.KeyInput.Key;
-            //   if(!event.KeyInput.PressedDown)  m_key_buf_old[event.KeyInput.Key] = 0;
- 
-          break;
-          case EET_MOUSE_INPUT_EVENT:
-               if (event.MouseInput.Event < EMIE_MOUSE_MOVED)
-               {
-                    m_mouse_button_buf_old[event.MouseInput.Event%3] = m_mouse_button_buf[event.MouseInput.Event%3];
-                    m_mouse_button_buf[event.MouseInput.Event%3] = ((event.MouseInput.Event/3)?false:true);
-               }
-          break;
-          case EET_GUI_EVENT:
-               s32 id = event.GUIEvent.Caller->getID();
-			switch(event.GUIEvent.EventType)
+			ultimatecla=event.KeyInput.Key;
+			//   if(!event.KeyInput.PressedDown)  m_key_buf_old[event.KeyInput.Key] = 0;
+
+			break;
+		case EET_MOUSE_INPUT_EVENT:
+			if ( event.MouseInput.Event < EMIE_MOUSE_MOVED )
 			{
-                    // Bot?
-                	case EGET_BUTTON_CLICKED:
-                    {
-                         ultimoIdBotonClick = id;
-                         break;
-                    }
+				m_mouse_button_buf_old[event.MouseInput.Event%3] = m_mouse_button_buf[event.MouseInput.Event%3];
+				m_mouse_button_buf[event.MouseInput.Event%3] = ( ( event.MouseInput.Event/3 ) ?false:true );
+			}
+			break;
+		case EET_GUI_EVENT:
+			s32 id = event.GUIEvent.Caller->getID();
+			switch ( event.GUIEvent.EventType )
+			{
+					// Bot?
+				case EGET_BUTTON_CLICKED:
+				{
+					ultimoIdBotonClick = id;
+					break;
+				}
 
-                    // Barra  cambiada
-                    case EGET_SCROLL_BAR_CHANGED:
-                    {
-                         ultimaIdBarraMovida = id;
-                         ultimaBarraPosicion = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-                         break;
-                    }
-                    // DialogoAbrir Archivo Seleccionado
-                    case EGET_FILE_SELECTED:
-                    {
-                         dialogoArchivoSeleccionado = true;
-       					UltimoDialogoSeleccionado = (IGUIFileOpenDialog*)event.GUIEvent.Caller;
-    					ActualizarArchivoSeleccionadoDialogoAbrir(core::stringc(UltimoDialogoSeleccionado->getFilename()).c_str());
-                        break;
-                    }
-                    // Seleccion en Menu
-                    case EGET_MENU_ITEM_SELECTED:
-                    {
-                         IGUIContextMenu* menu = (IGUIContextMenu*)event.GUIEvent.Caller;
-					     s32 id = menu->getItemCommandId(menu->getSelectedItem());
+				// Barra  cambiada
+				case EGET_SCROLL_BAR_CHANGED:
+				{
+					ultimaIdBarraMovida = id;
+					ultimaBarraPosicion = ( ( IGUIScrollBar* ) event.GUIEvent.Caller )->getPos();
+					break;
+				}
+				// DialogoAbrir Archivo Seleccionado
+				case EGET_FILE_SELECTED:
+				{
+					dialogoArchivoSeleccionado = true;
+					UltimoDialogoSeleccionado = ( IGUIFileOpenDialog* ) event.GUIEvent.Caller;
+					ActualizarArchivoSeleccionadoDialogoAbrir ( core::stringc ( UltimoDialogoSeleccionado->getFilename() ).c_str() );
+					break;
+				}
+				// Seleccion en Menu
+				case EGET_MENU_ITEM_SELECTED:
+				{
+					IGUIContextMenu* menu = ( IGUIContextMenu* ) event.GUIEvent.Caller;
+					s32 id = menu->getItemCommandId ( menu->getSelectedItem() );
 
-                         MenuOpcionSeleccionada = id;
-                    }
+					MenuOpcionSeleccionada = id;
+				}
 
-                return true;
-               }
+				return true;
+			}
 
-          break;
-     }
+			break;
+	}
 
-return false;
+	return false;
 }
 
 
-bool GDT::Sistema::ClickBoton(int id2)
+bool GDT::Sistema::ClickBoton ( int id2 )
 {
-     if(id2 == ultimoIdBotonClick)
-        return true;
-     else
-        return false;
+	if ( id2 == ultimoIdBotonClick )
+		return true;
+	else
+		return false;
 }
 
 /*!
 * \param id2 GD_GuiBarra
-* 
+*
 * Ejemplo:
 * \code
 * if( MiSistema.BarraMovida ( miBarra ) ) {
@@ -306,31 +307,31 @@ bool GDT::Sistema::ClickBoton(int id2)
 * }
 * \endcode
 */
-bool GDT::Sistema::BarraMovida(int id2)
+bool GDT::Sistema::BarraMovida ( int id2 )
 {
-     if(id2 == ultimaIdBarraMovida)
-     return true;
-     else
-     return false;
+	if ( id2 == ultimaIdBarraMovida )
+		return true;
+	else
+		return false;
 }
 
 
-const wchar_t* GDT::Sistema::ArchivoSeleccionado(void)
+const wchar_t* GDT::Sistema::ArchivoSeleccionado ( void )
 {
-      if(dialogoArchivoSeleccionado == true)
-      { 
-         dialogoArchivoSeleccionado = false;
-         return NombreArchivoSeleccionado;
-      }
-      else
-          return NULL;
-      
+	if ( dialogoArchivoSeleccionado == true )
+	{
+		dialogoArchivoSeleccionado = false;
+		return NombreArchivoSeleccionado;
+	}
+	else
+		return NULL;
+
 }
 
 /*!
 * \param index Tecla a determinar si est&aacute; presionada.
 * \return true si se est&aacute; presionando la tecla, sino retorna false.
-* 
+*
 * Las teclas son:
 *     - T_ESC
 *     - T_FLECHA_IZQUIERDA
@@ -408,7 +409,7 @@ const wchar_t* GDT::Sistema::ArchivoSeleccionado(void)
 *     - T_NUMPAD_7
 *     - T_NUMPAD_8
 *     - T_NUMPAD_9
-* 
+*
 * Ejemplo:
 * \code
 * if( MiSistema.TeclaAbajo( T_ESC ) ) {
@@ -416,34 +417,34 @@ const wchar_t* GDT::Sistema::ArchivoSeleccionado(void)
 * }
 * \endcode
 */
-bool GDT::Sistema::TeclaAbajo(int index)
+bool GDT::Sistema::TeclaAbajo ( int index )
 {
-     return m_key_buf[index];
+	return m_key_buf[index];
 }
 
 /*!
 */
-bool GDT::Sistema::TeclaPulsada(int index)
+bool GDT::Sistema::TeclaPulsada ( int index )
 {
-  if(m_key_buf[index] && m_key_buf_old[index] != m_key_buf[index])
-       return true;
-  else
-       return false;
+	if ( m_key_buf[index] && m_key_buf_old[index] != m_key_buf[index] )
+		return true;
+	else
+		return false;
 }
 
-bool GDT::Sistema::MouseBotonAbajo(int index)
+bool GDT::Sistema::MouseBotonAbajo ( int index )
 {
-return m_mouse_button_buf[index];
+	return m_mouse_button_buf[index];
 }
 
-bool GDT::Sistema::MouseBotonArribaAbajo(int index)
+bool GDT::Sistema::MouseBotonArribaAbajo ( int index )
 {
-return (m_mouse_button_buf[index] && !m_mouse_button_buf_old[index]);
+	return ( m_mouse_button_buf[index] && !m_mouse_button_buf_old[index] );
 }
 
-bool GDT::Sistema::MouseBotonAbajoArriba(int index)
+bool GDT::Sistema::MouseBotonAbajoArriba ( int index )
 {
-return (!m_mouse_button_buf[index] && m_mouse_button_buf_old[index]);
+	return ( !m_mouse_button_buf[index] && m_mouse_button_buf_old[index] );
 }
 
 
@@ -458,59 +459,61 @@ void GDT::Sistema::Render()
 {
 
 
-    u32 curTime = device->getTimer()->getTime();
- 
+	u32 curTime = device->getTimer()->getTime();
 
-    while(device->getTimer()->getTime() < curTime + (1000.00f/cps_deseados)){
+
+	while ( device->getTimer()->getTime() < curTime + ( 1000.00f/cps_deseados ) )
+	{
 //        printf("SKIP -> %d < %d \n",device->getTimer()->getTime(),curTime + 3);
-        device->getTimer()->tick();
-    }
-
- 
-
-            if(_RenderVentana){
-                     if(device->isWindowActive())
-                     {
+		device->getTimer()->tick();
+	}
 
 
 
-                	        driver->beginScene(true, true, video::SColor(cfa,cfr,cfg,cfb));
-
-                            smgr->drawAll();
-                            guienv->drawAll();
-
-                            driver->endScene();
-                     }
-            }
-            else
-            {
-                            driver->beginScene(true, true, video::SColor(cfa,cfr,cfg,cfb));
-
-                            smgr->drawAll();
-                            guienv->drawAll();
-
-                            driver->endScene();
-            }
-
-                            int fps = driver->getFPS();
-
-                        	if (lastFPS != fps)
-                        	{
-                        		//wchar_t tmp[1024];
-                        		//swprintf(tmp, 1024, L" [fps:%d] [triangulos:%d]", fps, driver->getPrimitiveCountDrawn());
-                        		//device->setWindowCaption(tmp);
-                        		Triangulos = driver->getPrimitiveCountDrawn();
-                        		lastFPS = fps;
-                        		_CPS = fps;
-                        	}
+	if ( _RenderVentana )
+	{
+		if ( device->isWindowActive() )
+		{
 
 
-                        	// Actulaliza
-                        	ultimoIdBotonClick=-1;
-                        	ultimaIdBarraMovida=-1;
-                        	MenuOpcionSeleccionada=-1;
-                        	
-                       	m_key_buf_old[ultimatecla] = TeclaAbajo(ultimatecla);
+
+			driver->beginScene ( true, true, video::SColor ( cfa,cfr,cfg,cfb ) );
+
+			smgr->drawAll();
+			guienv->drawAll();
+
+			driver->endScene();
+		}
+	}
+	else
+	{
+		driver->beginScene ( true, true, video::SColor ( cfa,cfr,cfg,cfb ) );
+
+		smgr->drawAll();
+		guienv->drawAll();
+
+		driver->endScene();
+	}
+
+	int fps = driver->getFPS();
+
+	if ( lastFPS != fps )
+	{
+		//wchar_t tmp[1024];
+		//swprintf(tmp, 1024, L" [fps:%d] [triangulos:%d]", fps, driver->getPrimitiveCountDrawn());
+		//device->setWindowCaption(tmp);
+		Triangulos = driver->getPrimitiveCountDrawn();
+		lastFPS = fps;
+		_CPS = fps;
+	}
+
+
+	// Actulaliza
+	ultimoIdBotonClick=-1;
+	ultimaIdBarraMovida=-1;
+	MenuOpcionSeleccionada=-1;
+
+	m_key_buf_old[ultimatecla] = TeclaAbajo ( ultimatecla );
 
 
 
@@ -518,24 +521,25 @@ void GDT::Sistema::Render()
 }
 
 /*!
-Se usa cuando se quiere terminar la aplicaci&oacute;n. En versiones anteriores a la 1.3.5 se llamaba MiSistema.Matarme()
-
-Ejemplo:
-\code
-MiSistema.Finalizar();
-\endcode
+* Se usa cuando se quiere terminar la aplicaci&oacute;n.
+* En versiones anteriores a la 1.3.5 se llamaba MiSistema.Matarme()
+*
+* Ejemplo:
+* \code
+* MiSistema.Finalizar();
+* \endcode
 */
 void GDT::Sistema::Finalizar()
 {
-     device->closeDevice();
+	device->closeDevice();
 }
 
 /*!
-\deprecated Use Finalizar() en su lugar
+* \deprecated Use Finalizar() en su lugar
 */
 void GDT::Sistema::Matarme()
 {
-     Finalizar();
+	Finalizar();
 }
 
 /*!
@@ -544,14 +548,14 @@ void GDT::Sistema::Matarme()
 * MiSistema.TituloVentana("Mi primera aplicaci&oacute;n en GDT");
 * \endcode
 */
-void GDT::Sistema::TituloVentana(wchar_t* textoso)
+void GDT::Sistema::TituloVentana ( wchar_t* textoso )
 {
-     device->setWindowCaption(textoso);
+	device->setWindowCaption ( textoso );
 }
 
 IrrlichtDevice* GDT::Sistema::RetornarDevice()
 {
-    return device;
+	return device;
 }
 
 /*!
@@ -562,7 +566,7 @@ IrrlichtDevice* GDT::Sistema::RetornarDevice()
 */
 int GDT::Sistema::RetornarCPS()
 {
-    return _CPS;
+	return _CPS;
 }
 
 /*!
@@ -573,18 +577,18 @@ int GDT::Sistema::RetornarCPS()
 */
 int GDT::Sistema::RetornarTriangulos()
 {
-    return Triangulos;
+	return Triangulos;
 }
 
-void GDT::Sistema::RenderizarSoloConVentanaActiva(bool activa)
+void GDT::Sistema::RenderizarSoloConVentanaActiva ( bool activa )
 {
-    _RenderVentana = activa;
+	_RenderVentana = activa;
 }
 
-void GDT::Sistema::VentanaEscalable(bool escalable)
+void GDT::Sistema::VentanaEscalable ( bool escalable )
 {
-    _VentanaEscalable = escalable;
-    device->setResizeAble(escalable);
+	_VentanaEscalable = escalable;
+	device->setResizeAble ( escalable );
 }
 
 /*!
@@ -593,28 +597,29 @@ void GDT::Sistema::VentanaEscalable(bool escalable)
 * MiSistema.ColorFondo(200,255,0):
 * \endcode
 */
-void GDT::Sistema::ColorFondo(int r,int g,int b)
+void GDT::Sistema::ColorFondo ( int r,int g,int b )
 {
-    cfa = 0;
-    cfr = r;
-    cfg = g;
-    cfb = b;
+	cfa = 0;
+	cfr = r;
+	cfg = g;
+	cfb = b;
 }
 
-void GDT::Sistema::LimiteCPS(int lcps)
+void GDT::Sistema::LimiteCPS ( int lcps )
 {
-    cps_deseados=lcps;
+	cps_deseados=lcps;
 }
 
 /*!
 */
-void GDT::Sistema::Dormir(int milisecs)
+void GDT::Sistema::Dormir ( int milisecs )
 {
-       u32 curTime = device->getTimer()->getTime();
+	u32 curTime = device->getTimer()->getTime();
 
-       while(device->getTimer()->getTime() < curTime + milisecs){
-               device->getTimer()->tick();
-       }
+	while ( device->getTimer()->getTime() < curTime + milisecs )
+	{
+		device->getTimer()->tick();
+	}
 }
 
 /*!
@@ -625,68 +630,72 @@ void GDT::Sistema::Dormir(int milisecs)
 */
 int GDT::Sistema::TeclaPrecionada()
 {
-   int iTecla;
-   for(iTecla=0;iTecla<=256;iTecla++)
-   {
-      if(m_key_buf[iTecla]!=0)
-         return iTecla;
-   }
-   return 0;
+	int iTecla;
+	for ( iTecla=0;iTecla<=256;iTecla++ )
+	{
+		if ( m_key_buf[iTecla]!=0 )
+			return iTecla;
+	}
+	return 0;
 }
 
 // MOUSE ***********************************************************
 /*!
 */
-void GDT::Sistema::MousePosicionar(int X,int Y)
+void GDT::Sistema::MousePosicionar ( int X,int Y )
 {
-   //Estructura de tipo coordenada.
-   position2d<s32> Pos;
-   //Asignacion de valores a las variables de la estructura
-   Pos.X=X; Pos.Y=Y;
-   //Moviendo el cursor.
-   device->getCursorControl()->setPosition(Pos);
+	//Estructura de tipo coordenada.
+	position2d<s32> Pos;
+	//Asignacion de valores a las variables de la estructura
+	Pos.X=X; Pos.Y=Y;
+	//Moviendo el cursor.
+	device->getCursorControl()->setPosition ( Pos );
 }
 
 /*!
 */
-int GDT::Sistema::MousePosicionX(){
-   //Crea la estructura MousePosX y obtiene el valor del tipo coordenada
-   position2d<s32> MousePosX = device->getCursorControl()->getPosition();
-   //Asigna el valor de la coordenada X
-   return MousePosX.X;
+int GDT::Sistema::MousePosicionX()
+{
+	//Crea la estructura MousePosX y obtiene el valor del tipo coordenada
+	position2d<s32> MousePosX = device->getCursorControl()->getPosition();
+	//Asigna el valor de la coordenada X
+	return MousePosX.X;
 }
 
 /*!
 */
-int GDT::Sistema::MousePosicionY(){
-   //Crea la estructura MousePosY y obtiene el valor del tipo coordenada
-   position2d<s32> MousePosY = device->getCursorControl()->getPosition();
-   //Asigna el valor de la coordenada Y
-   return MousePosY.Y;
+int GDT::Sistema::MousePosicionY()
+{
+	//Crea la estructura MousePosY y obtiene el valor del tipo coordenada
+	position2d<s32> MousePosY = device->getCursorControl()->getPosition();
+	//Asigna el valor de la coordenada Y
+	return MousePosY.Y;
 }
 
 /*!
 */
-f32 GDT::Sistema::MouseMovimientoX(f32 sensibilidad){
+f32 GDT::Sistema::MouseMovimientoX ( f32 sensibilidad )
+{
 
-   f32 posY;
-   //Obtiene la posicion relativa acutal del mouse X
-   position2d<f32> MousePos = device->getCursorControl()->getRelativePosition();
-   posY= MousePos.Y; //MousePosicionX();
-   device->getCursorControl()->setPosition(0.5f,posY ); //centrar posicion
-   return (MousePos.X-0.5f) * sensibilidad;
+	f32 posY;
+	//Obtiene la posicion relativa acutal del mouse X
+	position2d<f32> MousePos = device->getCursorControl()->getRelativePosition();
+	posY= MousePos.Y; //MousePosicionX();
+	device->getCursorControl()->setPosition ( 0.5f,posY ); //centrar posicion
+	return ( MousePos.X-0.5f ) * sensibilidad;
 
 }
 
 /*!
 */
-f32 GDT::Sistema::MouseMovimientoY(f32 sensibilidad){
-    f32 posX;
-   //Obtiene la posicion relativa acutal del mouse X
-   position2d<f32> MousePos = device->getCursorControl()->getRelativePosition();
-   posX= MousePos.X; //MousePosicionX();
-   device->getCursorControl()->setPosition(posX, 0.5f); //centrar posicion en y
-   return (MousePos.Y-0.5f) * sensibilidad;
+f32 GDT::Sistema::MouseMovimientoY ( f32 sensibilidad )
+{
+	f32 posX;
+	//Obtiene la posicion relativa acutal del mouse X
+	position2d<f32> MousePos = device->getCursorControl()->getRelativePosition();
+	posX= MousePos.X; //MousePosicionX();
+	device->getCursorControl()->setPosition ( posX, 0.5f ); //centrar posicion en y
+	return ( MousePos.Y-0.5f ) * sensibilidad;
 
 }
 
@@ -694,45 +703,45 @@ f32 GDT::Sistema::MouseMovimientoY(f32 sensibilidad){
 */
 void GDT::Sistema::OcultarPuntero()
 {
-   device->getCursorControl()->setVisible(false);
+	device->getCursorControl()->setVisible ( false );
 }
 
 /*!
 */
-void GDT::Sistema::ColorSombra(int R, int G, int B)
+void GDT::Sistema::ColorSombra ( int R, int G, int B )
 {
-     sR = R;
-     sG = G;
-     sB = B;
+	sR = R;
+	sG = G;
+	sB = B;
 
-   smgr->setShadowColor(video::SColor(sT,R,G,B));
+	smgr->setShadowColor ( video::SColor ( sT,R,G,B ) );
 }
 
 /*!
 */
-void GDT::Sistema::TranslucidezSombra(int T)
+void GDT::Sistema::TranslucidezSombra ( int T )
 {
-   sT = T;
-   smgr->setShadowColor(video::SColor(T,sR,sG,sB));
+	sT = T;
+	smgr->setShadowColor ( video::SColor ( T,sR,sG,sB ) );
 }
 
 /*!
 */
-void GDT::Sistema::ConfigurarNiebla(int r, int g, int  b, bool lineal, float inicio, float fin,float densidad)
+void GDT::Sistema::ConfigurarNiebla ( int r, int g, int  b, bool lineal, float inicio, float fin,float densidad )
 {
-     driver->setFog(SColor(0, r, g, b), lineal, inicio, fin, densidad, false, false);
+	driver->setFog ( SColor ( 0, r, g, b ), lineal, inicio, fin, densidad, false, false );
 }
 
 /*!
-* Depende de varios otros hechos, como por ejemplo haber detenido el tiempo 
+* Depende de varios otros hechos, como por ejemplo haber detenido el tiempo
 * del sistema en algun punto, o cambiar la rapidez del Reloj.
-* 
+*
 * Para Obtener el tiempo completo, ocupe Milisegundos()
 */
 int GDT::Sistema::MilisegundosSistema()
 {
-   int milsc = device->getTimer()->getTime();
-   return milsc;
+	int milsc = device->getTimer()->getTime();
+	return milsc;
 }
 
 /*!
@@ -741,8 +750,8 @@ int GDT::Sistema::MilisegundosSistema()
 */
 int GDT::Sistema::Milisegundos()
 {
-    milsc_act = device->getTimer()->getRealTime() - milsc_ini;
-    return milsc_act;
+	milsc_act = device->getTimer()->getRealTime() - milsc_ini;
+	return milsc_act;
 }
 
 /*!
@@ -750,81 +759,98 @@ int GDT::Sistema::Milisegundos()
 */
 void GDT::Sistema::ReiniciarReloj()
 {
-   milsc_ini = device->getTimer()->getRealTime();
+	milsc_ini = device->getTimer()->getRealTime();
+}
+
+// ------------- ARCHIVOS / DIRECTORIOS ------------- //
+/*!
+*/
+void GDT::Sistema::CambiarDirectorio ( const char *strDir )
+{
+	device->getFileSystem()->changeWorkingDirectoryTo ( strDir );
 }
 
 /*!
 */
-void GDT::Sistema::CambiarDirectorio(const char *strDir)
+const char *GDT::Sistema::Directorio ( void )
 {
-     device->getFileSystem()->changeWorkingDirectoryTo(strDir);
+	return device->getFileSystem()->getWorkingDirectory();
+}
+
+/*!
+* \return La ruta absoluta al ejecutable.
+*
+* Ejemplo:
+* \code
+* int main ( int argc, char *argv[] )
+* {
+* 	Sistema MiSistema(640, 480, 16, false, NULL);
+*	cout << "Ruta al ejecutable: " << MiSistema.RutaBase( argv[0] ) << endl;
+*	return 0;
+* }
+* \endcode
+*/
+
+/*!
+*/
+bool GDT::Sistema::ArchivoExiste ( const char *strArchivo )
+{
+	return device->getFileSystem()->existFile ( strArchivo );
+}
+
+
+// -------------  ------------- //
+/*!
+*/
+void GDT::Sistema::CargarEscena ( char* file )
+{
+	smgr->loadScene ( file );
 }
 
 /*!
 */
-const char *GDT::Sistema::Directorio(void)
+void GDT::Sistema::GuardarEscena ( char* file )
 {
-      return device->getFileSystem()->getWorkingDirectory();
+	smgr->saveScene ( file );
 }
 
 /*!
 */
-bool GDT::Sistema::ArchivoExiste(const char *strArchivo)
+void GDT::Sistema::ActivarCamara ( ICameraSceneNode* cam ) //Camara cam )
 {
-     return device->getFileSystem()->existFile(strArchivo);
+	smgr->setActiveCamera ( cam );
 }
 
 /*!
 */
-void GDT::Sistema::CargarEscena(char* file)
+void GDT::Sistema::AreaRenderizado ( int x1, int y1, int x2, int y2 )
 {
-     smgr->loadScene(file);
-}
-
-/*!
-*/
-void GDT::Sistema::GuardarEscena(char* file)
-{
-     smgr->saveScene(file);
-}
-
-/*!
-*/
-void GDT::Sistema::ActivarCamara(  ICameraSceneNode* cam )//Camara cam )
-{
-     smgr->setActiveCamera( cam );
-}
-
-/*!
-*/
-void GDT::Sistema::AreaRenderizado(int x1, int y1, int x2, int y2)
-{
-     driver->setViewPort(rect<s32>(x1,y1,x2,y2));
+	driver->setViewPort ( rect<s32> ( x1,y1,x2,y2 ) );
 }
 
 /*!
 */
 void GDT::Sistema::Limpiar()
 {
-     smgr->clear();
+	smgr->clear();
 }
 
 /*!
 */
-void GDT::Sistema::ActualizarArchivoSeleccionadoDialogoAbrir(const c8* fn)
+void GDT::Sistema::ActualizarArchivoSeleccionadoDialogoAbrir ( const c8* fn )
 {
-	strcpy(RutaArchivoSeleccionado, fn);
+	strcpy ( RutaArchivoSeleccionado, fn );
 }
 
 /*!
 */
-void GDT::Sistema::TransparenciaGUI(int valor)
-{     
-    for (s32 i=0; i<EGDC_COUNT ; ++i)
-    {
-        SColor col = guienv->getSkin()->getColor((EGUI_DEFAULT_COLOR)i);
-        col.setAlpha(valor);
-        guienv->getSkin()->setColor((EGUI_DEFAULT_COLOR)i, col);
+void GDT::Sistema::TransparenciaGUI ( int valor )
+{
+	for ( s32 i=0; i<EGDC_COUNT ; ++i )
+	{
+		SColor col = guienv->getSkin()->getColor ( ( EGUI_DEFAULT_COLOR ) i );
+		col.setAlpha ( valor );
+		guienv->getSkin()->setColor ( ( EGUI_DEFAULT_COLOR ) i, col );
 
-    }
+	}
 }

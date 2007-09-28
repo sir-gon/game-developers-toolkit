@@ -19,7 +19,7 @@
  *   Boston, MA 02110-1301 USA                                             *
  ***************************************************************************/
 
-//ADVERTENCIA: Este módulo funciona solo en win32
+//ADVERTENCIA: Este mÃ³dulo funciona solo en win32
 #if defined(WIN32) && defined(_GDT_MIDI_)
 //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
 
@@ -34,16 +34,16 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 #define MUSIK_NOT_READY MCI_MODE_NOT_READY
@@ -55,75 +55,75 @@
 #define MUSIK_SEEK      MCI_MODE_SEEK
 
 #ifdef _MSC_VER
-	#define MUSIK_STRING	LPWSTR
+#define MUSIK_STRING	LPWSTR
 #else
-	#define MUSIK_STRING	LPSTR
+#define MUSIK_STRING	LPSTR
 #endif
 
 namespace GDT
 {
 
-namespace Sonido
-{
+	namespace Sonido
+	{
 
 //!  Permite tocar musica desde archivos MIDI
-class Musik
-{
-   private:
-	HMIDIOUT hmidiout;
-	DWORD dwStartVolume;
-   public:
-	HWND hwnd;
-	
-	UINT wDeviceID;
-	DWORD dwReturn;
-	MCI_OPEN_PARMS mciOpenParms;
-	MCI_PLAY_PARMS mciPlayParms;
-	MCI_STATUS_PARMS mciStatusParms;
-	MCI_SET_PARMS mciSetParms;
-	MCI_SEQ_SET_PARMS mciSeqSetParms;
-	MCI_LOAD_PARMS mciLoadParms;
-	MCI_GENERIC_PARMS mciGenericParms;
-	
-	LPCTSTR lpszDevice;
-	
-	int length, pos;
-	int beats, beat;
-	int paused;
-	int done;
+		class Musik
+		{
+			private:
+				HMIDIOUT hmidiout;
+				DWORD dwStartVolume;
+			public:
+				HWND hwnd;
 
-	HWND hwReturn;
-	MUSIK_STRING lpszArchivoMIDI;
+				UINT wDeviceID;
+				DWORD dwReturn;
+				MCI_OPEN_PARMS mciOpenParms;
+				MCI_PLAY_PARMS mciPlayParms;
+				MCI_STATUS_PARMS mciStatusParms;
+				MCI_SET_PARMS mciSetParms;
+				MCI_SEQ_SET_PARMS mciSeqSetParms;
+				MCI_LOAD_PARMS mciLoadParms;
+				MCI_GENERIC_PARMS mciGenericParms;
 
-	_GDT_EXPORT_ Musik();
-	_GDT_EXPORT_ ~Musik();
+				LPCTSTR lpszDevice;
 
-	_GDT_EXPORT_ bool Iniciar(MUSIK_STRING ArchivoMIDI);
-	_GDT_EXPORT_ bool Cargar(MUSIK_STRING ArchivoMIDI);
-	_GDT_EXPORT_ void Destruir();
-	_GDT_EXPORT_ void Inicio_Fin(int Inicio,int Fin);
-	_GDT_EXPORT_ void InicioEn(int Inicio);
-	_GDT_EXPORT_ void FinEn(int Fin);
-	_GDT_EXPORT_ void Play();
-	_GDT_EXPORT_ void Play(int Inicio,int Fin);
-	_GDT_EXPORT_ int Loop();
-	_GDT_EXPORT_ int Loop(int Inicio, int Fin);
-	_GDT_EXPORT_ void Stop();
-	_GDT_EXPORT_ void Pause();
-	_GDT_EXPORT_ void Resume();
-	_GDT_EXPORT_ int Posicion();
-	_GDT_EXPORT_ void Volumen(DWORD dwVolumen);
-	// Status
-	_GDT_EXPORT_ int VolumenActual();
-	_GDT_EXPORT_ bool Ejecutando();
-	_GDT_EXPORT_ int StatusEjecutando();
-	_GDT_EXPORT_ int TamMIDI();
-	_GDT_EXPORT_ char* ArchivoActual();
-	_GDT_EXPORT_ void DeviceId();
+				int length, pos;
+				int beats, beat;
+				int paused;
+				int done;
 
-};
+				HWND hwReturn;
+				MUSIK_STRING lpszArchivoMIDI;
 
-} // FIN NAMESPACE SONIDO
+				_GDT_EXPORT_ Musik();
+				_GDT_EXPORT_ ~Musik();
+
+				_GDT_EXPORT_ bool Iniciar ( MUSIK_STRING ArchivoMIDI );
+				_GDT_EXPORT_ bool Cargar ( MUSIK_STRING ArchivoMIDI );
+				_GDT_EXPORT_ void Destruir();
+				_GDT_EXPORT_ void Inicio_Fin ( int Inicio,int Fin );
+				_GDT_EXPORT_ void InicioEn ( int Inicio );
+				_GDT_EXPORT_ void FinEn ( int Fin );
+				_GDT_EXPORT_ void Play();
+				_GDT_EXPORT_ void Play ( int Inicio,int Fin );
+				_GDT_EXPORT_ int Loop();
+				_GDT_EXPORT_ int Loop ( int Inicio, int Fin );
+				_GDT_EXPORT_ void Stop();
+				_GDT_EXPORT_ void Pause();
+				_GDT_EXPORT_ void Resume();
+				_GDT_EXPORT_ int Posicion();
+				_GDT_EXPORT_ void Volumen ( DWORD dwVolumen );
+				// Status
+				_GDT_EXPORT_ int VolumenActual();
+				_GDT_EXPORT_ bool Ejecutando();
+				_GDT_EXPORT_ int StatusEjecutando();
+				_GDT_EXPORT_ int TamMIDI();
+				_GDT_EXPORT_ char* ArchivoActual();
+				_GDT_EXPORT_ void DeviceId();
+
+		};
+
+	} // FIN NAMESPACE SONIDO
 
 } // FIN NAMESPACE GDT
 

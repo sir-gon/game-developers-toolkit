@@ -20,7 +20,7 @@
  ***************************************************************************/
 
 //SE ESPERA DEFINICION COMO PARAMETRO DEL COMPILADOR
-#ifdef _GDT_SONIDO_ 
+#ifdef _GDT_SONIDO_
 
 #include "gd_sistemasonido.h" // class's header file
 
@@ -42,56 +42,57 @@ void GDT::Sonido::SistemaSonido::Inicializar()
 {
 	SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
 	SListenerVel[0] = SListenerVel[1] = SListenerVel[2] = 0.0;
-	
+
 	SListenerOri[0] = 0.0;
 	SListenerOri[1] = 0.0;
 	SListenerOri[2] = -1.0;
 	SListenerOri[3] = 0.0;
 	SListenerOri[4] = 1.0;
 	SListenerOri[5] = 0.0;
-	
+
 	//SGDsoundIniciado=0;
 	SGDsoundIniciado=false;
-	
-	alutInit(NULL, 0);
+
+	alutInit ( NULL, 0 );
 	alGetError();
-	
+
 	//SGDsoundIniciado=1;
 	SGDsoundIniciado=true;
 }
 
 /*!
 */
-void GDT::Sonido::SistemaSonido::Inicializar(char *tipo)
+void GDT::Sonido::SistemaSonido::Inicializar ( char *tipo )
 {
 	SListenerPos[0] = SListenerPos[1] = SListenerPos[2] = 0.0;
 	SListenerVel[0] = SListenerVel[1] = SListenerVel[2] = 0.0;
-	
+
 	SListenerOri[0] = 0.0;
 	SListenerOri[1] = 0.0;
 	SListenerOri[2] = -1.0;
 	SListenerOri[3] = 0.0;
 	SListenerOri[4] = 1.0;
 	SListenerOri[5] = 0.0;
-	
+
 	SGDsoundIniciado=0;
-	
+
 	ALCdevice* pDevice;
 	ALCcontext* pContext;
 	//ALCubyte* defaultDevice;
-	
+
 	//    pDevice = alcOpenDevice((ALCubyte*)"DirectSound3D");
-	
-	pDevice = alcOpenDevice((ALCchar*)tipo);
-	if (pDevice) {
-	pContext = alcCreateContext(pDevice, NULL);
-	alcMakeContextCurrent(pContext);
+
+	pDevice = alcOpenDevice ( ( ALCchar* ) tipo );
+	if ( pDevice )
+	{
+		pContext = alcCreateContext ( pDevice, NULL );
+		alcMakeContextCurrent ( pContext );
 	}
-	
-	
-	if(alcGetError(pDevice) != ALC_NO_ERROR)
+
+
+	if ( alcGetError ( pDevice ) != ALC_NO_ERROR )
 		SGDsoundIniciado=0;
-	
+
 	alGetError();
 	//SGDsoundIniciado=1;
 	SGDsoundIniciado=true;
@@ -108,41 +109,41 @@ void GDT::Sonido::SistemaSonido::FinGDsonido()
 
 /*!
 */
-void GDT::Sonido::SistemaSonido::PosicionOyente(float x, float y, float z)
+void GDT::Sonido::SistemaSonido::PosicionOyente ( float x, float y, float z )
 {
-	SListenerPos[0]=(ALfloat)x;
-	SListenerPos[1]=(ALfloat)y;
-	SListenerPos[2]=(ALfloat)z;
-	alListenerfv(AL_POSITION, SListenerPos);
+	SListenerPos[0]= ( ALfloat ) x;
+	SListenerPos[1]= ( ALfloat ) y;
+	SListenerPos[2]= ( ALfloat ) z;
+	alListenerfv ( AL_POSITION, SListenerPos );
 }
 
 /*!
 */
-void GDT::Sonido::SistemaSonido::VelocidadOyente(float x, float y, float z)
+void GDT::Sonido::SistemaSonido::VelocidadOyente ( float x, float y, float z )
 {
 	SListenerVel[0]=x; SListenerVel[1]=y; SListenerVel[2]=z;
-	alListenerfv(AL_VELOCITY, SListenerVel);
+	alListenerfv ( AL_VELOCITY, SListenerVel );
 }
 
 /*!
 */
-void GDT::Sonido::SistemaSonido::OrientacionOyente(float x1, float y1, float z1)
+void GDT::Sonido::SistemaSonido::OrientacionOyente ( float x1, float y1, float z1 )
 {
 	SListenerOri[0]=x1; SListenerOri[1]=y1; SListenerOri[2]=z1;
 	SListenerOri[3]=0; SListenerOri[4]=1.0; SListenerOri[5]=0;
-	alListenerfv(AL_ORIENTATION, SListenerOri);
+	alListenerfv ( AL_ORIENTATION, SListenerOri );
 }
 
 /*!
 */
-void GDT::Sonido::SistemaSonido::OrientacionOyente(
-	float x1, float y1, float z1,
-	float x2, float y2, float z2
-	)
+void GDT::Sonido::SistemaSonido::OrientacionOyente (
+    float x1, float y1, float z1,
+    float x2, float y2, float z2
+)
 {
 	SListenerOri[0]=x1; SListenerOri[1]=y1; SListenerOri[2]=z1;
 	SListenerOri[3]=x2; SListenerOri[4]=y2; SListenerOri[5]=z2;
-	alListenerfv(AL_ORIENTATION, SListenerOri);
+	alListenerfv ( AL_ORIENTATION, SListenerOri );
 }
 
 

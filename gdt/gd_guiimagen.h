@@ -27,44 +27,44 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef _GDT_VC_STUDIO_2005_
-   #define _GDT_EXPORT_ __declspec(dllexport)
-  #else
-    #define _GDT_EXPORT_
-  #endif
+#ifdef _GDT_VC_STUDIO_2005_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else
+#define _GDT_EXPORT_
+#endif
 #endif
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Imagen" (Image)
-class Imagen : public GuiBase
-{
-public:
-	IVideoDriver* driver;
-	ITexture* textura;
-	dimension2d< s32 > tam;
+		class Imagen : public GuiBase
+		{
+			public:
+				IVideoDriver* driver;
+				ITexture* textura;
+				dimension2d< s32 > tam;
 
-	// class constructor
-	_GDT_EXPORT_ Imagen();
-	// class destructor
-	_GDT_EXPORT_ ~Imagen();
+				// class constructor
+				_GDT_EXPORT_ Imagen();
+				// class destructor
+				_GDT_EXPORT_ ~Imagen();
 
-	IGUIImage* img;
+				IGUIImage* img;
 
-	//! Carga la imagen del control
-	_GDT_EXPORT_ void Cargar(char *filename);
-        _GDT_EXPORT_ void Cargar(char *filename, IGUIElement* padre);
-	//! Activa o desactiva que la imagen use el canal alpha.
-	_GDT_EXPORT_ void UsarCanalAlpha(bool uso);
+				//! Carga la imagen del control
+				_GDT_EXPORT_ void Cargar ( char *filename );
+				_GDT_EXPORT_ void Cargar ( char *filename, IGUIElement* padre );
+				//! Activa o desactiva que la imagen use el canal alpha.
+				_GDT_EXPORT_ void UsarCanalAlpha ( bool uso );
 
-        //_GDT_EXPORT_ void Visible(bool estado);
-};
+				//_GDT_EXPORT_ void Visible(bool estado);
+		};
 
-} // FIN NAMESPACE GUI
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

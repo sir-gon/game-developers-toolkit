@@ -23,15 +23,15 @@
 * \class GDT::XML
 * Esta Clase nos permite manejar informaci&oacute;n, guardandola y leyendola en archivos XML.
 * Algunas ideas de porque puede ser &uacute;til trabajar con XML puede ser:
-* 
-* - Guardar/Leer la configuraci&oacute;n de nestro juego, las opciones que tome el usuario. 
+*
+* - Guardar/Leer la configuraci&oacute;n de nestro juego, las opciones que tome el usuario.
 * - Guardar/Leer el avance en un jugeo, para luego restaurarlo y continuar jugando desde el punto guardado.
-* - Guardar ac&aacute; el di&aacute;logo de los personajes, descripciones de objetos, etc. As&iacute; 
+* - Guardar ac&aacute; el di&aacute;logo de los personajes, descripciones de objetos, etc. As&iacute;
 * tambi&eacute;n es posible traducir nuestro juego a varios idiomas.
-* 
+*
 * El formato del archivo es texto plano, codificado como UTF16, y estructurado como XML.
 * Es decir, de esta manera:
-* 
+*
 * \code
 * <?xml version="1.0"?>
 * <!--Se admiten Comentarios-->
@@ -59,26 +59,26 @@ GDT::XML::~XML()
 * xml.AbrirParaEscribir("datos.xml");
 * \endcode
 */
-void GDT::XML::AbrirParaEscribir(const char *strArchivo)
+void GDT::XML::AbrirParaEscribir ( const char *strArchivo )
 {
-     FileSystem = Sistema::device->getFileSystem(); 
-     
-     writeXML = FileSystem->createXMLWriter(strArchivo);  
-     
-     bEscribir = true;  
+	FileSystem = Sistema::device->getFileSystem();
+
+	writeXML = FileSystem->createXMLWriter ( strArchivo );
+
+	bEscribir = true;
 }
 
 /*!
 * Es necesario escribir la cabecera primero para que el archivo sea XML v&aacute;lido.
-* 
+*
 * Ejemplo:
 * \code
 * xml.EscribirCabeceraXML();
 * \endcode
 */
-void GDT::XML::EscribirCabeceraXML(void)
+void GDT::XML::EscribirCabeceraXML ( void )
 {
-     writeXML->writeXMLHeader();
+	writeXML->writeXMLHeader();
 }
 
 /*!
@@ -93,18 +93,18 @@ Ejemplo:
 xml.EscribirElemento(L"persona", false, L"nombre", L"GDT", L"edad" , L"5");
 \endcode
 */
-void GDT::XML::EscribirElemento(const wchar_t* nombre, bool vacio,
-		          const wchar_t* attr1Nombre, const wchar_t* attr1Valor,
-			      const wchar_t* attr2Nombre, const wchar_t* attr2Valor,
-			      const wchar_t* attr3Nombre, const wchar_t* attr3Valor,
-			      const wchar_t* attr4Nombre, const wchar_t* attr4Valor,
-			      const wchar_t* attr5Nombre, const wchar_t* attr5Valor
-			      )
+void GDT::XML::EscribirElemento ( const wchar_t* nombre, bool vacio,
+                                  const wchar_t* attr1Nombre, const wchar_t* attr1Valor,
+                                  const wchar_t* attr2Nombre, const wchar_t* attr2Valor,
+                                  const wchar_t* attr3Nombre, const wchar_t* attr3Valor,
+                                  const wchar_t* attr4Nombre, const wchar_t* attr4Valor,
+                                  const wchar_t* attr5Nombre, const wchar_t* attr5Valor
+                                )
 {
-    if(bEscribir)
-        writeXML->writeElement(nombre, vacio, attr1Nombre, attr1Valor, 
-                     attr2Nombre, attr2Valor, attr3Nombre, attr3Valor,
-                     attr4Nombre, attr4Valor, attr5Nombre, attr5Valor);
+	if ( bEscribir )
+		writeXML->writeElement ( nombre, vacio, attr1Nombre, attr1Valor,
+		                         attr2Nombre, attr2Valor, attr3Nombre, attr3Valor,
+		                         attr4Nombre, attr4Valor, attr5Nombre, attr5Valor );
 }
 
 /*!
@@ -113,10 +113,10 @@ Ejemplo:
 xml.EscribirComentario(L"Esto es un comentario");
 \endcode
 */
-void GDT::XML::EscribirComentario(const wchar_t* comentario)
+void GDT::XML::EscribirComentario ( const wchar_t* comentario )
 {
-     if(bEscribir)
-         writeXML->writeComment(comentario);
+	if ( bEscribir )
+		writeXML->writeComment ( comentario );
 }
 
 /*!
@@ -128,10 +128,10 @@ Ejemplo:
 xml.EscribirCierreCabecera(L"nombre");
 \endcode
 */
-void GDT::XML::EscribirCierreEtiqueta(const wchar_t* nombre)
+void GDT::XML::EscribirCierreEtiqueta ( const wchar_t* nombre )
 {
-     if(bEscribir)
-         writeXML->writeClosingTag(nombre);
+	if ( bEscribir )
+		writeXML->writeClosingTag ( nombre );
 }
 
 /*!
@@ -144,10 +144,10 @@ El texto se escribe de la siguiente forma:
 xml.EscribirTexto(L"Hola XML");
 \endcode
 */
-void GDT::XML::EscribirTexto(const wchar_t* texto)
+void GDT::XML::EscribirTexto ( const wchar_t* texto )
 {
-     if(bEscribir)
-         writeXML->writeText(texto);
+	if ( bEscribir )
+		writeXML->writeText ( texto );
 }
 
 /*!
@@ -156,10 +156,10 @@ Ejemplo:
 xml.EscribirRupturaLinea();
 \endcode
 */
-void GDT::XML::EscribirRupturaLinea(void)
+void GDT::XML::EscribirRupturaLinea ( void )
 {
-     if(bEscribir)
-         writeXML->writeLineBreak();
+	if ( bEscribir )
+		writeXML->writeLineBreak();
 }
 
 /*!
@@ -169,13 +169,13 @@ Ejemplo:
 xml.AbrirParaLeer("datos.xml");
 \endcode
 */
-void GDT::XML::AbrirParaLeer(const char *strArchivo)
+void GDT::XML::AbrirParaLeer ( const char *strArchivo )
 {
-     FileSystem = Sistema::device->getFileSystem(); 
-     
-     readXML = FileSystem->createXMLReader(strArchivo);   
-     
-     bEscribir = false; 
+	FileSystem = Sistema::device->getFileSystem();
+
+	readXML = FileSystem->createXMLReader ( strArchivo );
+
+	bEscribir = false;
 }
 
 /*!
@@ -188,8 +188,8 @@ while (xml.Leyendo() )
 */
 bool GDT::XML::Leyendo()
 {
-    if(!bEscribir)
-         return readXML->read();
+	if ( !bEscribir )
+		return readXML->read();
 	return false;
 }
 
@@ -211,9 +211,9 @@ switch ( xml.TipoNodo() )
 }
 \endcode
 */
-EXML_NODE GDT::XML::TipoNodo(void)
+EXML_NODE GDT::XML::TipoNodo ( void )
 {
-    return readXML->getNodeType();
+	return readXML->getNodeType();
 }
 
 /*!
@@ -222,40 +222,40 @@ Ejemplo:
 int atributos = xml.NumeroAtributos();
 \endcode
 */
-int GDT::XML::NumeroAtributos(void)
+int GDT::XML::NumeroAtributos ( void )
 {
-    return readXML->getAttributeCount();
+	return readXML->getAttributeCount();
 }
 
 
-const wchar_t* GDT::XML::NombreAtributo(int id)
+const wchar_t* GDT::XML::NombreAtributo ( int id )
 {
-      return readXML->getAttributeName(id);
+	return readXML->getAttributeName ( id );
 }
 
-const wchar_t* GDT::XML::ValorAtributo(int id)
+const wchar_t* GDT::XML::ValorAtributo ( int id )
 {
-      return readXML->getAttributeValue(id);
+	return readXML->getAttributeValue ( id );
 }
 
-const wchar_t* GDT::XML::ValorAtributo(const wchar_t* atributo)
+const wchar_t* GDT::XML::ValorAtributo ( const wchar_t* atributo )
 {
-      return readXML->getAttributeValueSafe(atributo);
+	return readXML->getAttributeValueSafe ( atributo );
 }
 
 const wchar_t* GDT::XML::NombreNodo()
 {
-      return readXML->getNodeName();
+	return readXML->getNodeName();
 }
 
 const wchar_t* GDT::XML::DatosNodo()
 {
-      return readXML->getNodeData();
+	return readXML->getNodeData();
 }
 
 bool GDT::XML::ElementoVacio()
 {
-     return readXML->isEmptyElement();
+	return readXML->isEmptyElement();
 }
 
 /*!
@@ -264,10 +264,10 @@ Ejemplo:
 xml.Cerrar();
 \endcode
 */
-void GDT::XML::Cerrar(void)
+void GDT::XML::Cerrar ( void )
 {
-     if(bEscribir)
-         writeXML->drop();
-     else
-         readXML->drop();
+	if ( bEscribir )
+		writeXML->drop();
+	else
+		readXML->drop();
 }

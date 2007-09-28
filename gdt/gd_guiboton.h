@@ -27,44 +27,44 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 namespace GDT
 {
 
-namespace Gui
-{
+	namespace Gui
+	{
 
 //! Control GUI "Boton" (Button)
-class Boton : public GuiBase
-{
-public:
-	// class constructor
-	_GDT_EXPORT_ Boton();
-	// class destructor
-	_GDT_EXPORT_ ~Boton();
+		class Boton : public GuiBase
+		{
+			public:
+				// class constructor
+				_GDT_EXPORT_ Boton();
+				// class destructor
+				_GDT_EXPORT_ ~Boton();
 
-	IGUIButton* boton;
+				IGUIButton* boton;
 
-	//! Crea un control Gui del tipo Bot&oacute;n.
-	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, IGUIElement* padre=0);
-	//! Crea un control Gui del tipo Bot&oacute;n.
-	_GDT_EXPORT_ void Crear(int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0);
-	//! Crea un control Gui del tipo Bot&oacute;n, con una imagen.
-	_GDT_EXPORT_ void CrearConImagen(int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0);
-};
+				//! Crea un control Gui del tipo Bot&oacute;n.
+				_GDT_EXPORT_ void Crear ( int x1, int y1, int x2, int y2, IGUIElement* padre=0 );
+				//! Crea un control Gui del tipo Bot&oacute;n.
+				_GDT_EXPORT_ void Crear ( int x1, int y1, int x2, int y2, wchar_t * texto, IGUIElement* padre=0 );
+				//! Crea un control Gui del tipo Bot&oacute;n, con una imagen.
+				_GDT_EXPORT_ void CrearConImagen ( int x1, int y1, int x2, int y2, char* filename_boton_normal ,char* filename_boton_presionado, IGUIElement* padre=0 );
+		};
 
-} // FIN NAMESPACE GUI
+	} // FIN NAMESPACE GUI
 
 } // FIN NAMESPACE GDT
 

@@ -27,16 +27,16 @@
 
 //EXPORTAR SIMBOLOS AL CREAR DLL
 #ifndef _GDT_EXPORT_
-  #ifdef WIN32
-	#ifdef _GDT_DLL_
-	   #define _GDT_EXPORT_ __declspec(dllexport)
-	#else /* Not _GDT_DLL_ */
-	   #define _GDT_EXPORT_ __declspec(dllimport)
-	#endif /* Not _GDT_DLL_ */
-  #else
-// SINO, DEFINIR COMO NULO EL EXPORTADOR 
-    #define _GDT_EXPORT_ /* Definido nulo */
-  #endif  /* WIN32 */
+#ifdef WIN32
+#ifdef _GDT_DLL_
+#define _GDT_EXPORT_ __declspec(dllexport)
+#else /* Not _GDT_DLL_ */
+#define _GDT_EXPORT_ __declspec(dllimport)
+#endif /* Not _GDT_DLL_ */
+#else
+// SINO, DEFINIR COMO NULO EL EXPORTADOR
+#define _GDT_EXPORT_ /* Definido nulo */
+#endif  /* WIN32 */
 #endif /* _GDT_EXPORT_ */
 
 #define STAND EMAT_STAND
@@ -65,96 +65,96 @@
 namespace GDT
 {
 
-namespace Nodo
-{
+	namespace Nodo
+	{
 
 //!Carga y manipula una Malla (Mesh)
-class Malla :  public Colisiones3D //public NodoBase,
-{
-   private:
+		class Malla :  public Colisiones3D //public NodoBase,
+		{
+			private:
 
-      void RegistrarVelAni(int va);
-	  IMesh* DibujarCubo();
-	  IMesh* DibujarPlano(int gridX=25, int gridY=25);
-	  IMesh* DibujarCilindro(int gridX=25, int gridY=25,f32 ridus=1);
-	  IMesh* DibujarCono(int gridX=25, int gridY=25,f32 ridus=1);
-	  IMesh* DibujarEsfera();
-      int velani;
+				void RegistrarVelAni ( int va );
+				IMesh* DibujarCubo();
+				IMesh* DibujarPlano ( int gridX=25, int gridY=25 );
+				IMesh* DibujarCilindro ( int gridX=25, int gridY=25,f32 ridus=1 );
+				IMesh* DibujarCono ( int gridX=25, int gridY=25,f32 ridus=1 );
+				IMesh* DibujarEsfera();
+				int velani;
 
 
-	public:
-	
-	// class constructor
-	_GDT_EXPORT_ Malla();
-	// class destructor
-	_GDT_EXPORT_ ~Malla();
-	
-	IAnimatedMesh* mesh;
-	IMesh* static_mesh;
-	IMesh* tangentMesh;
-	ISceneNode* nodo_tangentes;
-	IAnimatedMeshSceneNode *nodoAM;
-	
-	int Tipo_Esc;
-	bool controlani;
-	irr::scene::EMD2_ANIMATION_TYPE old_aniTipoActual;
-	int old_ini,old_fin;
-	
-	//! Carga una malla animada o est&aacute;tica.
-	_GDT_EXPORT_ void Cargar(char *filename);
-	//! Carga un malla est&aacute;tica y genera sus tangentes.
-	_GDT_EXPORT_ void CargarTangentes(char *filename);
-	
-	//! Crea una caja
-	_GDT_EXPORT_ void CrearCaja();
-	//! Crea una Caja (paralelep&iacute;pedo)
-	_GDT_EXPORT_ void CrearCaja(float tamx, float tamy, float tamz );
-	//! Crea un cubo
-	_GDT_EXPORT_ void CrearCubo(); // Obsoleto
-	//! Crea un cubo
-	_GDT_EXPORT_ void CrearCubo(float tamx, float tamy, float tamz );
-	//! Crea un Plano
-	_GDT_EXPORT_ void CrearPlano( int tx, int ty );
-	//! Crea un Cilindro
-	_GDT_EXPORT_ void CrearCilindro( int tx, int ty, f32 radio  );
-	//! Crea un Cono
-	_GDT_EXPORT_ void CrearCono( int tx, int ty, f32 radio  );
-	//! Crea una Esfera
-	_GDT_EXPORT_ void CrearEsfera( float radio, int polynum = 16 );
-	
-	//! Remplaza el nodo de una clase que hereda de NodoBase
-	_GDT_EXPORT_ void Reemplazar(ISceneNode* nod_R);
-	//! Retorna el nodo de un hueso especifico
-	_GDT_EXPORT_ ISceneNode* RetornarNodoHuesoX(c8* Nombre );
-	//! Retorna el nodo de un hueso especifico
-	_GDT_EXPORT_ ISceneNode* RetornarNodoHuesoMS3D(c8* Nombre );
-	//! Devuelve el cuadro de la animacion.
-	_GDT_EXPORT_ int RetornarCuadro();
-	//! Establece la velocidad de la animacion de la malla.
-	_GDT_EXPORT_ void VelocidadAnimacion(int CuadrosPorSegundo);
-	//! Establece el cuadro actual de la animacion
-	_GDT_EXPORT_ void CuadroActual(int cuadro);
-	//! Establece el ciclo de animaci&oacute;n
-	_GDT_EXPORT_ void CicloCuadros(int ini, int fin);
-	//! Establece el ciclo de animaci&oacute;n para los modelos MD2 de quake
-	_GDT_EXPORT_ void CicloMD2(irr::scene::EMD2_ANIMATION_TYPE );
-	//! Cambia la aniamaci&oacute;n a modo ciclo
-	_GDT_EXPORT_ void Repeticion(bool enCiclo);
-	//! Evita que la animacion se reinicie cada vez que se llama
-	_GDT_EXPORT_ void ControlAnimacion(bool control);
+			public:
 
-	//! Activa la generaci&oacute;n de sombras proyectadas de la malla.
-	_GDT_EXPORT_ void ProyectarSombra();
+				// class constructor
+				_GDT_EXPORT_ Malla();
+				// class destructor
+				_GDT_EXPORT_ ~Malla();
 
-	_GDT_EXPORT_ void CalibrarColisionConEscenario(float x, float y, float z);
-	_GDT_EXPORT_ void CalibrarColisionConEscenarioX(float x, float y, float z);
-	_GDT_EXPORT_ void CalibrarColisionConEscenarioY(float x, float y, float z);
-	_GDT_EXPORT_ void CalibrarColisionConEscenarioZ(float x, float y, float z);
-	
+				IAnimatedMesh* mesh;
+				IMesh* static_mesh;
+				IMesh* tangentMesh;
+				ISceneNode* nodo_tangentes;
+				IAnimatedMeshSceneNode *nodoAM;
 
-};
+				int Tipo_Esc;
+				bool controlani;
+				irr::scene::EMD2_ANIMATION_TYPE old_aniTipoActual;
+				int old_ini,old_fin;
 
-} // FIN NAMESPACE NODO
+				//! Carga una malla animada o est&aacute;tica.
+				_GDT_EXPORT_ void Cargar ( char *filename );
+				//! Carga un malla est&aacute;tica y genera sus tangentes.
+				_GDT_EXPORT_ void CargarTangentes ( char *filename );
+
+				//! Crea una caja
+				_GDT_EXPORT_ void CrearCaja();
+				//! Crea una Caja (paralelep&iacute;pedo)
+				_GDT_EXPORT_ void CrearCaja ( float tamx, float tamy, float tamz );
+				//! Crea un cubo
+				_GDT_EXPORT_ void CrearCubo(); // Obsoleto
+				//! Crea un cubo
+				_GDT_EXPORT_ void CrearCubo ( float tamx, float tamy, float tamz );
+				//! Crea un Plano
+				_GDT_EXPORT_ void CrearPlano ( int tx, int ty );
+				//! Crea un Cilindro
+				_GDT_EXPORT_ void CrearCilindro ( int tx, int ty, f32 radio );
+				//! Crea un Cono
+				_GDT_EXPORT_ void CrearCono ( int tx, int ty, f32 radio );
+				//! Crea una Esfera
+				_GDT_EXPORT_ void CrearEsfera ( float radio, int polynum = 16 );
+
+				//! Remplaza el nodo de una clase que hereda de NodoBase
+				_GDT_EXPORT_ void Reemplazar ( ISceneNode* nod_R );
+				//! Retorna el nodo de un hueso especifico
+				_GDT_EXPORT_ ISceneNode* RetornarNodoHuesoX ( c8* Nombre );
+				//! Retorna el nodo de un hueso especifico
+				_GDT_EXPORT_ ISceneNode* RetornarNodoHuesoMS3D ( c8* Nombre );
+				//! Devuelve el cuadro de la animacion.
+				_GDT_EXPORT_ int RetornarCuadro();
+				//! Establece la velocidad de la animacion de la malla.
+				_GDT_EXPORT_ void VelocidadAnimacion ( int CuadrosPorSegundo );
+				//! Establece el cuadro actual de la animacion
+				_GDT_EXPORT_ void CuadroActual ( int cuadro );
+				//! Establece el ciclo de animaci&oacute;n
+				_GDT_EXPORT_ void CicloCuadros ( int ini, int fin );
+				//! Establece el ciclo de animaci&oacute;n para los modelos MD2 de quake
+				_GDT_EXPORT_ void CicloMD2 ( irr::scene::EMD2_ANIMATION_TYPE );
+				//! Cambia la aniamaci&oacute;n a modo ciclo
+				_GDT_EXPORT_ void Repeticion ( bool enCiclo );
+				//! Evita que la animacion se reinicie cada vez que se llama
+				_GDT_EXPORT_ void ControlAnimacion ( bool control );
+
+				//! Activa la generaci&oacute;n de sombras proyectadas de la malla.
+				_GDT_EXPORT_ void ProyectarSombra();
+
+				_GDT_EXPORT_ void CalibrarColisionConEscenario ( float x, float y, float z );
+				_GDT_EXPORT_ void CalibrarColisionConEscenarioX ( float x, float y, float z );
+				_GDT_EXPORT_ void CalibrarColisionConEscenarioY ( float x, float y, float z );
+				_GDT_EXPORT_ void CalibrarColisionConEscenarioZ ( float x, float y, float z );
+
+
+		};
+
+	} // FIN NAMESPACE NODO
 
 } // FIN NAMESPACE GDT
 
